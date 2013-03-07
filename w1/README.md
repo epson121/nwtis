@@ -11,23 +11,26 @@ Instaliranje JDK SE dokumentacije na računalo (direktorij {korisnik}\JDK_SE\doc
 Upoznavanje s JDK SE dokumentacijom (JDK SE alati, JDK SE API,...)
 Preuzimanje programa notepadd++: http://notepad-plus-plus.org/download
 Instaliranje programa notepadd++ (standardne postavke)
-Kreiranje 1. vježbe (direktorij {korisnik}\vjezba_01). U nastavku se direktorij za vježbu simbolički označava kao {vježba})
+
+* Kreiranje 1. vježbe (direktorij {korisnik}\vjezba_01). U nastavku se direktorij za vježbu simbolički označava kao {vježba})
 Vježba_01_1: Razvojni ciklus Java programa
 Kreiranje 1. zadatka (direktorij {vježba}\vjezba_01_1)
 Kreiranje Java datoteke Vjezba_01_1.java Opis problema: ispis argumenata.
 Kompiliranje zadatka: javac Vjezba_01_1.java
 Izvršavanje zadatka: java Vjezba_01_1 (uz razne argumente: pero ivo 505)
-Vježba_01_2: Strukturiranje direktorija za projekt
+
+* Vježba_01_2: Strukturiranje direktorija za projekt
 Kreiranje 2. zadatka (direktorij {vježba}\vjezba_01_2).
 Kreiranje skripte {korisnik}priprema.bat za kreiranje poddirektorija src, classes, libs i dist unutar aktivnog direktorija
 Izvršavanje skripte: {korisnik}\priprema.bat
 Postavljanje na src direktorij
 Kreiranje Java datoteke Faktorijela.java Opis problema: kreiranje klase za izračunavanje faktorijela. Konstruktor ima argument tipa int. Metoda public long dajFaktorijelu() vraća u tipu long.
-Kreiranje Java datoteke Vjezba_01_2.java Opis problema: ispis faktorijela za upisani argument .
+
+* Kreiranje Java datoteke Vjezba_01_2.java Opis problema: ispis faktorijela za upisani argument .
 Kompiliranje klasa uz smještaj .class datoteka na direktorij classes: javac -d ..\classes Vjezba_01_2.java
 Izvršavanje zadatka s direktorija {vježba}: java -classpath ..\classes Vjezba_01_2 (uz razne argumente: 0, 1, 2, 10,...)
  
-Vježba_01_3: Kreiraje jar biblioteke
+* Vježba_01_3: Kreiraje jar biblioteke
 Kreiranje 3. zadatka (direktorij {vježba}\vjezba_01_3).
 Izvršavanje skripte: {korisnik}\priprema.bat
 Postavljanje na src direktorij
@@ -36,7 +39,7 @@ Kopiranje datoteke Faktorijela.java iz prethodne vježbe i promjena da se nalazi
 Kompiliranje klasa uz smještaj .class datoteka na direktorij classes: javac -d ..\classes podrska\*.java
 Kreiranje jar biblioteke Podrska.jar na direktioriju dist: jar -cvf ..\dist\Podrska.jar -C ..\classes .
  
-Vježba_01_4: Korištenje jar bioblioteke i kreiranje izvršne verzije jar biblioteke
+* Vježba_01_4: Korištenje jar bioblioteke i kreiranje izvršne verzije jar biblioteke
 Kreiranje 4. zadatka (direktorij {vježba}\vjezba_01_4).
 Izvršavanje skripte: {korisnik}\priprema.bat
 Kopiranje jar biblioteke Podrska.jar iz prethodne vježbe na direktorij libs
