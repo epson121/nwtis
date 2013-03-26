@@ -52,25 +52,38 @@ public class Zadaca_1 {
                     }
                     break;
                 case "-admin":
+                    p = Pattern.compile(regexAdmin);
+                    m = p.matcher(strCommand);
+                    status = m.matches();
+                    if (status){
+                        //TODO handle admin commands
+                    }
                     break;
                 case "-user":
-                    System.out.println("USER");
                     p = Pattern.compile(regexUser);
                     m = p.matcher(strCommand);
                     status = m.matches();
                     System.out.println(status);
-                    if (status) {
+                    if (status){
                         int port = Integer.parseInt(m.group(2));
                         String configFileName = m.group(4);
                         String serverIP = m.group(1);
                         String user = m.group(3);
                         
-                        KlijentVremena kv = new KlijentVremena(port, configFileName, serverIP, user);
+                        KlijentVremena kv = new KlijentVremena(  port
+                                                               , configFileName
+                                                               , serverIP
+                                                               , user);
                         kv.startKlijentVremena();
-                        
                     }
                     break;
                 case "-show":
+                    p = Pattern.compile(regexShow);
+                    m = p.matcher(strCommand);
+                    status = m.matches();
+                    if (status){
+                        //TODO handle show commands
+                    }
                     break;
                 default:
                     System.out.println("Wrong input!");

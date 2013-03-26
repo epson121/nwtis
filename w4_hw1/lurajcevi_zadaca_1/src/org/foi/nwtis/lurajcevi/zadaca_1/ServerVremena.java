@@ -25,6 +25,13 @@ public class ServerVremena implements Serializable{
     private String serializeFileName;
     private Konfiguracija config;
 
+    /**
+     * 
+     * @param port - port number
+     * @param configFileName - name of the configuration file
+     * @param load - boolean value (is load parameter included)
+     * @param serializeFileName  - serialization file name
+     */
     public ServerVremena(int port, String configFileName, boolean load, String serializeFileName) {
         this.port = port;
         this.configFileName = configFileName;

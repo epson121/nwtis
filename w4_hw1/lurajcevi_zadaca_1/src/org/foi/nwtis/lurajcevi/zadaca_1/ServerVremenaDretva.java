@@ -20,14 +20,18 @@ import org.foi.nwtis.lurajcevi.konfiguracije.Konfiguracija;
  */
 public class ServerVremenaDretva extends Thread{
     
+    private String FILE_NAME = "dnevnik.txt";
     private Socket client;
     private String serializeFileName;
     private Konfiguracija config;
+    private Dnevnik dnevnik;
 
     public ServerVremenaDretva(Socket client, String serializeFileName, Konfiguracija config) {
         this.client = client;
         this.serializeFileName = serializeFileName;
         this.config = config;
+        dnevnik = new Dnevnik(FILE_NAME);
+        dnevnik.otvoriDnevnik();
     }
 
     @Override
@@ -42,24 +46,30 @@ public class ServerVremenaDretva extends Thread{
         OutputStream os = null;
         StringBuilder command;
         int character;
+        dnevnik.upisiZapis("preparing to read characters!\n");
+        System.out.println("preparing to read characters!");
         try {
             is = client.getInputStream();
             os = client.getOutputStream();
             command = new StringBuilder();
             
-            while ((character = is.read()) != -1){
+            while (is.available() > 0){
+                character = is.read();
+                if (character == -1 )
+                    break;
                 command.append((char) character);
-                System.out.println("char: " + character);
             }
-            System.out.println("command: " + command);
-            //TODO provjera da li komanda zadovoljava regex i generiranje odgovora
-            
-            String response = "OK " +  new Date();
-            os.write(response.getBytes());
-            os.flush();
+            String strCommand = command.toString().trim();
+            if (strCommand.endsWith("GETTIME")){
+                String response = "OK " +  new Date();
+                os.write(response.getBytes());
+                os.flush();
+            }
+            dnevnik.upisiZapis("DONE\n");
+            System.out.println("DONE");
         } 
         catch (IOException e) {
-            
+            System.out.println("ERROR");
         } 
         finally{
             try {
@@ -67,8 +77,10 @@ public class ServerVremenaDretva extends Thread{
                     is.close();
                 if (os != null)
                     os.close();
+                dnevnik.zatvoriDnevnik();
             } catch (IOException ex) {
                 Logger.getLogger(ServerVremenaDretva.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("ERROR");
             }
         }
     }

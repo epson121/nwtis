@@ -9,9 +9,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
-import java.net.UnknownHostException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * 
@@ -23,51 +20,52 @@ public class KlijentVremena {
     private String serverIP;
     private String user;
 
+    /**
+     * 
+     * @param port - port number
+     * @param configFileName - name of the configuration file
+     * @param serverIP - ip adress of the server
+     * @param user - username
+     */
     public KlijentVremena(int port, String configFileName, String serverIP, String user) {
         this.port = port;
         this.configFileName = configFileName;
         this.serverIP = serverIP;
         this.user = user;
     }
-    
+    /**
+     * 
+     */
     public void startKlijentVremena(){
+        String command = "USER " + user + "; GETTIME";
         InputStream is = null;
         OutputStream os = null;
         Socket server = null;
         try{
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(KlijentVremena.class.getName()).log(Level.SEVERE, null, ex);
-            }
             server = new Socket(serverIP, port);
             int character;
-            is = server.getInputStream();
             os = server.getOutputStream();
-            String command = "USER " + user + "; GETTIME";
-            os.write(command.getBytes());
+            is = server.getInputStream();
+            byte[] bytes = command.getBytes();
+            os.write(bytes);
             os.flush();
             StringBuilder response = new StringBuilder();
             
-            while ((character = is.read()) != -1){
+            while ((character = is.read()) != -1 || is.available() > 0){
                 response.append((char) character);
             }
-            System.out.println("debug 4");
-            System.out.println("komanda " + command);
+            System.out.println(response);
         }
-        catch (UnknownHostException ex){
-            System.out.println("catch");
-            Logger.getLogger(KlijentVremena.class.getName()).log(Level.SEVERE, null, ex);
-        } 
         catch (IOException ex) {
-            Logger.getLogger(KlijentVremena.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(KlijentVremena.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("ERROR, Exception has occured");
         }
         finally{
             try{
-                if (is != null)
-                    is.close();
                 if (os != null)
                     os.close();
+                if (is != null)
+                    is.close();
                 if (server != null)
                     server.close();
             }
