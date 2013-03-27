@@ -8,6 +8,7 @@ package org.foi.nwtis.lurajcevi.zadaca_1;
 import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.foi.nwtis.lurajcevi.konfiguracije.Konfiguracija;
@@ -51,15 +52,21 @@ public class ServerVremena implements Serializable{
         
         try {
             ServerSocket server = new ServerSocket(port);
+            server.setSoTimeout(1000);
             while (!stopped){
+                try{
                 Socket client = server.accept();
                 System.out.println("Request has been received. Now responding...");
                 ServerVremenaDretva svd = new ServerVremenaDretva(  client 
                                                                   , serializeFileName
                                                                   , config);
                 svd.start();
+                }
+                catch (SocketTimeoutException ex){
+                }
             }
         } catch (Exception e) {
+            
         }
         
     }

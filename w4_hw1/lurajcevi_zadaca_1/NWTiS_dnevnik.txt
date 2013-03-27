@@ -233,3 +233,73 @@ OK
 #3 ,Wed Mar 27 23:30:09 CET 2013
 #4 ,Wed Mar 27 23:30:18 CET 2013
 #5 ,Wed Mar 27 23:30:27 CET 2013
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+ERROR: Server is already stopped.
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+OK
+
+#1 ,Thu Mar 28 00:05:01 CET 2013
+#2 ,Thu Mar 28 00:05:07 CET 2013
+#3 ,Thu Mar 28 00:05:13 CET 2013
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+OK
+
+#4 ,Thu Mar 28 00:05:19 CET 2013
+#5 ,Thu Mar 28 00:05:25 CET 2013

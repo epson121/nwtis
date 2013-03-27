@@ -95,13 +95,13 @@ public class ServerVremenaDretva extends Thread{
                 }
             }
             else if (command.indexOf("STOP") != -1){
-                System.out.println("comm: " + command);
                 if (isMatchingRegex(command) && verifyCredentials(m.group(1), m.group(2))){
                     if (!ServerVremena.isStopped()){
                         ServerVremena.setStopped(true);
                         response = "OK";
                         System.out.println("Server is stopping!");
-                        interrupt();                    
+                        //client.close();
+                        interrupt();
                     }
                     else{
                         response = "ERROR: Server is already stopped.";
