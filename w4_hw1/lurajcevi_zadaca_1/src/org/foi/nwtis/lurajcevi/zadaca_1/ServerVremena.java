@@ -24,6 +24,9 @@ public class ServerVremena implements Serializable{
     private boolean load;
     private String serializeFileName;
     private Konfiguracija config;
+    
+    private static boolean paused = false;
+    private static boolean stopped = false;
 
     /**
      * 
@@ -48,9 +51,9 @@ public class ServerVremena implements Serializable{
         
         try {
             ServerSocket server = new ServerSocket(port);
-            while (true){
+            while (!stopped){
                 Socket client = server.accept();
-                System.out.println("Klijent se javio");
+                System.out.println("Request has been received. Now responding...");
                 ServerVremenaDretva svd = new ServerVremenaDretva(  client 
                                                                   , serializeFileName
                                                                   , config);
@@ -59,6 +62,22 @@ public class ServerVremena implements Serializable{
         } catch (Exception e) {
         }
         
+    }
+
+    public static boolean isPaused() {
+        return paused;
+    }
+
+    public static synchronized void setPaused(boolean paused) {
+        ServerVremena.paused = paused;
+    }
+
+    public static boolean isStopped() {
+        return stopped;
+    }
+
+    public static synchronized void setStopped(boolean stopped) {
+        ServerVremena.stopped = stopped;
     }
     
     

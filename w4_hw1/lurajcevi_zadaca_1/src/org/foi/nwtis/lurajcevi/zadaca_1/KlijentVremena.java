@@ -5,10 +5,13 @@
 
 package org.foi.nwtis.lurajcevi.zadaca_1;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.foi.nwtis.lurajcevi.konfiguracije.Konfiguracija;
+import org.foi.nwtis.lurajcevi.konfiguracije.KonfiguracijaApstraktna;
+import org.foi.nwtis.lurajcevi.konfiguracije.NemaKonfiguracije;
 
 /**
  * 
@@ -19,6 +22,8 @@ public class KlijentVremena {
     private String configFileName;
     private String serverIP;
     private String user;
+    
+    private Konfiguracija config;
 
     /**
      * 
@@ -32,47 +37,31 @@ public class KlijentVremena {
         this.configFileName = configFileName;
         this.serverIP = serverIP;
         this.user = user;
+         try {
+            config = KonfiguracijaApstraktna.preuzmiKonfiguraciju(configFileName);
+        } catch (NemaKonfiguracije ex) {
+            Logger.getLogger(AdministratorVremena.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     /**
      * 
      */
+    
     public void startKlijentVremena(){
-        String command = "USER " + user + "; GETTIME";
-        InputStream is = null;
-        OutputStream os = null;
-        Socket server = null;
-        try{
-            server = new Socket(serverIP, port);
-            int character;
-            os = server.getOutputStream();
-            is = server.getInputStream();
-            byte[] bytes = command.getBytes();
-            os.write(bytes);
-            os.flush();
-            StringBuilder response = new StringBuilder();
-            
-            while ((character = is.read()) != -1 || is.available() > 0){
-                response.append((char) character);
+        
+        int threadCount = Integer.parseInt(config.dajPostavku("brojDretvi"));
+        int pauseTime = (int) (new java.util.Random().nextDouble() * Integer.parseInt(config.dajPostavku("pauza"))); 
+        
+        List<Thread> threads = new ArrayList<>();
+        for (int i = 0; i < threadCount; i++){
+            Thread thr = new KlijentVremenaDretva(port, configFileName, serverIP, user);
+            threads.add(thr);
+            thr.start();
+            try {
+                Thread.sleep(pauseTime * 1000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(KlijentVremena.class.getName()).log(Level.SEVERE, null, ex);
             }
-            System.out.println(response);
-        }
-        catch (IOException ex) {
-            //Logger.getLogger(KlijentVremena.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("ERROR, Exception has occured");
-        }
-        finally{
-            try{
-                if (os != null)
-                    os.close();
-                if (is != null)
-                    is.close();
-                if (server != null)
-                    server.close();
-            }
-            catch (IOException ex){
-                //nothing to do
-            }
-                
         }
     }
 }

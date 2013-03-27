@@ -1,0 +1,235 @@
+admin pero has executed command : 
+USER pero; PASSWD 123456; SETTIME 12.12.1212 12:12:12;
+ with response 
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; SETTIME 12.12.1212 12:12:12;
+with response:
+OK
+
+admin korisnik has executed command : 
+USER korisnik; PASSWD password; SETTIME 12.12.1212 12:12:12;
+with response:
+ERROR: username / password incorrect
+
+admin korisnik has executed command : 
+USER korisnik; PASSWD password; PAUSE;
+with response:
+ERROR: username / password incorrect
+
+admin korisnik has executed command : 
+USER korisnik; PASSWD password; START;
+with response:
+ERROR: username / password incorrect
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; PAUSE;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; PAUSE;
+with response:
+OK
+
+admin korisnik has executed command : 
+USER korisnik; PASSWD password; START;
+with response:
+ERROR: username / password incorrect
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; PAUSE;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; START;
+with response:
+OK
+
+admin korisnik has executed command : 
+USER korisnik; PASSWD password; PAUSE;
+with response:
+ERROR: username / password incorrect
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; SETTIME 12.12.1212 12:12:12;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+ERROR: Server is already stopped.
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; START;
+with response:
+ERROR: Server is either stopped or already running.
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+OK
+
+#1 ,Wed Mar 27 21:57:41 CET 2013#2 ,Wed Mar 27 21:57:44 CET 2013#3 ,Wed Mar 27 21:57:47 CET 2013#4 ,Wed Mar 27 21:57:50 CET 2013#5 ,Wed Mar 27 21:57:53 CET 2013#1 ,Wed Mar 27 21:59:45 CET 2013#2 ,Wed Mar 27 21:59:48 CET 2013#3 ,Wed Mar 27 21:59:51 CET 2013#4 ,Wed Mar 27 21:59:54 CET 2013#5 ,Wed Mar 27 21:59:57 CET 2013#1 ,Wed Mar 27 22:02:12 CET 2013
+#2 ,Wed Mar 27 22:02:13 CET 2013
+#3 ,Wed Mar 27 22:02:13 CET 2013
+#4 ,Wed Mar 27 22:02:13 CET 2013
+#5 ,Wed Mar 27 22:02:13 CET 2013
+#1 ,Wed Mar 27 22:02:43 CET 2013
+#2 ,Wed Mar 27 22:02:51 CET 2013
+#3 ,Wed Mar 27 22:02:59 CET 2013
+#4 ,Wed Mar 27 22:03:07 CET 2013
+#5 ,Wed Mar 27 22:03:15 CET 2013
+#1 ,Wed Mar 27 22:03:30 CET 2013
+#2 ,Wed Mar 27 22:03:37 CET 2013
+#3 ,Wed Mar 27 22:03:44 CET 2013
+#4 ,Wed Mar 27 22:03:51 CET 2013
+#5 ,Wed Mar 27 22:03:58 CET 2013
+admin pero has executed command : 
+USER pero; PASSWD 123456; PAUSE;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; START;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+ERROR: Server is already stopped.
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+OK
+
+admin korisnik has executed command : 
+USER korisnik; PASSWD password; SETTIME 12.12.1212 12:12:12;
+with response:
+ERROR: wrong username or password.
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; SETTIME 12.12.1212 12:12:12;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; PAUSE;
+with response:
+ERROR: wrong username or password.
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; PAUSE;
+with response:
+ERROR: wrong username or password.
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; PAUSE;
+with response:
+ERROR: wrong username or password.
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; PAUSE;
+with response:
+ERROR: wrong username or password.
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; PAUSE;
+with response:
+ERROR: wrong username or password.
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; PAUSE;
+with response:
+ERROR: wrong username or password.
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; PAUSE;
+with response:
+ERROR: wrong username or password.
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; SETTIME 12.12.1212 12:12:12;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+ERROR: Wrong username or password.
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+ERROR: Wrong username or password.
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+ERROR: Wrong username or password.
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+ERROR: Wrong username or password.
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+ERROR: Wrong username or password.
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; PAUSE;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; START;
+with response:
+OK
+
+#1 ,Wed Mar 27 23:29:50 CET 2013
+#2 ,Wed Mar 27 23:30:00 CET 2013
+#3 ,Wed Mar 27 23:30:09 CET 2013
+#4 ,Wed Mar 27 23:30:18 CET 2013
+#5 ,Wed Mar 27 23:30:27 CET 2013

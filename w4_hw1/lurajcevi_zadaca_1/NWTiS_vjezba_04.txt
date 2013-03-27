@@ -6,6 +6,6 @@ admin=pero
 lozinka=123456
 brojDretvi=5
 pauza=10
-interval=100
+interval=10
 dnevnik=NWTiS_dnevnik.txt
 brojPokusaja=7
