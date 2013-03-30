@@ -58,7 +58,7 @@ public class KlijentVremenaDretva extends Thread {
 
     @Override
     public void run() {
-        String command = "USER " + user + "; GETTIME";
+        String command = "USER " + user + "; GETTIME;";
         InputStream is = null;
         OutputStream os = null;
         Socket server = null;

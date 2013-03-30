@@ -46,7 +46,7 @@ public class Zadaca_1 {
                         String configFileName = m.group(2);
                         boolean load = m.group(3) != null;
                         String serializeFileName = m.group(4);
-                        ServerVremena sv = new ServerVremena( port
+                        ServerVremena sv = new ServerVremena(   port
                                                               , configFileName
                                                               , load
                                                               , serializeFileName);
@@ -64,13 +64,13 @@ public class Zadaca_1 {
                         String user = m.group(3);
                         String password = m.group(4);
                         String adminCommand;
-                        if (m.group(7).startsWith("-t")){
+                        if (m.group(6).startsWith("-t")){
                             adminCommand = "SETTIME";
                         }
                         else{
-                            adminCommand = m.group(7);
+                            adminCommand = m.group(6);
                         }
-                        String time = m.group(8);
+                        String time = m.group(7);
                         AdministratorVremena av = new AdministratorVremena ( port
                                                                            , configFileName
                                                                            , serverIP
@@ -78,7 +78,7 @@ public class Zadaca_1 {
                                                                            , password
                                                                            , adminCommand
                                                                            , time
-                                                                          );
+                                                                           );
                         av.startAdministratorVremena();
                     }
                     break;

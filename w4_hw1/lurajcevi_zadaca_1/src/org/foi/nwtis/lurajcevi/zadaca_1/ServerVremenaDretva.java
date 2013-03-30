@@ -5,10 +5,15 @@
 
 package org.foi.nwtis.lurajcevi.zadaca_1;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,22 +27,26 @@ import org.foi.nwtis.lurajcevi.konfiguracije.Konfiguracija;
  */
 public class ServerVremenaDretva extends Thread{
     
-    private String setTimeRegex = "^USER ([a-zA-Z0-9_]+)\\; PASSWD ([a-zA-Z0-9_]+)\\; SETTIME (\\d\\d.\\d\\d.\\d\\d\\d\\d \\d\\d:\\d\\d:\\d\\d)\\;";
-    private String adminCommandRegex = "^USER ([a-zA-Z0-9_]+)\\; PASSWD ([a-zA-Z0-9_]+)\\; (START|STOP|CLEAN|PAUSE)\\;";
+    private String setTimeRegex = "^USER ([a-zA-Z0-9_]+)\\; PASSWD ([a-zA-Z0-9_]+)\\; SETTIME (\\d\\d.\\d\\d.\\d\\d\\d\\d \\d\\d:\\d\\d:\\d\\d)\\; *$";
+    private String adminCommandRegex = "^USER ([a-zA-Z0-9_]+)\\; PASSWD ([a-zA-Z0-9_]+)\\; (START|STOP|CLEAN|PAUSE)\\; *$";
+    private String userRegex = "^USER ([a-zA-Z0-9_]+)\\; GETTIME\\; *$";
     private Pattern p;
     private Matcher m;
     private boolean status;
-    
+    private static Date serverTime;    
     
     private Socket client;
     private String serializeFileName;
     private Konfiguracija config;
     private Dnevnik dnevnik;
+    DateFormat df;
 
     public ServerVremenaDretva(Socket client, String serializeFileName, Konfiguracija config) {
         this.client = client;
         this.serializeFileName = serializeFileName;
         this.config = config;
+        serverTime = new Date();
+        df = new SimpleDateFormat("dd.MM.yyyy hh:mm:ss");
     }
 
     @Override
@@ -53,6 +62,7 @@ public class ServerVremenaDretva extends Thread{
         StringBuilder command;
         String response;
         int character;
+        Evidencija e;
         try {
             is = client.getInputStream();
             os = client.getOutputStream();
@@ -66,13 +76,23 @@ public class ServerVremenaDretva extends Thread{
             }
             String strCommand = command.toString().trim();
             if (command.indexOf("GETTIME") != -1){
-                if (ServerVremena.isPaused() || ServerVremena.isStopped())
-                    response = "ERROR: Server is not accepting requests at the moment.";
+                p = Pattern.compile(userRegex);
+                m = p.matcher(command);
+                status = m.matches();
+                if (status){
+                    if (ServerVremena.isPaused() || ServerVremena.isStopped())
+                        response = "ERROR: Server is not accepting requests at the moment.";
+                    else{
+                        Date now = new Date();
+                        response = "OK " +  new SimpleDateFormat("dd.MM.yyyy hh:mm:ss.").format(now);
+                    }
+                }
                 else{
-                    //TODO format time
-                    response = "OK " +  new Date();
+                    response = "ERROR: Bad command type.";
                 }
                 System.out.println("Responded to GETTIME request with " + response);
+                e = new Evidencija(m.group(1), strCommand, serverTime, response);
+                serializeRecord(e, false);
             }
             else if (command.indexOf("START") != -1){
                 if (isMatchingRegex(command)){
@@ -100,7 +120,6 @@ public class ServerVremenaDretva extends Thread{
                         ServerVremena.setStopped(true);
                         response = "OK";
                         System.out.println("Server is stopping!");
-                        //client.close();
                         interrupt();
                     }
                     else{
@@ -128,21 +147,27 @@ public class ServerVremenaDretva extends Thread{
             }
             else if (command.indexOf("CLEAN") != -1){
                 if (isMatchingRegex(command) && verifyCredentials(m.group(1), m.group(2))){
-                    //TODO implement cleaning
-                    response = "OK";
+                   serializeRecord(null, true);
+                   response = "OK";
                 }
                 else{
                     response = "ERROR: wrong username or password.";
                 }
             }
             else if (command.indexOf("SETTIME") != -1){
+                long diff;
                 p = Pattern.compile(setTimeRegex);
                 m = p.matcher(command);
                 status = m.matches();
                 if (status){
                     if (verifyCredentials(m.group(1), m.group(2))){
-                        response = "OK";
-                        System.out.println("Setting new time according to the given one " + m.group(3));
+                        System.out.println("Now is: " + serverTime);
+                        System.out.println("Change by: " + m.group(3));
+                            //TODO SETTIME implementation
+                            //diff = msecDateDifference(df.format(serverTime), m.group(3));
+                            response = "OK";
+                            //serverTime = new Date(serverTime.getTime() - diff);
+                            System.out.println("New time is: " + serverTime);
                     }
                     else{
                         response = "ERROR: wrong username or password.";
@@ -157,7 +182,7 @@ public class ServerVremenaDretva extends Thread{
             os.write(response.getBytes());
             os.flush();
         } 
-        catch (IOException e) {
+        catch (IOException exc) {
             System.out.println("ERROR");
         } 
         finally{
@@ -194,6 +219,42 @@ public class ServerVremenaDretva extends Thread{
             return true;
         }
         return false;
+    }
+    
+    public long msecDateDifference(String date1, String date2) throws ParseException{
+        Date d1 = df.parse(date1);
+        Date d2 = df.parse(date2);
+        System.out.println("DATE: " + d2);
+        long diff = d1.getTime() - (d1.getTime() - d2.getTime());        
+        return diff;
+    }
+    
+    public void serializeRecord(Evidencija e, boolean clean){
+        ObjectOutputStream s = null;
+        FileOutputStream out;
+        try {
+            if (!clean){
+                out = new FileOutputStream(config.dajPostavku("evidencija"), true);
+                s = new ObjectOutputStream(out);
+                s.writeObject(e);
+                s.close();
+            }
+            else{
+                out = new FileOutputStream(config.dajPostavku("evidencija"));
+                s = new ObjectOutputStream(out);
+                s.write(new String().getBytes());
+                s.close();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(ServerVremenaDretva.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (s != null)
+                    s.close();
+            } catch (IOException ex) {
+                Logger.getLogger(ServerVremenaDretva.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
   
 }

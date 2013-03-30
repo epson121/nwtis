@@ -306,3 +306,228 @@ OK
 #1 ,Sat Mar 30 11:31:06 CET 2013
 #2 ,Sat Mar 30 11:31:14 CET 2013
 #3 ,Sat Mar 30 11:31:23 CET 2013
+admin pero has executed command : 
+USER pero; PASSWD 123456; SETTIME 12.12.1212 12:12:12;
+with response:
+OK
+
+admin korisnik has executed command : 
+USER korisnik; PASSWD password; PAUSE;
+with response:
+ERROR: wrong username or password.
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; PAUSE;
+with response:
+OK
+
+#1 ,Sat Mar 30 11:50:24 CET 2013
+#2 ,Sat Mar 30 11:50:29 CET 2013
+#3 ,Sat Mar 30 11:50:34 CET 2013
+#4 ,Sat Mar 30 11:50:39 CET 2013
+admin pero has executed command : 
+USER pero; PASSWD 123456; START;
+with response:
+OK
+
+#5 ,Sat Mar 30 11:50:44 CET 2013
+admin pero has executed command : 
+USER pero; PASSWD 123456; START;
+with response:
+ERROR: server is already paused.
+
+admin korisnik has executed command : 
+USER korisnik; PASSWD password; PAUSE;
+with response:
+ERROR: wrong username or password.
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; PAUSE;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; START;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; PAUSE;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; START;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+OK
+
+#1 ,Sat Mar 30 12:32:04 CET 2013
+#1 ,Sat Mar 30 12:32:53 CET 2013
+#1 ,Sat Mar 30 12:35:00 CET 2013
+#2 ,Sat Mar 30 12:35:07 CET 2013
+#3 ,Sat Mar 30 12:35:14 CET 2013
+#4 ,Sat Mar 30 12:35:21 CET 2013
+#1 ,Sat Mar 30 12:35:21 CET 2013
+#2 ,Sat Mar 30 12:35:22 CET 2013
+#3 ,Sat Mar 30 12:35:23 CET 2013
+#4 ,Sat Mar 30 12:35:24 CET 2013
+#5 ,Sat Mar 30 12:35:25 CET 2013
+#1 ,Sat Mar 30 12:36:00 CET 2013
+#1 ,Sat Mar 30 12:36:10 CET 2013
+#2 ,Sat Mar 30 12:36:10 CET 2013
+#3 ,Sat Mar 30 12:36:10 CET 2013
+#4 ,Sat Mar 30 12:36:10 CET 2013
+#5 ,Sat Mar 30 12:36:10 CET 2013
+#1 ,Sat Mar 30 12:36:14 CET 2013
+#2 ,Sat Mar 30 12:36:15 CET 2013
+#3 ,Sat Mar 30 12:36:16 CET 2013
+#4 ,Sat Mar 30 12:36:17 CET 2013
+#5 ,Sat Mar 30 12:36:18 CET 2013
+#1 ,Sat Mar 30 12:36:45 CET 2013
+#2 ,Sat Mar 30 12:36:47 CET 2013
+#3 ,Sat Mar 30 12:36:49 CET 2013
+#4 ,Sat Mar 30 12:36:51 CET 2013
+#5 ,Sat Mar 30 12:36:53 CET 2013
+#1 ,Sat Mar 30 14:20:49 CET 2013
+#2 ,Sat Mar 30 14:20:58 CET 2013
+admin korisnik has executed command : 
+USER korisnik; PASSWD password; SETTIME 12.12.1212 12:12:12;
+with response:
+ERROR: wrong username or password.
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; SETTIME 00.00.0000 00:10:00;
+with response:
+
+
+#3 ,Sat Mar 30 14:21:07 CET 2013
+admin pero has executed command : 
+USER pero; PASSWD 123456; SETTIME 00.00.0000 00:10:00;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; SETTIME 00.00.0000 00:10:00;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; SETTIME 00.00.0000 00:10:00;
+with response:
+
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; SETTIME 00.00.0000 00:10:00;
+with response:
+
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; SETTIME 00.00.0000 00:10:00;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; SETTIME 00.00.0000 00:10:00;
+with response:
+OK
+
+#1 ,Sat Mar 30 16:43:14 CET 2013
+#2 ,Sat Mar 30 16:43:20 CET 2013
+#3 ,Sat Mar 30 16:43:26 CET 2013
+#4 ,Sat Mar 30 16:43:32 CET 2013
+#5 ,Sat Mar 30 16:43:38 CET 2013
+#1 ,Sat Mar 30 16:45:29 CET 2013
+#2 ,Sat Mar 30 16:45:30 CET 2013
+#3 ,Sat Mar 30 16:45:31 CET 2013
+#4 ,Sat Mar 30 16:45:32 CET 2013
+#5 ,Sat Mar 30 16:45:33 CET 2013
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+OK
+
+#1 ,Sat Mar 30 16:56:51 CET 2013
+#1 ,Sat Mar 30 17:20:48 CET 2013
+#2 ,Sat Mar 30 17:20:55 CET 2013
+#3 ,Sat Mar 30 17:21:01 CET 2013
+#4 ,Sat Mar 30 17:21:07 CET 2013
+#5 ,Sat Mar 30 17:21:13 CET 2013
+admin pero has executed command : 
+USER pero; PASSWD 123456; CLEAN;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; CLEAN;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; CLEAN;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; CLEAN;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; CLEAN;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; CLEAN;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; CLEAN;
+with response:
+OK
+
+#1 ,Sat Mar 30 17:47:22 CET 2013
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; CLEAN;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+OK
+
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+OK
+
+#1 ,Sat Mar 30 17:48:49 CET 2013
+#1 ,Sat Mar 30 17:53:08 CET 2013
+admin pero has executed command : 
+USER pero; PASSWD 123456; CLEAN;
+with response:
+OK
+
+#1 ,Sat Mar 30 17:53:41 CET 2013
+#2 ,Sat Mar 30 17:53:42 CET 2013
+#1 ,Sat Mar 30 17:56:00 CET 2013
+#2 ,Sat Mar 30 17:56:06 CET 2013
+#1 ,Sat Mar 30 17:56:45 CET 2013
+admin pero has executed command : 
+USER pero; PASSWD 123456; CLEAN;
+with response:
+OK
+
+#1 ,Sat Mar 30 17:58:49 CET 2013

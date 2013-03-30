@@ -5,6 +5,8 @@
 
 package org.foi.nwtis.lurajcevi.zadaca_1;
 
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -25,6 +27,7 @@ public class ServerVremena implements Serializable{
     private boolean load;
     private String serializeFileName;
     private Konfiguracija config;
+    private Evidencija ev;
     
     private static boolean paused = false;
     private static boolean stopped = false;
@@ -53,9 +56,24 @@ public class ServerVremena implements Serializable{
         try {
             ServerSocket server = new ServerSocket(port);
             server.setSoTimeout(1000);
+            if (load){
+                try{
+                    FileInputStream in = new FileInputStream(config.dajPostavku("evidencija"));
+                    ObjectInputStream s = new ObjectInputStream(in);
+                    ev  = (Evidencija) s.readObject();
+                    s.close();
+
+                    System.out.println("EVIDENCIJA: \nuser: " + ev.getUser() + "\nTime: " + ev.getTime() + 
+                                   "\nCommand: " + ev.getCommand());
+                }
+                catch(Exception exception){
+                    exception.printStackTrace();
+                }
+            }
             while (!stopped){
                 try{
                 Socket client = server.accept();
+                System.out.println("--------------------------------------------");
                 System.out.println("Request has been received. Now responding...");
                 ServerVremenaDretva svd = new ServerVremenaDretva(  client 
                                                                   , serializeFileName
@@ -63,6 +81,7 @@ public class ServerVremena implements Serializable{
                 svd.start();
                 }
                 catch (SocketTimeoutException ex){
+                    //do nothing
                 }
             }
         } catch (Exception e) {
