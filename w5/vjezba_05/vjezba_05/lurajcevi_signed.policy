@@ -1,0 +1,9 @@
+/* AUTOMATICALLY GENERATED ON Thu Mar 28 09:32:44 CET 2013*/
+/* DO NOT EDIT */
+
+keystore "http://161.53.120.205/NWTiS/NWTiS.jks", "jks";
+
+grant signedBy "lurajcevi" {
+  permission java.io.FilePermission "D:\\NWTiS\\grupa_2\\lurajcevi\\vjezba_05\\vjezba_05\\NWTiS_vjezba_04.txt", "read";
+};
+

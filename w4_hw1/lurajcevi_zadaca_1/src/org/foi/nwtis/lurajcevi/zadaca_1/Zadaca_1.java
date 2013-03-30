@@ -26,9 +26,9 @@ public class Zadaca_1 {
             boolean status;
             Konfiguracija config;
             String regexServer = "^-server -port ([8-9]\\d{3}) -konf ([^\\s]+\\.(?i)txt|xml)( +-load)? -s ([^\\s]+\\.[^\\s]+) *$";
-            String regexUser = "^-user -ts (\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}) -port ([8-9]\\d{3}) -u ([a-zA-Z]+) -konf ([a-zA-Z0-9_]+\\.(txt|xml))";
-            String regexShow = "^-show -s ([a-zA-Z0-9_]+\\.[a-zA-Z]+)";
-            String regexAdmin = "^-admin -ts (\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}) -port ([8-9]\\d{3}) -u ([a-zA-Z]+) -p ([a-zA-Z0-9_]+) -konf ([a-zA-Z0-9_]+\\.(txt|xml)) (-t (\\d\\d.\\d\\d.\\d\\d\\d\\d \\d\\d:\\d\\d:\\d\\d)|PAUSE|START|STOP|CLEAN)";
+            String regexUser = "^-user -ts (\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}) -port ([8-9]\\d{3}) -u ([a-zA-Z0-9_]+) -konf ([^\\s]+\\.(?i)txt|xml) *$";
+            String regexShow = "^-show -s ([^\\s]+\\.[^\\s]+) *$";
+            String regexAdmin = "^-admin -ts (\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}) -port ([8-9]\\d{3}) -u ([a-zA-Z0-9_]+) -p ([a-zA-Z0-9_]+) -konf ([^\\s]+\\.(?i)txt|xml) (-t (\\d\\d.\\d\\d.\\d\\d\\d\\d \\d\\d:\\d\\d:\\d\\d)|PAUSE|START|STOP|CLEAN)";
             StringBuilder sb = new StringBuilder();
             
             for (int i = 0; i < args.length; i++){

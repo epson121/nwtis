@@ -1,0 +1,7 @@
+/* AUTOMATICALLY GENERATED ON Thu Mar 28 09:21:10 CET 2013*/
+/* DO NOT EDIT */
+
+grant {
+  permission java.io.FilePermission "D:\\NWTiS\\grupa_2\\lurajcevi\\vjezba_05\\vjezba_05\\NWTiS_vjezba_04.txt", "read";
+};
+
