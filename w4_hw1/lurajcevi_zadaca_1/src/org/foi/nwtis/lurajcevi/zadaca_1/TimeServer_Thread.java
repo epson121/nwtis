@@ -5,10 +5,8 @@
 
 package org.foi.nwtis.lurajcevi.zadaca_1;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.text.DateFormat;
@@ -24,35 +22,35 @@ import org.foi.nwtis.lurajcevi.konfiguracije.Konfiguracija;
 /**
  * 
  * @author Luka Rajcevic
+ * 
  */
-public class ServerVremenaDretva extends Thread{
+public class TimeServer_Thread extends Thread{
     
     private String setTimeRegex = "^USER ([a-zA-Z0-9_]+)\\; PASSWD ([a-zA-Z0-9_]+)\\; SETTIME (\\d\\d.\\d\\d.\\d\\d\\d\\d \\d\\d:\\d\\d:\\d\\d)\\; *$";
     private String adminCommandRegex = "^USER ([a-zA-Z0-9_]+)\\; PASSWD ([a-zA-Z0-9_]+)\\; (START|STOP|CLEAN|PAUSE)\\; *$";
     private String userRegex = "^USER ([a-zA-Z0-9_]+)\\; GETTIME\\; *$";
+    
     private Pattern p;
     private Matcher m;
     private boolean status;
-    private static Date serverTime;    
+    private static long msecServerDifference = 0;
     
     private Socket client;
     private String serializeFileName;
     private Konfiguracija config;
-    private Dnevnik dnevnik;
-    DateFormat df;
+    private Log dnevnik;
+    private DateFormat df;
 
-    public ServerVremenaDretva(Socket client, String serializeFileName, Konfiguracija config) {
+    public TimeServer_Thread(Socket client, String serializeFileName, Konfiguracija config) {
         this.client = client;
         this.serializeFileName = serializeFileName;
         this.config = config;
-        serverTime = new Date();
-        df = new SimpleDateFormat("dd.MM.yyyy hh:mm:ss");
+        df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
     }
 
     @Override
     public synchronized void start() {
         super.start(); 
-        //System.out.println("Thread started");
     }
 
     @Override
@@ -62,7 +60,7 @@ public class ServerVremenaDretva extends Thread{
         StringBuilder command;
         String response;
         int character;
-        Evidencija e;
+        Record rec;
         try {
             is = client.getInputStream();
             os = client.getOutputStream();
@@ -80,30 +78,30 @@ public class ServerVremenaDretva extends Thread{
                 m = p.matcher(command);
                 status = m.matches();
                 if (status){
-                    if (ServerVremena.isPaused() || ServerVremena.isStopped())
+                    if (TimeServer.isPaused() || TimeServer.isStopped())
                         response = "ERROR: Server is not accepting requests at the moment.";
                     else{
                         Date now = new Date();
-                        response = "OK " +  new SimpleDateFormat("dd.MM.yyyy hh:mm:ss.").format(now);
+                        response = "OK " +  df.format(getServerTime());
                     }
                 }
                 else{
                     response = "ERROR: Bad command type.";
                 }
                 System.out.println("Responded to GETTIME request with " + response);
-                e = new Evidencija(m.group(1), strCommand, serverTime, response);
-                serializeRecord(e, false);
+                rec = new Record(m.group(1), strCommand, getServerTime(), response);
+                RecordSerialization.record.add(rec);
             }
             else if (command.indexOf("START") != -1){
                 if (isMatchingRegex(command)){
                     if (verifyCredentials(m.group(1), m.group(2))){
-                        if (ServerVremena.isPaused()){
-                            ServerVremena.setPaused(false);
+                        if (TimeServer.isPaused()){
+                            TimeServer.setPaused(false);
                             response = "OK";
                             System.out.println("Server is starting!");
                         }
                         else{
-                            response = "ERROR: server is already paused.";
+                            response = "ERROR: server is already started.";
                         }
                     }
                     else{
@@ -116,8 +114,8 @@ public class ServerVremenaDretva extends Thread{
             }
             else if (command.indexOf("STOP") != -1){
                 if (isMatchingRegex(command) && verifyCredentials(m.group(1), m.group(2))){
-                    if (!ServerVremena.isStopped()){
-                        ServerVremena.setStopped(true);
+                    if (!TimeServer.isStopped()){
+                        TimeServer.setStopped(true);
                         response = "OK";
                         System.out.println("Server is stopping!");
                         interrupt();
@@ -132,8 +130,8 @@ public class ServerVremenaDretva extends Thread{
             }
             else if (command.indexOf("PAUSE") != -1){
                 if (isMatchingRegex(command) && verifyCredentials(m.group(1), m.group(2))){
-                    if (!ServerVremena.isPaused()){
-                        ServerVremena.setPaused(true);
+                    if (!TimeServer.isPaused()){
+                        TimeServer.setPaused(true);
                         response = "OK";
                         System.out.println("Server is pausing!");
                     }
@@ -147,7 +145,7 @@ public class ServerVremenaDretva extends Thread{
             }
             else if (command.indexOf("CLEAN") != -1){
                 if (isMatchingRegex(command) && verifyCredentials(m.group(1), m.group(2))){
-                   serializeRecord(null, true);
+                   RecordSerialization.clearSerializationFile(serializeFileName);
                    response = "OK";
                 }
                 else{
@@ -155,23 +153,24 @@ public class ServerVremenaDretva extends Thread{
                 }
             }
             else if (command.indexOf("SETTIME") != -1){
-                long diff;
                 p = Pattern.compile(setTimeRegex);
                 m = p.matcher(command);
                 status = m.matches();
                 if (status){
+                    System.out.println("Status ok.");
                     if (verifyCredentials(m.group(1), m.group(2))){
-                        System.out.println("Now is: " + serverTime);
+                        System.out.println("Now is: " + df.format(getServerTime()));
                         System.out.println("Change by: " + m.group(3));
-                            //TODO SETTIME implementation
-                            //diff = msecDateDifference(df.format(serverTime), m.group(3));
-                            response = "OK";
-                            //serverTime = new Date(serverTime.getTime() - diff);
-                            System.out.println("New time is: " + serverTime);
+                        msecServerDifference += getMsecDifference(df.format(getServerTime()), m.group(3));
+                        System.out.println("Difference is : " + msecServerDifference);
+                        System.out.println("New time is: " + getServerTime());
+                        response = "OK";
                     }
                     else{
                         response = "ERROR: wrong username or password.";
                     }
+                    rec = new Record(m.group(1), strCommand, getServerTime(), response);
+                    RecordSerialization.record.add(rec);
                 }
                 else
                     response = "ERROR: bad command ";
@@ -184,6 +183,8 @@ public class ServerVremenaDretva extends Thread{
         } 
         catch (IOException exc) {
             System.out.println("ERROR");
+        } catch (ParseException ex) {
+            Logger.getLogger(TimeServer_Thread.class.getName()).log(Level.SEVERE, null, ex);
         } 
         finally{
             try {
@@ -191,14 +192,16 @@ public class ServerVremenaDretva extends Thread{
                     is.close();
                 if (os != null)
                     os.close();
-                //dnevnik.zatvoriDnevnik();
             } catch (IOException ex) {
-                Logger.getLogger(ServerVremenaDretva.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(TimeServer_Thread.class.getName()).log(Level.SEVERE, null, ex);
                 System.out.println("ERROR");
             }
         }
     }
-
+    
+    /**
+     * @brief overrides standard Thread interrupt method
+     */
     @Override
     public void interrupt() {
         super.interrupt(); 
@@ -221,40 +224,16 @@ public class ServerVremenaDretva extends Thread{
         return false;
     }
     
-    public long msecDateDifference(String date1, String date2) throws ParseException{
+    public long getMsecDifference(String date1, String date2) throws ParseException{
         Date d1 = df.parse(date1);
         Date d2 = df.parse(date2);
         System.out.println("DATE: " + d2);
-        long diff = d1.getTime() - (d1.getTime() - d2.getTime());        
+        long diff = d2.getTime() - d1.getTime();        
         return diff;
     }
     
-    public void serializeRecord(Evidencija e, boolean clean){
-        ObjectOutputStream s = null;
-        FileOutputStream out;
-        try {
-            if (!clean){
-                out = new FileOutputStream(config.dajPostavku("evidencija"), true);
-                s = new ObjectOutputStream(out);
-                s.writeObject(e);
-                s.close();
-            }
-            else{
-                out = new FileOutputStream(config.dajPostavku("evidencija"));
-                s = new ObjectOutputStream(out);
-                s.write(new String().getBytes());
-                s.close();
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(ServerVremenaDretva.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                if (s != null)
-                    s.close();
-            } catch (IOException ex) {
-                Logger.getLogger(ServerVremenaDretva.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+    public static Date getServerTime(){
+        return new Date(new Date().getTime() + msecServerDifference);
     }
-  
+ 
 }

@@ -5,8 +5,6 @@
 
 package org.foi.nwtis.lurajcevi.zadaca_1;
 
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -14,20 +12,19 @@ import java.util.Date;
  * 
  * @author Luka Rajcevic
  */
-public class Evidencija implements Serializable{
+public class Record implements Serializable{
     
     private String user;
     private String command;
     private Date time;
-    //private int status;
-    private String statusDescription;
+    private String response;
 
-    public Evidencija(String user, String command, Date time, /*int status,*/ String statusDescription) {
+    public Record(String user, String command, Date time, /*int status,*/ String response) {
         this.user = user;
         this.command = command;
         this.time = time;
         //this.status = status;
-        this.statusDescription = statusDescription;
+        this.response = response;
     }
     
     public String getUser() {
@@ -42,12 +39,8 @@ public class Evidencija implements Serializable{
         return time;
     }
 
-    /*
-    public int getStatus() {
-        return status;
+    public String getResponse() {
+        return response;
     }
-    */
-    public String getStatusDescription() {
-        return statusDescription;
-    }
+    
 }

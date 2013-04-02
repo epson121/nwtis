@@ -16,13 +16,13 @@ import java.util.logging.Logger;
  * 
  * @author Luka Rajcevic
  */
-public class Dnevnik {
+public class Log {
     
     private String fileName;
     File outputFile = null;
     FileOutputStream out = null;
     
-    public Dnevnik(String fileName) {
+    public Log(String fileName) {
         this.fileName = fileName;
         outputFile = new File (this.fileName);
     }
@@ -32,7 +32,7 @@ public class Dnevnik {
             out = new FileOutputStream(outputFile, true);
             return true;
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(Dnevnik.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Log.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
     }
@@ -42,7 +42,7 @@ public class Dnevnik {
         try {
             out.write(z);
         } catch (IOException ex) {
-            Logger.getLogger(Dnevnik.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Log.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
         return true;
@@ -54,7 +54,7 @@ public class Dnevnik {
                 out.close();
         } 
         catch (IOException ex) {
-            Logger.getLogger(Dnevnik.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Log.class.getName()).log(Level.SEVERE, null, ex);
         }
         return true;
     }

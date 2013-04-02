@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,7 +21,7 @@ import org.foi.nwtis.lurajcevi.konfiguracije.NemaKonfiguracije;
  * 
  * @author Luka Rajcevic
  */
-public class KlijentVremenaDretva extends Thread {
+public class TimeClient_Thread extends Thread {
     
     private int port;
     private String configFileName;
@@ -31,9 +32,10 @@ public class KlijentVremenaDretva extends Thread {
     private int threadMaxTryCount = 5;
     
     private Konfiguracija config;
-    private Dnevnik log;
+    private Log log;
+    private SimpleDateFormat df;
 
-    public KlijentVremenaDretva(int port, String configFileName, String serverIP, String user) {
+    public TimeClient_Thread(int port, String configFileName, String serverIP, String user) {
         this.port = port;
         this.configFileName = configFileName;
         this.serverIP = serverIP;
@@ -41,18 +43,19 @@ public class KlijentVremenaDretva extends Thread {
         setName("#" + threadCount++);
         try {
             config = KonfiguracijaApstraktna.preuzmiKonfiguraciju(configFileName);
-            log = new Dnevnik(config.dajPostavku("dnevnik"));
+            log = new Log(config.dajPostavku("dnevnik"));
         } catch (NemaKonfiguracije ex) {
-            Logger.getLogger(AdministratorVremena.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TimeAdministrator.class.getName()).log(Level.SEVERE, null, ex);
         }
         threadMaxTryCount = Integer.parseInt(config.dajPostavku("brojPokusaja"));
+        df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
     }
 
     @Override
     public synchronized void start() {
         super.start(); 
         log.otvoriDnevnik();
-        log.upisiZapis(getName() + " ," + new Date() + "\n");
+        log.upisiZapis("Thread name:" + getName() + "\nStart time:" + df.format(new Date()) + "\n");
         log.zatvoriDnevnik();
     }
 
@@ -83,10 +86,17 @@ public class KlijentVremenaDretva extends Thread {
                     threadTryCount++;
                 System.out.println("Thread " + getName() + " received response: " +  response);
                 //TODO write to dnevnik zapisuje u dnevnik svoju oznaku, vlastito vrijeme, vrijeme od servera, tekst poruke
+                log.otvoriDnevnik();
+                log.upisiZapis("Thread name:" + getName() + "\nThread time: " + 
+                               df.format(new Date()) + "\nServer time: " + 
+                               df.format(TimeServer_Thread.getServerTime()) + "\nResponse: " +
+                               response + "\n--------------------------------\n");
+                log.zatvoriDnevnik();
+                
                 duration = System.currentTimeMillis() - start;
             }
             catch (IOException ex) {
-                System.out.println("ERROR, Exception has occured");
+                System.out.println("ERROR: server is not responding.");
                 threadTryCount++;
             }
             finally{
@@ -100,7 +110,6 @@ public class KlijentVremenaDretva extends Thread {
                 }
                 catch (IOException ex){
                 }
-
             }
             if (threadTryCount >= threadMaxTryCount){
                 System.out.println(getName() + " is stopping due to " + 
@@ -114,7 +123,7 @@ public class KlijentVremenaDretva extends Thread {
                 sleep(interval);
                 
             } catch (InterruptedException ex) {
-                Logger.getLogger(KlijentVremenaDretva.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(TimeClient_Thread.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

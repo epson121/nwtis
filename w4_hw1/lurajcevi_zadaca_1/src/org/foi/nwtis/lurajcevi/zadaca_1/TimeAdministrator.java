@@ -19,10 +19,10 @@ import org.foi.nwtis.lurajcevi.konfiguracije.NemaKonfiguracije;
  * 
  * @author Luka Rajcevic
  */
-public class AdministratorVremena {
+public class TimeAdministrator {
     
     private Konfiguracija config;
-    private Dnevnik log;
+    private Log log;
     private int port;
     private String configFileName;
     private String serverIP;
@@ -33,7 +33,7 @@ public class AdministratorVremena {
     private String time;
     
 
-    public AdministratorVremena(int port, String configFileName, String serverIP, String user, String password, String adminCommand, String time) {
+    public TimeAdministrator(int port, String configFileName, String serverIP, String user, String password, String adminCommand, String time) {
         this.port = port;
         this.configFileName = configFileName;
         this.serverIP = serverIP;
@@ -43,9 +43,9 @@ public class AdministratorVremena {
         this.time = time;
         try {
             config = KonfiguracijaApstraktna.preuzmiKonfiguraciju(configFileName);
-            log = new Dnevnik(config.dajPostavku("dnevnik"));
+            log = new Log(config.dajPostavku("dnevnik"));
         } catch (NemaKonfiguracije ex) {
-            Logger.getLogger(AdministratorVremena.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TimeAdministrator.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -90,7 +90,7 @@ public class AdministratorVremena {
                     if (server != null)
                         server.close();
                 } catch (IOException ex) {
-                    Logger.getLogger(AdministratorVremena.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(TimeAdministrator.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
     }

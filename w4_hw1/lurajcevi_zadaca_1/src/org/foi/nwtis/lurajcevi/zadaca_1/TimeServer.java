@@ -4,9 +4,7 @@
  */
 
 package org.foi.nwtis.lurajcevi.zadaca_1;
-
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
+ 
 import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -21,13 +19,13 @@ import org.foi.nwtis.lurajcevi.konfiguracije.NemaKonfiguracije;
  * 
  * @author Luka Rajcevic
  */
-public class ServerVremena implements Serializable{
+public class TimeServer implements Serializable{
     private int port;
     private String configFileName;
     private boolean load;
     private String serializeFileName;
     private Konfiguracija config;
-    private Evidencija ev;
+    private Record ev;
     
     private static boolean paused = false;
     private static boolean stopped = false;
@@ -39,7 +37,7 @@ public class ServerVremena implements Serializable{
      * @param load - boolean value (is load parameter included)
      * @param serializeFileName  - serialization file name
      */
-    public ServerVremena(int port, String configFileName, boolean load, String serializeFileName) {
+    public TimeServer(int port, String configFileName, boolean load, String serializeFileName) {
         this.port = port;
         this.configFileName = configFileName;
         this.load = load;
@@ -47,45 +45,35 @@ public class ServerVremena implements Serializable{
         try {
             config = KonfiguracijaApstraktna.preuzmiKonfiguraciju(configFileName);
         } catch (NemaKonfiguracije ex) {
-            Logger.getLogger(ServerVremena.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TimeServer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public void startServerVremena(){
+    public void startTimeServer(){
         
         try {
             ServerSocket server = new ServerSocket(port);
             server.setSoTimeout(1000);
             if (load){
-                try{
-                    FileInputStream in = new FileInputStream(config.dajPostavku("evidencija"));
-                    ObjectInputStream s = new ObjectInputStream(in);
-                    ev  = (Evidencija) s.readObject();
-                    s.close();
-
-                    System.out.println("EVIDENCIJA: \nuser: " + ev.getUser() + "\nTime: " + ev.getTime() + 
-                                   "\nCommand: " + ev.getCommand());
-                }
-                catch(Exception exception){
-                    exception.printStackTrace();
-                }
+                RecordSerialization.deserializeFromFile(serializeFileName);
             }
             while (!stopped){
                 try{
                 Socket client = server.accept();
                 System.out.println("--------------------------------------------");
                 System.out.println("Request has been received. Now responding...");
-                ServerVremenaDretva svd = new ServerVremenaDretva(  client 
-                                                                  , serializeFileName
-                                                                  , config);
+                TimeServer_Thread svd = new TimeServer_Thread(  client 
+                                                                , serializeFileName
+                                                                , config);
                 svd.start();
                 }
                 catch (SocketTimeoutException ex){
                     //do nothing
                 }
             }
-        } catch (Exception e) {
+            RecordSerialization.serializeToFile(serializeFileName);
             
+        } catch (Exception e) {
         }
         
     }
@@ -95,7 +83,7 @@ public class ServerVremena implements Serializable{
     }
 
     public static synchronized void setPaused(boolean paused) {
-        ServerVremena.paused = paused;
+        TimeServer.paused = paused;
     }
 
     public static boolean isStopped() {
@@ -103,7 +91,7 @@ public class ServerVremena implements Serializable{
     }
 
     public static synchronized void setStopped(boolean stopped) {
-        ServerVremena.stopped = stopped;
+        TimeServer.stopped = stopped;
     }
     
     

@@ -28,7 +28,7 @@ public class Zadaca_1 {
             String regexServer = "^-server -port ([8-9]\\d{3}) -konf ([^\\s]+\\.(?i)txt|xml)( +-load)? -s ([^\\s]+\\.[^\\s]+) *$";
             String regexUser = "^-user -ts (\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}) -port ([8-9]\\d{3}) -u ([a-zA-Z0-9_]+) -konf ([^\\s]+\\.(?i)txt|xml) *$";
             String regexShow = "^-show -s ([^\\s]+\\.[^\\s]+) *$";
-            String regexAdmin = "^-admin -ts (\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}) -port ([8-9]\\d{3}) -u ([a-zA-Z0-9_]+) -p ([a-zA-Z0-9_]+) -konf ([^\\s]+\\.(?i)txt|xml) (-t (\\d\\d.\\d\\d.\\d\\d\\d\\d \\d\\d:\\d\\d:\\d\\d)|PAUSE|START|STOP|CLEAN)";
+            String regexAdmin = "^-admin -ts (\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}) -port ([8-9]\\d{3}) -u ([a-zA-Z0-9_]+) -p ([a-zA-Z0-9_]+) -konf ([^\\s]+\\.(?i)txt|xml) (-t (\\d\\d.\\d\\d.\\d\\d\\d\\d \\d\\d:\\d\\d:\\d\\d)|PAUSE|START|STOP|CLEAN) *$";
             StringBuilder sb = new StringBuilder();
             
             for (int i = 0; i < args.length; i++){
@@ -46,11 +46,11 @@ public class Zadaca_1 {
                         String configFileName = m.group(2);
                         boolean load = m.group(3) != null;
                         String serializeFileName = m.group(4);
-                        ServerVremena sv = new ServerVremena(   port
+                        TimeServer sv = new TimeServer(   port
                                                               , configFileName
                                                               , load
                                                               , serializeFileName);
-                        sv.startServerVremena();
+                        sv.startTimeServer();
                     }
                     break;
                 case "-admin":
@@ -71,14 +71,14 @@ public class Zadaca_1 {
                             adminCommand = m.group(6);
                         }
                         String time = m.group(7);
-                        AdministratorVremena av = new AdministratorVremena ( port
-                                                                           , configFileName
-                                                                           , serverIP
-                                                                           , user
-                                                                           , password
-                                                                           , adminCommand
-                                                                           , time
-                                                                           );
+                        TimeAdministrator av = new TimeAdministrator (    port
+                                                                        , configFileName
+                                                                        , serverIP
+                                                                        , user
+                                                                        , password
+                                                                        , adminCommand
+                                                                        , time
+                                                                        );
                         av.startAdministratorVremena();
                     }
                     break;
@@ -93,11 +93,11 @@ public class Zadaca_1 {
                         String serverIP = m.group(1);
                         String user = m.group(3);
                         
-                        KlijentVremena kv = new KlijentVremena(  port
-                                                               , configFileName
-                                                               , serverIP
-                                                               , user);
-                        kv.startKlijentVremena();
+                        TimeClient kv = new TimeClient(   port
+                                                        , configFileName
+                                                        , serverIP
+                                                        , user);
+                        kv.startTimeClient();
                     }
                     break;
                 case "-show":
@@ -105,7 +105,11 @@ public class Zadaca_1 {
                     m = p.matcher(strCommand);
                     status = m.matches();
                     if (status){
-                        //TODO handle show commands
+                        RecordSerialization.deserializeFromFile(m.group(1));
+                        for (Record rec : RecordSerialization.record){
+                            System.out.println("User: " + rec.getUser() + "\nTime: " + rec.getTime() + 
+                                       "\nCommand: " + rec.getCommand() + "\n------------------------------\n");
+                        }
                     }
                     break;
                 default:

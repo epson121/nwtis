@@ -17,7 +17,7 @@ import org.foi.nwtis.lurajcevi.konfiguracije.NemaKonfiguracije;
  * 
  * @author Luka Rajcevic
  */
-public class KlijentVremena {
+public class TimeClient {
     private int port;
     private String configFileName;
     private String serverIP;
@@ -32,7 +32,7 @@ public class KlijentVremena {
      * @param serverIP - ip adress of the server
      * @param user - username
      */
-    public KlijentVremena(int port, String configFileName, String serverIP, String user) {
+    public TimeClient(int port, String configFileName, String serverIP, String user) {
         this.port = port;
         this.configFileName = configFileName;
         this.serverIP = serverIP;
@@ -40,27 +40,27 @@ public class KlijentVremena {
          try {
             config = KonfiguracijaApstraktna.preuzmiKonfiguraciju(configFileName);
         } catch (NemaKonfiguracije ex) {
-            Logger.getLogger(AdministratorVremena.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TimeAdministrator.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     /**
      * 
      */
     
-    public void startKlijentVremena(){
+    public void startTimeClient(){
         
         int threadCount = Integer.parseInt(config.dajPostavku("brojDretvi"));
         int pauseTime = (int) (new java.util.Random().nextDouble() * Integer.parseInt(config.dajPostavku("pauza"))); 
         
         List<Thread> threads = new ArrayList<>();
         for (int i = 0; i < threadCount; i++){
-            Thread thr = new KlijentVremenaDretva(port, configFileName, serverIP, user);
+            Thread thr = new TimeClient_Thread(port, configFileName, serverIP, user);
             threads.add(thr);
             thr.start();
             try {
                 Thread.sleep(pauseTime * 1000);
             } catch (InterruptedException ex) {
-                Logger.getLogger(KlijentVremena.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(TimeClient.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
