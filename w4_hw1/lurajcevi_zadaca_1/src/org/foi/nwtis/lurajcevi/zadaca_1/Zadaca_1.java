@@ -17,7 +17,9 @@ public class Zadaca_1 {
     
     /**
     * @author Luka Rajcevic
-    * @param String array args, console parameters
+    * @param String[], console parameters
+    * @brief depending on the parameters calls various
+    *        methods
     */
     public static void main(String[] args){
             
@@ -34,8 +36,8 @@ public class Zadaca_1 {
             for (int i = 0; i < args.length; i++){
                     sb.append(args[i]).append(" ");
             }
-            String strCommand = sb.toString().trim();
             
+            String strCommand = sb.toString().trim();
             switch (args[0]){
                 case "-server":
                     p = Pattern.compile(regexServer);
@@ -71,14 +73,8 @@ public class Zadaca_1 {
                             adminCommand = m.group(6);
                         }
                         String time = m.group(7);
-                        TimeAdministrator av = new TimeAdministrator (    port
-                                                                        , configFileName
-                                                                        , serverIP
-                                                                        , user
-                                                                        , password
-                                                                        , adminCommand
-                                                                        , time
-                                                                        );
+                        TimeAdministrator av = new TimeAdministrator ( port, configFileName, 
+                                              serverIP, user, password, adminCommand, time );
                         av.startAdministratorVremena();
                     }
                     break;
@@ -92,11 +88,7 @@ public class Zadaca_1 {
                         String configFileName = m.group(4);
                         String serverIP = m.group(1);
                         String user = m.group(3);
-                        
-                        TimeClient kv = new TimeClient(   port
-                                                        , configFileName
-                                                        , serverIP
-                                                        , user);
+                        TimeClient kv = new TimeClient(port, configFileName, serverIP, user);
                         kv.startTimeClient();
                     }
                     break;
@@ -115,7 +107,6 @@ public class Zadaca_1 {
                 default:
                     System.out.println("Wrong input!");
             }
-         
     }
 
 }

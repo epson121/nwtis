@@ -11,6 +11,7 @@ import java.util.Date;
 /**
  * 
  * @author Luka Rajcevic
+ * 
  */
 public class Record implements Serializable{
     
@@ -26,7 +27,7 @@ public class Record implements Serializable{
         //this.status = status;
         this.response = response;
     }
-    
+
     public String getUser() {
         return user;
     }

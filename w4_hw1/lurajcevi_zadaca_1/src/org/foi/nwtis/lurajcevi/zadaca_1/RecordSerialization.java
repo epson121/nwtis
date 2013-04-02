@@ -79,7 +79,6 @@ public class RecordSerialization implements Serializable {
     }
     
     public static void clearSerializationFile(String filename){
-        //TODO fix
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream = null;
         

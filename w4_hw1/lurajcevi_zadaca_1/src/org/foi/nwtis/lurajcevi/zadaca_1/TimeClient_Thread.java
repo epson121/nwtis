@@ -54,9 +54,9 @@ public class TimeClient_Thread extends Thread {
     @Override
     public synchronized void start() {
         super.start(); 
-        log.otvoriDnevnik();
-        log.upisiZapis("Thread name:" + getName() + "\nStart time:" + df.format(new Date()) + "\n");
-        log.zatvoriDnevnik();
+        log.openLog();
+        log.writeToLog("Thread name:" + getName() + "\nStart time:" + df.format(new Date()) + "\n");
+        log.closeLog();
     }
 
     @Override
@@ -85,17 +85,26 @@ public class TimeClient_Thread extends Thread {
                 if (response.indexOf("ERROR") != -1)
                     threadTryCount++;
                 System.out.println("Thread " + getName() + " received response: " +  response);
-                //TODO write to dnevnik zapisuje u dnevnik svoju oznaku, vlastito vrijeme, vrijeme od servera, tekst poruke
-                log.otvoriDnevnik();
-                log.upisiZapis("Thread name:" + getName() + "\nThread time: " + 
-                               df.format(new Date()) + "\nServer time: " + 
-                               df.format(TimeServer_Thread.getServerTime()) + "\nResponse: " +
-                               response + "\n--------------------------------\n");
-                log.zatvoriDnevnik();
+                
+                log.openLog();
+                if (response.indexOf("OK") != -1){
+                    String serverTime = response.toString().substring(3);
+                    log.writeToLog("Thread name:" + getName() + "\nThread time: " + 
+                    df.format(new Date()) + "\nServer time: " + 
+                    serverTime + "\nResponse: " +
+                    response + "\n--------------------------------\n");
+                }
+                else{
+                    log.writeToLog("Thread name:" + getName() + "\nThread time: " + 
+                    df.format(new Date()) + "\nServer time: ERROR." + "\nResponse: " +
+                    response + "\n--------------------------------\n");
+                }
+                log.closeLog();
                 
                 duration = System.currentTimeMillis() - start;
             }
             catch (IOException ex) {
+                //TODO log this also
                 System.out.println("ERROR: server is not responding.");
                 threadTryCount++;
             }

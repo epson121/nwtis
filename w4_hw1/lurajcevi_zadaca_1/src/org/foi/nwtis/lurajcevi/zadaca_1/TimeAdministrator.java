@@ -56,7 +56,7 @@ public class TimeAdministrator {
         StringBuilder response;
         int character;
             try {
-                log.otvoriDnevnik();
+                log.openLog();
                 server = new Socket(serverIP, port);
                 is = server.getInputStream();
                 os = server.getOutputStream();
@@ -73,7 +73,7 @@ public class TimeAdministrator {
                 while ((character = is.read()) != -1){
                     response.append((char) character);
                 }
-                log.upisiZapis("admin " + user + " has executed command : \n" + command + 
+                log.writeToLog("admin " + user + " has executed command : \n" + command + 
                                "\nwith response:\n" + response + "\n\n");
                 
                 System.out.println("Admin got a response: " + response);

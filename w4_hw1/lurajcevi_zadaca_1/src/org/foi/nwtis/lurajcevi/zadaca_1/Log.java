@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 /**
  * 
  * @author Luka Rajcevic
+ * @brief implements methods for Log (opening, closing and writing to it)
  */
 public class Log {
     
@@ -27,7 +28,11 @@ public class Log {
         outputFile = new File (this.fileName);
     }
     
-    public boolean otvoriDnevnik(){
+    /**
+     * 
+     * @return true if Log successfully opened, false otherwise
+     */
+    public boolean openLog(){
         try {
             out = new FileOutputStream(outputFile, true);
             return true;
@@ -37,7 +42,12 @@ public class Log {
         }
     }
     
-    public boolean upisiZapis(String zapis){
+    /**
+     * 
+     * @param zapis - string to be written to log
+     * @return - true if successfully written, false otherwise
+     */
+    public boolean writeToLog(String zapis){
         byte[] z = zapis.getBytes();
         try {
             out.write(z);
@@ -48,16 +58,21 @@ public class Log {
         return true;
     }
     
-     public boolean zatvoriDnevnik(){
-        try {
-            if (out != null)
-                out.close();
-        } 
-        catch (IOException ex) {
-            Logger.getLogger(Log.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return true;
-    }
+    /**
+     * 
+     * @return true if successfully closed false otherwise
+     * 
+     */
+    public boolean closeLog(){
+       try {
+           if (out != null)
+               out.close();
+       } 
+       catch (IOException ex) {
+           Logger.getLogger(Log.class.getName()).log(Level.SEVERE, null, ex);
+       }
+       return true;
+   }
      
     
      
