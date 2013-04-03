@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package org.foi.nwtis.lurajcevi.zadaca_1;
 
@@ -20,7 +16,7 @@ import java.util.regex.Pattern;
 import org.foi.nwtis.lurajcevi.konfiguracije.Konfiguracija;
 
 /**
- * 
+ * Handles server connections. Gets commands from user/admin and handles them appropriately.
  * @author Luka Rajcevic
  * 
  */
@@ -41,18 +37,30 @@ public class TimeServer_Thread extends Thread{
     private Log dnevnik;
     private DateFormat df;
 
+    /**
+     * constructor for TimeServer_Thread class
+     * @param client - socket 
+     * @param serializeFileName - file name of the serialized data
+     * @param config - configuration file name
+     */
     public TimeServer_Thread(Socket client, String serializeFileName, Konfiguracija config) {
         this.client = client;
         this.serializeFileName = serializeFileName;
         this.config = config;
         df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
     }
-
+    
+    /**
+     * overridden thread start method
+     */
     @Override
     public synchronized void start() {
         super.start(); 
     }
-
+    
+    /**
+     * overridden thread run method. handles connections from user/administrator
+     */
     @Override
     public void run() {
         InputStream is = null;
@@ -88,7 +96,6 @@ public class TimeServer_Thread extends Thread{
                 else{
                     response = "ERROR: Bad command type.";
                 }
-                System.out.println("Responded to GETTIME request with " + response);
                 rec = new Record(m.group(1), strCommand, getServerTime(), response);
                 RecordSerialization.record.add(rec);
             }
@@ -157,7 +164,6 @@ public class TimeServer_Thread extends Thread{
                 m = p.matcher(command);
                 status = m.matches();
                 if (status){
-                    System.out.println("Status ok.");
                     if (verifyCredentials(m.group(1), m.group(2))){
                         System.out.println("Now is: " + df.format(getServerTime()));
                         System.out.println("Change by: " + m.group(3));
@@ -200,13 +206,19 @@ public class TimeServer_Thread extends Thread{
     }
     
     /**
-     * @brief overrides standard Thread interrupt method
+     * overrides standard Thread interrupt method
      */
     @Override
     public void interrupt() {
         super.interrupt(); 
     }
     
+    /**
+     * verifies admin credentials
+     * @param username - admins' username
+     * @param password - admins' password
+     * @return true or false
+     */
     public boolean verifyCredentials(String username, String password){
         if (username.equals(config.dajPostavku("admin")) && password.equals(config.dajPostavku("lozinka"))){
             return true;
@@ -214,6 +226,11 @@ public class TimeServer_Thread extends Thread{
         return false;
     }
     
+    /**
+     * matches admin commands with appropriate regex
+     * @param command - admin command
+     * @return true or false
+     */
     public boolean isMatchingRegex(StringBuilder command){
         p = Pattern.compile(adminCommandRegex);
         m = p.matcher(command);
@@ -224,15 +241,22 @@ public class TimeServer_Thread extends Thread{
         return false;
     }
     
+    /**
+     * gets difference in miliseconds between 2 dates
+     * @param date1 - first date
+     * @param date2 - second date
+     * @return - long difference 
+     * @throws ParseException - if date is not in correct format
+     */
     public long getMsecDifference(String date1, String date2) throws ParseException{
         Date d1 = df.parse(date1);
         Date d2 = df.parse(date2);
-        System.out.println("DATE: " + d2);
         long diff = d2.getTime() - d1.getTime();        
         return diff;
     }
     
-    public static Date getServerTime(){
+    //TODO provjeriti je li to ok
+    public synchronized static Date getServerTime(){
         return new Date(new Date().getTime() + msecServerDifference);
     }
  

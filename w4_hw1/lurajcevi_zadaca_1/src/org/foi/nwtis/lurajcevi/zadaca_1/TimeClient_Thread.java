@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package org.foi.nwtis.lurajcevi.zadaca_1;
 
@@ -18,7 +14,8 @@ import org.foi.nwtis.lurajcevi.konfiguracije.KonfiguracijaApstraktna;
 import org.foi.nwtis.lurajcevi.konfiguracije.NemaKonfiguracije;
 
 /**
- * 
+ * Class that handles client thread job. Communicates with server, 
+ * writes to log, etc.
  * @author Luka Rajcevic
  */
 public class TimeClient_Thread extends Thread {
@@ -29,18 +26,24 @@ public class TimeClient_Thread extends Thread {
     private String user;
     private static int threadCount = 1;
     private int threadTryCount = 0;
-    private int threadMaxTryCount = 5;
+    private int threadMaxTryCount;
     
     private Konfiguracija config;
     private Log log;
     private SimpleDateFormat df;
 
+    /**
+     * Constructor for TimeClient_Thread class
+     * @param port - servers port number
+     * @param configFileName - configuration file name
+     * @param serverIP - IP address of the server
+     * @param user - client username
+     */
     public TimeClient_Thread(int port, String configFileName, String serverIP, String user) {
         this.port = port;
         this.configFileName = configFileName;
         this.serverIP = serverIP;
         this.user = user;
-        setName("#" + threadCount++);
         try {
             config = KonfiguracijaApstraktna.preuzmiKonfiguraciju(configFileName);
             log = new Log(config.dajPostavku("dnevnik"));
@@ -49,8 +52,13 @@ public class TimeClient_Thread extends Thread {
         }
         threadMaxTryCount = Integer.parseInt(config.dajPostavku("brojPokusaja"));
         df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+        
+        setName("#" + threadCount++);
     }
-
+    
+    /**
+     * Overridden thread start() method
+     */
     @Override
     public synchronized void start() {
         super.start(); 
@@ -59,6 +67,9 @@ public class TimeClient_Thread extends Thread {
         log.closeLog();
     }
 
+    /**
+     * Overridden thread run method, Communicates with server.
+     */
     @Override
     public void run() {
         String command = "USER " + user + "; GETTIME;";
@@ -104,7 +115,6 @@ public class TimeClient_Thread extends Thread {
                 duration = System.currentTimeMillis() - start;
             }
             catch (IOException ex) {
-                //TODO log this also
                 System.out.println("ERROR: server is not responding.");
                 threadTryCount++;
             }
@@ -123,6 +133,10 @@ public class TimeClient_Thread extends Thread {
             if (threadTryCount >= threadMaxTryCount){
                 System.out.println(getName() + " is stopping due to " + 
                                    "maximum number of tries achieved.");
+                log.openLog();
+                log.writeToLog(getName() + " is stopping due to " + 
+                                   "maximum number of tries achieved.\n");
+                log.closeLog();
                 break;
             }
             try {
@@ -136,14 +150,13 @@ public class TimeClient_Thread extends Thread {
             }
         }
     }
-
+    
+    /**
+     * Overridden thread interrupt method
+     */
     @Override
     public void interrupt() {
         super.interrupt(); 
     }
-    
-    
-    
-    
 
 }

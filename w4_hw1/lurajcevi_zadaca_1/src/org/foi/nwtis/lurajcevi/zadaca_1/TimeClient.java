@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package org.foi.nwtis.lurajcevi.zadaca_1;
 
@@ -14,7 +10,8 @@ import org.foi.nwtis.lurajcevi.konfiguracije.KonfiguracijaApstraktna;
 import org.foi.nwtis.lurajcevi.konfiguracije.NemaKonfiguracije;
 
 /**
- * 
+ * Class that handles client threads. Starts them in order defined in
+ * configuration file.
  * @author Luka Rajcevic
  */
 public class TimeClient {
@@ -43,14 +40,14 @@ public class TimeClient {
             Logger.getLogger(TimeAdministrator.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    /**
-     * 
-     */
     
+    /**
+     * Starts client threads with time span between them
+     */
     public void startTimeClient(){
         
         int threadCount = Integer.parseInt(config.dajPostavku("brojDretvi"));
-        int pauseTime = (int) (new java.util.Random().nextDouble() * Integer.parseInt(config.dajPostavku("pauza"))); 
+        int pauseTime = (int) ( Math.random() * Integer.parseInt(config.dajPostavku("pauza"))); 
         
         List<Thread> threads = new ArrayList<>();
         for (int i = 0; i < threadCount; i++){

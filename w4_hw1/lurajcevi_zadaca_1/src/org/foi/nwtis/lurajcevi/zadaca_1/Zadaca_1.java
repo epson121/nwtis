@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 package org.foi.nwtis.lurajcevi.zadaca_1;
 
@@ -10,7 +7,7 @@ import java.util.regex.Pattern;
 import org.foi.nwtis.lurajcevi.konfiguracije.Konfiguracija;
 
 /**
- * 
+ * main class for this project
  * @author Luka Rajcevic
  */
 public class Zadaca_1 {
@@ -18,8 +15,7 @@ public class Zadaca_1 {
     /**
     * @author Luka Rajcevic
     * @param String[], console parameters
-    * @brief depending on the parameters calls various
-    *        methods
+    * depending on the parameters calls various methods
     */
     public static void main(String[] args){
             
@@ -97,16 +93,11 @@ public class Zadaca_1 {
                     m = p.matcher(strCommand);
                     status = m.matches();
                     if (status){
-                        RecordSerialization.deserializeFromFile(m.group(1));
-                        for (Record rec : RecordSerialization.record){
-                            System.out.println("User: " + rec.getUser() + "\nTime: " + rec.getTime() + 
-                                       "\nCommand: " + rec.getCommand() + "\n------------------------------\n");
-                        }
+                        RecordSerialization.writeFormattedRecords(m.group(1));
                     }
                     break;
                 default:
                     System.out.println("Wrong input!");
             }
     }
-
 }

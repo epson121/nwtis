@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package org.foi.nwtis.lurajcevi.zadaca_1;
  
@@ -16,10 +12,10 @@ import org.foi.nwtis.lurajcevi.konfiguracije.KonfiguracijaApstraktna;
 import org.foi.nwtis.lurajcevi.konfiguracije.NemaKonfiguracije;
 
 /**
- * 
+ * class for Server. Starts server Threads.
  * @author Luka Rajcevic
  */
-public class TimeServer implements Serializable{
+public class TimeServer {
     private int port;
     private String configFileName;
     private boolean load;
@@ -47,16 +43,21 @@ public class TimeServer implements Serializable{
         } catch (NemaKonfiguracije ex) {
             Logger.getLogger(TimeServer.class.getName()).log(Level.SEVERE, null, ex);
         }
+        if (load){
+            System.out.println("load ok.");
+            RecordSerialization.deserializeFromFile(serializeFileName);
+            System.out.println("size: " + RecordSerialization.record.size());
+        }
     }
     
+    /**
+     * Starts the server thread on connection
+     */
     public void startTimeServer(){
         
         try {
             ServerSocket server = new ServerSocket(port);
             server.setSoTimeout(1000);
-            if (load){
-                RecordSerialization.deserializeFromFile(serializeFileName);
-            }
             while (!stopped){
                 try{
                 Socket client = server.accept();
@@ -72,24 +73,39 @@ public class TimeServer implements Serializable{
                 }
             }
             RecordSerialization.serializeToFile(serializeFileName);
-            
         } catch (Exception e) {
         }
         
     }
-
+    
+    /**
+     * checks if server is paused
+     * @return true or false
+     */
     public static boolean isPaused() {
         return paused;
     }
 
+    /**
+     * sets server to paused or unpaused
+     * @param paused - true or false
+     */
     public static synchronized void setPaused(boolean paused) {
         TimeServer.paused = paused;
     }
-
+    
+    /**
+     * checks if server is stopped
+     * @return true or false
+     */
     public static boolean isStopped() {
         return stopped;
     }
-
+    
+    /**
+     * sets server to stopped
+     * @param stopped - true
+     */
     public static synchronized void setStopped(boolean stopped) {
         TimeServer.stopped = stopped;
     }

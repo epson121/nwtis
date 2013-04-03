@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package org.foi.nwtis.lurajcevi.zadaca_1;
 
@@ -13,9 +9,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * 
+ * implements methods for Log (opening, closing and writing to it)
  * @author Luka Rajcevic
- * @brief implements methods for Log (opening, closing and writing to it)
  */
 public class Log {
     
@@ -23,6 +18,10 @@ public class Log {
     File outputFile = null;
     FileOutputStream out = null;
     
+    /**
+     * Constructor for Log class
+     * @param fileName - name of the log file
+     */
     public Log(String fileName) {
         this.fileName = fileName;
         outputFile = new File (this.fileName);
@@ -59,7 +58,6 @@ public class Log {
     }
     
     /**
-     * 
      * @return true if successfully closed false otherwise
      * 
      */
@@ -73,9 +71,5 @@ public class Log {
        }
        return true;
    }
-     
-    
-     
-    
 
 }

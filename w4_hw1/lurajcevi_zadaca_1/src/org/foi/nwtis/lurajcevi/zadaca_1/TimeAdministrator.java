@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package org.foi.nwtis.lurajcevi.zadaca_1;
 
@@ -16,7 +12,7 @@ import org.foi.nwtis.lurajcevi.konfiguracije.KonfiguracijaApstraktna;
 import org.foi.nwtis.lurajcevi.konfiguracije.NemaKonfiguracije;
 
 /**
- * 
+ * Handles administrator commands from command line
  * @author Luka Rajcevic
  */
 public class TimeAdministrator {
@@ -32,7 +28,16 @@ public class TimeAdministrator {
     private String adminCommand;
     private String time;
     
-
+    /**
+     * 
+     * @param port - port number of the server
+     * @param configFileName - configuration file name
+     * @param serverIP - ip adress of the server
+     * @param user - username of the administrator
+     * @param password - password of the administrator
+     * @param adminCommand - administrators' command
+     * @param time - if command is SETTIME, command line time
+     */
     public TimeAdministrator(int port, String configFileName, String serverIP, String user, String password, String adminCommand, String time) {
         this.port = port;
         this.configFileName = configFileName;
@@ -49,6 +54,10 @@ public class TimeAdministrator {
         }
     }
     
+    /**
+     * Handles  communication between administrator and server
+     * Sends commands and receives responses
+     */
     public void startAdministratorVremena(){
         Socket server = null;
         InputStream is = null;

@@ -5,13 +5,11 @@
 
 package org.foi.nwtis.lurajcevi.zadaca_1;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.RandomAccessFile;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,13 +17,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * 
+ * Implements static methods serialization handling (writing, reading, cleaning,
+ * converting to text files)
  * @author Luka Rajcevic
  */
 public class RecordSerialization implements Serializable {
     
     public static List<Record> record = new ArrayList<>();
 
+    /**
+     * Serializes List<Record> to a file
+     * @param filename  - writes serialized data to this file
+     */
     public static void serializeToFile(String filename){
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream = null;
@@ -49,7 +52,10 @@ public class RecordSerialization implements Serializable {
         }
         System.out.println("Serialized.");
     }
-    
+    /**
+     * Reads from serialized file into the List<Record> type variable
+     * @param filename - reads from this file
+     */
     public static void deserializeFromFile(String filename){
         List<Record> records = new ArrayList<>();
         FileInputStream fileInputStream = null;
@@ -58,9 +64,8 @@ public class RecordSerialization implements Serializable {
             fileInputStream = new FileInputStream(filename);
             in = new ObjectInputStream(fileInputStream);
             records = (ArrayList<Record>) in.readObject();
-            
         } catch (IOException | ClassNotFoundException | ClassCastException ex) {
-            System.out.println("Error while loading " + filename + ". Most likely it's empty.");
+            System.out.println("Error while loading " + filename + ". No file, or the file empty.");
         } finally {
             try {
                 if (fileInputStream != null)
@@ -78,6 +83,10 @@ public class RecordSerialization implements Serializable {
         }
     }
     
+    /**
+     * Clears serialized file. It is empty afterwards.
+     * @param filename - file to be cleaned
+     */
     public static void clearSerializationFile(String filename){
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream = null;
@@ -101,6 +110,38 @@ public class RecordSerialization implements Serializable {
         }
         
         System.out.println("Cleaned.");
+    }
+    
+    /**
+     * Writes from serialized file to readable file format (.txt)
+     * @param serializedFile - file to read from
+     * @return - true if successful, false otherwise
+     */
+    public static boolean writeFormattedRecords(String serializedFile){
+        deserializeFromFile(serializedFile);
+        FileOutputStream out = null;
+        byte[] lineBytes = null;        
+        try {
+            out = new FileOutputStream("formattedRecords.txt");
+            for (Record rec : record){
+                String line = "User: " + rec.getUser() + "\nTime: " + rec.getTime() + 
+                              "\nCommand: " + rec.getCommand() +  "\nResponse: " + rec.getResponse() +
+                              "\n---------------------\n";
+                lineBytes = line.getBytes();
+                out.write(lineBytes);
+            }
+        } catch (IOException ex) {
+            return false;
+        }
+        try{
+            if (out != null){
+                out.close();
+            }
+        } catch (IOException e){
+            System.out.println("Failed to close file.");
+        }
+        System.out.println("Files have been written.");
+        return true;
     }
 
 }
