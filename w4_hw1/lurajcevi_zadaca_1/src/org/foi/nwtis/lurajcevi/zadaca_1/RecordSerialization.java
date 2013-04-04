@@ -113,35 +113,17 @@ public class RecordSerialization implements Serializable {
     }
     
     /**
-     * Writes from serialized file to readable file format (.txt)
+     * Writes from serialized file to readable format to stdout
      * @param serializedFile - file to read from
      * @return - true if successful, false otherwise
      */
-    public static boolean writeFormattedRecords(String serializedFile){
-        deserializeFromFile(serializedFile);
-        FileOutputStream out = null;
-        byte[] lineBytes = null;        
-        try {
-            out = new FileOutputStream("formattedRecords.txt");
-            for (Record rec : record){
-                String line = "User: " + rec.getUser() + "\nTime: " + rec.getTime() + 
-                              "\nCommand: " + rec.getCommand() +  "\nResponse: " + rec.getResponse() +
-                              "\n---------------------\n";
-                lineBytes = line.getBytes();
-                out.write(lineBytes);
-            }
-        } catch (IOException ex) {
-            return false;
+    public static void writeFormattedRecords(String serializedFile){
+        deserializeFromFile(serializedFile);     
+        for (Record rec : record){
+            String line = "User: " + rec.getUser() + "\nTime: " + rec.getTime() + 
+                          "\nCommand: " + rec.getCommand() +  "\nResponse: " + rec.getResponse() +
+                          "\n---------------------\n";
+            System.out.println(line);
         }
-        try{
-            if (out != null){
-                out.close();
-            }
-        } catch (IOException e){
-            System.out.println("Failed to close file.");
-        }
-        System.out.println("Files have been written.");
-        return true;
-    }
-
+   }
 }

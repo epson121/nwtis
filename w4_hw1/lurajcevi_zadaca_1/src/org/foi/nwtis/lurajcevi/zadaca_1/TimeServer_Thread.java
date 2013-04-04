@@ -165,10 +165,7 @@ public class TimeServer_Thread extends Thread{
                 status = m.matches();
                 if (status){
                     if (verifyCredentials(m.group(1), m.group(2))){
-                        System.out.println("Now is: " + df.format(getServerTime()));
-                        System.out.println("Change by: " + m.group(3));
                         msecServerDifference += getMsecDifference(df.format(getServerTime()), m.group(3));
-                        System.out.println("Difference is : " + msecServerDifference);
                         System.out.println("New time is: " + getServerTime());
                         response = "OK";
                     }
@@ -255,7 +252,6 @@ public class TimeServer_Thread extends Thread{
         return diff;
     }
     
-    //TODO provjeriti je li to ok
     public synchronized static Date getServerTime(){
         return new Date(new Date().getTime() + msecServerDifference);
     }

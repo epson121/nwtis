@@ -44,9 +44,7 @@ public class TimeServer {
             Logger.getLogger(TimeServer.class.getName()).log(Level.SEVERE, null, ex);
         }
         if (load){
-            System.out.println("load ok.");
             RecordSerialization.deserializeFromFile(serializeFileName);
-            System.out.println("size: " + RecordSerialization.record.size());
         }
     }
     

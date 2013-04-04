@@ -1695,3 +1695,323 @@ USER pero; PASSWD 123456; STOP;
 with response:
 OK
 
+admin pero has executed command : 
+USER pero; PASSWD 123456; CLEAN;
+with response:
+OK
+
+Thread name:#1
+Start time:04.04.2013 17:41:10
+Thread name:#1
+Thread time: 04.04.2013 17:41:10
+Server time: 04.04.2013 17:41:10
+Response: OK 04.04.2013 17:41:10
+--------------------------------
+Thread name:#2
+Start time:04.04.2013 17:41:11
+Thread name:#2
+Thread time: 04.04.2013 17:41:11
+Server time: 04.04.2013 17:41:11
+Response: OK 04.04.2013 17:41:11
+--------------------------------
+Thread name:#3
+Start time:04.04.2013 17:41:12
+Thread name:#3
+Thread time: 04.04.2013 17:41:12
+Server time: 04.04.2013 17:41:12
+Response: OK 04.04.2013 17:41:12
+--------------------------------
+Thread name:#4
+Start time:04.04.2013 17:41:13
+Thread name:#4
+Thread time: 04.04.2013 17:41:13
+Server time: 04.04.2013 17:41:13
+Response: OK 04.04.2013 17:41:13
+--------------------------------
+Thread name:#5
+Start time:04.04.2013 17:41:14
+Thread name:#5
+Thread time: 04.04.2013 17:41:14
+Server time: 04.04.2013 17:41:14
+Response: OK 04.04.2013 17:41:14
+--------------------------------
+Thread name:#1
+Thread time: 04.04.2013 17:41:20
+Server time: 04.04.2013 17:41:20
+Response: OK 04.04.2013 17:41:20
+--------------------------------
+Thread name:#2
+Thread time: 04.04.2013 17:41:21
+Server time: 04.04.2013 17:41:21
+Response: OK 04.04.2013 17:41:21
+--------------------------------
+Thread name:#3
+Thread time: 04.04.2013 17:41:22
+Server time: 04.04.2013 17:41:22
+Response: OK 04.04.2013 17:41:22
+--------------------------------
+Thread name:#4
+Thread time: 04.04.2013 17:41:23
+Server time: 04.04.2013 17:41:23
+Response: OK 04.04.2013 17:41:23
+--------------------------------
+Thread name:#5
+Thread time: 04.04.2013 17:41:24
+Server time: 04.04.2013 17:41:24
+Response: OK 04.04.2013 17:41:24
+--------------------------------
+Thread name:#1
+Thread time: 04.04.2013 17:41:30
+Server time: 04.04.2013 17:41:30
+Response: OK 04.04.2013 17:41:30
+--------------------------------
+Thread name:#2
+Thread time: 04.04.2013 17:41:31
+Server time: 04.04.2013 17:41:31
+Response: OK 04.04.2013 17:41:31
+--------------------------------
+Thread name:#3
+Thread time: 04.04.2013 17:41:32
+Server time: 04.04.2013 17:41:32
+Response: OK 04.04.2013 17:41:32
+--------------------------------
+Thread name:#4
+Thread time: 04.04.2013 17:41:33
+Server time: 04.04.2013 17:41:33
+Response: OK 04.04.2013 17:41:33
+--------------------------------
+Thread name:#5
+Thread time: 04.04.2013 17:41:34
+Server time: 04.04.2013 17:41:34
+Response: OK 04.04.2013 17:41:34
+--------------------------------
+Thread name:#1
+Thread time: 04.04.2013 17:41:40
+Server time: 04.04.2013 17:41:40
+Response: OK 04.04.2013 17:41:40
+--------------------------------
+Thread name:#2
+Thread time: 04.04.2013 17:41:41
+Server time: 04.04.2013 17:41:41
+Response: OK 04.04.2013 17:41:41
+--------------------------------
+Thread name:#3
+Thread time: 04.04.2013 17:41:42
+Server time: 04.04.2013 17:41:42
+Response: OK 04.04.2013 17:41:42
+--------------------------------
+Thread name:#4
+Thread time: 04.04.2013 17:41:43
+Server time: 04.04.2013 17:41:43
+Response: OK 04.04.2013 17:41:43
+--------------------------------
+Thread name:#5
+Thread time: 04.04.2013 17:41:44
+Server time: 04.04.2013 17:41:44
+Response: OK 04.04.2013 17:41:44
+--------------------------------
+Thread name:#1
+Thread time: 04.04.2013 17:41:50
+Server time: 04.04.2013 17:41:50
+Response: OK 04.04.2013 17:41:50
+--------------------------------
+Thread name:#2
+Thread time: 04.04.2013 17:41:51
+Server time: 04.04.2013 17:41:51
+Response: OK 04.04.2013 17:41:51
+--------------------------------
+Thread name:#3
+Thread time: 04.04.2013 17:41:52
+Server time: 04.04.2013 17:41:52
+Response: OK 04.04.2013 17:41:52
+--------------------------------
+Thread name:#4
+Thread time: 04.04.2013 17:41:53
+Server time: 04.04.2013 17:41:53
+Response: OK 04.04.2013 17:41:53
+--------------------------------
+Thread name:#5
+Thread time: 04.04.2013 17:41:54
+Server time: 04.04.2013 17:41:54
+Response: OK 04.04.2013 17:41:54
+--------------------------------
+Thread name:#1
+Thread time: 04.04.2013 17:42:00
+Server time: 04.04.2013 17:42:00
+Response: OK 04.04.2013 17:42:00
+--------------------------------
+Thread name:#2
+Thread time: 04.04.2013 17:42:01
+Server time: 04.04.2013 17:42:01
+Response: OK 04.04.2013 17:42:01
+--------------------------------
+Thread name:#3
+Thread time: 04.04.2013 17:42:02
+Server time: 04.04.2013 17:42:02
+Response: OK 04.04.2013 17:42:02
+--------------------------------
+Thread name:#4
+Thread time: 04.04.2013 17:42:03
+Server time: 04.04.2013 17:42:03
+Response: OK 04.04.2013 17:42:03
+--------------------------------
+Thread name:#5
+Thread time: 04.04.2013 17:42:04
+Server time: 04.04.2013 17:42:04
+Response: OK 04.04.2013 17:42:04
+--------------------------------
+Thread name:#1
+Thread time: 04.04.2013 17:42:10
+Server time: 04.04.2013 17:42:10
+Response: OK 04.04.2013 17:42:10
+--------------------------------
+Thread name:#2
+Thread time: 04.04.2013 17:42:11
+Server time: 04.04.2013 17:42:11
+Response: OK 04.04.2013 17:42:11
+--------------------------------
+Thread name:#3
+Thread time: 04.04.2013 17:42:12
+Server time: 04.04.2013 17:42:12
+Response: OK 04.04.2013 17:42:12
+--------------------------------
+Thread name:#4
+Thread time: 04.04.2013 17:42:13
+Server time: 04.04.2013 17:42:13
+Response: OK 04.04.2013 17:42:13
+--------------------------------
+Thread name:#5
+Thread time: 04.04.2013 17:42:14
+Server time: 04.04.2013 17:42:14
+Response: OK 04.04.2013 17:42:14
+--------------------------------
+Thread name:#1
+Thread time: 04.04.2013 17:42:20
+Server time: 04.04.2013 17:42:20
+Response: OK 04.04.2013 17:42:20
+--------------------------------
+Thread name:#2
+Thread time: 04.04.2013 17:42:21
+Server time: 04.04.2013 17:42:21
+Response: OK 04.04.2013 17:42:21
+--------------------------------
+Thread name:#3
+Thread time: 04.04.2013 17:42:22
+Server time: 04.04.2013 17:42:22
+Response: OK 04.04.2013 17:42:22
+--------------------------------
+Thread name:#4
+Thread time: 04.04.2013 17:42:23
+Server time: 04.04.2013 17:42:23
+Response: OK 04.04.2013 17:42:23
+--------------------------------
+Thread name:#5
+Thread time: 04.04.2013 17:42:24
+Server time: 04.04.2013 17:42:24
+Response: OK 04.04.2013 17:42:24
+--------------------------------
+Thread name:#1
+Thread time: 04.04.2013 17:42:30
+Server time: 04.04.2013 17:42:30
+Response: OK 04.04.2013 17:42:30
+--------------------------------
+Thread name:#2
+Thread time: 04.04.2013 17:42:31
+Server time: 04.04.2013 17:42:31
+Response: OK 04.04.2013 17:42:31
+--------------------------------
+Thread name:#3
+Thread time: 04.04.2013 17:42:32
+Server time: 04.04.2013 17:42:32
+Response: OK 04.04.2013 17:42:32
+--------------------------------
+Thread name:#4
+Thread time: 04.04.2013 17:42:33
+Server time: 04.04.2013 17:42:33
+Response: OK 04.04.2013 17:42:33
+--------------------------------
+Thread name:#5
+Thread time: 04.04.2013 17:42:34
+Server time: 04.04.2013 17:42:34
+Response: OK 04.04.2013 17:42:34
+--------------------------------
+Thread name:#1
+Thread time: 04.04.2013 17:42:40
+Server time: 04.04.2013 17:42:40
+Response: OK 04.04.2013 17:42:40
+--------------------------------
+Thread name:#2
+Thread time: 04.04.2013 17:42:41
+Server time: 04.04.2013 17:42:41
+Response: OK 04.04.2013 17:42:41
+--------------------------------
+Thread name:#3
+Thread time: 04.04.2013 17:42:42
+Server time: 04.04.2013 17:42:42
+Response: OK 04.04.2013 17:42:42
+--------------------------------
+Thread name:#4
+Thread time: 04.04.2013 17:42:43
+Server time: 04.04.2013 17:42:43
+Response: OK 04.04.2013 17:42:43
+--------------------------------
+Thread name:#5
+Thread time: 04.04.2013 17:42:44
+Server time: 04.04.2013 17:42:44
+Response: OK 04.04.2013 17:42:44
+--------------------------------
+Thread name:#1
+Thread time: 04.04.2013 17:42:50
+Server time: 04.04.2013 17:42:50
+Response: OK 04.04.2013 17:42:50
+--------------------------------
+Thread name:#2
+Thread time: 04.04.2013 17:42:51
+Server time: 04.04.2013 17:42:51
+Response: OK 04.04.2013 17:42:51
+--------------------------------
+Thread name:#3
+Thread time: 04.04.2013 17:42:52
+Server time: 04.04.2013 17:42:52
+Response: OK 04.04.2013 17:42:52
+--------------------------------
+Thread name:#4
+Thread time: 04.04.2013 17:42:53
+Server time: 04.04.2013 17:42:53
+Response: OK 04.04.2013 17:42:53
+--------------------------------
+Thread name:#5
+Thread time: 04.04.2013 17:42:54
+Server time: 04.04.2013 17:42:54
+Response: OK 04.04.2013 17:42:54
+--------------------------------
+Thread name:#1
+Thread time: 04.04.2013 17:43:00
+Server time: 04.04.2013 17:43:00
+Response: OK 04.04.2013 17:43:00
+--------------------------------
+Thread name:#2
+Thread time: 04.04.2013 17:43:01
+Server time: 04.04.2013 17:43:01
+Response: OK 04.04.2013 17:43:01
+--------------------------------
+Thread name:#3
+Thread time: 04.04.2013 17:43:02
+Server time: 04.04.2013 17:43:02
+Response: OK 04.04.2013 17:43:02
+--------------------------------
+Thread name:#4
+Thread time: 04.04.2013 17:43:03
+Server time: 04.04.2013 17:43:03
+Response: OK 04.04.2013 17:43:03
+--------------------------------
+Thread name:#5
+Thread time: 04.04.2013 17:43:04
+Server time: 04.04.2013 17:43:04
+Response: OK 04.04.2013 17:43:04
+--------------------------------
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+OK
+
