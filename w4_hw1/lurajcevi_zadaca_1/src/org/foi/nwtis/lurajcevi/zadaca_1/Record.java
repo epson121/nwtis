@@ -23,7 +23,7 @@ public class Record implements Serializable{
      * @param time - time attribute 
      * @param response - response attribute
      */
-    public Record(String user, String command, Date time, /*int status,*/ String response) {
+    public Record(String user, String command, Date time, String response) {
         this.user = user;
         this.command = command;
         this.time = time;

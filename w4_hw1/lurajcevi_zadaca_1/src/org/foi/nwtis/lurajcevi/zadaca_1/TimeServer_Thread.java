@@ -89,7 +89,6 @@ public class TimeServer_Thread extends Thread{
                     if (TimeServer.isPaused() || TimeServer.isStopped())
                         response = "ERROR: Server is not accepting requests at the moment.";
                     else{
-                        Date now = new Date();
                         response = "OK " +  df.format(getServerTime());
                     }
                 }

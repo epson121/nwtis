@@ -77,7 +77,7 @@ public class TimeClient_Thread extends Thread {
         OutputStream os = null;
         Socket server = null;
         int character;
-        long start = 0, duration = 0;
+        long start, duration = 0;
         while (true){
             try{
                 start = System.currentTimeMillis();
@@ -88,7 +88,7 @@ public class TimeClient_Thread extends Thread {
                 os.write(command.getBytes());
                 os.flush();
                 server.shutdownOutput();
-
+                
                 StringBuilder response = new StringBuilder();
                 while ((character = is.read()) != -1){
                     response.append((char) character);

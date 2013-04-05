@@ -1,7 +1,6 @@
 
 package org.foi.nwtis.lurajcevi.zadaca_1;
  
-import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
