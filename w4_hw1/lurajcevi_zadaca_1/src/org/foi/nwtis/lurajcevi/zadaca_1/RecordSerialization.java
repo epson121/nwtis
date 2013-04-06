@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package org.foi.nwtis.lurajcevi.zadaca_1;
 
@@ -39,6 +35,7 @@ public class RecordSerialization implements Serializable {
             objectOutputStream.writeObject(record);
         } catch (IOException ex) {
             System.out.println("Failed to serialize.");
+            return;
         }
         finally{
             try {
@@ -97,6 +94,7 @@ public class RecordSerialization implements Serializable {
             objectOutputStream.writeObject(null);
         } catch (IOException ex) {
             System.out.println("ERROR: Failed to clean.");
+            return;
         }
         finally{
             try {

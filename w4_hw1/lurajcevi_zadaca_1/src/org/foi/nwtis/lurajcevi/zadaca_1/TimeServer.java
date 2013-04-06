@@ -60,7 +60,7 @@ public class TimeServer {
                 Socket client = server.accept();
                 System.out.println("--------------------------------------------");
                 System.out.println("Request has been received. Now responding...");
-                TimeServer_Thread svd = new TimeServer_Thread(  client 
+                TimeServer_Thread svd = new TimeServer_Thread(    client 
                                                                 , serializeFileName
                                                                 , config);
                 svd.start();
