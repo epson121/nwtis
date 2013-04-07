@@ -69,11 +69,12 @@ public class TimeAdministrator {
                 server = new Socket(serverIP, port);
                 is = server.getInputStream();
                 os = server.getOutputStream();
-
+                
                 if (time != null)
                     adminCommand += " " + time;
                 String command = "USER " + user + "; PASSWD " + password + 
                                  "; " + adminCommand + ";";
+                
                 os.write(command.getBytes());
                 os.flush();
                 server.shutdownOutput();

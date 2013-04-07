@@ -23,10 +23,10 @@ public class Zadaca_1 {
             Matcher m;
             boolean status;
             Konfiguracija config;
-            String regexServer = "^-server -port ([8-9]\\d{3}) -konf ([^\\s]+\\.(?i)txt|xml)( +-load)? -s ([^\\s]+\\.[^\\s]+) *$";
-            String regexUser = "^-user -ts (\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}) -port ([8-9]\\d{3}) -u ([a-zA-Z0-9_]+) -konf ([^\\s]+\\.(?i)txt|xml) *$";
+            String regexServer = "^-server -port ([8-9]\\d{3}) -konf ([^\\s]+\\.(?i)(txt|xml))( +-load)? -s ([^\\s]+\\.[^\\s]+) *$";
+            String regexUser = "^-user -ts (\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}) -port ([8-9]\\d{3}) -u ([a-zA-Z0-9_]+) -konf ([^\\s]+\\.(?i)(txt|xml)) *$";
             String regexShow = "^-show -s ([^\\s]+\\.[^\\s]+) *$";
-            String regexAdmin = "^-admin -ts (\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}) -port ([8-9]\\d{3}) -u ([a-zA-Z0-9_]+) -p ([a-zA-Z0-9_]+) -konf ([^\\s]+\\.(?i)txt|xml) (-t (\\d\\d.\\d\\d.\\d\\d\\d\\d \\d\\d:\\d\\d:\\d\\d)|PAUSE|START|STOP|CLEAN) *$";
+            String regexAdmin = "^-admin -ts (\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}) -port ([8-9]\\d{3}) -u ([a-zA-Z0-9_]+) -p ([a-zA-Z0-9_]+) -konf ([^\\s]+\\.(?i)(txt|xml)) (-t (\\d\\d.\\d\\d.\\d\\d\\d\\d \\d\\d:\\d\\d:\\d\\d)|PAUSE|START|STOP|CLEAN) *$";
             StringBuilder sb = new StringBuilder();
             
             for (int i = 0; i < args.length; i++){
@@ -42,8 +42,8 @@ public class Zadaca_1 {
                     if (status){
                         int port = Integer.parseInt(m.group(1));
                         String configFileName = m.group(2);
-                        boolean load = m.group(3) != null;
-                        String serializeFileName = m.group(4);
+                        boolean load = m.group(4) != null;
+                        String serializeFileName = m.group(5);
                         TimeServer sv = new TimeServer(   port
                                                               , configFileName
                                                               , load
@@ -62,13 +62,16 @@ public class Zadaca_1 {
                         String user = m.group(3);
                         String password = m.group(4);
                         String adminCommand;
-                        if (m.group(6).startsWith("-t")){
+                        String time = null;
+                        if (m.group(7).startsWith("-t")){
                             adminCommand = "SETTIME";
+                            time = m.group(8);
                         }
                         else{
-                            adminCommand = m.group(6);
+                            adminCommand = m.group(7);
                         }
-                        String time = m.group(7);
+
+                        
                         TimeAdministrator av = new TimeAdministrator ( port, configFileName, 
                                               serverIP, user, password, adminCommand, time );
                         av.startAdministratorVremena();

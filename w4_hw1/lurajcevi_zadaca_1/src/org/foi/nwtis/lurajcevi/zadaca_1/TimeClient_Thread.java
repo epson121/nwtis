@@ -102,12 +102,13 @@ public class TimeClient_Thread extends Thread {
                     String serverTime = response.toString().substring(3);
                     log.writeToLog("Thread name:" + getName() + "\nThread time: " + 
                     df.format(new Date()) + "\nServer time: " + 
-                    serverTime + "\nResponse: " +
+                    serverTime + "\nCommand: " + command + "\nResponse: " +
                     response + "\n--------------------------------\n");
                 }
                 else{
                     log.writeToLog("Thread name:" + getName() + "\nThread time: " + 
-                    df.format(new Date()) + "\nServer time: ERROR." + "\nResponse: " +
+                    df.format(new Date()) + "\nServer time: ERROR." + "\nCommand: " +
+                    command + "\nResponse: " +
                     response + "\n--------------------------------\n");
                 }
                 log.closeLog();

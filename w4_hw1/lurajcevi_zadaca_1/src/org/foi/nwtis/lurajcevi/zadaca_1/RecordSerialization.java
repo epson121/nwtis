@@ -106,7 +106,7 @@ public class RecordSerialization implements Serializable {
                 Logger.getLogger(RecordSerialization.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+        RecordSerialization.record.clear();
         System.out.println("Cleaned.");
     }
     

@@ -1,1559 +1,72 @@
 Thread name:#1
-Start time:02.04.2013 21:27:26
-Thread name:#1
-Thread time: 02.04.2013 21:27:26
-Server time: 02.04.2013 21:27:26
-Response: OK 02.04.2013 21:27:26
---------------------------------
+Start time:07.04.2013 11:38:43
 Thread name:#2
-Start time:02.04.2013 21:27:29
-Thread name:#2
-Thread time: 02.04.2013 21:27:29
-Server time: 02.04.2013 21:27:29
-Response: OK 02.04.2013 21:27:29
---------------------------------
+Start time:07.04.2013 11:38:43
 Thread name:#3
-Start time:02.04.2013 21:27:32
-Thread name:#3
-Thread time: 02.04.2013 21:27:32
-Server time: 02.04.2013 21:27:32
-Response: OK 02.04.2013 21:27:32
+Start time:07.04.2013 11:38:43
+Thread name:#4
+Start time:07.04.2013 11:38:43
+Thread name:#5
+Start time:07.04.2013 11:38:43
+Thread name:#5
+Thread time: 07.04.2013 11:38:43
+Server time: 07.04.2013 11:38:43
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 11:38:43
 --------------------------------
 Thread name:#4
-Start time:02.04.2013 21:27:35
-Thread name:#4
-Thread time: 02.04.2013 21:27:35
-Server time: 02.04.2013 21:27:35
-Response: OK 02.04.2013 21:27:35
+Thread time: 07.04.2013 11:38:43
+Server time: 07.04.2013 11:38:43
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 11:38:43
 --------------------------------
 Thread name:#1
-Thread time: 02.04.2013 21:27:36
-Server time: 02.04.2013 21:27:36
-Response: OK 02.04.2013 21:27:36
+Thread time: 07.04.2013 11:38:43
+Server time: 07.04.2013 11:38:43
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 11:38:43
+--------------------------------
+Thread name:#2
+Thread time: 07.04.2013 11:38:43
+Server time: 07.04.2013 11:38:43
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 11:38:43
+--------------------------------
+Thread name:#3
+Thread time: 07.04.2013 11:38:43
+Server time: 07.04.2013 11:38:43
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 11:38:43
+--------------------------------
+Thread name:#1
+Thread time: 07.04.2013 11:38:53
+Server time: 07.04.2013 11:38:53
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 11:38:53
+--------------------------------
+Thread name:#2
+Thread time: 07.04.2013 11:38:53
+Server time: 07.04.2013 11:38:53
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 11:38:53
+--------------------------------
+Thread name:#4
+Thread time: 07.04.2013 11:38:53
+Server time: 07.04.2013 11:38:53
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 11:38:53
+--------------------------------
+Thread name:#3
+Thread time: 07.04.2013 11:38:53
+Server time: 07.04.2013 11:38:53
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 11:38:53
 --------------------------------
 Thread name:#5
-Start time:02.04.2013 21:27:38
-Thread name:#5
-Thread time: 02.04.2013 21:27:38
-Server time: 02.04.2013 21:27:38
-Response: OK 02.04.2013 21:27:38
---------------------------------
-Thread name:#1
-Start time:02.04.2013 21:27:42
-Thread name:#1
-Thread time: 02.04.2013 21:27:42
-Server time: 02.04.2013 21:27:42
-Response: OK 02.04.2013 21:27:42
---------------------------------
-Thread name:#2
-Start time:02.04.2013 21:27:48
-Thread name:#2
-Thread time: 02.04.2013 21:27:48
-Server time: 02.04.2013 21:27:48
-Response: OK 02.04.2013 21:27:48
---------------------------------
-admin pero has executed command : 
-USER pero; PASSWD 123456; SETTIME 02.04.2013 21:00:00;
-with response:
-OK
-
-Thread name:#1
-Thread time: 02.04.2013 21:27:52
-Server time: 02.04.2013 21:27:52
-Response: OK 02.04.2013 21:00:02
---------------------------------
-Thread name:#3
-Start time:02.04.2013 21:27:54
-Thread name:#3
-Thread time: 02.04.2013 21:27:54
-Server time: 02.04.2013 21:27:54
-Response: OK 02.04.2013 21:00:04
---------------------------------
-Thread name:#2
-Thread time: 02.04.2013 21:27:58
-Server time: 02.04.2013 21:27:58
-Response: OK 02.04.2013 21:00:08
---------------------------------
-Thread name:#4
-Start time:02.04.2013 21:28:00
-Thread name:#4
-Thread time: 02.04.2013 21:28:00
-Server time: 02.04.2013 21:28:00
-Response: OK 02.04.2013 21:00:10
---------------------------------
-Thread name:#1
-Thread time: 02.04.2013 21:28:02
-Server time: 02.04.2013 21:28:02
-Response: OK 02.04.2013 21:00:12
---------------------------------
-admin pero has executed command : 
-USER pero; PASSWD 123456; SETTIME 02.04.2013 21:00:00;
-with response:
-OK
-
-Thread name:#1
-Start time:02.04.2013 21:38:55
-Thread name:#1
-Thread time: 02.04.2013 21:38:55
-Server time: 02.04.2013 21:38:55
-Response: OK 02.04.2013 21:38:55
---------------------------------
-Thread name:#2
-Start time:02.04.2013 21:38:56
-Thread name:#2
-Thread time: 02.04.2013 21:38:56
-Server time: 02.04.2013 21:38:56
-Response: OK 02.04.2013 21:38:56
---------------------------------
-Thread name:#3
-Thread time: 02.04.2013 21:38:57
-Server time: 02.04.2013 21:38:57
-Response: OK 02.04.2013 21:38:57
---------------------------------
-Thread name:#3
-Start time:02.04.2013 21:38:57
-Thread name:#4
-Start time:02.04.2013 21:38:58
-Thread name:#4
-Thread time: 02.04.2013 21:38:58
-Server time: 02.04.2013 21:38:58
-Response: OK 02.04.2013 21:38:58
---------------------------------
-Thread name:#5
-Start time:02.04.2013 21:38:59
-Thread name:#5
-Thread time: 02.04.2013 21:38:59
-Server time: 02.04.2013 21:38:59
-Response: OK 02.04.2013 21:38:59
---------------------------------
-Thread name:#1
-Start time:02.04.2013 21:39:08
-Thread name:#1
-Thread time: 02.04.2013 21:39:08
-Server time: 02.04.2013 21:39:08
-Response: OK 02.04.2013 21:39:08
---------------------------------
-Thread name:#2
-Start time:02.04.2013 21:39:10
-Thread name:#2
-Thread time: 02.04.2013 21:39:10
-Server time: 02.04.2013 21:39:10
-Response: OK 02.04.2013 21:39:10
---------------------------------
-Thread name:#3
-Start time:02.04.2013 21:39:12
-Thread name:#3
-Thread time: 02.04.2013 21:39:12
-Server time: 02.04.2013 21:39:12
-Response: OK 02.04.2013 21:39:12
---------------------------------
-Thread name:#4
-Start time:02.04.2013 21:39:14
-Thread name:#4
-Thread time: 02.04.2013 21:39:14
-Server time: 02.04.2013 21:39:14
-Response: OK 02.04.2013 21:39:14
---------------------------------
-admin pero has executed command : 
-USER pero; PASSWD 123456; SETTIME 02.04.2013 21:00:00;
-with response:
-OK
-
-Thread name:#5
-Start time:02.04.2013 21:39:16
-Thread name:#5
-Thread time: 02.04.2013 21:39:16
-Server time: 02.04.2013 21:39:16
-Response: OK 02.04.2013 21:00:00
---------------------------------
-Thread name:#1
-Thread time: 02.04.2013 21:39:18
-Server time: 02.04.2013 21:39:18
-Response: OK 02.04.2013 21:00:02
---------------------------------
-Thread name:#2
-Thread time: 02.04.2013 21:39:20
-Server time: 02.04.2013 21:39:20
-Response: OK 02.04.2013 21:00:04
---------------------------------
-Thread name:#3
-Thread time: 02.04.2013 21:39:22
-Server time: 02.04.2013 21:39:22
-Response: OK 02.04.2013 21:00:06
---------------------------------
-Thread name:#4
-Thread time: 02.04.2013 21:39:24
-Server time: 02.04.2013 21:39:24
-Response: OK 02.04.2013 21:00:08
---------------------------------
-Thread name:#5
-Thread time: 02.04.2013 21:39:26
-Server time: 02.04.2013 21:39:26
-Response: OK 02.04.2013 21:00:10
---------------------------------
-Thread name:#1
-Thread time: 02.04.2013 21:39:28
-Server time: 02.04.2013 21:39:28
-Response: OK 02.04.2013 21:00:12
---------------------------------
-Thread name:#2
-Thread time: 02.04.2013 21:39:30
-Server time: 02.04.2013 21:39:30
-Response: OK 02.04.2013 21:00:14
---------------------------------
-Thread name:#3
-Thread time: 02.04.2013 21:39:32
-Server time: 02.04.2013 21:39:32
-Response: OK 02.04.2013 21:00:16
---------------------------------
-Thread name:#4
-Thread time: 02.04.2013 21:39:34
-Server time: 02.04.2013 21:39:34
-Response: OK 02.04.2013 21:00:18
---------------------------------
-Thread name:#5
-Thread time: 02.04.2013 21:39:36
-Server time: 02.04.2013 21:39:36
-Response: OK 02.04.2013 21:00:20
---------------------------------
-Thread name:#1
-Thread time: 02.04.2013 21:39:38
-Server time: 02.04.2013 21:39:38
-Response: OK 02.04.2013 21:00:22
---------------------------------
-Thread name:#2
-Thread time: 02.04.2013 21:39:40
-Server time: 02.04.2013 21:39:40
-Response: OK 02.04.2013 21:00:24
---------------------------------
-Thread name:#3
-Thread time: 02.04.2013 21:39:42
-Server time: 02.04.2013 21:39:42
-Response: OK 02.04.2013 21:00:26
---------------------------------
-Thread name:#4
-Thread time: 02.04.2013 21:39:44
-Server time: 02.04.2013 21:39:44
-Response: OK 02.04.2013 21:00:28
---------------------------------
-Thread name:#5
-Thread time: 02.04.2013 21:39:46
-Server time: 02.04.2013 21:39:46
-Response: OK 02.04.2013 21:00:30
---------------------------------
-Thread name:#1
-Thread time: 02.04.2013 21:39:48
-Server time: 02.04.2013 21:39:48
-Response: OK 02.04.2013 21:00:32
---------------------------------
-Thread name:#2
-Thread time: 02.04.2013 21:39:50
-Server time: 02.04.2013 21:39:50
-Response: OK 02.04.2013 21:00:34
---------------------------------
-Thread name:#3
-Thread time: 02.04.2013 21:39:52
-Server time: 02.04.2013 21:39:52
-Response: OK 02.04.2013 21:00:36
---------------------------------
-Thread name:#4
-Thread time: 02.04.2013 21:39:54
-Server time: 02.04.2013 21:39:54
-Response: OK 02.04.2013 21:00:38
---------------------------------
-Thread name:#5
-Thread time: 02.04.2013 21:39:56
-Server time: 02.04.2013 21:39:56
-Response: OK 02.04.2013 21:00:40
---------------------------------
-Thread name:#1
-Thread time: 02.04.2013 21:39:58
-Server time: 02.04.2013 21:39:58
-Response: OK 02.04.2013 21:00:42
---------------------------------
-Thread name:#2
-Thread time: 02.04.2013 21:40:00
-Server time: 02.04.2013 21:40:00
-Response: OK 02.04.2013 21:00:44
---------------------------------
-Thread name:#3
-Thread time: 02.04.2013 21:40:02
-Server time: 02.04.2013 21:40:02
-Response: OK 02.04.2013 21:00:46
---------------------------------
-Thread name:#4
-Thread time: 02.04.2013 21:40:04
-Server time: 02.04.2013 21:40:04
-Response: OK 02.04.2013 21:00:48
---------------------------------
-Thread name:#5
-Thread time: 02.04.2013 21:40:06
-Server time: 02.04.2013 21:40:06
-Response: OK 02.04.2013 21:00:50
---------------------------------
-Thread name:#1
-Thread time: 02.04.2013 21:40:08
-Server time: 02.04.2013 21:40:08
-Response: OK 02.04.2013 21:00:52
---------------------------------
-Thread name:#2
-Thread time: 02.04.2013 21:40:10
-Server time: 02.04.2013 21:40:10
-Response: OK 02.04.2013 21:00:54
---------------------------------
-Thread name:#3
-Thread time: 02.04.2013 21:40:12
-Server time: 02.04.2013 21:40:12
-Response: OK 02.04.2013 21:00:56
---------------------------------
-Thread name:#4
-Thread time: 02.04.2013 21:40:14
-Server time: 02.04.2013 21:40:14
-Response: OK 02.04.2013 21:00:58
---------------------------------
-Thread name:#5
-Thread time: 02.04.2013 21:40:16
-Server time: 02.04.2013 21:40:16
-Response: OK 02.04.2013 21:01:00
---------------------------------
-Thread name:#1
-Thread time: 02.04.2013 21:40:18
-Server time: 02.04.2013 21:40:18
-Response: OK 02.04.2013 21:01:02
---------------------------------
-Thread name:#2
-Thread time: 02.04.2013 21:40:20
-Server time: 02.04.2013 21:40:20
-Response: OK 02.04.2013 21:01:04
---------------------------------
-Thread name:#3
-Thread time: 02.04.2013 21:40:22
-Server time: 02.04.2013 21:40:22
-Response: OK 02.04.2013 21:01:06
---------------------------------
-Thread name:#4
-Thread time: 02.04.2013 21:40:24
-Server time: 02.04.2013 21:40:24
-Response: OK 02.04.2013 21:01:08
---------------------------------
-Thread name:#5
-Thread time: 02.04.2013 21:40:26
-Server time: 02.04.2013 21:40:26
-Response: OK 02.04.2013 21:01:10
---------------------------------
-Thread name:#1
-Thread time: 02.04.2013 21:40:28
-Server time: 02.04.2013 21:40:28
-Response: OK 02.04.2013 21:01:12
---------------------------------
-Thread name:#2
-Thread time: 02.04.2013 21:40:30
-Server time: 02.04.2013 21:40:30
-Response: OK 02.04.2013 21:01:14
---------------------------------
-Thread name:#3
-Thread time: 02.04.2013 21:40:32
-Server time: 02.04.2013 21:40:32
-Response: OK 02.04.2013 21:01:16
---------------------------------
-Thread name:#4
-Thread time: 02.04.2013 21:40:34
-Server time: 02.04.2013 21:40:34
-Response: OK 02.04.2013 21:01:18
---------------------------------
-Thread name:#5
-Thread time: 02.04.2013 21:40:36
-Server time: 02.04.2013 21:40:36
-Response: OK 02.04.2013 21:01:20
---------------------------------
-Thread name:#1
-Thread time: 02.04.2013 21:40:38
-Server time: 02.04.2013 21:40:38
-Response: OK 02.04.2013 21:01:22
---------------------------------
-Thread name:#2
-Thread time: 02.04.2013 21:40:40
-Server time: 02.04.2013 21:40:40
-Response: OK 02.04.2013 21:01:24
---------------------------------
-Thread name:#3
-Thread time: 02.04.2013 21:40:42
-Server time: 02.04.2013 21:40:42
-Response: OK 02.04.2013 21:01:26
---------------------------------
-Thread name:#4
-Thread time: 02.04.2013 21:40:44
-Server time: 02.04.2013 21:40:44
-Response: OK 02.04.2013 21:01:28
---------------------------------
-Thread name:#5
-Thread time: 02.04.2013 21:40:46
-Server time: 02.04.2013 21:40:46
-Response: OK 02.04.2013 21:01:30
---------------------------------
-Thread name:#1
-Thread time: 02.04.2013 21:40:48
-Server time: 02.04.2013 21:40:48
-Response: OK 02.04.2013 21:01:32
---------------------------------
-Thread name:#2
-Thread time: 02.04.2013 21:40:50
-Server time: 02.04.2013 21:40:50
-Response: OK 02.04.2013 21:01:34
---------------------------------
-Thread name:#3
-Thread time: 02.04.2013 21:40:52
-Server time: 02.04.2013 21:40:52
-Response: OK 02.04.2013 21:01:36
---------------------------------
-Thread name:#4
-Thread time: 02.04.2013 21:40:54
-Server time: 02.04.2013 21:40:54
-Response: OK 02.04.2013 21:01:38
---------------------------------
-Thread name:#5
-Thread time: 02.04.2013 21:40:56
-Server time: 02.04.2013 21:40:56
-Response: OK 02.04.2013 21:01:40
---------------------------------
-Thread name:#1
-Thread time: 02.04.2013 21:40:58
-Server time: 02.04.2013 21:40:58
-Response: OK 02.04.2013 21:01:42
---------------------------------
-Thread name:#2
-Thread time: 02.04.2013 21:41:00
-Server time: 02.04.2013 21:41:00
-Response: OK 02.04.2013 21:01:44
---------------------------------
-Thread name:#3
-Thread time: 02.04.2013 21:41:02
-Server time: 02.04.2013 21:41:02
-Response: OK 02.04.2013 21:01:46
---------------------------------
-Thread name:#4
-Thread time: 02.04.2013 21:41:04
-Server time: 02.04.2013 21:41:04
-Response: OK 02.04.2013 21:01:48
---------------------------------
-Thread name:#5
-Thread time: 02.04.2013 21:41:06
-Server time: 02.04.2013 21:41:06
-Response: OK 02.04.2013 21:01:50
---------------------------------
-Thread name:#1
-Thread time: 02.04.2013 21:41:08
-Server time: 02.04.2013 21:41:08
-Response: OK 02.04.2013 21:01:52
---------------------------------
-Thread name:#2
-Thread time: 02.04.2013 21:41:10
-Server time: 02.04.2013 21:41:10
-Response: OK 02.04.2013 21:01:54
---------------------------------
-Thread name:#3
-Thread time: 02.04.2013 21:41:12
-Server time: 02.04.2013 21:41:12
-Response: OK 02.04.2013 21:01:56
---------------------------------
-Thread name:#4
-Thread time: 02.04.2013 21:41:14
-Server time: 02.04.2013 21:41:14
-Response: OK 02.04.2013 21:01:58
---------------------------------
-Thread name:#5
-Thread time: 02.04.2013 21:41:16
-Server time: 02.04.2013 21:41:16
-Response: OK 02.04.2013 21:02:00
---------------------------------
-Thread name:#1
-Thread time: 02.04.2013 21:41:18
-Server time: 02.04.2013 21:41:18
-Response: OK 02.04.2013 21:02:02
---------------------------------
-Thread name:#2
-Thread time: 02.04.2013 21:41:20
-Server time: 02.04.2013 21:41:20
-Response: OK 02.04.2013 21:02:04
---------------------------------
-Thread name:#3
-Thread time: 02.04.2013 21:41:22
-Server time: 02.04.2013 21:41:22
-Response: OK 02.04.2013 21:02:06
---------------------------------
-Thread name:#4
-Thread time: 02.04.2013 21:41:24
-Server time: 02.04.2013 21:41:24
-Response: OK 02.04.2013 21:02:08
---------------------------------
-Thread name:#5
-Thread time: 02.04.2013 21:41:26
-Server time: 02.04.2013 21:41:26
-Response: OK 02.04.2013 21:02:10
---------------------------------
-Thread name:#1
-Thread time: 02.04.2013 21:41:28
-Server time: 02.04.2013 21:41:28
-Response: OK 02.04.2013 21:02:12
---------------------------------
-Thread name:#2
-Thread time: 02.04.2013 21:41:30
-Server time: 02.04.2013 21:41:30
-Response: OK 02.04.2013 21:02:14
---------------------------------
-Thread name:#3
-Thread time: 02.04.2013 21:41:32
-Server time: 02.04.2013 21:41:32
-Response: OK 02.04.2013 21:02:16
---------------------------------
-Thread name:#4
-Thread time: 02.04.2013 21:41:34
-Server time: 02.04.2013 21:41:34
-Response: OK 02.04.2013 21:02:18
---------------------------------
-Thread name:#5
-Thread time: 02.04.2013 21:41:36
-Server time: 02.04.2013 21:41:36
-Response: OK 02.04.2013 21:02:20
---------------------------------
-Thread name:#1
-Thread time: 02.04.2013 21:41:38
-Server time: 02.04.2013 21:41:38
-Response: OK 02.04.2013 21:02:22
---------------------------------
-Thread name:#2
-Thread time: 02.04.2013 21:41:40
-Server time: 02.04.2013 21:41:40
-Response: OK 02.04.2013 21:02:24
---------------------------------
-Thread name:#3
-Thread time: 02.04.2013 21:41:42
-Server time: 02.04.2013 21:41:42
-Response: OK 02.04.2013 21:02:26
---------------------------------
-Thread name:#4
-Thread time: 02.04.2013 21:41:44
-Server time: 02.04.2013 21:41:44
-Response: OK 02.04.2013 21:02:28
---------------------------------
-Thread name:#5
-Thread time: 02.04.2013 21:41:46
-Server time: 02.04.2013 21:41:46
-Response: OK 02.04.2013 21:02:30
---------------------------------
-Thread name:#1
-Thread time: 02.04.2013 21:41:48
-Server time: 02.04.2013 21:41:48
-Response: OK 02.04.2013 21:02:32
---------------------------------
-Thread name:#2
-Thread time: 02.04.2013 21:41:50
-Server time: 02.04.2013 21:41:50
-Response: OK 02.04.2013 21:02:34
---------------------------------
-Thread name:#3
-Thread time: 02.04.2013 21:41:52
-Server time: 02.04.2013 21:41:52
-Response: OK 02.04.2013 21:02:36
---------------------------------
-Thread name:#4
-Thread time: 02.04.2013 21:41:54
-Server time: 02.04.2013 21:41:54
-Response: OK 02.04.2013 21:02:38
---------------------------------
-Thread name:#5
-Thread time: 02.04.2013 21:41:56
-Server time: 02.04.2013 21:41:56
-Response: OK 02.04.2013 21:02:40
---------------------------------
-Thread name:#1
-Thread time: 02.04.2013 21:41:58
-Server time: 02.04.2013 21:41:58
-Response: OK 02.04.2013 21:02:42
---------------------------------
-Thread name:#2
-Thread time: 02.04.2013 21:42:00
-Server time: 02.04.2013 21:42:00
-Response: OK 02.04.2013 21:02:44
---------------------------------
-Thread name:#3
-Thread time: 02.04.2013 21:42:02
-Server time: 02.04.2013 21:42:02
-Response: OK 02.04.2013 21:02:46
---------------------------------
-Thread name:#4
-Thread time: 02.04.2013 21:42:04
-Server time: 02.04.2013 21:42:04
-Response: OK 02.04.2013 21:02:48
---------------------------------
-Thread name:#5
-Thread time: 02.04.2013 21:42:06
-Server time: 02.04.2013 21:42:06
-Response: OK 02.04.2013 21:02:50
---------------------------------
-Thread name:#1
-Thread time: 02.04.2013 21:42:08
-Server time: 02.04.2013 21:42:08
-Response: OK 02.04.2013 21:02:52
---------------------------------
-Thread name:#2
-Thread time: 02.04.2013 21:42:10
-Server time: 02.04.2013 21:42:10
-Response: OK 02.04.2013 21:02:54
---------------------------------
-Thread name:#3
-Thread time: 02.04.2013 21:42:12
-Server time: 02.04.2013 21:42:12
-Response: OK 02.04.2013 21:02:56
---------------------------------
-Thread name:#4
-Thread time: 02.04.2013 21:42:14
-Server time: 02.04.2013 21:42:14
-Response: OK 02.04.2013 21:02:58
---------------------------------
-Thread name:#5
-Thread time: 02.04.2013 21:42:16
-Server time: 02.04.2013 21:42:16
-Response: OK 02.04.2013 21:03:00
---------------------------------
-Thread name:#1
-Thread time: 02.04.2013 21:42:18
-Server time: 02.04.2013 21:42:18
-Response: OK 02.04.2013 21:03:02
---------------------------------
-Thread name:#2
-Thread time: 02.04.2013 21:42:20
-Server time: 02.04.2013 21:42:20
-Response: OK 02.04.2013 21:03:04
---------------------------------
-Thread name:#3
-Thread time: 02.04.2013 21:42:22
-Server time: 02.04.2013 21:42:22
-Response: OK 02.04.2013 21:03:06
---------------------------------
-Thread name:#4
-Thread time: 02.04.2013 21:42:24
-Server time: 02.04.2013 21:42:24
-Response: OK 02.04.2013 21:03:08
---------------------------------
-Thread name:#5
-Thread time: 02.04.2013 21:42:26
-Server time: 02.04.2013 21:42:26
-Response: OK 02.04.2013 21:03:10
---------------------------------
-Thread name:#1
-Thread time: 02.04.2013 21:42:28
-Server time: 02.04.2013 21:42:28
-Response: OK 02.04.2013 21:03:12
---------------------------------
-Thread name:#2
-Thread time: 02.04.2013 21:42:30
-Server time: 02.04.2013 21:42:30
-Response: OK 02.04.2013 21:03:14
---------------------------------
-Thread name:#3
-Thread time: 02.04.2013 21:42:32
-Server time: 02.04.2013 21:42:32
-Response: OK 02.04.2013 21:03:16
---------------------------------
-Thread name:#4
-Thread time: 02.04.2013 21:42:34
-Server time: 02.04.2013 21:42:34
-Response: OK 02.04.2013 21:03:18
---------------------------------
-Thread name:#5
-Thread time: 02.04.2013 21:42:36
-Server time: 02.04.2013 21:42:36
-Response: OK 02.04.2013 21:03:20
---------------------------------
-Thread name:#1
-Thread time: 02.04.2013 21:42:38
-Server time: 02.04.2013 21:42:38
-Response: OK 02.04.2013 21:03:22
---------------------------------
-Thread name:#2
-Thread time: 02.04.2013 21:42:40
-Server time: 02.04.2013 21:42:40
-Response: OK 02.04.2013 21:03:24
---------------------------------
-Thread name:#3
-Thread time: 02.04.2013 21:42:42
-Server time: 02.04.2013 21:42:42
-Response: OK 02.04.2013 21:03:26
---------------------------------
-Thread name:#4
-Thread time: 02.04.2013 21:42:44
-Server time: 02.04.2013 21:42:44
-Response: OK 02.04.2013 21:03:28
---------------------------------
-Thread name:#5
-Thread time: 02.04.2013 21:42:46
-Server time: 02.04.2013 21:42:46
-Response: OK 02.04.2013 21:03:30
---------------------------------
-Thread name:#1
-Thread time: 02.04.2013 21:42:48
-Server time: 02.04.2013 21:42:48
-Response: OK 02.04.2013 21:03:32
---------------------------------
-Thread name:#2
-Thread time: 02.04.2013 21:42:50
-Server time: 02.04.2013 21:42:50
-Response: OK 02.04.2013 21:03:34
---------------------------------
-Thread name:#3
-Thread time: 02.04.2013 21:42:52
-Server time: 02.04.2013 21:42:52
-Response: OK 02.04.2013 21:03:36
---------------------------------
-Thread name:#4
-Thread time: 02.04.2013 21:42:54
-Server time: 02.04.2013 21:42:54
-Response: OK 02.04.2013 21:03:38
---------------------------------
-Thread name:#5
-Thread time: 02.04.2013 21:42:56
-Server time: 02.04.2013 21:42:56
-Response: OK 02.04.2013 21:03:40
---------------------------------
-Thread name:#1
-Thread time: 02.04.2013 21:42:58
-Server time: 02.04.2013 21:42:58
-Response: OK 02.04.2013 21:03:42
---------------------------------
-Thread name:#2
-Thread time: 02.04.2013 21:43:00
-Server time: 02.04.2013 21:43:00
-Response: OK 02.04.2013 21:03:44
---------------------------------
-Thread name:#3
-Thread time: 02.04.2013 21:43:02
-Server time: 02.04.2013 21:43:02
-Response: OK 02.04.2013 21:03:46
---------------------------------
-Thread name:#4
-Thread time: 02.04.2013 21:43:04
-Server time: 02.04.2013 21:43:04
-Response: OK 02.04.2013 21:03:48
---------------------------------
-Thread name:#5
-Thread time: 02.04.2013 21:43:06
-Server time: 02.04.2013 21:43:06
-Response: OK 02.04.2013 21:03:50
---------------------------------
-Thread name:#1
-Thread time: 02.04.2013 21:43:08
-Server time: 02.04.2013 21:43:08
-Response: OK 02.04.2013 21:03:52
---------------------------------
-Thread name:#2
-Thread time: 02.04.2013 21:43:10
-Server time: 02.04.2013 21:43:10
-Response: OK 02.04.2013 21:03:54
---------------------------------
-Thread name:#3
-Thread time: 02.04.2013 21:43:12
-Server time: 02.04.2013 21:43:12
-Response: OK 02.04.2013 21:03:56
---------------------------------
-Thread name:#4
-Thread time: 02.04.2013 21:43:14
-Server time: 02.04.2013 21:43:14
-Response: OK 02.04.2013 21:03:58
---------------------------------
-Thread name:#5
-Thread time: 02.04.2013 21:43:16
-Server time: 02.04.2013 21:43:16
-Response: OK 02.04.2013 21:04:00
---------------------------------
-Thread name:#1
-Thread time: 02.04.2013 21:43:18
-Server time: 02.04.2013 21:43:18
-Response: OK 02.04.2013 21:04:02
---------------------------------
-Thread name:#2
-Thread time: 02.04.2013 21:43:20
-Server time: 02.04.2013 21:43:20
-Response: OK 02.04.2013 21:04:04
---------------------------------
-Thread name:#3
-Thread time: 02.04.2013 21:43:22
-Server time: 02.04.2013 21:43:22
-Response: OK 02.04.2013 21:04:06
---------------------------------
-Thread name:#4
-Thread time: 02.04.2013 21:43:24
-Server time: 02.04.2013 21:43:24
-Response: OK 02.04.2013 21:04:08
---------------------------------
-Thread name:#5
-Thread time: 02.04.2013 21:43:26
-Server time: 02.04.2013 21:43:26
-Response: OK 02.04.2013 21:04:10
---------------------------------
-Thread name:#1
-Thread time: 02.04.2013 21:43:28
-Server time: 02.04.2013 21:43:28
-Response: OK 02.04.2013 21:04:12
---------------------------------
-Thread name:#2
-Thread time: 02.04.2013 21:43:30
-Server time: 02.04.2013 21:43:30
-Response: OK 02.04.2013 21:04:14
---------------------------------
-Thread name:#3
-Thread time: 02.04.2013 21:43:32
-Server time: 02.04.2013 21:43:32
-Response: OK 02.04.2013 21:04:16
---------------------------------
-Thread name:#4
-Thread time: 02.04.2013 21:43:34
-Server time: 02.04.2013 21:43:34
-Response: OK 02.04.2013 21:04:18
---------------------------------
-Thread name:#5
-Thread time: 02.04.2013 21:43:36
-Server time: 02.04.2013 21:43:36
-Response: OK 02.04.2013 21:04:20
---------------------------------
-Thread name:#1
-Thread time: 02.04.2013 21:43:38
-Server time: 02.04.2013 21:43:38
-Response: OK 02.04.2013 21:04:22
---------------------------------
-Thread name:#2
-Thread time: 02.04.2013 21:43:40
-Server time: 02.04.2013 21:43:40
-Response: OK 02.04.2013 21:04:24
---------------------------------
-Thread name:#3
-Thread time: 02.04.2013 21:43:42
-Server time: 02.04.2013 21:43:42
-Response: OK 02.04.2013 21:04:26
---------------------------------
-Thread name:#4
-Thread time: 02.04.2013 21:43:45
-Server time: 02.04.2013 21:43:45
-Response: OK 02.04.2013 21:04:28
---------------------------------
-Thread name:#5
-Thread time: 02.04.2013 21:43:46
-Server time: 02.04.2013 21:43:46
-Response: OK 02.04.2013 21:04:30
---------------------------------
-Thread name:#1
-Thread time: 02.04.2013 21:43:48
-Server time: 02.04.2013 21:43:48
-Response: OK 02.04.2013 21:04:32
---------------------------------
-Thread name:#1
-Start time:02.04.2013 21:57:35
-Thread name:#1
-Thread time: 02.04.2013 21:57:36
-Server time: 02.04.2013 21:57:36
-Response: OK 02.04.2013 21:57:36
---------------------------------
-Thread name:#2
-Start time:02.04.2013 21:57:37
-Thread name:#2
-Thread time: 02.04.2013 21:57:37
-Server time: 02.04.2013 21:57:37
-Response: OK 02.04.2013 21:57:37
---------------------------------
-Thread name:#3
-Start time:02.04.2013 21:57:39
-Thread name:#3
-Thread time: 02.04.2013 21:57:39
-Server time: 02.04.2013 21:57:39
-Response: OK 02.04.2013 21:57:39
---------------------------------
-Thread name:#4
-Start time:02.04.2013 21:57:41
-Thread name:#4
-Thread time: 02.04.2013 21:57:41
-Server time: 02.04.2013 21:57:41
-Response: OK 02.04.2013 21:57:41
---------------------------------
-Thread name:#5
-Start time:02.04.2013 21:57:43
-Thread name:#5
-Thread time: 02.04.2013 21:57:43
-Server time: 02.04.2013 21:57:43
-Response: OK 02.04.2013 21:57:43
---------------------------------
-admin pero has executed command : 
-USER pero; PASSWD 123456; SETTIME 02.04.2013 21:00:00;
-with response:
-OK
-
-Thread name:#1
-Thread time: 02.04.2013 21:57:45
-Server time: 02.04.2013 21:57:45
-Response: OK 02.04.2013 21:57:45
---------------------------------
-Thread name:#2
-Thread time: 02.04.2013 21:57:47
-Server time: 02.04.2013 21:57:47
-Response: OK 02.04.2013 21:57:47
---------------------------------
-Thread name:#3
-Thread time: 02.04.2013 21:57:49
-Server time: 02.04.2013 21:57:49
-Response: OK 02.04.2013 21:57:49
---------------------------------
-Thread name:#4
-Thread time: 02.04.2013 21:57:51
-Server time: 02.04.2013 21:57:51
-Response: OK 02.04.2013 21:57:51
---------------------------------
-Thread name:#5
-Thread time: 02.04.2013 21:57:53
-Server time: 02.04.2013 21:57:53
-Response: OK 02.04.2013 21:57:53
---------------------------------
-Thread name:#1
-Thread time: 02.04.2013 21:57:55
-Server time: 02.04.2013 21:57:55
-Response: OK 02.04.2013 21:57:55
---------------------------------
-Thread name:#2
-Thread time: 02.04.2013 21:57:57
-Server time: 02.04.2013 21:57:57
-Response: OK 02.04.2013 21:57:57
---------------------------------
-Thread name:#3
-Thread time: 02.04.2013 21:57:59
-Server time: 02.04.2013 21:57:59
-Response: OK 02.04.2013 21:57:59
---------------------------------
-Thread name:#4
-Thread time: 02.04.2013 21:58:01
-Server time: 02.04.2013 21:58:01
-Response: OK 02.04.2013 21:58:01
---------------------------------
-Thread name:#5
-Thread time: 02.04.2013 21:58:03
-Server time: 02.04.2013 21:58:03
-Response: OK 02.04.2013 21:58:03
---------------------------------
-Thread name:#1
-Thread time: 02.04.2013 21:58:05
-Server time: 02.04.2013 21:58:05
-Response: OK 02.04.2013 21:58:05
---------------------------------
-Thread name:#2
-Thread time: 02.04.2013 21:58:07
-Server time: 02.04.2013 21:58:07
-Response: OK 02.04.2013 21:58:07
---------------------------------
-Thread name:#1
-Start time:02.04.2013 22:04:14
-Thread name:#1
-Thread time: 02.04.2013 22:04:14
-Server time: 02.04.2013 22:04:14
-Response: OK 02.04.2013 22:04:14
---------------------------------
-Thread name:#2
-Start time:02.04.2013 22:04:20
-Thread name:#2
-Thread time: 02.04.2013 22:04:20
-Server time: 02.04.2013 22:04:20
-Response: OK 02.04.2013 22:04:20
---------------------------------
-Thread name:#1
-Thread time: 02.04.2013 22:04:24
-Server time: 02.04.2013 22:04:24
-Response: OK 02.04.2013 22:04:24
---------------------------------
-Thread name:#3
-Start time:02.04.2013 22:04:26
-Thread name:#3
-Thread time: 02.04.2013 22:04:26
-Server time: 02.04.2013 22:04:26
-Response: OK 02.04.2013 22:04:26
---------------------------------
-admin pero has executed command : 
-USER pero; PASSWD 123456; SETTIME 02.04.2013 21:00:00;
-with response:
-OK
-
-Thread name:#2
-Thread time: 02.04.2013 22:04:30
-Server time: 02.04.2013 21:00:02
-Response: OK 02.04.2013 21:00:02
---------------------------------
-Thread name:#4
-Start time:02.04.2013 22:04:32
-Thread name:#4
-Thread time: 02.04.2013 22:04:32
-Server time: 02.04.2013 21:00:04
-Response: OK 02.04.2013 21:00:04
---------------------------------
-Thread name:#1
-Thread time: 02.04.2013 22:04:34
-Server time: 02.04.2013 21:00:06
-Response: OK 02.04.2013 21:00:06
---------------------------------
-Thread name:#3
-Thread time: 02.04.2013 22:04:36
-Server time: 02.04.2013 21:00:08
-Response: OK 02.04.2013 21:00:08
---------------------------------
-Thread name:#5
-Start time:02.04.2013 22:04:38
-Thread name:#5
-Thread time: 02.04.2013 22:04:38
-Server time: 02.04.2013 21:00:10
-Response: OK 02.04.2013 21:00:10
---------------------------------
-Thread name:#2
-Thread time: 02.04.2013 22:04:40
-Server time: 02.04.2013 21:00:12
-Response: OK 02.04.2013 21:00:12
---------------------------------
-Thread name:#4
-Thread time: 02.04.2013 22:04:42
-Server time: 02.04.2013 21:00:14
-Response: OK 02.04.2013 21:00:14
---------------------------------
-Thread name:#1
-Thread time: 02.04.2013 22:04:44
-Server time: 02.04.2013 21:00:16
-Response: OK 02.04.2013 21:00:16
---------------------------------
-Thread name:#3
-Thread time: 02.04.2013 22:04:46
-Server time: 02.04.2013 21:00:18
-Response: OK 02.04.2013 21:00:18
---------------------------------
-Thread name:#5
-Thread time: 02.04.2013 22:04:48
-Server time: 02.04.2013 21:00:20
-Response: OK 02.04.2013 21:00:20
---------------------------------
-Thread name:#2
-Thread time: 02.04.2013 22:04:50
-Server time: 02.04.2013 21:00:22
-Response: OK 02.04.2013 21:00:22
---------------------------------
-admin pero has executed command : 
-USER pero; PASSWD 123456; STOP;
-with response:
-OK
-
-Thread name:#4
-Thread time: 02.04.2013 22:04:52
-Server time: ERROR.
-Response: ERROR: Server is not accepting requests at the moment.
---------------------------------
-admin pero has executed command : 
-USER pero; PASSWD 123456; STOP;
-with response:
-OK
-
-admin korisnik has executed command : 
-USER korisnik; PASSWD password; START;
-with response:
-ERROR: Wrong username or password.
-
-admin pero has executed command : 
-USER pero; PASSWD 123456; PAUSE;
-with response:
-OK
-
-admin pero has executed command : 
-USER pero; PASSWD 123456; START;
-with response:
-OK
-
-admin pero has executed command : 
-USER pero; PASSWD 123456; STOP;
-with response:
-OK
-
-admin pero has executed command : 
-USER pero; PASSWD 123456; CLEAN;
-with response:
-OK
-
-Thread name:#1
-Start time:03.04.2013 14:35:03
-Thread name:#1
-Thread time: 03.04.2013 14:35:03
-Server time: 03.04.2013 14:35:03
-Response: OK 03.04.2013 14:35:03
---------------------------------
-Thread name:#2
-Start time:03.04.2013 14:35:07
-Thread name:#2
-Thread time: 03.04.2013 14:35:07
-Server time: 03.04.2013 14:35:07
-Response: OK 03.04.2013 14:35:07
---------------------------------
-admin pero has executed command : 
-USER pero; PASSWD 123456; STOP;
-with response:
-OK
-
-Thread name:#1
-Start time:03.04.2013 14:36:34
-Thread name:#1
-Thread time: 03.04.2013 14:36:34
-Server time: 03.04.2013 14:36:34
-Response: OK 03.04.2013 14:36:34
---------------------------------
-Thread name:#2
-Start time:03.04.2013 14:36:43
-Thread name:#2
-Thread time: 03.04.2013 14:36:43
-Server time: 03.04.2013 14:36:43
-Response: OK 03.04.2013 14:36:43
---------------------------------
-Thread name:#1
-Thread time: 03.04.2013 14:36:44
-Server time: 03.04.2013 14:36:44
-Response: OK 03.04.2013 14:36:44
---------------------------------
-Thread name:#3
-Start time:03.04.2013 14:36:52
-Thread name:#3
-Thread time: 03.04.2013 14:36:52
-Server time: 03.04.2013 14:36:52
-Response: OK 03.04.2013 14:36:52
---------------------------------
-Thread name:#2
-Thread time: 03.04.2013 14:36:53
-Server time: 03.04.2013 14:36:53
-Response: OK 03.04.2013 14:36:53
---------------------------------
-Thread name:#1
-Thread time: 03.04.2013 14:36:54
-Server time: 03.04.2013 14:36:54
-Response: OK 03.04.2013 14:36:54
---------------------------------
-Thread name:#4
-Start time:03.04.2013 14:37:01
-Thread name:#4
-Thread time: 03.04.2013 14:37:01
-Server time: 03.04.2013 14:37:01
-Response: OK 03.04.2013 14:37:01
---------------------------------
-Thread name:#3
-Thread time: 03.04.2013 14:37:02
-Server time: 03.04.2013 14:37:02
-Response: OK 03.04.2013 14:37:02
---------------------------------
-Thread name:#2
-Thread time: 03.04.2013 14:37:03
-Server time: 03.04.2013 14:37:03
-Response: OK 03.04.2013 14:37:03
---------------------------------
-Thread name:#1
-Thread time: 03.04.2013 14:37:04
-Server time: 03.04.2013 14:37:04
-Response: OK 03.04.2013 14:37:04
---------------------------------
-Thread name:#5
-Start time:03.04.2013 14:37:10
-Thread name:#5
-Thread time: 03.04.2013 14:37:10
-Server time: 03.04.2013 14:37:10
-Response: OK 03.04.2013 14:37:10
---------------------------------
-Thread name:#4
-Thread time: 03.04.2013 14:37:11
-Server time: 03.04.2013 14:37:11
-Response: OK 03.04.2013 14:37:11
---------------------------------
-Thread name:#3
-Thread time: 03.04.2013 14:37:12
-Server time: 03.04.2013 14:37:12
-Response: OK 03.04.2013 14:37:12
---------------------------------
-Thread name:#2
-Thread time: 03.04.2013 14:37:13
-Server time: 03.04.2013 14:37:13
-Response: OK 03.04.2013 14:37:13
---------------------------------
-Thread name:#1
-Thread time: 03.04.2013 14:37:14
-Server time: 03.04.2013 14:37:14
-Response: OK 03.04.2013 14:37:14
---------------------------------
-admin pero has executed command : 
-USER pero; PASSWD 123456; STOP;
-with response:
-OK
-
-admin pero has executed command : 
-USER pero; PASSWD 123456; STOP;
-with response:
-OK
-
-Thread name:#1
-Start time:03.04.2013 15:18:13
-Thread name:#2
-Start time:03.04.2013 15:18:13
-Thread name:#3
-Start time:03.04.2013 15:18:13
-Thread name:#4
-Start time:03.04.2013 15:18:13
-Thread name:#5
-Start time:03.04.2013 15:18:13
-Thread name:#2
-Thread time: 03.04.2013 15:18:13
-Server time: 03.04.2013 15:18:13
-Response: OK 03.04.2013 15:18:13
---------------------------------
-Thread name:#5
-Thread time: 03.04.2013 15:18:13
-Server time: 03.04.2013 15:18:13
-Response: OK 03.04.2013 15:18:13
---------------------------------
-Thread name:#1
-Thread time: 03.04.2013 15:18:13
-Server time: 03.04.2013 15:18:13
-Response: OK 03.04.2013 15:18:13
---------------------------------
-Thread name:#4
-Thread time: 03.04.2013 15:18:13
-Server time: 03.04.2013 15:18:13
-Response: OK 03.04.2013 15:18:13
---------------------------------
-Thread name:#3
-Thread time: 03.04.2013 15:18:13
-Server time: 03.04.2013 15:18:13
-Response: OK 03.04.2013 15:18:13
---------------------------------
-Thread name:#1
-Thread time: 03.04.2013 15:18:23
-Server time: 03.04.2013 15:18:23
-Response: OK 03.04.2013 15:18:23
---------------------------------
-Thread name:#3
-Thread time: 03.04.2013 15:18:23
-Server time: 03.04.2013 15:18:23
-Response: OK 03.04.2013 15:18:23
---------------------------------
-Thread name:#2
-Thread time: 03.04.2013 15:18:23
-Server time: 03.04.2013 15:18:23
-Response: OK 03.04.2013 15:18:23
---------------------------------
-Thread name:#4
-Thread time: 03.04.2013 15:18:23
-Server time: 03.04.2013 15:18:23
-Response: OK 03.04.2013 15:18:23
---------------------------------
-Thread name:#5
-Thread time: 03.04.2013 15:18:23
-Server time: 03.04.2013 15:18:23
-Response: OK 03.04.2013 15:18:23
---------------------------------
-Thread name:#1
-Thread time: 03.04.2013 15:18:33
-Server time: 03.04.2013 15:18:33
-Response: OK 03.04.2013 15:18:33
---------------------------------
-Thread name:#3
-Thread time: 03.04.2013 15:18:33
-Server time: 03.04.2013 15:18:33
-Response: OK 03.04.2013 15:18:33
---------------------------------
-Thread name:#5
-Thread time: 03.04.2013 15:18:33
-Server time: 03.04.2013 15:18:33
-Response: OK 03.04.2013 15:18:33
---------------------------------
-Thread name:#2
-Thread time: 03.04.2013 15:18:33
-Server time: 03.04.2013 15:18:33
-Response: OK 03.04.2013 15:18:33
---------------------------------
-Thread name:#4
-Thread time: 03.04.2013 15:18:33
-Server time: 03.04.2013 15:18:33
-Response: OK 03.04.2013 15:18:33
---------------------------------
-Thread name:#1
-Thread time: 03.04.2013 15:18:43
-Server time: 03.04.2013 15:18:43
-Response: OK 03.04.2013 15:18:43
---------------------------------
-Thread name:#5
-Thread time: 03.04.2013 15:18:43
-Server time: 03.04.2013 15:18:43
-Response: OK 03.04.2013 15:18:43
---------------------------------
-Thread name:#3
-Thread time: 03.04.2013 15:18:43
-Server time: 03.04.2013 15:18:43
-Response: OK 03.04.2013 15:18:43
---------------------------------
-Thread name:#4
-Thread time: 03.04.2013 15:18:43
-Server time: 03.04.2013 15:18:43
-Response: OK 03.04.2013 15:18:43
---------------------------------
-Thread name:#2
-Thread time: 03.04.2013 15:18:43
-Server time: 03.04.2013 15:18:43
-Response: OK 03.04.2013 15:18:43
---------------------------------
-Thread name:#1
-Thread time: 03.04.2013 15:18:53
-Server time: 03.04.2013 15:18:53
-Response: OK 03.04.2013 15:18:53
---------------------------------
-Thread name:#5
-Thread time: 03.04.2013 15:18:53
-Server time: 03.04.2013 15:18:53
-Response: OK 03.04.2013 15:18:53
---------------------------------
-Thread name:#3
-Thread time: 03.04.2013 15:18:53
-Server time: 03.04.2013 15:18:53
-Response: OK 03.04.2013 15:18:53
---------------------------------
-Thread name:#4
-Thread time: 03.04.2013 15:18:53
-Server time: 03.04.2013 15:18:53
-Response: OK 03.04.2013 15:18:53
---------------------------------
-Thread name:#2
-Thread time: 03.04.2013 15:18:53
-Server time: 03.04.2013 15:18:53
-Response: OK 03.04.2013 15:18:53
---------------------------------
-Thread name:#1
-Thread time: 03.04.2013 15:19:03
-Server time: 03.04.2013 15:19:03
-Response: OK 03.04.2013 15:19:03
---------------------------------
-Thread name:#5
-Thread time: 03.04.2013 15:19:03
-Server time: 03.04.2013 15:19:03
-Response: OK 03.04.2013 15:19:03
---------------------------------
-Thread name:#3
-Thread time: 03.04.2013 15:19:03
-Server time: 03.04.2013 15:19:03
-Response: OK 03.04.2013 15:19:03
---------------------------------
-Thread name:#2
-Thread time: 03.04.2013 15:19:03
-Server time: 03.04.2013 15:19:03
-Response: OK 03.04.2013 15:19:03
---------------------------------
-Thread name:#4
-Thread time: 03.04.2013 15:19:03
-Server time: 03.04.2013 15:19:03
-Response: OK 03.04.2013 15:19:03
---------------------------------
-Thread name:#1
-Thread time: 03.04.2013 15:19:13
-Server time: 03.04.2013 15:19:13
-Response: OK 03.04.2013 15:19:13
---------------------------------
-Thread name:#5
-Thread time: 03.04.2013 15:19:13
-Server time: 03.04.2013 15:19:13
-Response: OK 03.04.2013 15:19:13
---------------------------------
-Thread name:#2
-Thread time: 03.04.2013 15:19:13
-Server time: 03.04.2013 15:19:13
-Response: OK 03.04.2013 15:19:13
---------------------------------
-Thread name:#3
-Thread time: 03.04.2013 15:19:13
-Server time: 03.04.2013 15:19:13
-Response: OK 03.04.2013 15:19:13
---------------------------------
-Thread name:#4
-Thread time: 03.04.2013 15:19:13
-Server time: 03.04.2013 15:19:13
-Response: OK 03.04.2013 15:19:13
---------------------------------
-Thread name:#1
-Thread time: 03.04.2013 15:19:23
-Server time: 03.04.2013 15:19:23
-Response: OK 03.04.2013 15:19:23
---------------------------------
-Thread name:#5
-Thread time: 03.04.2013 15:19:23
-Server time: 03.04.2013 15:19:23
-Response: OK 03.04.2013 15:19:23
---------------------------------
-Thread name:#2
-Thread time: 03.04.2013 15:19:23
-Server time: 03.04.2013 15:19:23
-Response: OK 03.04.2013 15:19:23
---------------------------------
-Thread name:#3
-Thread time: 03.04.2013 15:19:23
-Server time: 03.04.2013 15:19:23
-Response: OK 03.04.2013 15:19:23
---------------------------------
-Thread name:#4
-Thread time: 03.04.2013 15:19:23
-Server time: 03.04.2013 15:19:23
-Response: OK 03.04.2013 15:19:23
---------------------------------
-admin pero has executed command : 
-USER pero; PASSWD 123456; SETTIME 02.04.2013 21:00:00;
-with response:
-OK
-
-Thread name:#1
-Thread time: 03.04.2013 15:19:33
-Server time: 02.04.2013 21:00:06
-Response: OK 02.04.2013 21:00:06
---------------------------------
-Thread name:#5
-Thread time: 03.04.2013 15:19:33
-Server time: 02.04.2013 21:00:06
-Response: OK 02.04.2013 21:00:06
---------------------------------
-Thread name:#2
-Thread time: 03.04.2013 15:19:33
-Server time: 02.04.2013 21:00:06
-Response: OK 02.04.2013 21:00:06
---------------------------------
-Thread name:#3
-Thread time: 03.04.2013 15:19:33
-Server time: 02.04.2013 21:00:06
-Response: OK 02.04.2013 21:00:06
---------------------------------
-Thread name:#4
-Thread time: 03.04.2013 15:19:33
-Server time: 02.04.2013 21:00:06
-Response: OK 02.04.2013 21:00:06
---------------------------------
-Thread name:#1
-Thread time: 03.04.2013 15:19:43
-Server time: 02.04.2013 21:00:16
-Response: OK 02.04.2013 21:00:16
---------------------------------
-Thread name:#5
-Thread time: 03.04.2013 15:19:43
-Server time: 02.04.2013 21:00:16
-Response: OK 02.04.2013 21:00:16
---------------------------------
-Thread name:#3
-Thread time: 03.04.2013 15:19:43
-Server time: 02.04.2013 21:00:16
-Response: OK 02.04.2013 21:00:16
---------------------------------
-Thread name:#4
-Thread time: 03.04.2013 15:19:43
-Server time: 02.04.2013 21:00:16
-Response: OK 02.04.2013 21:00:16
---------------------------------
-Thread name:#2
-Thread time: 03.04.2013 15:19:43
-Server time: 02.04.2013 21:00:16
-Response: OK 02.04.2013 21:00:16
---------------------------------
-Thread name:#1
-Thread time: 03.04.2013 15:19:53
-Server time: 02.04.2013 21:00:26
-Response: OK 02.04.2013 21:00:26
---------------------------------
-Thread name:#3
-Thread time: 03.04.2013 15:19:53
-Server time: 02.04.2013 21:00:26
-Response: OK 02.04.2013 21:00:26
---------------------------------
-Thread name:#5
-Thread time: 03.04.2013 15:19:53
-Server time: 02.04.2013 21:00:26
-Response: OK 02.04.2013 21:00:26
---------------------------------
-Thread name:#2
-Thread time: 03.04.2013 15:19:53
-Server time: 02.04.2013 21:00:26
-Response: OK 02.04.2013 21:00:26
---------------------------------
-Thread name:#4
-Thread time: 03.04.2013 15:19:53
-Server time: 02.04.2013 21:00:26
-Response: OK 02.04.2013 21:00:26
---------------------------------
-Thread name:#1
-Thread time: 03.04.2013 15:20:03
-Server time: 02.04.2013 21:00:36
-Response: OK 02.04.2013 21:00:36
---------------------------------
-Thread name:#5
-Thread time: 03.04.2013 15:20:03
-Server time: 02.04.2013 21:00:36
-Response: OK 02.04.2013 21:00:36
---------------------------------
-Thread name:#3
-Thread time: 03.04.2013 15:20:03
-Server time: 02.04.2013 21:00:36
-Response: OK 02.04.2013 21:00:36
---------------------------------
-Thread name:#2
-Thread time: 03.04.2013 15:20:03
-Server time: 02.04.2013 21:00:36
-Response: OK 02.04.2013 21:00:36
---------------------------------
-Thread name:#4
-Thread time: 03.04.2013 15:20:03
-Server time: 02.04.2013 21:00:36
-Response: OK 02.04.2013 21:00:36
---------------------------------
-Thread name:#1
-Thread time: 03.04.2013 15:20:13
-Server time: 02.04.2013 21:00:46
-Response: OK 02.04.2013 21:00:46
---------------------------------
-Thread name:#5
-Thread time: 03.04.2013 15:20:13
-Server time: 02.04.2013 21:00:46
-Response: OK 02.04.2013 21:00:46
---------------------------------
-Thread name:#3
-Thread time: 03.04.2013 15:20:13
-Server time: 02.04.2013 21:00:46
-Response: OK 02.04.2013 21:00:46
---------------------------------
-Thread name:#2
-Thread time: 03.04.2013 15:20:13
-Server time: 02.04.2013 21:00:46
-Response: OK 02.04.2013 21:00:46
---------------------------------
-Thread name:#4
-Thread time: 03.04.2013 15:20:13
-Server time: 02.04.2013 21:00:46
-Response: OK 02.04.2013 21:00:46
---------------------------------
-Thread name:#1
-Thread time: 03.04.2013 15:20:23
-Server time: 02.04.2013 21:00:56
-Response: OK 02.04.2013 21:00:56
---------------------------------
-Thread name:#3
-Thread time: 03.04.2013 15:20:23
-Server time: 02.04.2013 21:00:56
-Response: OK 02.04.2013 21:00:56
---------------------------------
-Thread name:#5
-Thread time: 03.04.2013 15:20:23
-Server time: 02.04.2013 21:00:56
-Response: OK 02.04.2013 21:00:56
---------------------------------
-Thread name:#2
-Thread time: 03.04.2013 15:20:23
-Server time: 02.04.2013 21:00:56
-Response: OK 02.04.2013 21:00:56
---------------------------------
-Thread name:#4
-Thread time: 03.04.2013 15:20:23
-Server time: 02.04.2013 21:00:56
-Response: OK 02.04.2013 21:00:56
+Thread time: 07.04.2013 11:38:53
+Server time: 07.04.2013 11:38:53
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 11:38:53
 --------------------------------
 admin pero has executed command : 
 USER pero; PASSWD 123456; SETTIME 04.04.2013 21:00:00;
@@ -1561,457 +74,292 @@ with response:
 OK
 
 Thread name:#1
-Thread time: 03.04.2013 15:20:33
-Server time: 04.04.2013 21:00:09
-Response: OK 04.04.2013 21:00:09
---------------------------------
-Thread name:#5
-Thread time: 03.04.2013 15:20:33
-Server time: 04.04.2013 21:00:09
-Response: OK 04.04.2013 21:00:09
+Thread time: 07.04.2013 11:39:03
+Server time: 04.04.2013 21:00:01
+Command: USER korisnik; GETTIME;
+Response: OK 04.04.2013 21:00:01
 --------------------------------
 Thread name:#2
-Thread time: 03.04.2013 15:20:33
-Server time: 04.04.2013 21:00:09
-Response: OK 04.04.2013 21:00:09
+Thread time: 07.04.2013 11:39:03
+Server time: 04.04.2013 21:00:01
+Command: USER korisnik; GETTIME;
+Response: OK 04.04.2013 21:00:01
 --------------------------------
 Thread name:#3
-Thread time: 03.04.2013 15:20:33
-Server time: 04.04.2013 21:00:09
-Response: OK 04.04.2013 21:00:09
+Thread time: 07.04.2013 11:39:03
+Server time: 04.04.2013 21:00:01
+Command: USER korisnik; GETTIME;
+Response: OK 04.04.2013 21:00:01
 --------------------------------
 Thread name:#4
-Thread time: 03.04.2013 15:20:33
-Server time: 04.04.2013 21:00:09
-Response: OK 04.04.2013 21:00:09
+Thread time: 07.04.2013 11:39:03
+Server time: 04.04.2013 21:00:01
+Command: USER korisnik; GETTIME;
+Response: OK 04.04.2013 21:00:01
+--------------------------------
+Thread name:#5
+Thread time: 07.04.2013 11:39:03
+Server time: 04.04.2013 21:00:01
+Command: USER korisnik; GETTIME;
+Response: OK 04.04.2013 21:00:01
 --------------------------------
 Thread name:#1
-Thread time: 03.04.2013 15:20:43
-Server time: 04.04.2013 21:00:19
-Response: OK 04.04.2013 21:00:19
---------------------------------
-Thread name:#5
-Thread time: 03.04.2013 15:20:43
-Server time: 04.04.2013 21:00:19
-Response: OK 04.04.2013 21:00:19
---------------------------------
-Thread name:#3
-Thread time: 03.04.2013 15:20:43
-Server time: 04.04.2013 21:00:19
-Response: OK 04.04.2013 21:00:19
+Thread time: 07.04.2013 11:39:13
+Server time: 04.04.2013 21:00:11
+Command: USER korisnik; GETTIME;
+Response: OK 04.04.2013 21:00:11
 --------------------------------
 Thread name:#2
-Thread time: 03.04.2013 15:20:43
-Server time: 04.04.2013 21:00:19
-Response: OK 04.04.2013 21:00:19
+Thread time: 07.04.2013 11:39:13
+Server time: 04.04.2013 21:00:11
+Command: USER korisnik; GETTIME;
+Response: OK 04.04.2013 21:00:11
+--------------------------------
+Thread name:#3
+Thread time: 07.04.2013 11:39:13
+Server time: 04.04.2013 21:00:11
+Command: USER korisnik; GETTIME;
+Response: OK 04.04.2013 21:00:11
 --------------------------------
 Thread name:#4
-Thread time: 03.04.2013 15:20:43
-Server time: 04.04.2013 21:00:19
-Response: OK 04.04.2013 21:00:19
+Thread time: 07.04.2013 11:39:13
+Server time: 04.04.2013 21:00:11
+Command: USER korisnik; GETTIME;
+Response: OK 04.04.2013 21:00:11
+--------------------------------
+Thread name:#5
+Thread time: 07.04.2013 11:39:13
+Server time: 04.04.2013 21:00:11
+Command: USER korisnik; GETTIME;
+Response: OK 04.04.2013 21:00:11
+--------------------------------
+Thread name:#1
+Thread time: 07.04.2013 11:39:23
+Server time: 04.04.2013 21:00:21
+Command: USER korisnik; GETTIME;
+Response: OK 04.04.2013 21:00:21
+--------------------------------
+Thread name:#2
+Thread time: 07.04.2013 11:39:23
+Server time: 04.04.2013 21:00:21
+Command: USER korisnik; GETTIME;
+Response: OK 04.04.2013 21:00:21
+--------------------------------
+Thread name:#3
+Thread time: 07.04.2013 11:39:23
+Server time: 04.04.2013 21:00:21
+Command: USER korisnik; GETTIME;
+Response: OK 04.04.2013 21:00:21
+--------------------------------
+Thread name:#4
+Thread time: 07.04.2013 11:39:23
+Server time: 04.04.2013 21:00:21
+Command: USER korisnik; GETTIME;
+Response: OK 04.04.2013 21:00:21
+--------------------------------
+Thread name:#5
+Thread time: 07.04.2013 11:39:23
+Server time: 04.04.2013 21:00:21
+Command: USER korisnik; GETTIME;
+Response: OK 04.04.2013 21:00:21
+--------------------------------
+admin pero has executed command : 
+USER pero; PASSWD 123456; PAUSE;
+with response:
+OK
+
+Thread name:#1
+Thread time: 07.04.2013 11:39:33
+Server time: ERROR.
+Command: USER korisnik; GETTIME;
+Response: ERROR: Server is not accepting requests at the moment.
+--------------------------------
+Thread name:#2
+Thread time: 07.04.2013 11:39:33
+Server time: ERROR.
+Command: USER korisnik; GETTIME;
+Response: ERROR: Server is not accepting requests at the moment.
+--------------------------------
+Thread name:#4
+Thread time: 07.04.2013 11:39:33
+Server time: ERROR.
+Command: USER korisnik; GETTIME;
+Response: ERROR: Server is not accepting requests at the moment.
+--------------------------------
+Thread name:#3
+Thread time: 07.04.2013 11:39:33
+Server time: ERROR.
+Command: USER korisnik; GETTIME;
+Response: ERROR: Server is not accepting requests at the moment.
+--------------------------------
+Thread name:#5
+Thread time: 07.04.2013 11:39:33
+Server time: ERROR.
+Command: USER korisnik; GETTIME;
+Response: ERROR: Server is not accepting requests at the moment.
+--------------------------------
+Thread name:#1
+Thread time: 07.04.2013 11:39:43
+Server time: ERROR.
+Command: USER korisnik; GETTIME;
+Response: ERROR: Server is not accepting requests at the moment.
+--------------------------------
+Thread name:#2
+Thread time: 07.04.2013 11:39:43
+Server time: ERROR.
+Command: USER korisnik; GETTIME;
+Response: ERROR: Server is not accepting requests at the moment.
+--------------------------------
+Thread name:#4
+Thread time: 07.04.2013 11:39:43
+Server time: ERROR.
+Command: USER korisnik; GETTIME;
+Response: ERROR: Server is not accepting requests at the moment.
+--------------------------------
+Thread name:#3
+Thread time: 07.04.2013 11:39:43
+Server time: ERROR.
+Command: USER korisnik; GETTIME;
+Response: ERROR: Server is not accepting requests at the moment.
+--------------------------------
+Thread name:#5
+Thread time: 07.04.2013 11:39:43
+Server time: ERROR.
+Command: USER korisnik; GETTIME;
+Response: ERROR: Server is not accepting requests at the moment.
+--------------------------------
+Thread name:#1
+Thread time: 07.04.2013 11:39:53
+Server time: ERROR.
+Command: USER korisnik; GETTIME;
+Response: ERROR: Server is not accepting requests at the moment.
+--------------------------------
+Thread name:#2
+Thread time: 07.04.2013 11:39:53
+Server time: ERROR.
+Command: USER korisnik; GETTIME;
+Response: ERROR: Server is not accepting requests at the moment.
+--------------------------------
+Thread name:#4
+Thread time: 07.04.2013 11:39:53
+Server time: ERROR.
+Command: USER korisnik; GETTIME;
+Response: ERROR: Server is not accepting requests at the moment.
+--------------------------------
+Thread name:#3
+Thread time: 07.04.2013 11:39:53
+Server time: ERROR.
+Command: USER korisnik; GETTIME;
+Response: ERROR: Server is not accepting requests at the moment.
+--------------------------------
+Thread name:#5
+Thread time: 07.04.2013 11:39:53
+Server time: ERROR.
+Command: USER korisnik; GETTIME;
+Response: ERROR: Server is not accepting requests at the moment.
+--------------------------------
+Thread name:#1
+Thread time: 07.04.2013 11:40:03
+Server time: ERROR.
+Command: USER korisnik; GETTIME;
+Response: ERROR: Server is not accepting requests at the moment.
+--------------------------------
+Thread name:#2
+Thread time: 07.04.2013 11:40:03
+Server time: ERROR.
+Command: USER korisnik; GETTIME;
+Response: ERROR: Server is not accepting requests at the moment.
+--------------------------------
+Thread name:#3
+Thread time: 07.04.2013 11:40:03
+Server time: ERROR.
+Command: USER korisnik; GETTIME;
+Response: ERROR: Server is not accepting requests at the moment.
+--------------------------------
+Thread name:#4
+Thread time: 07.04.2013 11:40:03
+Server time: ERROR.
+Command: USER korisnik; GETTIME;
+Response: ERROR: Server is not accepting requests at the moment.
+--------------------------------
+Thread name:#5
+Thread time: 07.04.2013 11:40:03
+Server time: ERROR.
+Command: USER korisnik; GETTIME;
+Response: ERROR: Server is not accepting requests at the moment.
+--------------------------------
+admin pero has executed command : 
+USER pero; PASSWD 123456; START;
+with response:
+OK
+
+Thread name:#1
+Thread time: 07.04.2013 11:40:13
+Server time: 04.04.2013 21:01:11
+Command: USER korisnik; GETTIME;
+Response: OK 04.04.2013 21:01:11
+--------------------------------
+Thread name:#2
+Thread time: 07.04.2013 11:40:13
+Server time: 04.04.2013 21:01:11
+Command: USER korisnik; GETTIME;
+Response: OK 04.04.2013 21:01:11
+--------------------------------
+Thread name:#3
+Thread time: 07.04.2013 11:40:13
+Server time: 04.04.2013 21:01:11
+Command: USER korisnik; GETTIME;
+Response: OK 04.04.2013 21:01:11
+--------------------------------
+Thread name:#4
+Thread time: 07.04.2013 11:40:13
+Server time: 04.04.2013 21:01:11
+Command: USER korisnik; GETTIME;
+Response: OK 04.04.2013 21:01:11
+--------------------------------
+Thread name:#5
+Thread time: 07.04.2013 11:40:13
+Server time: 04.04.2013 21:01:11
+Command: USER korisnik; GETTIME;
+Response: OK 04.04.2013 21:01:11
+--------------------------------
+Thread name:#1
+Thread time: 07.04.2013 11:40:23
+Server time: 04.04.2013 21:01:21
+Command: USER korisnik; GETTIME;
+Response: OK 04.04.2013 21:01:21
+--------------------------------
+Thread name:#2
+Thread time: 07.04.2013 11:40:23
+Server time: 04.04.2013 21:01:21
+Command: USER korisnik; GETTIME;
+Response: OK 04.04.2013 21:01:21
+--------------------------------
+Thread name:#3
+Thread time: 07.04.2013 11:40:23
+Server time: 04.04.2013 21:01:21
+Command: USER korisnik; GETTIME;
+Response: OK 04.04.2013 21:01:21
+--------------------------------
+Thread name:#4
+Thread time: 07.04.2013 11:40:23
+Server time: 04.04.2013 21:01:21
+Command: USER korisnik; GETTIME;
+Response: OK 04.04.2013 21:01:21
+--------------------------------
+Thread name:#5
+Thread time: 07.04.2013 11:40:23
+Server time: 04.04.2013 21:01:21
+Command: USER korisnik; GETTIME;
+Response: OK 04.04.2013 21:01:21
 --------------------------------
 admin pero has executed command : 
 USER pero; PASSWD 123456; STOP;
 with response:
 OK
 
-#4 is stopping due to maximum number of tries achieved.
-#2 is stopping due to maximum number of tries achieved.
-#5 is stopping due to maximum number of tries achieved.
 #3 is stopping due to maximum number of tries achieved.
 #1 is stopping due to maximum number of tries achieved.
-admin pero has executed command : 
-USER pero; PASSWD 123456; STOP;
-with response:
-OK
-
-admin pero has executed command : 
-USER pero; PASSWD 123456; STOP;
-with response:
-OK
-
-Thread name:#1
-Start time:03.04.2013 15:36:41
-Thread name:#1
-Thread time: 03.04.2013 15:36:41
-Server time: 03.04.2013 15:36:41
-Response: OK 03.04.2013 15:36:41
---------------------------------
-Thread name:#2
-Start time:03.04.2013 15:36:48
-Thread name:#2
-Thread time: 03.04.2013 15:36:48
-Server time: 03.04.2013 15:36:48
-Response: OK 03.04.2013 15:36:48
---------------------------------
-Thread name:#1
-Thread time: 03.04.2013 15:36:51
-Server time: 03.04.2013 15:36:51
-Response: OK 03.04.2013 15:36:51
---------------------------------
-Thread name:#3
-Start time:03.04.2013 15:36:55
-Thread name:#3
-Thread time: 03.04.2013 15:36:55
-Server time: 03.04.2013 15:36:55
-Response: OK 03.04.2013 15:36:55
---------------------------------
-Thread name:#2
-Thread time: 03.04.2013 15:36:58
-Server time: 03.04.2013 15:36:58
-Response: OK 03.04.2013 15:36:58
---------------------------------
-Thread name:#1
-Thread time: 03.04.2013 15:37:01
-Server time: 03.04.2013 15:37:01
-Response: OK 03.04.2013 15:37:01
---------------------------------
-Thread name:#4
-Start time:03.04.2013 15:37:02
-Thread name:#4
-Thread time: 03.04.2013 15:37:02
-Server time: 03.04.2013 15:37:02
-Response: OK 03.04.2013 15:37:02
---------------------------------
-Thread name:#3
-Thread time: 03.04.2013 15:37:05
-Server time: 03.04.2013 15:37:05
-Response: OK 03.04.2013 15:37:05
---------------------------------
-Thread name:#2
-Thread time: 03.04.2013 15:37:08
-Server time: 03.04.2013 15:37:08
-Response: OK 03.04.2013 15:37:08
---------------------------------
-Thread name:#5
-Start time:03.04.2013 15:37:09
-Thread name:#5
-Thread time: 03.04.2013 15:37:09
-Server time: 03.04.2013 15:37:09
-Response: OK 03.04.2013 15:37:09
---------------------------------
-admin pero has executed command : 
-USER pero; PASSWD 123456; STOP;
-with response:
-OK
-
-admin pero has executed command : 
-USER pero; PASSWD 123456; CLEAN;
-with response:
-OK
-
-Thread name:#1
-Start time:04.04.2013 17:41:10
-Thread name:#1
-Thread time: 04.04.2013 17:41:10
-Server time: 04.04.2013 17:41:10
-Response: OK 04.04.2013 17:41:10
---------------------------------
-Thread name:#2
-Start time:04.04.2013 17:41:11
-Thread name:#2
-Thread time: 04.04.2013 17:41:11
-Server time: 04.04.2013 17:41:11
-Response: OK 04.04.2013 17:41:11
---------------------------------
-Thread name:#3
-Start time:04.04.2013 17:41:12
-Thread name:#3
-Thread time: 04.04.2013 17:41:12
-Server time: 04.04.2013 17:41:12
-Response: OK 04.04.2013 17:41:12
---------------------------------
-Thread name:#4
-Start time:04.04.2013 17:41:13
-Thread name:#4
-Thread time: 04.04.2013 17:41:13
-Server time: 04.04.2013 17:41:13
-Response: OK 04.04.2013 17:41:13
---------------------------------
-Thread name:#5
-Start time:04.04.2013 17:41:14
-Thread name:#5
-Thread time: 04.04.2013 17:41:14
-Server time: 04.04.2013 17:41:14
-Response: OK 04.04.2013 17:41:14
---------------------------------
-Thread name:#1
-Thread time: 04.04.2013 17:41:20
-Server time: 04.04.2013 17:41:20
-Response: OK 04.04.2013 17:41:20
---------------------------------
-Thread name:#2
-Thread time: 04.04.2013 17:41:21
-Server time: 04.04.2013 17:41:21
-Response: OK 04.04.2013 17:41:21
---------------------------------
-Thread name:#3
-Thread time: 04.04.2013 17:41:22
-Server time: 04.04.2013 17:41:22
-Response: OK 04.04.2013 17:41:22
---------------------------------
-Thread name:#4
-Thread time: 04.04.2013 17:41:23
-Server time: 04.04.2013 17:41:23
-Response: OK 04.04.2013 17:41:23
---------------------------------
-Thread name:#5
-Thread time: 04.04.2013 17:41:24
-Server time: 04.04.2013 17:41:24
-Response: OK 04.04.2013 17:41:24
---------------------------------
-Thread name:#1
-Thread time: 04.04.2013 17:41:30
-Server time: 04.04.2013 17:41:30
-Response: OK 04.04.2013 17:41:30
---------------------------------
-Thread name:#2
-Thread time: 04.04.2013 17:41:31
-Server time: 04.04.2013 17:41:31
-Response: OK 04.04.2013 17:41:31
---------------------------------
-Thread name:#3
-Thread time: 04.04.2013 17:41:32
-Server time: 04.04.2013 17:41:32
-Response: OK 04.04.2013 17:41:32
---------------------------------
-Thread name:#4
-Thread time: 04.04.2013 17:41:33
-Server time: 04.04.2013 17:41:33
-Response: OK 04.04.2013 17:41:33
---------------------------------
-Thread name:#5
-Thread time: 04.04.2013 17:41:34
-Server time: 04.04.2013 17:41:34
-Response: OK 04.04.2013 17:41:34
---------------------------------
-Thread name:#1
-Thread time: 04.04.2013 17:41:40
-Server time: 04.04.2013 17:41:40
-Response: OK 04.04.2013 17:41:40
---------------------------------
-Thread name:#2
-Thread time: 04.04.2013 17:41:41
-Server time: 04.04.2013 17:41:41
-Response: OK 04.04.2013 17:41:41
---------------------------------
-Thread name:#3
-Thread time: 04.04.2013 17:41:42
-Server time: 04.04.2013 17:41:42
-Response: OK 04.04.2013 17:41:42
---------------------------------
-Thread name:#4
-Thread time: 04.04.2013 17:41:43
-Server time: 04.04.2013 17:41:43
-Response: OK 04.04.2013 17:41:43
---------------------------------
-Thread name:#5
-Thread time: 04.04.2013 17:41:44
-Server time: 04.04.2013 17:41:44
-Response: OK 04.04.2013 17:41:44
---------------------------------
-Thread name:#1
-Thread time: 04.04.2013 17:41:50
-Server time: 04.04.2013 17:41:50
-Response: OK 04.04.2013 17:41:50
---------------------------------
-Thread name:#2
-Thread time: 04.04.2013 17:41:51
-Server time: 04.04.2013 17:41:51
-Response: OK 04.04.2013 17:41:51
---------------------------------
-Thread name:#3
-Thread time: 04.04.2013 17:41:52
-Server time: 04.04.2013 17:41:52
-Response: OK 04.04.2013 17:41:52
---------------------------------
-Thread name:#4
-Thread time: 04.04.2013 17:41:53
-Server time: 04.04.2013 17:41:53
-Response: OK 04.04.2013 17:41:53
---------------------------------
-Thread name:#5
-Thread time: 04.04.2013 17:41:54
-Server time: 04.04.2013 17:41:54
-Response: OK 04.04.2013 17:41:54
---------------------------------
-Thread name:#1
-Thread time: 04.04.2013 17:42:00
-Server time: 04.04.2013 17:42:00
-Response: OK 04.04.2013 17:42:00
---------------------------------
-Thread name:#2
-Thread time: 04.04.2013 17:42:01
-Server time: 04.04.2013 17:42:01
-Response: OK 04.04.2013 17:42:01
---------------------------------
-Thread name:#3
-Thread time: 04.04.2013 17:42:02
-Server time: 04.04.2013 17:42:02
-Response: OK 04.04.2013 17:42:02
---------------------------------
-Thread name:#4
-Thread time: 04.04.2013 17:42:03
-Server time: 04.04.2013 17:42:03
-Response: OK 04.04.2013 17:42:03
---------------------------------
-Thread name:#5
-Thread time: 04.04.2013 17:42:04
-Server time: 04.04.2013 17:42:04
-Response: OK 04.04.2013 17:42:04
---------------------------------
-Thread name:#1
-Thread time: 04.04.2013 17:42:10
-Server time: 04.04.2013 17:42:10
-Response: OK 04.04.2013 17:42:10
---------------------------------
-Thread name:#2
-Thread time: 04.04.2013 17:42:11
-Server time: 04.04.2013 17:42:11
-Response: OK 04.04.2013 17:42:11
---------------------------------
-Thread name:#3
-Thread time: 04.04.2013 17:42:12
-Server time: 04.04.2013 17:42:12
-Response: OK 04.04.2013 17:42:12
---------------------------------
-Thread name:#4
-Thread time: 04.04.2013 17:42:13
-Server time: 04.04.2013 17:42:13
-Response: OK 04.04.2013 17:42:13
---------------------------------
-Thread name:#5
-Thread time: 04.04.2013 17:42:14
-Server time: 04.04.2013 17:42:14
-Response: OK 04.04.2013 17:42:14
---------------------------------
-Thread name:#1
-Thread time: 04.04.2013 17:42:20
-Server time: 04.04.2013 17:42:20
-Response: OK 04.04.2013 17:42:20
---------------------------------
-Thread name:#2
-Thread time: 04.04.2013 17:42:21
-Server time: 04.04.2013 17:42:21
-Response: OK 04.04.2013 17:42:21
---------------------------------
-Thread name:#3
-Thread time: 04.04.2013 17:42:22
-Server time: 04.04.2013 17:42:22
-Response: OK 04.04.2013 17:42:22
---------------------------------
-Thread name:#4
-Thread time: 04.04.2013 17:42:23
-Server time: 04.04.2013 17:42:23
-Response: OK 04.04.2013 17:42:23
---------------------------------
-Thread name:#5
-Thread time: 04.04.2013 17:42:24
-Server time: 04.04.2013 17:42:24
-Response: OK 04.04.2013 17:42:24
---------------------------------
-Thread name:#1
-Thread time: 04.04.2013 17:42:30
-Server time: 04.04.2013 17:42:30
-Response: OK 04.04.2013 17:42:30
---------------------------------
-Thread name:#2
-Thread time: 04.04.2013 17:42:31
-Server time: 04.04.2013 17:42:31
-Response: OK 04.04.2013 17:42:31
---------------------------------
-Thread name:#3
-Thread time: 04.04.2013 17:42:32
-Server time: 04.04.2013 17:42:32
-Response: OK 04.04.2013 17:42:32
---------------------------------
-Thread name:#4
-Thread time: 04.04.2013 17:42:33
-Server time: 04.04.2013 17:42:33
-Response: OK 04.04.2013 17:42:33
---------------------------------
-Thread name:#5
-Thread time: 04.04.2013 17:42:34
-Server time: 04.04.2013 17:42:34
-Response: OK 04.04.2013 17:42:34
---------------------------------
-Thread name:#1
-Thread time: 04.04.2013 17:42:40
-Server time: 04.04.2013 17:42:40
-Response: OK 04.04.2013 17:42:40
---------------------------------
-Thread name:#2
-Thread time: 04.04.2013 17:42:41
-Server time: 04.04.2013 17:42:41
-Response: OK 04.04.2013 17:42:41
---------------------------------
-Thread name:#3
-Thread time: 04.04.2013 17:42:42
-Server time: 04.04.2013 17:42:42
-Response: OK 04.04.2013 17:42:42
---------------------------------
-Thread name:#4
-Thread time: 04.04.2013 17:42:43
-Server time: 04.04.2013 17:42:43
-Response: OK 04.04.2013 17:42:43
---------------------------------
-Thread name:#5
-Thread time: 04.04.2013 17:42:44
-Server time: 04.04.2013 17:42:44
-Response: OK 04.04.2013 17:42:44
---------------------------------
-Thread name:#1
-Thread time: 04.04.2013 17:42:50
-Server time: 04.04.2013 17:42:50
-Response: OK 04.04.2013 17:42:50
---------------------------------
-Thread name:#2
-Thread time: 04.04.2013 17:42:51
-Server time: 04.04.2013 17:42:51
-Response: OK 04.04.2013 17:42:51
---------------------------------
-Thread name:#3
-Thread time: 04.04.2013 17:42:52
-Server time: 04.04.2013 17:42:52
-Response: OK 04.04.2013 17:42:52
---------------------------------
-Thread name:#4
-Thread time: 04.04.2013 17:42:53
-Server time: 04.04.2013 17:42:53
-Response: OK 04.04.2013 17:42:53
---------------------------------
-Thread name:#5
-Thread time: 04.04.2013 17:42:54
-Server time: 04.04.2013 17:42:54
-Response: OK 04.04.2013 17:42:54
---------------------------------
-Thread name:#1
-Thread time: 04.04.2013 17:43:00
-Server time: 04.04.2013 17:43:00
-Response: OK 04.04.2013 17:43:00
---------------------------------
-Thread name:#2
-Thread time: 04.04.2013 17:43:01
-Server time: 04.04.2013 17:43:01
-Response: OK 04.04.2013 17:43:01
---------------------------------
-Thread name:#3
-Thread time: 04.04.2013 17:43:02
-Server time: 04.04.2013 17:43:02
-Response: OK 04.04.2013 17:43:02
---------------------------------
-Thread name:#4
-Thread time: 04.04.2013 17:43:03
-Server time: 04.04.2013 17:43:03
-Response: OK 04.04.2013 17:43:03
---------------------------------
-Thread name:#5
-Thread time: 04.04.2013 17:43:04
-Server time: 04.04.2013 17:43:04
-Response: OK 04.04.2013 17:43:04
---------------------------------
-admin pero has executed command : 
-USER pero; PASSWD 123456; STOP;
-with response:
-OK
-
+#2 is stopping due to maximum number of tries achieved.
+#4 is stopping due to maximum number of tries achieved.
+#5 is stopping due to maximum number of tries achieved.

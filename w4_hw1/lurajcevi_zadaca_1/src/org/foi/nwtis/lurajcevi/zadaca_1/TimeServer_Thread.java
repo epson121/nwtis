@@ -73,7 +73,6 @@ public class TimeServer_Thread extends Thread{
             is = client.getInputStream();
             os = client.getOutputStream();
             command = new StringBuilder();
-            
             while (true){
                 character = is.read();
                 if (character == -1 )
@@ -81,6 +80,7 @@ public class TimeServer_Thread extends Thread{
                 command.append((char) character);
             }
             String strCommand = command.toString().trim();
+            
             if (command.indexOf("GETTIME") != -1){
                 p = Pattern.compile(userRegex);
                 m = p.matcher(command);
@@ -95,7 +95,7 @@ public class TimeServer_Thread extends Thread{
                 else{
                     response = "ERROR: Bad command type.";
                 }
-                rec = new Record(m.group(1), strCommand, getServerTime(), response);
+                rec = new Record(m.group(1), strCommand, df.parse(df.format(getServerTime())), response);
                 RecordSerialization.record.add(rec);
             }
             else if (command.indexOf("START") != -1){
