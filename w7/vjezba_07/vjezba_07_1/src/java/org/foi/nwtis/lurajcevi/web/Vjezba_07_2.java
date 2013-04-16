@@ -22,7 +22,7 @@ import org.foi.nwtis.lurajcevi.konfiguracije.bp.BP_Konfiguracija;
 
 /**
  *
- * @author nwtis_2
+ * @author Luka Rajcevic
  */
 public class Vjezba_07_2 extends HttpServlet {
 
@@ -57,6 +57,8 @@ public class Vjezba_07_2 extends HttpServlet {
             String korisnik = bpKonf.getUser_username();
             String lozinka = bpKonf.getUser_password();
             String driver = bpKonf.getDriver_database();
+            out.println("<h2>Driver: " + driver + "korisnik " + korisnik + "</h2>");
+            
             try { 
                 Class.forName(driver);
             } catch (ClassNotFoundException ex) {
@@ -66,8 +68,10 @@ public class Vjezba_07_2 extends HttpServlet {
                     Connection veza = DriverManager.getConnection(url, korisnik, lozinka);
                     Statement instr = veza.createStatement();
                     ResultSet rs = instr.executeQuery(upit);
-                ) 
+                    
+                )
                 {
+                    out.println("<h2> veza ok </h2>");
                     out.println("<table>");
                     out.println("<tr><th>Ime</th><th>Prezime</th>");
                 while (rs.next()) {

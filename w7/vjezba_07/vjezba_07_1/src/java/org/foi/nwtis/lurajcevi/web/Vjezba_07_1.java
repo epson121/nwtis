@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author nwtis_2
+ * @author Luka Rajcevic
  */
 public class Vjezba_07_1 extends HttpServlet {
 

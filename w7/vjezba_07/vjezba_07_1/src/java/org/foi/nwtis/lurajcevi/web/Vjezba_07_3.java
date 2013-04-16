@@ -22,7 +22,7 @@ import org.foi.nwtis.lurajcevi.konfiguracije.bp.BP_Konfiguracija;
 
 /**
  *
- * @author nwtis_2
+ * @author Luka Rajcevic
  */
 public class Vjezba_07_3 extends HttpServlet {
 
