@@ -22,7 +22,6 @@ public class Zadaca_1 {
             Pattern p;
             Matcher m;
             boolean status;
-            Konfiguracija config;
             String regexServer = "^-server -port ([8-9]\\d{3}) -konf ([^\\s]+\\.(?i)(txt|xml))( +-load)? -s ([^\\s]+\\.[^\\s]+) *$";
             String regexUser = "^-user -ts (\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}) -port ([8-9]\\d{3}) -u ([a-zA-Z0-9_]+) -konf ([^\\s]+\\.(?i)(txt|xml)) *$";
             String regexShow = "^-show -s ([^\\s]+\\.[^\\s]+) *$";

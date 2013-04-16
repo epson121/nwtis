@@ -19,6 +19,9 @@ import java.util.logging.Logger;
  */
 public class RecordSerialization implements Serializable {
     
+    /**
+     * stores list of Record type object for serialization
+     */
     public static List<Record> record = new ArrayList<>();
 
     /**
@@ -60,7 +63,7 @@ public class RecordSerialization implements Serializable {
         try {
             fileInputStream = new FileInputStream(filename);
             in = new ObjectInputStream(fileInputStream);
-            records = (ArrayList<Record>) in.readObject();
+            records =  (List<Record>) in.readObject();
         } catch (IOException | ClassNotFoundException | ClassCastException ex) {
             System.out.println("Error while loading " + filename + ". No file, or the file empty.");
         } finally {

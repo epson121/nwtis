@@ -1,365 +1,438 @@
 Thread name:#1
-Start time:07.04.2013 11:38:43
-Thread name:#2
-Start time:07.04.2013 11:38:43
-Thread name:#3
-Start time:07.04.2013 11:38:43
-Thread name:#4
-Start time:07.04.2013 11:38:43
-Thread name:#5
-Start time:07.04.2013 11:38:43
-Thread name:#5
-Thread time: 07.04.2013 11:38:43
-Server time: 07.04.2013 11:38:43
+Start time:07.04.2013 16:59:23
+Thread name:#1
+Thread time: 07.04.2013 16:59:23
+Server time: 07.04.2013 16:59:23
 Command: USER korisnik; GETTIME;
-Response: OK 07.04.2013 11:38:43
+Response: OK 07.04.2013 16:59:23
+--------------------------------
+Thread name:#2
+Start time:07.04.2013 16:59:24
+Thread name:#2
+Thread time: 07.04.2013 16:59:24
+Server time: 07.04.2013 16:59:24
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 16:59:24
+--------------------------------
+Thread name:#3
+Start time:07.04.2013 16:59:25
+Thread name:#3
+Thread time: 07.04.2013 16:59:25
+Server time: 07.04.2013 16:59:25
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 16:59:25
 --------------------------------
 Thread name:#4
-Thread time: 07.04.2013 11:38:43
-Server time: 07.04.2013 11:38:43
+Start time:07.04.2013 16:59:26
+Thread name:#4
+Thread time: 07.04.2013 16:59:26
+Server time: 07.04.2013 16:59:26
 Command: USER korisnik; GETTIME;
-Response: OK 07.04.2013 11:38:43
+Response: OK 07.04.2013 16:59:26
+--------------------------------
+Thread name:#5
+Start time:07.04.2013 16:59:27
+Thread name:#5
+Thread time: 07.04.2013 16:59:27
+Server time: 07.04.2013 16:59:27
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 16:59:27
 --------------------------------
 Thread name:#1
-Thread time: 07.04.2013 11:38:43
-Server time: 07.04.2013 11:38:43
+Thread time: 07.04.2013 16:59:33
+Server time: 07.04.2013 16:59:33
 Command: USER korisnik; GETTIME;
-Response: OK 07.04.2013 11:38:43
+Response: OK 07.04.2013 16:59:33
 --------------------------------
 Thread name:#2
-Thread time: 07.04.2013 11:38:43
-Server time: 07.04.2013 11:38:43
+Thread time: 07.04.2013 16:59:34
+Server time: 07.04.2013 16:59:34
 Command: USER korisnik; GETTIME;
-Response: OK 07.04.2013 11:38:43
+Response: OK 07.04.2013 16:59:34
 --------------------------------
 Thread name:#3
-Thread time: 07.04.2013 11:38:43
-Server time: 07.04.2013 11:38:43
+Thread time: 07.04.2013 16:59:35
+Server time: 07.04.2013 16:59:35
 Command: USER korisnik; GETTIME;
-Response: OK 07.04.2013 11:38:43
---------------------------------
-Thread name:#1
-Thread time: 07.04.2013 11:38:53
-Server time: 07.04.2013 11:38:53
-Command: USER korisnik; GETTIME;
-Response: OK 07.04.2013 11:38:53
---------------------------------
-Thread name:#2
-Thread time: 07.04.2013 11:38:53
-Server time: 07.04.2013 11:38:53
-Command: USER korisnik; GETTIME;
-Response: OK 07.04.2013 11:38:53
+Response: OK 07.04.2013 16:59:35
 --------------------------------
 Thread name:#4
-Thread time: 07.04.2013 11:38:53
-Server time: 07.04.2013 11:38:53
+Thread time: 07.04.2013 16:59:36
+Server time: 07.04.2013 16:59:36
 Command: USER korisnik; GETTIME;
-Response: OK 07.04.2013 11:38:53
---------------------------------
-Thread name:#3
-Thread time: 07.04.2013 11:38:53
-Server time: 07.04.2013 11:38:53
-Command: USER korisnik; GETTIME;
-Response: OK 07.04.2013 11:38:53
+Response: OK 07.04.2013 16:59:36
 --------------------------------
 Thread name:#5
-Thread time: 07.04.2013 11:38:53
-Server time: 07.04.2013 11:38:53
+Thread time: 07.04.2013 16:59:37
+Server time: 07.04.2013 16:59:37
 Command: USER korisnik; GETTIME;
-Response: OK 07.04.2013 11:38:53
+Response: OK 07.04.2013 16:59:37
+--------------------------------
+Thread name:#1
+Thread time: 07.04.2013 16:59:43
+Server time: 07.04.2013 16:59:43
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 16:59:43
+--------------------------------
+Thread name:#2
+Thread time: 07.04.2013 16:59:44
+Server time: 07.04.2013 16:59:44
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 16:59:44
+--------------------------------
+Thread name:#3
+Thread time: 07.04.2013 16:59:45
+Server time: 07.04.2013 16:59:45
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 16:59:45
+--------------------------------
+Thread name:#4
+Thread time: 07.04.2013 16:59:46
+Server time: 07.04.2013 16:59:46
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 16:59:46
+--------------------------------
+Thread name:#5
+Thread time: 07.04.2013 16:59:47
+Server time: 07.04.2013 16:59:47
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 16:59:47
+--------------------------------
+Thread name:#1
+Thread time: 07.04.2013 16:59:53
+Server time: 07.04.2013 16:59:53
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 16:59:53
+--------------------------------
+Thread name:#2
+Thread time: 07.04.2013 16:59:54
+Server time: 07.04.2013 16:59:54
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 16:59:54
+--------------------------------
+Thread name:#3
+Thread time: 07.04.2013 16:59:55
+Server time: 07.04.2013 16:59:55
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 16:59:55
+--------------------------------
+Thread name:#4
+Thread time: 07.04.2013 16:59:56
+Server time: 07.04.2013 16:59:56
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 16:59:56
+--------------------------------
+Thread name:#5
+Thread time: 07.04.2013 16:59:57
+Server time: 07.04.2013 16:59:57
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 16:59:57
+--------------------------------
+Thread name:#1
+Thread time: 07.04.2013 17:00:03
+Server time: 07.04.2013 17:00:03
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 17:00:03
+--------------------------------
+Thread name:#2
+Thread time: 07.04.2013 17:00:04
+Server time: 07.04.2013 17:00:04
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 17:00:04
+--------------------------------
+Thread name:#3
+Thread time: 07.04.2013 17:00:05
+Server time: 07.04.2013 17:00:05
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 17:00:05
+--------------------------------
+admin korisnik has executed command : 
+USER korisnik; PASSWD password; SETTIME 02.04.2013 22:00:00;
+with response:
+ERROR: wrong username or password.
+
+Thread name:#4
+Thread time: 07.04.2013 17:00:06
+Server time: 07.04.2013 17:00:06
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 17:00:06
+--------------------------------
+Thread name:#5
+Thread time: 07.04.2013 17:00:07
+Server time: 07.04.2013 17:00:07
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 17:00:07
+--------------------------------
+Thread name:#1
+Thread time: 07.04.2013 17:00:13
+Server time: 07.04.2013 17:00:13
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 17:00:13
 --------------------------------
 admin pero has executed command : 
 USER pero; PASSWD 123456; SETTIME 04.04.2013 21:00:00;
 with response:
 OK
 
-Thread name:#1
-Thread time: 07.04.2013 11:39:03
-Server time: 04.04.2013 21:00:01
-Command: USER korisnik; GETTIME;
-Response: OK 04.04.2013 21:00:01
---------------------------------
 Thread name:#2
-Thread time: 07.04.2013 11:39:03
-Server time: 04.04.2013 21:00:01
+Thread time: 07.04.2013 17:00:14
+Server time: 04.04.2013 21:00:00
 Command: USER korisnik; GETTIME;
-Response: OK 04.04.2013 21:00:01
+Response: OK 04.04.2013 21:00:00
 --------------------------------
 Thread name:#3
-Thread time: 07.04.2013 11:39:03
+Thread time: 07.04.2013 17:00:15
 Server time: 04.04.2013 21:00:01
 Command: USER korisnik; GETTIME;
 Response: OK 04.04.2013 21:00:01
 --------------------------------
 Thread name:#4
-Thread time: 07.04.2013 11:39:03
-Server time: 04.04.2013 21:00:01
+Thread time: 07.04.2013 17:00:16
+Server time: 04.04.2013 21:00:02
 Command: USER korisnik; GETTIME;
-Response: OK 04.04.2013 21:00:01
+Response: OK 04.04.2013 21:00:02
 --------------------------------
 Thread name:#5
-Thread time: 07.04.2013 11:39:03
-Server time: 04.04.2013 21:00:01
+Thread time: 07.04.2013 17:00:17
+Server time: 04.04.2013 21:00:03
 Command: USER korisnik; GETTIME;
-Response: OK 04.04.2013 21:00:01
+Response: OK 04.04.2013 21:00:03
 --------------------------------
 Thread name:#1
-Thread time: 07.04.2013 11:39:13
-Server time: 04.04.2013 21:00:11
+Thread time: 07.04.2013 17:00:23
+Server time: 04.04.2013 21:00:09
 Command: USER korisnik; GETTIME;
-Response: OK 04.04.2013 21:00:11
+Response: OK 04.04.2013 21:00:09
 --------------------------------
 Thread name:#2
-Thread time: 07.04.2013 11:39:13
-Server time: 04.04.2013 21:00:11
+Thread time: 07.04.2013 17:00:24
+Server time: 04.04.2013 21:00:10
 Command: USER korisnik; GETTIME;
-Response: OK 04.04.2013 21:00:11
+Response: OK 04.04.2013 21:00:10
 --------------------------------
 Thread name:#3
-Thread time: 07.04.2013 11:39:13
+Thread time: 07.04.2013 17:00:25
 Server time: 04.04.2013 21:00:11
 Command: USER korisnik; GETTIME;
 Response: OK 04.04.2013 21:00:11
 --------------------------------
 Thread name:#4
-Thread time: 07.04.2013 11:39:13
-Server time: 04.04.2013 21:00:11
+Thread time: 07.04.2013 17:00:26
+Server time: 04.04.2013 21:00:12
 Command: USER korisnik; GETTIME;
-Response: OK 04.04.2013 21:00:11
+Response: OK 04.04.2013 21:00:12
 --------------------------------
 Thread name:#5
-Thread time: 07.04.2013 11:39:13
-Server time: 04.04.2013 21:00:11
+Thread time: 07.04.2013 17:00:27
+Server time: 04.04.2013 21:00:13
 Command: USER korisnik; GETTIME;
-Response: OK 04.04.2013 21:00:11
+Response: OK 04.04.2013 21:00:13
 --------------------------------
 Thread name:#1
-Thread time: 07.04.2013 11:39:23
-Server time: 04.04.2013 21:00:21
+Thread time: 07.04.2013 17:00:33
+Server time: 04.04.2013 21:00:19
 Command: USER korisnik; GETTIME;
-Response: OK 04.04.2013 21:00:21
+Response: OK 04.04.2013 21:00:19
 --------------------------------
 Thread name:#2
-Thread time: 07.04.2013 11:39:23
-Server time: 04.04.2013 21:00:21
+Thread time: 07.04.2013 17:00:34
+Server time: 04.04.2013 21:00:20
 Command: USER korisnik; GETTIME;
-Response: OK 04.04.2013 21:00:21
+Response: OK 04.04.2013 21:00:20
 --------------------------------
 Thread name:#3
-Thread time: 07.04.2013 11:39:23
+Thread time: 07.04.2013 17:00:35
 Server time: 04.04.2013 21:00:21
 Command: USER korisnik; GETTIME;
 Response: OK 04.04.2013 21:00:21
 --------------------------------
 Thread name:#4
-Thread time: 07.04.2013 11:39:23
-Server time: 04.04.2013 21:00:21
+Thread time: 07.04.2013 17:00:36
+Server time: 04.04.2013 21:00:22
 Command: USER korisnik; GETTIME;
-Response: OK 04.04.2013 21:00:21
---------------------------------
-Thread name:#5
-Thread time: 07.04.2013 11:39:23
-Server time: 04.04.2013 21:00:21
-Command: USER korisnik; GETTIME;
-Response: OK 04.04.2013 21:00:21
+Response: OK 04.04.2013 21:00:22
 --------------------------------
 admin pero has executed command : 
 USER pero; PASSWD 123456; PAUSE;
 with response:
 OK
 
-Thread name:#1
-Thread time: 07.04.2013 11:39:33
-Server time: ERROR.
-Command: USER korisnik; GETTIME;
-Response: ERROR: Server is not accepting requests at the moment.
---------------------------------
-Thread name:#2
-Thread time: 07.04.2013 11:39:33
-Server time: ERROR.
-Command: USER korisnik; GETTIME;
-Response: ERROR: Server is not accepting requests at the moment.
---------------------------------
-Thread name:#4
-Thread time: 07.04.2013 11:39:33
-Server time: ERROR.
-Command: USER korisnik; GETTIME;
-Response: ERROR: Server is not accepting requests at the moment.
---------------------------------
-Thread name:#3
-Thread time: 07.04.2013 11:39:33
-Server time: ERROR.
-Command: USER korisnik; GETTIME;
-Response: ERROR: Server is not accepting requests at the moment.
---------------------------------
 Thread name:#5
-Thread time: 07.04.2013 11:39:33
+Thread time: 07.04.2013 17:00:37
 Server time: ERROR.
 Command: USER korisnik; GETTIME;
 Response: ERROR: Server is not accepting requests at the moment.
 --------------------------------
 Thread name:#1
-Thread time: 07.04.2013 11:39:43
+Thread time: 07.04.2013 17:00:43
 Server time: ERROR.
 Command: USER korisnik; GETTIME;
 Response: ERROR: Server is not accepting requests at the moment.
 --------------------------------
 Thread name:#2
-Thread time: 07.04.2013 11:39:43
-Server time: ERROR.
-Command: USER korisnik; GETTIME;
-Response: ERROR: Server is not accepting requests at the moment.
---------------------------------
-Thread name:#4
-Thread time: 07.04.2013 11:39:43
+Thread time: 07.04.2013 17:00:44
 Server time: ERROR.
 Command: USER korisnik; GETTIME;
 Response: ERROR: Server is not accepting requests at the moment.
 --------------------------------
 Thread name:#3
-Thread time: 07.04.2013 11:39:43
+Thread time: 07.04.2013 17:00:45
+Server time: ERROR.
+Command: USER korisnik; GETTIME;
+Response: ERROR: Server is not accepting requests at the moment.
+--------------------------------
+Thread name:#4
+Thread time: 07.04.2013 17:00:46
 Server time: ERROR.
 Command: USER korisnik; GETTIME;
 Response: ERROR: Server is not accepting requests at the moment.
 --------------------------------
 Thread name:#5
-Thread time: 07.04.2013 11:39:43
+Thread time: 07.04.2013 17:00:47
 Server time: ERROR.
 Command: USER korisnik; GETTIME;
 Response: ERROR: Server is not accepting requests at the moment.
 --------------------------------
 Thread name:#1
-Thread time: 07.04.2013 11:39:53
+Thread time: 07.04.2013 17:00:53
 Server time: ERROR.
 Command: USER korisnik; GETTIME;
 Response: ERROR: Server is not accepting requests at the moment.
 --------------------------------
 Thread name:#2
-Thread time: 07.04.2013 11:39:53
-Server time: ERROR.
-Command: USER korisnik; GETTIME;
-Response: ERROR: Server is not accepting requests at the moment.
---------------------------------
-Thread name:#4
-Thread time: 07.04.2013 11:39:53
+Thread time: 07.04.2013 17:00:54
 Server time: ERROR.
 Command: USER korisnik; GETTIME;
 Response: ERROR: Server is not accepting requests at the moment.
 --------------------------------
 Thread name:#3
-Thread time: 07.04.2013 11:39:53
+Thread time: 07.04.2013 17:00:55
+Server time: ERROR.
+Command: USER korisnik; GETTIME;
+Response: ERROR: Server is not accepting requests at the moment.
+--------------------------------
+Thread name:#4
+Thread time: 07.04.2013 17:00:56
 Server time: ERROR.
 Command: USER korisnik; GETTIME;
 Response: ERROR: Server is not accepting requests at the moment.
 --------------------------------
 Thread name:#5
-Thread time: 07.04.2013 11:39:53
+Thread time: 07.04.2013 17:00:57
 Server time: ERROR.
 Command: USER korisnik; GETTIME;
 Response: ERROR: Server is not accepting requests at the moment.
 --------------------------------
 Thread name:#1
-Thread time: 07.04.2013 11:40:03
+Thread time: 07.04.2013 17:01:03
 Server time: ERROR.
 Command: USER korisnik; GETTIME;
 Response: ERROR: Server is not accepting requests at the moment.
 --------------------------------
 Thread name:#2
-Thread time: 07.04.2013 11:40:03
+Thread time: 07.04.2013 17:01:04
 Server time: ERROR.
 Command: USER korisnik; GETTIME;
 Response: ERROR: Server is not accepting requests at the moment.
 --------------------------------
 Thread name:#3
-Thread time: 07.04.2013 11:40:03
+Thread time: 07.04.2013 17:01:05
 Server time: ERROR.
 Command: USER korisnik; GETTIME;
 Response: ERROR: Server is not accepting requests at the moment.
 --------------------------------
 Thread name:#4
-Thread time: 07.04.2013 11:40:03
+Thread time: 07.04.2013 17:01:06
 Server time: ERROR.
 Command: USER korisnik; GETTIME;
 Response: ERROR: Server is not accepting requests at the moment.
 --------------------------------
 Thread name:#5
-Thread time: 07.04.2013 11:40:03
+Thread time: 07.04.2013 17:01:07
 Server time: ERROR.
 Command: USER korisnik; GETTIME;
 Response: ERROR: Server is not accepting requests at the moment.
---------------------------------
-admin pero has executed command : 
-USER pero; PASSWD 123456; START;
-with response:
-OK
-
-Thread name:#1
-Thread time: 07.04.2013 11:40:13
-Server time: 04.04.2013 21:01:11
-Command: USER korisnik; GETTIME;
-Response: OK 04.04.2013 21:01:11
---------------------------------
-Thread name:#2
-Thread time: 07.04.2013 11:40:13
-Server time: 04.04.2013 21:01:11
-Command: USER korisnik; GETTIME;
-Response: OK 04.04.2013 21:01:11
---------------------------------
-Thread name:#3
-Thread time: 07.04.2013 11:40:13
-Server time: 04.04.2013 21:01:11
-Command: USER korisnik; GETTIME;
-Response: OK 04.04.2013 21:01:11
---------------------------------
-Thread name:#4
-Thread time: 07.04.2013 11:40:13
-Server time: 04.04.2013 21:01:11
-Command: USER korisnik; GETTIME;
-Response: OK 04.04.2013 21:01:11
---------------------------------
-Thread name:#5
-Thread time: 07.04.2013 11:40:13
-Server time: 04.04.2013 21:01:11
-Command: USER korisnik; GETTIME;
-Response: OK 04.04.2013 21:01:11
 --------------------------------
 Thread name:#1
-Thread time: 07.04.2013 11:40:23
-Server time: 04.04.2013 21:01:21
+Thread time: 07.04.2013 17:01:13
+Server time: ERROR.
 Command: USER korisnik; GETTIME;
-Response: OK 04.04.2013 21:01:21
+Response: ERROR: Server is not accepting requests at the moment.
 --------------------------------
 Thread name:#2
-Thread time: 07.04.2013 11:40:23
-Server time: 04.04.2013 21:01:21
+Thread time: 07.04.2013 17:01:14
+Server time: ERROR.
 Command: USER korisnik; GETTIME;
-Response: OK 04.04.2013 21:01:21
---------------------------------
-Thread name:#3
-Thread time: 07.04.2013 11:40:23
-Server time: 04.04.2013 21:01:21
-Command: USER korisnik; GETTIME;
-Response: OK 04.04.2013 21:01:21
---------------------------------
-Thread name:#4
-Thread time: 07.04.2013 11:40:23
-Server time: 04.04.2013 21:01:21
-Command: USER korisnik; GETTIME;
-Response: OK 04.04.2013 21:01:21
---------------------------------
-Thread name:#5
-Thread time: 07.04.2013 11:40:23
-Server time: 04.04.2013 21:01:21
-Command: USER korisnik; GETTIME;
-Response: OK 04.04.2013 21:01:21
+Response: ERROR: Server is not accepting requests at the moment.
 --------------------------------
 admin pero has executed command : 
 USER pero; PASSWD 123456; STOP;
 with response:
 OK
 
-#3 is stopping due to maximum number of tries achieved.
+Thread name:#3
+Thread time: 07.04.2013 17:01:15
+Server time: ERROR.
+Command: USER korisnik; GETTIME;
+Response: ERROR: Server is not accepting requests at the moment.
+--------------------------------
+#5 is stopping due to maximum number of tries achieved.
 #1 is stopping due to maximum number of tries achieved.
 #2 is stopping due to maximum number of tries achieved.
+#3 is stopping due to maximum number of tries achieved.
 #4 is stopping due to maximum number of tries achieved.
-#5 is stopping due to maximum number of tries achieved.
+Thread name:#1
+Start time:07.04.2013 18:07:00
+Thread name:#1
+Thread time: 07.04.2013 18:07:00
+Server time: 07.04.2013 18:07:00
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 18:07:00
+--------------------------------
+Thread name:#2
+Start time:07.04.2013 18:07:07
+Thread name:#2
+Thread time: 07.04.2013 18:07:07
+Server time: 07.04.2013 18:07:07
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 18:07:07
+--------------------------------
+Thread name:#1
+Thread time: 07.04.2013 18:07:10
+Server time: 07.04.2013 18:07:10
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 18:07:10
+--------------------------------
+Thread name:#3
+Start time:07.04.2013 18:07:14
+Thread name:#3
+Thread time: 07.04.2013 18:07:14
+Server time: 07.04.2013 18:07:14
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 18:07:14
+--------------------------------
+Thread name:#2
+Thread time: 07.04.2013 18:07:17
+Server time: 07.04.2013 18:07:17
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 18:07:17
+--------------------------------
+Thread name:#1
+Thread time: 07.04.2013 18:07:20
+Server time: 07.04.2013 18:07:20
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 18:07:20
+--------------------------------
+Thread name:#4
+Start time:07.04.2013 18:07:21
+Thread name:#4
+Thread time: 07.04.2013 18:07:21
+Server time: 07.04.2013 18:07:21
+Command: USER korisnik; GETTIME;
+Response: OK 07.04.2013 18:07:21
+--------------------------------
+admin pero has executed command : 
+USER pero; PASSWD 123456; STOP;
+with response:
+OK
+

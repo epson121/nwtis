@@ -11,3 +11,4 @@ advanced web technologies and services (course)
 * added week5 exercise (30.03.2013.)
 * added week6 and hw1 update
 * added week7 exercise (04.04.2013.)
+* added week8 exercise (16.04.2013.)

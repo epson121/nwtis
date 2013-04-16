@@ -1,6 +1,5 @@
 
 package org.foi.nwtis.lurajcevi.zadaca_1;
- 
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
@@ -21,7 +20,6 @@ public class TimeServer {
     private String serializeFileName;
     private Konfiguracija config;
     private Record ev;
-    
     private static boolean paused = false;
     private static boolean stopped = false;
 
