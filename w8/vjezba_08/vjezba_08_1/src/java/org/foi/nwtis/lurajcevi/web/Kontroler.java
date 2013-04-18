@@ -50,6 +50,8 @@ public class Kontroler extends HttpServlet {
                 odrediste = "/jsp/login.jsp";
                 break;
             case "/OdjavaKorisnika":
+                HttpSession sesija2 = request.getSession();
+                sesija2.removeAttribute("korisnik");
                 odrediste = "/Kontroler";
                 break;
             case "/ProvjeraKorisnika":
@@ -69,7 +71,7 @@ public class Kontroler extends HttpServlet {
                 odrediste = "/IspisKorisnika";
                 break;
             case "/IspisAktivnihKorisnika":
-                odrediste = "/admin/ispisAktvnihKorisnika.jsp";
+                odrediste = "/admin/ispisAktivnihKorisnika.jsp";
                 break;
             case "/IspisKorisnika":
                 odrediste = "/admin/ispisKorisnika.jsp";
