@@ -12,9 +12,45 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Ispis korisnika</title>
+        <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/displaytag.css" />
+        <title>NWTiS Vjezba 08-1 </title>
     </head>
     <body>
-        <h1>Ispis korisnika</h1>
+        <sql:setDataSource
+            var="NWTiS"
+            driver="${applicationScope.BP_Konfiguracija.driver_database}"
+            url="${BP_Konfiguracija.server_database}${BP_Konfiguracija.user_database}"
+            user="${BP_Konfiguracija.user_username}"
+            password="${BP_Konfiguracija.user_password}"
+            />
+
+        <sql:transaction dataSource="${NWTiS}">
+            <sql:query var="ispis">
+                SELECT ime, prezime FROM polaznici
+            </sql:query>
+               
+                <display:table name="${ispis.rows}" pagesize="6">
+                    <display:column property="ime" />
+                    <display:column property="prezime" />
+                </display:table>    
+                
+            <%--
+            <table border="1">
+                <tr>
+                    <th>Prezime</th>
+                    <th>Ime</th>
+                </tr>
+                <c:forEach var = "red" items="${ispis.rows}">
+                    <tr>
+                        <td>${red.prezime}</td>
+                        <td>${red.ime}</td>
+                    </tr>
+                </c:forEach>
+            </table>
+                --%>
+
+        </sql:transaction>
+
     </body>
 </html>
+
