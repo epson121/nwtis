@@ -84,6 +84,13 @@ public class ObradaPoruka extends Thread {
                 folder.open(Folder.READ_WRITE);
                 // Retrieve the messages
                 messages = folder.getMessages();
+                
+                if (messages.length > 0){
+                    System.out.println("IMA PORUKA.");
+                }
+                else{
+                    System.out.println("NEMA PORUKA");
+                }
                 // Loop over all of the messages
                 for (int messageNumber = 0; messageNumber < messages.length; messageNumber++) {
                     // Retrieve the next message to be read
@@ -92,7 +99,7 @@ public class ObradaPoruka extends Thread {
                     messagecontentObject = message.getContent();
                     
                     if (message.getSubject().startsWith(trazeniPredmet)){
-                        //TODO ako pocinje sa trazenom rijeci
+                        
                         // Determine email type
                         if (messagecontentObject instanceof Multipart) {
                             printData("Found Email with Attachment");

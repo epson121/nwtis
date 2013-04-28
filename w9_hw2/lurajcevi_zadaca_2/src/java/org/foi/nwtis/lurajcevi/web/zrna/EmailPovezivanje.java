@@ -1,16 +1,17 @@
 
 package org.foi.nwtis.lurajcevi.web.zrna;
 
+import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 /**
  *
- * @author 
+ * @author Luka Rajcevic
  */
 @ManagedBean(name = "emailPostavke")
 @SessionScoped
-public class EmailPovezivanje {
+public class EmailPovezivanje implements Serializable {
     
     private String emailPosluzitelj;
     private String korisnickoIme;

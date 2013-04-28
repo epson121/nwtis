@@ -51,13 +51,13 @@ public class SlusacAplikacije implements ServletContextListener {
                               config.dajPostavku("trazeniPredmet"),
                               Integer.parseInt(config.dajPostavku("interval"))
                              );
-        //op.start();
+        op.start();
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
         if (op != null && !op.isInterrupted()){
-            op.interrupt();
+            //op.interrupt();
         }
     }
 }

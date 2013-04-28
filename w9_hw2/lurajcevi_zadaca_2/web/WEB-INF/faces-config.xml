@@ -27,6 +27,7 @@
             <from-action>#{lokalizacija.odaberiJezik}</from-action>
             <from-outcome>OK</from-outcome>
             <to-view-id>/emailPostavke.xhtml</to-view-id>
+            
         </navigation-case>
         <navigation-case>
             <from-action>#{lokalizacija.odaberiJezik}</from-action>

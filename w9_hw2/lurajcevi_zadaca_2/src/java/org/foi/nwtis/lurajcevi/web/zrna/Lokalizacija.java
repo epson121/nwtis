@@ -2,6 +2,7 @@
 package org.foi.nwtis.lurajcevi.web.zrna;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -16,7 +17,7 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean(name = "lokalizacija")
 @SessionScoped
-public class Lokalizacija {
+public class Lokalizacija implements Serializable{
 
     private Map<String, Object> jezici;
     private String odabraniJezik;
