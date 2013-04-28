@@ -1,7 +1,7 @@
 <%-- 
     Document   : ispisAktivnihKorisnika
     Created on : Apr 18, 2013, 8:22:11 AM
-    Author     : nwtis_2
+    Author     : Luka Rajcevic
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

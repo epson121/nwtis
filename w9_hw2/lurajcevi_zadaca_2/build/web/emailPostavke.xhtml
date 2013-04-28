@@ -1,12 +1,26 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>${m.emailPostavke_naslov}</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <h1>${m.emailPostavke_naslov}</h1>
+        <h:form>
+            <h:outputText value="#{m.emailPostavke_emailPosluzitelj}" /><br/>
+            <h:inputText value="#{emailPostavke.emailPosluzitelj}"/><br/>
+            <h:outputText value="#{m.emailPostavke_korisnik}" /><br/>
+            <h:inputText  value="#{emailPostavke.korisnickoIme}"/><br/>
+            <h:outputText value="#{m.emailPostavke_lozinka}" /><br/>
+            <h:inputText  value="#{emailPostavke.lozinka}"/><br/>
+            <h:commandButton value="#{m.emailPostavke_prikazPoruka}" action="#{emailPostavke.citajPoruke}"/>
+            <h:commandButton value="#{m.emailPostavke_slanjePoruke}" action="#{emailPostavke.saljiPoruku}"/>
+        </h:form>
     </h:body>
+    <h:outputLink  value="#{'index.xhtml'}">
+        <f:verbatim>#{m.emailPostavke_odabirJezika}</f:verbatim>
+    </h:outputLink>
 </html>
 

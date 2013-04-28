@@ -1,12 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package org.foi.nwtis.lurajcevi.web.kontrole;
 
 /**
  *
- * @author lurajcevi
+ * @author Luka Rajcevic
  */
 public class PrivitakPoruke {
 

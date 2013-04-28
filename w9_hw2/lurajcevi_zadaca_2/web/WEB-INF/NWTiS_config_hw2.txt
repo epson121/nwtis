@@ -1,0 +1,16 @@
+#NWTIS konfiguracija
+#Thu Mar 01 12:18:30 CET 2012
+emailPosluzitelj=localhost
+emailPort=143
+username=servis@nastava.nwtis.foi.hr
+password=123456
+trazeniPredmet=NWTiS
+interval=15
+
+#msessage folders
+NWTiS_galerije=Galerije
+NWTiS_OstalePoruke=NWTiS_OstalePoruke
+NWTiS_IspravnePoruke=NWTiS_IspravnePoruke
+
+#sent message
+predmet=Statistika Poruka

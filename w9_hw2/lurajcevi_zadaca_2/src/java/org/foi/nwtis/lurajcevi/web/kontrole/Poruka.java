@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package org.foi.nwtis.lurajcevi.web.kontrole;
 
 import java.util.Date;
@@ -10,7 +7,7 @@ import javax.mail.Flags;
 
 /**
  *
- * @author lurajcevi
+ * @author Luka Rajcevic
  */
 public class Poruka {
     private String id;

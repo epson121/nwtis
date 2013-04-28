@@ -1,21 +1,18 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package org.foi.nwtis.lurajcevi.web.zrna;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-import javax.ejb.Local;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 /**
  *
- * @author asd
+ * @author Luka Rajcevic
  */
 @ManagedBean(name = "lokalizacija")
 @SessionScoped
@@ -32,7 +29,7 @@ public class Lokalizacija {
         jezici.put("Deutsch", Locale.GERMAN);
     }
 
-    public Object odaberiJezik() {
+    public Object odaberiJezik() throws IOException {
         for (Map.Entry<String, Object> entry : jezici.entrySet()) {
             if (entry.getValue().toString().equals(odabraniJezik)) {
                 FacesContext.getCurrentInstance()

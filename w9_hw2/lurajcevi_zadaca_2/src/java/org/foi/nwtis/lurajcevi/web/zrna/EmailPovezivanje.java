@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package org.foi.nwtis.lurajcevi.web.zrna;
 
 import javax.faces.bean.ManagedBean;
@@ -11,7 +8,7 @@ import javax.faces.bean.SessionScoped;
  *
  * @author 
  */
-@ManagedBean
+@ManagedBean(name = "emailPostavke")
 @SessionScoped
 public class EmailPovezivanje {
     
@@ -20,6 +17,11 @@ public class EmailPovezivanje {
     private String lozinka;
     
     public EmailPovezivanje() {
+    }
+    
+    public String provjeriPodatke(){
+        //TODO provjeriti podatke iz konfiguracijske datoteke
+        return "OK";
     }
     
     public String saljiPoruku(){

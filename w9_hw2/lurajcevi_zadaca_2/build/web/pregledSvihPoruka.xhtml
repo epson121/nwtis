@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Show messages</title>
+    </h:head>
+    <h:body>
+        <h:outputText value="#{m.pregledSvihPoruka_odaberiMapu}" /><br/>
+        <h:selectOneListbox value="#{pregledSvihPoruka.odabranaMapa}">
+            <f:selectItems  value="#{pregledSvihPoruka.popisMapa}" />
+       </h:selectOneListbox> 
+        <h:commandButton value="#{m.pregledSvihPoruka_ok}" action="#{pregledSvihPoruka.odaberiMapu}"/>
+    </h:body>
+    <h:outputLink  value="#{'emailPostavke.xhtml'}">
+        <f:verbatim>#{m.pregledSvihPoruka_unosPostavki}</f:verbatim>
+    </h:outputLink>
+    <!-- 
+        <f:convertDateTime...
+        http://www.mkyong.com/jsf2/jsf-2-convertdatetime-example/  
+    -->
+    <!--
+        dodati poveznicu za pregled pojedine poruke koja poziva akciju 
+        pregledPoruke() uz prijenos parametara za poruku. Može se 
+        koristiti jedna od ideja iz 
+        http://www.mkyong.com/jsf2/4-ways-to-pass-parameter-from-jsf-page-to-backing-bean/ 
+    -->
+</html>
+
