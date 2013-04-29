@@ -1,7 +1,16 @@
 package org.foi.nwtis.lurajcevi.web;
 
+import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
+import java.io.BufferedOutputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.imageio.ImageIO;
 import javax.mail.AuthenticationFailedException;
 import javax.mail.Folder;
 import javax.mail.FolderClosedException;
@@ -31,8 +40,19 @@ public class ObradaPoruka extends Thread {
     private String korisnickoIme;
     private String korisnickaLozinka;
     private String trazeniPredmet;
+    
+    private String regexPoruke = "^USER ([a-zA-Z_]+)PASSWORD ([a-zA-Z0-9_]+)GALERY ([a-zA-Z0-9_]+)*$";
+    private String regUser = "^USER ([a-zA-Z_]+)";
+    private String regPass = "^PASSWORD ([a-zA-Z_]+)";
+    private String regGalery = "^GALERY ([a-zA-Z_]+)";
+    private Matcher m;
+    private Pattern p;
+    
+    BufferedImage image = null;
+    
     private int interval;
     private static int counter = 1;
+    
 
     public ObradaPoruka(String mailServer, String mailPort, String username, 
                         String password, String subject, int interval) {
@@ -121,17 +141,40 @@ public class ObradaPoruka extends Thread {
                                 contentType = part.getContentType();
                                 // Display the content type
                                 printData("Content: " + contentType);
-                                if (contentType.startsWith("text/plain")
-                                        || contentType.startsWith("TEXT/PLAIN")) {
-                                    System.out.println("PART is:\n" + part);
-
-                                } else {
+                                if (contentType.startsWith("text/plain") || contentType.startsWith("TEXT/PLAIN")){
+                                    String[] messageContent = part.getContent().toString().split("\n");
+                                    if (isMatchingRegex(regUser, messageContent[0].trim()) 
+                                     && isMatchingRegex(regPass, messageContent[1].trim()) 
+                                     && isMatchingRegex(regGalery, messageContent[2].trim())){
+                                        //TODO autentikacija uz pomoc baze podataka
+                                        //TODO postaviti nekakav bool za uvjete dolje
+                                        //TODO pronaci img type ili app octet i zapisati na dir u app
+                                        System.out.println("MATCHES OK.");
+                                    } else{
+                                        System.out.println("MATCHES NOT OK");
+                                    }
+                                } else if (contentType.startsWith("image/") || contentType.startsWith("IMAGE/")) {
                                     // Retrieve the file name
                                     String fileName = part.getFileName();
-                                    if (contentType.startsWith("image/")){
-                                        System.out.println("Got image!!!");
+                                    File f = new File(System.getProperty("user.home")+ File.separator + fileName );
+                                    DataOutputStream output = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(f)));
+                                    com.sun.mail.util.BASE64DecoderStream test = (com.sun.mail.util.BASE64DecoderStream) part.getContent();
+                                    
+                                    byte[] buffer = new byte[1024];
+                                    int bytesRead;
+                                    while((bytesRead = test.read(buffer)) != -1){
+                                        output.write(buffer,0,bytesRead);
                                     }
-                                    printData("retrive the fileName=" + fileName);
+                                    test.close();
+                                    output.close(); 
+                                    
+                                    System.out.println("Got image!!!");
+                                    printData("FileName=" + fileName);
+                                } else if (contentType.startsWith("application/octet-stream")
+                                        || contentType.startsWith("APPLICATION/OCTET-STREAM")){
+                                    System.out.println("Found octet filetype.");
+                                    String fileName = part.getFileName();
+                                    printData("FileName=" + fileName);
                                 }
                             }
                         } else {
@@ -200,5 +243,15 @@ public class ObradaPoruka extends Thread {
 
     private void printData(String data) {
         System.out.println(data);
+    }
+    
+    private boolean isMatchingRegex(String regex, String expression){
+        p = Pattern.compile(regex);
+        m = p.matcher(expression);
+        if (m.matches()){
+            System.out.println("String " + expression + " matches its regex.");
+            return true;
+        }
+        return false;
     }
 }
