@@ -70,16 +70,15 @@ public class ObradaPoruka extends Thread {
                 printData("--------------processing mails started-----------------");
                 session = Session.getDefaultInstance(System.getProperties(), null);
 
-                printData("getting the session for accessing email.");
                 store = session.getStore("imap");
 
                 store.connect(emailPosluzitelj, korisnickoIme, korisnickaLozinka);
                 printData("Connection established with IMAP server.");
+                
                 // Get a handle on the default folder
                 folder = store.getDefaultFolder();
-                printData("Getting the Inbox folder.");
-                // Retrieve the "Inbox"
                 folder = folder.getFolder("inbox");
+                
                 //Reading the Email Index in Read / Write Mode
                 folder.open(Folder.READ_WRITE);
                 // Retrieve the messages
@@ -91,16 +90,13 @@ public class ObradaPoruka extends Thread {
                 else{
                     System.out.println("NEMA PORUKA");
                 }
-                // Loop over all of the messages
+                
                 for (int messageNumber = 0; messageNumber < messages.length; messageNumber++) {
-                    // Retrieve the next message to be read
                     message = messages[messageNumber];
-                    // Retrieve the message content
                     messagecontentObject = message.getContent();
                     
                     if (message.getSubject().startsWith(trazeniPredmet)){
                         
-                        // Determine email type
                         if (messagecontentObject instanceof Multipart) {
                             printData("Found Email with Attachment");
                             sender = ((InternetAddress) message.getFrom()[0]).getPersonal();
@@ -125,11 +121,16 @@ public class ObradaPoruka extends Thread {
                                 contentType = part.getContentType();
                                 // Display the content type
                                 printData("Content: " + contentType);
-                                if (contentType.startsWith("text/plain")) {
-                                    printData("---------reading content type text/plain  mail -------------");
+                                if (contentType.startsWith("text/plain")
+                                        || contentType.startsWith("TEXT/PLAIN")) {
+                                    System.out.println("PART is:\n" + part);
+
                                 } else {
                                     // Retrieve the file name
                                     String fileName = part.getFileName();
+                                    if (contentType.startsWith("image/")){
+                                        System.out.println("Got image!!!");
+                                    }
                                     printData("retrive the fileName=" + fileName);
                                 }
                             }

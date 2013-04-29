@@ -26,10 +26,6 @@ import javax.naming.InitialContext;
 @RequestScoped
 public class SlanjePoruke {
     
-    InitialContext ctx;
-    Session mail_session;
-    MimeMessage msg;
-    Properties prop;
     private String posiljateljPoruke;
     private String primateljPoruke;
     private String predmetPoruke;
@@ -102,10 +98,6 @@ public class SlanjePoruke {
 
     public void setPoruka(String poruka) {
         this.poruka = poruka;
-    }
-    
-    
-
-    
+    } 
     
 }

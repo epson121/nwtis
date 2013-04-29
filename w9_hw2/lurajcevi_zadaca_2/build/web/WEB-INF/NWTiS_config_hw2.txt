@@ -2,9 +2,9 @@
 #Thu Mar 01 12:18:30 CET 2012
 emailPosluzitelj=localhost
 emailPort=143
-username=servis@nwtis.nastava.foi.hr
+username=lurajcevi@nwtis.nastava.foi.hr
 password=123456
-trazeniPredmet=NWTiS
+trazeniPredmet=poruka
 interval=15
 
 #msessage folders
