@@ -15,8 +15,8 @@
             <h:inputText  value="#{emailPostavke.korisnickoIme}"/><br/>
             <h:outputText value="#{m.emailPostavke_lozinka}" /><br/>
             <h:inputText  value="#{emailPostavke.lozinka}"/><br/>
-            <h:commandButton value="#{m.emailPostavke_prikazPoruka}" action="#{emailPostavke.citajPoruke}"/>
-            <h:commandButton value="#{m.emailPostavke_slanjePoruke}" action="#{emailPostavke.saljiPoruku}"/>
+            <h:commandButton value="#{m.emailPostavke_prikazPoruka}" action="#{emailPostavke.citajPoruke()}"/>
+            <h:commandButton value="#{m.emailPostavke_slanjePoruke}" action="#{emailPostavke.saljiPoruku()}"/>
         </h:form>
     </h:body>
     <h:outputLink  value="#{'index.xhtml'}">

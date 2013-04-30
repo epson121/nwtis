@@ -3,28 +3,47 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
+    
     <h:head>
-        <title>Show messages</title>
+        <title>Pregled poruka</title>
+        <h:outputStylesheet library="css" name="osnovna.css" />
     </h:head>
+    
     <h:body>
-        <h:outputText value="#{m.pregledSvihPoruka_odaberiMapu}" /><br/>
-        <h:selectOneListbox value="#{pregledSvihPoruka.odabranaMapa}">
-            <f:selectItems  value="#{pregledSvihPoruka.popisMapa}" />
-       </h:selectOneListbox> 
-        <h:commandButton value="#{m.pregledSvihPoruka_ok}" action="#{pregledSvihPoruka.odaberiMapu}"/>
+        <h:form>
+            <h:dataTable value="#{pregledSvihPoruka.popisPoruka}" var="p" 
+                         class="tablica" headerClass="zaglavlje"
+                         rowClasses="neparni,parni">
+                <h:column>
+                    <f:facet name="header">ID poruke</f:facet>
+                    <h:outputText value="#{p.id}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Šalje</f:facet>
+                    <h:outputText value="#{p.salje}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Predmet</f:facet>
+                    <h:outputText value="#{p.predmet}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Vrijeme</f:facet>
+                    <h:outputText value="#{p.vrijeme}">
+                        <f:convertDateTime pattern="dd.MM.yyyy hh:mm:ss"/>
+                    </h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Pregled</f:facet>
+                    <h:commandButton value="Poruka" action="#{pregledSvihPoruka.pregledPoruke}">
+                        <f:setPropertyActionListener target="#{pregledSvihPoruka.porukaID}" value="#{p.id}"/>
+                    </h:commandButton>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+        
+        <h:link outcome="emailPostavke" value="Postavke za email"/><br/>
+   
     </h:body>
-    <h:outputLink  value="#{'emailPostavke.xhtml'}">
-        <f:verbatim>#{m.pregledSvihPoruka_unosPostavki}</f:verbatim>
-    </h:outputLink>
-    <!-- 
-        <f:convertDateTime...
-        http://www.mkyong.com/jsf2/jsf-2-convertdatetime-example/  
-    -->
-    <!--
-        dodati poveznicu za pregled pojedine poruke koja poziva akciju 
-        pregledPoruke() uz prijenos parametara za poruku. Može se 
-        koristiti jedna od ideja iz 
-        http://www.mkyong.com/jsf2/4-ways-to-pass-parameter-from-jsf-page-to-backing-bean/ 
-    -->
+    
 </html>
 

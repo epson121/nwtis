@@ -12,7 +12,7 @@
             <h:selectOneRadio value="#{lokalizacija.odabraniJezik}">
                 <f:selectItems value="#{lokalizacija.jezici}"/>
             </h:selectOneRadio>
-            <h:commandButton value="#{m.index_potvrdaJezika}" action="#{lokalizacija.odaberiJezik}"/>
+            <h:commandButton value="#{m.index_potvrdaJezika}" action="#{lokalizacija.odaberiJezik()}"/>
         </h:form>
     </h:body>
 </html>

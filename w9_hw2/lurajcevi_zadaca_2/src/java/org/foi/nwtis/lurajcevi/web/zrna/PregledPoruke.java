@@ -1,11 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package org.foi.nwtis.lurajcevi.web.zrna;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+import org.foi.nwtis.lurajcevi.web.kontrole.Poruka;
 
 /**
  *
@@ -15,9 +14,19 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class PregledPoruke {
     
-    //TODO kreirati varijablu za poruku. Koristiti klasu PrivitakPoruke
-    
+    private Poruka poruka;
+
     public PregledPoruke() {
+    }
+
+    public Poruka getPoruka() {
+        PregledSvihPoruka psp = (PregledSvihPoruka) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("pregledSvihPoruka");
+        poruka = psp.getOdabranaPoruka();
+        return poruka;
+    }
+
+    public void setPoruka(Poruka poruka) {
+        this.poruka = poruka;
     }
     
     public String povratakPregledSvihPoruka(){
