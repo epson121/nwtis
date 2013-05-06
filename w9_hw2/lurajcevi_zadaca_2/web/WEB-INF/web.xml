@@ -5,12 +5,12 @@
         <param-value>Development</param-value>
     </context-param>
     <context-param>
-        <description>First configuration file</description>
+        <description>konfiguracija</description>
         <param-name>konfiguracija</param-name>
-        <param-value>NWTiS.db.config_1.xml</param-value>
+        <param-value>NWTiS.db.config_2.xml</param-value>
     </context-param>
     <context-param>
-        <param-name>nwtis_config_file</param-name>
+        <param-name>lurajcevi_zadaca2_config</param-name>
         <param-value>NWTiS_config_hw2.txt</param-value>
     </context-param>
     <servlet>

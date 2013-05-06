@@ -28,10 +28,11 @@ public class SlusacAplikacije implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         String path = sce.getServletContext().getRealPath("WEB-INF");
         
+        
         String datoteka = sce.getServletContext().getInitParameter("konfiguracija");
         BP_Konfiguracija bpKonf = new BP_Konfiguracija(path + File.separator + datoteka);
         
-        String configFile = sce.getServletContext().getInitParameter("nwtis_config_file");
+        String configFile = sce.getServletContext().getInitParameter("lurajcevi_zadaca2_config");
         try {
             config = KonfiguracijaApstraktna.preuzmiKonfiguraciju(path + File.separator + configFile);
         } catch (NemaKonfiguracije ex) {
@@ -39,17 +40,14 @@ public class SlusacAplikacije implements ServletContextListener {
         }
         
         sce.getServletContext().setAttribute("BP_Konfiguracija", bpKonf);
-        sce.getServletContext().setAttribute("nwtis_config_file", config);
+        sce.getServletContext().setAttribute("lurajcevi_zadaca2_config", config);
         
         System.out.println("Konfiguracija baze učitana.");
         System.out.println("Konfiguracija učitana.");
        
-        op = new ObradaPoruka(config.dajPostavku("emailPosluzitelj"), 
-                              config.dajPostavku("emailPort"), 
-                              config.dajPostavku("username"),
-                              config.dajPostavku("password"), 
-                              config.dajPostavku("trazeniPredmet"),
-                              Integer.parseInt(config.dajPostavku("interval"))
+        op = new ObradaPoruka(config,
+                              bpKonf,
+                              path
                              );
         op.start();
     }

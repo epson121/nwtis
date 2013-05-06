@@ -7,10 +7,11 @@ password=123456
 trazeniPredmet=poruka
 interval=30
 
-#msessage folders
-NWTiS_galerije=Galerije
+NWTiS_galerije=galerije
 NWTiS_OstalePoruke=NWTiS_OstalePoruke
 NWTiS_IspravnePoruke=NWTiS_IspravnePoruke
+NWTiS_NeispravnePoruke=NWTiS_NeispravnePoruke
 
-#sent message
-predmet=Statistika Poruka
+NWTiS_PorukaAdresa=lurajcevi@nwtis.nastava.foi.hr
+NWTiS_PorukaPredmet=Statistika poruka
+NWTiS_PorukaPoslanaMapa=Poslano
