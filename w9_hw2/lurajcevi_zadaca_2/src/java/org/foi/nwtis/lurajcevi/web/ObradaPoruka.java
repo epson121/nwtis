@@ -13,12 +13,14 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.mail.Address;
 import javax.mail.AuthenticationFailedException;
+import javax.mail.Flags;
 import javax.mail.Folder;
 import javax.mail.FolderClosedException;
 import javax.mail.FolderNotFoundException;
@@ -62,7 +64,7 @@ public class ObradaPoruka extends Thread {
     private String nwtis_porukaPoslanaMapa;
     
     
-    private String regexPoruke = "^USER ([a-zA-Z_]+)\nPASSWORD ([a-zA-Z0-9_]+)GALERY ([a-zA-Z0-9_]+)*$";
+    private String regexPoruke = "^USER ([a-zA-Z0-9_]+) PASSWORD ([a-zA-Z0-9_]+) GALERY ([a-zA-Z0-9_]+) *$";
     private String regUser = "^USER ([a-zA-Z_]+)";
     private String regPass = "^PASSWORD ([a-zA-Z_]+)";
     private String regGalery = "^GALERY ([a-zA-Z_]+)";
@@ -77,6 +79,14 @@ public class ObradaPoruka extends Thread {
     private int interval;
     private static int counter = 1;
     private SimpleDateFormat df;
+    
+    //brojaci poruka
+    private static int sveukupanBrojPoruka;
+    private static int ukupanBrojPoruka;
+    private static int brojIspravnihPoruka;
+    private static int brojNeispravnihPoruka;
+    private static int brojOstalihPoruka;
+    private static int brojPreuzetihDatoteka;
     
     /**
      * Constructor za ObradaPoruka
@@ -101,6 +111,14 @@ public class ObradaPoruka extends Thread {
         nwtis_porukaPoslanaMapa = config.dajPostavku("NWTiS_PorukaPoslanaMapa");
         
         df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+        
+        sveukupanBrojPoruka = 0;
+        ukupanBrojPoruka = 0;
+        brojIspravnihPoruka = 0;
+        brojNeispravnihPoruka = 0;
+        brojOstalihPoruka = 0;
+        brojPreuzetihDatoteka = 0;
+        
         setName("Th " + counter);
     }
 
@@ -151,13 +169,20 @@ public class ObradaPoruka extends Thread {
                 }
                 
                 for (int messageNumber = 0; messageNumber < messages.length; messageNumber++) {
+                    sveukupanBrojPoruka += 1;
+                    ukupanBrojPoruka += 1;
                     message = messages[messageNumber];
                     messagecontentObject = message.getContent();
-                    
+                    if (message.isSet(Flags.Flag.SEEN)){
+                        System.out.println("STARA PORUKA.");
+                        continue;
+                    }
+                    else{
+                        message.setFlag(Flags.Flag.SEEN, true);
+                    }
                     if (message.getSubject().startsWith(trazeniPredmet)){
                         
                         if (messagecontentObject instanceof Multipart) {
-                            printData("MIME poruka");
                             sender = ((InternetAddress) message.getFrom()[0]).getPersonal();
                             
                             if (sender == null) {
@@ -177,34 +202,38 @@ public class ObradaPoruka extends Thread {
                                 part = multipart.getBodyPart(i);
                                 contentType = part.getContentType();
                                 printData("Content: " + contentType);
-                                String[] messageContent = null;
+                                String messageContent = null;
+                                String[] podaci = null;
                                 if (contentType.startsWith("text/plain") || contentType.startsWith("TEXT/PLAIN")){
-                                    messageContent = part.getContent().toString().split("\n");
-                                    porukaGalerija = messageContent[2].split("GALERY")[1].trim();
-                                    if (isMatchingRegex(regUser, messageContent[0].trim()) 
-                                     && isMatchingRegex(regPass, messageContent[1].trim()) 
-                                     && isMatchingRegex(regGalery, messageContent[2].trim()) 
-                                     && verifyInDatabase(messageContent[0].split("USER")[1].trim(), 
-                                                         messageContent[1].split("PASSWORD")[1].trim())){
-                                        isAuthenticated = true;
-                                        System.out.println("MATCHES OK");
+                                    
+                                    messageContent = part.getContent().toString().replace("\n", " ");
+                                     podaci = isMatchingRegex(regexPoruke, messageContent);
+                                    if (podaci != null){
+                                        if (verifyInDatabase(podaci[0], podaci[1])){
+                                            isAuthenticated = true;
+                                            System.out.println("MATCHES OK");
+                                        }
                                     } else{
                                         System.out.println("MATCHES NOT OK");
-                                        
+                                        brojNeispravnihPoruka += 1;
                                         Folder f = store.getFolder(nwtis_neispravnePoruke);
                                         if (!f.exists()){ 
                                             f.create(Folder.HOLDS_MESSAGES);
                                         }
                                         f.appendMessages(new Message[] {message});
+                                        if (f.isOpen())
+                                            f.close(true);
                                         continue;
                                     }
                                 } else if (isAuthenticated && (contentType.startsWith("image/") 
                                            || contentType.startsWith("IMAGE/"))) {
                                     String fileName = part.getFileName();
+                                    /*
                                     System.out.println("RES path: " + resourcesPath);
                                     System.out.println("GALERIJE: " + nwtis_galerije);
                                     System.out.println("messageContent[2]" + porukaGalerija);
                                     System.out.println("FILENAME: " + fileName);
+                                    * */
                                     File parent = new File(resourcesPath + File.separator + nwtis_galerije + File.separator + porukaGalerija + File.separator);
                                     if(!parent.exists()) {
                                         parent.mkdirs();
@@ -221,11 +250,12 @@ public class ObradaPoruka extends Thread {
                                     test.close();
                                     output.close(); 
                                     System.out.println("Got image!!!");
+                                    brojPreuzetihDatoteka += 1;
                                     isValid = true;
                                 } else if (isAuthenticated && (contentType.startsWith("application/octet-stream")
                                            || contentType.startsWith("APPLICATION/OCTET-STREAM"))){
                                     String fileName = part.getFileName();
-                                    File f = new File(resourcesPath + File.separator + nwtis_galerije + File.separator + messageContent[2] + File.separator + fileName );
+                                    File f = new File(resourcesPath + File.separator + nwtis_galerije + File.separator + podaci[2] + File.separator + fileName );
                                     DataOutputStream output = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(f)));
                                     com.sun.mail.util.BASE64DecoderStream test = (com.sun.mail.util.BASE64DecoderStream) part.getContent();
                                     
@@ -236,50 +266,71 @@ public class ObradaPoruka extends Thread {
                                     }
                                     test.close();
                                     output.close(); 
-                                    System.out.println("Found octet filetype.");
+                                    System.out.println("Got octet filetype.");
+                                    brojPreuzetihDatoteka += 1;
                                     isValid = true;
                                 }
                             }
                         } else {
-                            printData("Found Mail Without Attachment");
-                            printData("Saving to folder : ostalePoruke");
+                            printData("Saving to folder : neispravne");
+                            brojNeispravnihPoruka += 1;
                             Folder f = store.getFolder(nwtis_neispravnePoruke);
                             if (!f.exists()){ 
                                 f.create(Folder.HOLDS_MESSAGES);
                             }
                             f.appendMessages(new Message[] {message});
+                            if (f.isOpen())
+                                f.close(true);
                             isAuthenticated = false;
                             continue;
                         }
                     }
                     else{
-                        printData("Found Mail Without Attachment");
                         printData("Saving to folder : ostalePoruke");
+                        brojOstalihPoruka += 1;
                         Folder f = store.getFolder(nwtis_ostalePoruke);
                         if (!f.exists()){ 
                             f.create(Folder.HOLDS_MESSAGES);
                         }
                         f.appendMessages(new Message[] {message});
+                        if (f.isOpen())
+                            f.close(true);
                         continue;
                     }
                     isAuthenticated = false;
                     if (isValid){
+                        printData("Saving to folder : ispravne");
+                        brojIspravnihPoruka += 1;
                         Folder f = store.getFolder(nwtis_ispravnePoruke);
                         if (!f.exists()){ 
                             f.create(Folder.HOLDS_MESSAGES);
                         }
                         f.appendMessages(new Message[] {message});
                         isValid = false;
+                        if (f.isOpen())
+                            f.close(true);
                     }
                 }
+                Folder[] f = store.getDefaultFolder().list();
+                for(Folder fd : f)
+                    System.out.println("FOLDER >> " + fd.getName());
                 String vrijemePocetak = df.format(new Date(start));
                 String vrijemeKraj = df.format(new Date(System.currentTimeMillis()));
                 duration = System.currentTimeMillis() - start;
                 String tekstPoruke = "Obrada započela u: " + vrijemePocetak + 
                                      "\nObrada završila u: " + vrijemeKraj + 
-                                     "\nTrajanje obrade u ms: " + duration;
-                saljiPoruku("server", nwtis_porukaAdresa, nwtis_porukaPredmet, tekstPoruke, store);
-                folder.close(true);
+                                     "\nTrajanje obrade u ms: " + duration + 
+                                     "\nSveukupan broj poruka: " + sveukupanBrojPoruka + 
+                                     "\nUkupan broj poruka: " + ukupanBrojPoruka +
+                                     "\nBroj ispravnih poruka: " + brojIspravnihPoruka +
+                                     "\nBroj neispravnih poruka: " + brojNeispravnihPoruka + 
+                                     "\nBroj ostalih poruka: " + brojOstalihPoruka + 
+                                     "\nBroj preuzetih datoteka: ";
+                //TODO dodatne stvari poslati
+                ukupanBrojPoruka = 0;
+                //saljiPoruku("server", nwtis_porukaAdresa, nwtis_porukaPredmet, tekstPoruke, session, store);
+                if (folder.isOpen())
+                    folder.close(true);
                 store.close();
             } catch (AuthenticationFailedException e) {
                 e.printStackTrace();
@@ -297,13 +348,13 @@ public class ObradaPoruka extends Thread {
                 e.printStackTrace();
             }
             try {
-                int sleepTime;
-                sleepTime = (int) ((int) (interval * 1000) - duration);
+                long sleepTime;
+                sleepTime = ((int) (interval * 1000) - duration);
                 System.out.println("Spavanje: " + sleepTime);
                 sleep(sleepTime);
             } catch (InterruptedException ex) {
-                Logger.getLogger(ObradaPoruka.class.getName()).log(Level.SEVERE, null, ex);
                 ex.printStackTrace();
+                Logger.getLogger(ObradaPoruka.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -325,14 +376,14 @@ public class ObradaPoruka extends Thread {
         System.out.println(data);
     }
     
-    private boolean isMatchingRegex(String regex, String expression){
+    private String[] isMatchingRegex(String regex, String expression){
         p = Pattern.compile(regex);
         m = p.matcher(expression);
         if (m.matches()){
-            System.out.println("String " + expression + " matches its regex.");
-            return true;
+            String[] values = {m.group(1), m.group(2), m.group(3)};
+            return values;
         }
-        return false;
+        return null;
     }
     
     private boolean verifyInDatabase(String username, String password){
@@ -373,20 +424,20 @@ public class ObradaPoruka extends Thread {
         return true;
     }
     
-     public void saljiPoruku(String from, String to, String subject, String msg, Store store){
+     public void saljiPoruku(String from, String to, String subject, String msg, Session session, Store store){
         try {
-            Properties properties = System.getProperties();
-            properties.put("mail.smtp.host", "127.0.0.1");
-            Session session = Session.getInstance(properties, null);
+
             
             MimeMessage message = new MimeMessage(session);
             Address fromAddress = new InternetAddress(from);
             message.setHeader("Content-Type", "text/html");
             message.setFrom(fromAddress);
             Address[] toAddresses = InternetAddress.parse(to);
-            message.setRecipients(Message.RecipientType.TO,toAddresses);
+            message.setRecipients(Message.RecipientType.TO, toAddresses);
             message.setSubject(subject);
             message.setText(msg);
+            message.setSentDate(new Date());
+            message.setContentID(new Date().toString() + "." + new Date().getTime());
             Transport.send(message);
             
             Folder f = store.getFolder(nwtis_porukaPoslanaMapa);
@@ -396,6 +447,7 @@ public class ObradaPoruka extends Thread {
             f.appendMessages(new Message[] {message});
             
         } catch (MessagingException ex) {
+            //TODO baca error
             Logger.getLogger(SlanjePoruke.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }    

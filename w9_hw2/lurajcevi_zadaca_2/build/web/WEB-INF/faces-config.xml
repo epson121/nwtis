@@ -36,7 +36,7 @@
         </navigation-case>
     </navigation-rule>
     
-     <!-- Navigation rule from loginForm -->
+     <!-- Navigation rule from emailPostavke -->
     <navigation-rule>
         <from-view-id>/emailPostavke.xhtml</from-view-id>
         <navigation-case>
@@ -45,9 +45,9 @@
             <to-view-id>/pregledSvihPoruka.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-action>#{lokalizacija.citajPoruke()}</from-action>
-            <from-outcome>NOT OK</from-outcome>
-            <to-view-id>/prijava.xhtml</to-view-id>
+            <from-action>#{emailPostavke.citajPoruke()}</from-action>
+            <from-outcome>NOT_OK</from-outcome>
+            <to-view-id>/emailPostavke.xhtml</to-view-id>
         </navigation-case>
          <navigation-case>
             <from-action>#{emailPostavke.saljiPoruku()}</from-action>
@@ -56,12 +56,13 @@
         </navigation-case>
          <navigation-case>
             <from-action>#{emailPostavke.saljiPoruku()}</from-action>
-            <from-outcome>NOT OK</from-outcome>
-            <to-view-id>/prijava.xhtml</to-view-id>
+            <from-outcome>NOT_OK</from-outcome>
+            <to-view-id>/emailPostavke.xhtml</to-view-id>
         </navigation-case>
+    </navigation-rule>
 
     
-     <!-- Navigation rule from sendMessage -->
+     <!-- Navigation rule from slanjePoruke -->
     <navigation-rule>
         <from-view-id>/slanjePoruke.xhtml</from-view-id>
         <navigation-case>
@@ -76,10 +77,14 @@
         </navigation-case>
     </navigation-rule>
     
-            
-    </navigation-rule>
-        <navigation-rule>
+     <!-- Navigation rule from pregledSvihPoruka 
+    <navigation-rule>
         <from-view-id>/pregledSvihPoruka.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{pregledSvihPoruka.odaberiMapu}</from-action>
+            <from-outcome></from-outcome>
+            <to-view-id>/pregledSvihPoruka.xhtml</to-view-id>
+        </navigation-case>
         <navigation-case>
             <from-action>#{pregledSvihPoruka.pregledPoruke}</from-action>
             <from-outcome>OK</from-outcome>
@@ -90,9 +95,10 @@
             <from-outcome>NOT_OK</from-outcome>
             <to-view-id>/pregledSvihPoruka.xhtml</to-view-id>
         </navigation-case>
-    </navigation-rule>
+    </navigation-rule> -->
     
-     <navigation-rule>
+     <!-- Navigation rule from pregledPoruke --> 
+    <navigation-rule>
         <from-view-id>/pregledPoruke.xhtml</from-view-id>
         <navigation-case>
             <from-action>#{slanjePoruke.saljiPoruku()}</from-action>

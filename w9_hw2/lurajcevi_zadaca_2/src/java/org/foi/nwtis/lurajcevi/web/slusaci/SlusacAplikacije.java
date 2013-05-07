@@ -2,6 +2,7 @@
 package org.foi.nwtis.lurajcevi.web.slusaci;
 
 import java.io.File;
+import java.util.Timer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletContextEvent;
@@ -22,7 +23,7 @@ import org.foi.nwtis.lurajcevi.web.ObradaPoruka;
 public class SlusacAplikacije implements ServletContextListener {
     
     private ObradaPoruka op;
-    private Konfiguracija config = null;
+    public static Konfiguracija config = null;
     
     @Override
     public void contextInitialized(ServletContextEvent sce) {
@@ -49,13 +50,15 @@ public class SlusacAplikacije implements ServletContextListener {
                               bpKonf,
                               path
                              );
+        
         op.start();
+        
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
         if (op != null && !op.isInterrupted()){
-            //op.interrupt();
+            op.interrupt();
         }
     }
 }

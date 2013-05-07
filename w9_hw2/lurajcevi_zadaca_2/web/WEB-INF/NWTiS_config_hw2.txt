@@ -1,11 +1,11 @@
 #NWTIS konfiguracija
-#Thu Mar 01 12:18:30 CET 2012
+#Thu May 01 12:18:30 CET 2013
 emailPosluzitelj=localhost
 emailPort=143
 username=lurajcevi@nwtis.nastava.foi.hr
 password=123456
 trazeniPredmet=poruka
-interval=30
+interval=100
 
 NWTiS_galerije=galerije
 NWTiS_OstalePoruke=NWTiS_OstalePoruke

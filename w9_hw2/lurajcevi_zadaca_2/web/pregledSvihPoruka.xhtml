@@ -5,36 +5,42 @@
       xmlns:f="http://java.sun.com/jsf/core">
     
     <h:head>
-        <title>Pregled poruka</title>
+        <title>#{m.pregledSvihPoruka_naslov}</title>
         <h:outputStylesheet library="css" name="osnovna.css" />
     </h:head>
     
     <h:body>
         <h:form>
+            <h:selectOneListbox value="#{pregledSvihPoruka.odabranaMapa}">
+                <f:selectItems value="#{pregledSvihPoruka.popisMapa}" />
+            </h:selectOneListbox>
+            <h:commandButton value="Submit" immediate="true" action="#{pregledSvihPoruka.odaberiMapu()}" />
+        </h:form>
+        <h:form>
             <h:dataTable value="#{pregledSvihPoruka.popisPoruka}" var="p" 
                          class="tablica" headerClass="zaglavlje"
                          rowClasses="neparni,parni">
                 <h:column>
-                    <f:facet name="header">ID poruke</f:facet>
+                    <f:facet name="header">#{m.pregledSvihPoruka_idPoruke}</f:facet>
                     <h:outputText value="#{p.id}"/>
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Šalje</f:facet>
+                    <f:facet name="header">#{m.pregledSvihPoruka_salje}</f:facet>
                     <h:outputText value="#{p.salje}"/>
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Predmet</f:facet>
+                    <f:facet name="header">#{m.pregledSvihPoruka_predmet}</f:facet>
                     <h:outputText value="#{p.predmet}"/>
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Vrijeme</f:facet>
+                    <f:facet name="header">#{m.pregledSvihPoruka_vrijeme}</f:facet>
                     <h:outputText value="#{p.vrijeme}">
                         <f:convertDateTime pattern="dd.MM.yyyy hh:mm:ss"/>
                     </h:outputText>
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Pregled</f:facet>
-                    <h:commandButton value="Poruka" action="#{pregledSvihPoruka.pregledPoruke}">
+                    <f:facet name="header">#{m.pregledSvihPoruka_pregled}</f:facet>
+                    <h:commandButton value="#{m.pregledSvihPoruka_pogledajPoruku}" action="#{pregledSvihPoruka.pregledPoruke}">
                         <f:setPropertyActionListener target="#{pregledSvihPoruka.porukaID}" value="#{p.id}"/>
                     </h:commandButton>
                 </h:column>

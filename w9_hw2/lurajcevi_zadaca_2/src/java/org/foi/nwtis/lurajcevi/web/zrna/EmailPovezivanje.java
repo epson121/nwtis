@@ -4,6 +4,7 @@ package org.foi.nwtis.lurajcevi.web.zrna;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import org.foi.nwtis.lurajcevi.web.slusaci.SlusacAplikacije;
 
 /**
  *
@@ -13,24 +14,39 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class EmailPovezivanje implements Serializable {
     
-    private String emailPosluzitelj;
-    private String korisnickoIme;
-    private String lozinka;
+    private String emailPosluzitelj = SlusacAplikacije.config.dajPostavku("emailPosluzitelj");
+    private String korisnickoIme = SlusacAplikacije.config.dajPostavku("username");
+    private String lozinka = SlusacAplikacije.config.dajPostavku("password");
     
     public EmailPovezivanje() {
+        
     }
     
-    public String provjeriPodatke(){
-        //TODO provjeriti podatke iz konfiguracijske datoteke
-        return "OK";
+    public boolean provjeriPodatke(){
+        System.out.println("EP: " + getEmailPosluzitelj());
+        if (   getEmailPosluzitelj().equals(SlusacAplikacije.config.dajPostavku("emailPosluzitelj")) 
+            && getKorisnickoIme().equals(SlusacAplikacije.config.dajPostavku("username"))
+            && getLozinka().equals(SlusacAplikacije.config.dajPostavku("password"))){
+                return true;
+        } else{
+            return false;
+        }
     }
     
     public String saljiPoruku(){
-        return "OK";
+        if (provjeriPodatke()){
+            return "OK";
+        } else{
+            return "NOT_OK";
+        }
     }
     
     public String citajPoruke(){
-        return "OK";
+         if (provjeriPodatke()){
+            return "OK";
+        } else{
+            return "NOT_OK";
+        }
     }
 
     public String getEmailPosluzitelj() {
@@ -38,6 +54,7 @@ public class EmailPovezivanje implements Serializable {
     }
 
     public void setEmailPosluzitelj(String emailPosluzitelj) {
+        
         this.emailPosluzitelj = emailPosluzitelj;
     }
 
