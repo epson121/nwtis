@@ -5,7 +5,7 @@ emailPort=143
 username=lurajcevi@nwtis.nastava.foi.hr
 password=123456
 trazeniPredmet=poruka
-interval=100
+interval=25
 
 NWTiS_galerije=galerije
 NWTiS_OstalePoruke=NWTiS_OstalePoruke

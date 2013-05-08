@@ -9,12 +9,19 @@
     <h:body>
         <h1>${m.emailPostavke_naslov}</h1>
         <h:form>
+            <h:messages style="color:red;margin:8px;" />
             <h:outputText value="#{m.emailPostavke_emailPosluzitelj}" /><br/>
-            <h:inputText value="#{emailPostavke.emailPosluzitelj}"/><br/>
+            <h:inputText value="#{emailPostavke.emailPosluzitelj}">
+                <f:validateLength minimum="5" maximum="20" />
+            </h:inputText>/><br/>
             <h:outputText value="#{m.emailPostavke_korisnik}" /><br/>
-            <h:inputText  value="#{emailPostavke.korisnickoIme}"/><br/>
+            <h:inputText  value="#{emailPostavke.korisnickoIme}">
+                <f:validateLength minimum="5" maximum="20" />
+            </h:inputText><br/>
             <h:outputText value="#{m.emailPostavke_lozinka}" /><br/>
-            <h:inputText  value="#{emailPostavke.lozinka}"/><br/>
+            <h:inputText  value="#{emailPostavke.lozinka}">
+                <f:validateLength minimum="5" maximum="20" />
+            </h:inputText><br/>
             <h:commandButton value="#{m.emailPostavke_prikazPoruka}" action="#{emailPostavke.citajPoruke()}"/>
             <h:commandButton value="#{m.emailPostavke_slanjePoruke}" action="#{emailPostavke.saljiPoruku()}"/>
         </h:form>

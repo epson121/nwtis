@@ -11,9 +11,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.Properties;
-import java.util.Random;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -38,7 +38,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import org.foi.nwtis.lurajcevi.konfiguracije.Konfiguracija;
 import org.foi.nwtis.lurajcevi.konfiguracije.bp.BP_Konfiguracija;
-import org.foi.nwtis.lurajcevi.web.zrna.SlanjePoruke;
 
 /**
  *
@@ -64,10 +63,10 @@ public class ObradaPoruka extends Thread {
     private String nwtis_porukaPoslanaMapa;
     
     
-    private String regexPoruke = "^USER ([a-zA-Z0-9_]+) PASSWORD ([a-zA-Z0-9_]+) GALERY ([a-zA-Z0-9_]+) *$";
-    private String regUser = "^USER ([a-zA-Z_]+)";
-    private String regPass = "^PASSWORD ([a-zA-Z_]+)";
-    private String regGalery = "^GALERY ([a-zA-Z_]+)";
+    private String regexPoruke = "^USER ([a-zA-Z0-9_]+) PASSWORD ([a-zA-Z0-9_]+) GALERY ([a-zA-Z0-9_]+)*$";
+    private String regUser = "^USER ([a-zA-Z_]+)*$";
+    private String regPass = "^PASSWORD ([a-zA-Z_]+)*$";
+    private String regGalery = "^GALERY ([a-zA-Z_]+)*$";
     private Matcher m;
     private Pattern p;
     private boolean isAuthenticated = false;
@@ -129,6 +128,7 @@ public class ObradaPoruka extends Thread {
 
     @Override
     public void run() {
+        
         Session session = null;
         Store store = null;
         Folder folder = null;
@@ -144,7 +144,6 @@ public class ObradaPoruka extends Thread {
         while (true) {
             try {
                 start = System.currentTimeMillis();
-                printData("--------------processing mails started-----------------");
                 session = Session.getDefaultInstance(System.getProperties(), null);
 
                 store = session.getStore("imap");
@@ -167,19 +166,13 @@ public class ObradaPoruka extends Thread {
                 else{
                     System.out.println("NEMA PORUKA");
                 }
-                
+                //TODO brisanje poruke kod prolaza
                 for (int messageNumber = 0; messageNumber < messages.length; messageNumber++) {
                     sveukupanBrojPoruka += 1;
                     ukupanBrojPoruka += 1;
                     message = messages[messageNumber];
                     messagecontentObject = message.getContent();
-                    if (message.isSet(Flags.Flag.SEEN)){
-                        System.out.println("STARA PORUKA.");
-                        continue;
-                    }
-                    else{
-                        message.setFlag(Flags.Flag.SEEN, true);
-                    }
+
                     if (message.getSubject().startsWith(trazeniPredmet)){
                         
                         if (messagecontentObject instanceof Multipart) {
@@ -202,12 +195,13 @@ public class ObradaPoruka extends Thread {
                                 part = multipart.getBodyPart(i);
                                 contentType = part.getContentType();
                                 printData("Content: " + contentType);
-                                String messageContent = null;
+                                String messageContent[] = null;
                                 String[] podaci = null;
                                 if (contentType.startsWith("text/plain") || contentType.startsWith("TEXT/PLAIN")){
                                     
-                                    messageContent = part.getContent().toString().replace("\n", " ");
-                                     podaci = isMatchingRegex(regexPoruke, messageContent);
+                                    messageContent = part.getContent().toString().split("\n");
+                                    System.out.println("MESSAGE CONTENT: " + messageContent);
+                                    podaci = isMatchingRegex(messageContent[0], messageContent[1], messageContent[2]);
                                     if (podaci != null){
                                         if (verifyInDatabase(podaci[0], podaci[1])){
                                             isAuthenticated = true;
@@ -223,18 +217,14 @@ public class ObradaPoruka extends Thread {
                                         f.appendMessages(new Message[] {message});
                                         if (f.isOpen())
                                             f.close(true);
+                                        message.setFlag(Flags.Flag.DELETED, true);
                                         continue;
                                     }
                                 } else if (isAuthenticated && (contentType.startsWith("image/") 
                                            || contentType.startsWith("IMAGE/"))) {
                                     String fileName = part.getFileName();
-                                    /*
-                                    System.out.println("RES path: " + resourcesPath);
-                                    System.out.println("GALERIJE: " + nwtis_galerije);
-                                    System.out.println("messageContent[2]" + porukaGalerija);
-                                    System.out.println("FILENAME: " + fileName);
-                                    * */
-                                    File parent = new File(resourcesPath + File.separator + nwtis_galerije + File.separator + porukaGalerija + File.separator);
+  
+                                    File parent = new File(resourcesPath + File.separator + nwtis_galerije + File.separator + podaci[2] + File.separator);
                                     if(!parent.exists()) {
                                         parent.mkdirs();
                                     }
@@ -282,6 +272,7 @@ public class ObradaPoruka extends Thread {
                             if (f.isOpen())
                                 f.close(true);
                             isAuthenticated = false;
+                            //message.setFlag(Flags.Flag.DELETED, true);
                             continue;
                         }
                     }
@@ -295,6 +286,7 @@ public class ObradaPoruka extends Thread {
                         f.appendMessages(new Message[] {message});
                         if (f.isOpen())
                             f.close(true);
+                        message.setFlag(Flags.Flag.DELETED, true);
                         continue;
                     }
                     isAuthenticated = false;
@@ -310,10 +302,13 @@ public class ObradaPoruka extends Thread {
                         if (f.isOpen())
                             f.close(true);
                     }
+                    message.setFlag(Flags.Flag.DELETED, true);
                 }
                 Folder[] f = store.getDefaultFolder().list();
-                for(Folder fd : f)
+                for(Folder fd : f){
                     System.out.println("FOLDER >> " + fd.getName());
+                    System.out.println("BROJ PORUKA U FOLDERU: " + fd.getMessageCount());
+                }
                 String vrijemePocetak = df.format(new Date(start));
                 String vrijemeKraj = df.format(new Date(System.currentTimeMillis()));
                 duration = System.currentTimeMillis() - start;
@@ -326,7 +321,6 @@ public class ObradaPoruka extends Thread {
                                      "\nBroj neispravnih poruka: " + brojNeispravnihPoruka + 
                                      "\nBroj ostalih poruka: " + brojOstalihPoruka + 
                                      "\nBroj preuzetih datoteka: ";
-                //TODO dodatne stvari poslati
                 ukupanBrojPoruka = 0;
                 //saljiPoruku("server", nwtis_porukaAdresa, nwtis_porukaPredmet, tekstPoruke, session, store);
                 if (folder.isOpen())
@@ -351,9 +345,56 @@ public class ObradaPoruka extends Thread {
                 long sleepTime;
                 sleepTime = ((int) (interval * 1000) - duration);
                 System.out.println("Spavanje: " + sleepTime);
-                sleep(sleepTime);
+                if (sleepTime > 0)
+                    sleep(sleepTime);
+                else
+                    sleep(0);
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
+                Logger.getLogger(ObradaPoruka.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        //deleteAllMessages();
+
+    }
+    
+    public void deleteAllMessages(){
+        
+        Session session;
+        Store store;
+        Folder folder;
+        Message[] messages;
+        List<String> folders = new ArrayList<String>();
+        folders.add("inbox");
+        folders.add("Drafts");
+        folders.add("NWTiS_IspravnePoruke");
+        folders.add("NWTiS_NeispravnePoruke");
+        folders.add("NWTiS_OstalePoruke");
+        folders.add("Poslano");
+        folders.add("Trash");
+        for (String f : folders){
+            try{
+                session = Session.getDefaultInstance(System.getProperties(), null);
+                store = session.getStore("imap");
+                store.connect(emailPosluzitelj, korisnickoIme, korisnickaLozinka);
+                // Get a handle on the default folder
+                folder = store.getDefaultFolder();
+                folder = folder.getFolder(f);
+                
+                //Reading the Email Index in Read / Write Mode
+                folder.open(Folder.READ_WRITE);
+                messages = folder.getMessages();
+                System.out.println("FOLDER " + f + " DELETED.");
+                //TODO brisanje poruke kod prolaza
+                for (int messageNumber = 0; messageNumber < messages.length; messageNumber++) {
+                    messages[messageNumber].setFlag(Flags.Flag.DELETED, true);
+                }
+                folder.close(true);
+                store.close();
+            } catch (NoSuchProviderException ex) {
+                Logger.getLogger(ObradaPoruka.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (MessagingException ex) {
                 Logger.getLogger(ObradaPoruka.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -376,11 +417,19 @@ public class ObradaPoruka extends Thread {
         System.out.println(data);
     }
     
-    private String[] isMatchingRegex(String regex, String expression){
-        p = Pattern.compile(regex);
-        m = p.matcher(expression);
-        if (m.matches()){
-            String[] values = {m.group(1), m.group(2), m.group(3)};
+    private String[] isMatchingRegex(String e1, String e2, String e3 ){
+        Pattern p1 = Pattern.compile(regUser);
+        Matcher m1 = p1.matcher(e1.trim());
+        Pattern p2 = Pattern.compile(regPass);
+        Matcher m2 = p2.matcher(e2.trim());
+        Pattern p3 = Pattern.compile(regGalery);
+        Matcher m3 = p3.matcher(e3.trim());
+        System.out.println("E1 " + e1);
+        System.out.println("E2 " + e2);
+        System.out.println("E3 " + e3);
+        if (m1.matches() && m2.matches() && m3.matches()){
+            System.out.println("MATCHES.");
+            String[] values = {m1.group(1), m2.group(1), m3.group(1)};
             return values;
         }
         return null;
@@ -403,8 +452,8 @@ public class ObradaPoruka extends Thread {
         
             while (rs.next()) {
                 String ime = rs.getString("kor_ime");
-                String prezime = rs.getString("lozinka");
-                if (ime.equals(username) && lozinka.equals(password)){
+                String pass = rs.getString("lozinka");
+                if (ime.equals(username) && pass.equals(password)){
                     return true;
                 }
             }
@@ -420,14 +469,12 @@ public class ObradaPoruka extends Thread {
             }
             e.printStackTrace();
         }
-        //return false;
-        return true;
+        return false;
     }
     
      public void saljiPoruku(String from, String to, String subject, String msg, Session session, Store store){
         try {
 
-            
             MimeMessage message = new MimeMessage(session);
             Address fromAddress = new InternetAddress(from);
             message.setHeader("Content-Type", "text/html");
@@ -448,7 +495,6 @@ public class ObradaPoruka extends Thread {
             
         } catch (MessagingException ex) {
             //TODO baca error
-            Logger.getLogger(SlanjePoruke.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }    
 }

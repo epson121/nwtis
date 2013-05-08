@@ -14,7 +14,7 @@
             <h:selectOneListbox value="#{pregledSvihPoruka.odabranaMapa}">
                 <f:selectItems value="#{pregledSvihPoruka.popisMapa}" />
             </h:selectOneListbox>
-            <h:commandButton value="Submit" immediate="true" action="#{pregledSvihPoruka.odaberiMapu()}" />
+            <h:commandButton value="#{m.pregledSvihPoruka_odaberiMapu}" action="#{pregledSvihPoruka.odaberiMapu()}" />
         </h:form>
         <h:form>
             <h:dataTable value="#{pregledSvihPoruka.popisPoruka}" var="p" 
@@ -23,7 +23,7 @@
                 <h:column>
                     <f:facet name="header">#{m.pregledSvihPoruka_idPoruke}</f:facet>
                     <h:outputText value="#{p.id}"/>
-                </h:column>
+                </h:column> 
                 <h:column>
                     <f:facet name="header">#{m.pregledSvihPoruka_salje}</f:facet>
                     <h:outputText value="#{p.salje}"/>

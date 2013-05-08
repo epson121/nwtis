@@ -76,11 +76,11 @@ public class PregledSvihPoruka implements Serializable{
     }
     
     public String odaberiMapu(){
-        System.out.println("ODABRANA MAPA: " + getOdabranaMapa());
+        getPopisPoruka();
         return "";
     }
     
-    private void preuzmiPoruke(String mapa) {
+    private void preuzmiPoruke() {
         Session session = null;
         Store store = null;
         Folder folder = null;
@@ -102,10 +102,10 @@ public class PregledSvihPoruka implements Serializable{
 
             // Get a handle on the default folder
             folder = store.getDefaultFolder();
-            if (mapa.equals(""))
-                folder = folder.getFolder("inbox");
+            if (odabranaMapa != null)
+                folder = folder.getFolder(odabranaMapa);
             else
-                folder = folder.getFolder(mapa);
+                folder = folder.getFolder("inbox");
 
             //Reading the Email Index in Read / Write Mode
             folder.open(Folder.READ_ONLY);
@@ -113,7 +113,7 @@ public class PregledSvihPoruka implements Serializable{
             // Retrieve the messages
             messages = folder.getMessages();
             // Loop over all of the messages
-            for (int messageNumber = 0; messageNumber < 10; messageNumber++) {
+            for (int messageNumber = 0; messageNumber < messages.length; messageNumber++) {
                 // Retrieve the next message to be read
                 message = messages[messageNumber];
 
@@ -245,7 +245,6 @@ public class PregledSvihPoruka implements Serializable{
     }
 
     public void setOdabranaMapa(String odabranaMapa) {
-        System.out.println("PROMJENA MAPE -> " + odabranaMapa);
         this.odabranaMapa = odabranaMapa;
     }
 
@@ -281,10 +280,7 @@ public class PregledSvihPoruka implements Serializable{
 
     public List<Poruka> getPopisPoruka() {
         popisPoruka.clear();
-        if (getOdabranaMapa() == null)
-            preuzmiPoruke("");
-        else
-            preuzmiPoruke(getOdabranaMapa());
+        preuzmiPoruke();
         return popisPoruka;
     }
 
@@ -307,6 +303,5 @@ public class PregledSvihPoruka implements Serializable{
     public void setPorukaID(String porukaID) {
         this.porukaID = porukaID;
     }
-    
     
 }

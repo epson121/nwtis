@@ -3,61 +3,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html">
     <h:head>
-        <title>Pregled poruke</title>
+        <title>#{m.pregledPoruke_naslov}</title>
     </h:head>
     <h:body>
-        <h:panelGrid columns="2" border="1">
-            <h:column>
-                <h:outputText value="ID"/>
-            </h:column>
-            <h:column>
-                <h:outputText value="#{pregledPoruke.poruka.id}"/>
-            </h:column>
-            <h:column>
-                <h:outputText value="Šalje"/>
-            </h:column>
-            <h:column>
-                <h:outputText value="#{pregledPoruke.poruka.salje}"/>
-            </h:column>
-            <h:column>
-                <h:outputText value="Predmet"/>
-            </h:column>
-            <h:column>
-                <h:outputText value="#{pregledPoruke.poruka.predmet}"/>
-            </h:column>
-            <h:column>
-                <h:outputText value="Privitci"/>
-            </h:column>            
-            <h:column>
-                <h:outputText value="To treba dovršiti"/>
-            </h:column>
-        </h:panelGrid>
-        <h:link outcome="pregledPoruka" value="Pregled poruka"/><br/><h:panelGrid columns="2" border="1">
-            <h:column>
-                <h:outputText value="ID"/>
-            </h:column>
-            <h:column>
-                <h:outputText value="#{pregledPoruke.poruka.id}"/>
-            </h:column>
-            <h:column>
-                <h:outputText value="Šalje"/>
-            </h:column>
-            <h:column>
-                <h:outputText value="#{pregledPoruke.poruka.salje}"/>
-            </h:column>
-            <h:column>
-                <h:outputText value="Predmet"/>
-            </h:column>
-            <h:column>
-                <h:outputText value="#{pregledPoruke.poruka.predmet}"/>
-            </h:column>
-            <h:column>
-                <h:outputText value="Privitci"/>
-            </h:column>            
-            <h:column>
-                <h:outputText value="To treba dovršiti"/>
-            </h:column>
-        </h:panelGrid>
+        <h:link outcome="pregledPoruka" value="Pregled poruka"/><br/>
+            <h:panelGrid columns="2" border="1">
+                <h:column>
+                    <h:outputText value="#{m.pregledPoruke_id}"/>
+                </h:column>
+                <h:column>
+                    <h:outputText value="#{pregledPoruke.poruka.id}"/>
+                </h:column>
+                <h:column>
+                    <h:outputText value="#{m.pregledPoruke_Salje}"/>
+                </h:column>
+                <h:column>
+                    <h:outputText value="#{pregledPoruke.poruka.salje}"/>
+                </h:column>
+                <h:column>
+                    <h:outputText value="#{m.pregledPoruke_Predmet}"/>
+                </h:column>
+                <h:column>
+                    <h:outputText value="#{pregledPoruke.poruka.predmet}"/>
+                </h:column>
+                <h:column>
+                    <h:outputText value="#{m.pregledPoruke_privitci}"/>
+                </h:column>            
+                <h:column>
+                    <h:outputText value="To treba dovršiti"/>
+                </h:column>
+            </h:panelGrid>
 
         <h:commandButton value="#{m.pregledPoruke_pregledSvihPoruke}" 
                          action="#{pregledPoruke.povratakPregledSvihPoruka()}"/>

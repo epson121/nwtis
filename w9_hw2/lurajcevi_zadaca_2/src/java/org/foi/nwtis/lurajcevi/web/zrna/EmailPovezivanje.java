@@ -42,7 +42,7 @@ public class EmailPovezivanje implements Serializable {
     }
     
     public String citajPoruke(){
-         if (provjeriPodatke()){
+        if (provjeriPodatke()){
             return "OK";
         } else{
             return "NOT_OK";

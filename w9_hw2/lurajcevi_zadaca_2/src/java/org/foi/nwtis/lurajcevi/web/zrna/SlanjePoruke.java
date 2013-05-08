@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.mail.Address;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -22,6 +23,9 @@ import javax.mail.internet.MimeMessage;
 @RequestScoped
 public class SlanjePoruke {
     
+    private String emailPosluzitelj;
+    private String korisnickoIme;
+    
     private String posiljateljPoruke;
     private String primateljPoruke;
     private String predmetPoruke;
@@ -29,15 +33,23 @@ public class SlanjePoruke {
     private String poruka;
     
     public SlanjePoruke() {
-        
+        EmailPovezivanje ep = (EmailPovezivanje)  FacesContext
+                                                 .getCurrentInstance()
+                                                 .getExternalContext()
+                                                 .getSessionMap()
+                                                 .get("emailPostavke");
+        this.emailPosluzitelj = ep.getEmailPosluzitelj();
+        this.korisnickoIme = ep.getKorisnickoIme();
     }
     
     public String saljiPoruku(){
         //TODO ako je uspjesno, ispisuje se poruka, ako nije isto tako
         //TODO  Dodati varijablu za poruku u MB i mjesto u obrascu
+        
+        
         try {
             Properties properties = System.getProperties();
-            properties.put("mail.smtp.host", "127.0.0.1");
+            properties.put("mail.smtp.host", this.emailPosluzitelj);
             Session session = Session.getInstance(properties, null);
             
             MimeMessage message = new MimeMessage(session);
@@ -57,7 +69,7 @@ public class SlanjePoruke {
     }    
 
     public String getPosiljateljPoruke() {
-        return posiljateljPoruke;
+        return this.korisnickoIme;
     }
 
     public void setPosiljateljPoruke(String posiljateljPoruke) {
