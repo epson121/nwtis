@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Unos zip kodova</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:panelGrid columns="3">
+                <f:facet name="header" >
+                    Uneseni zip kodovi:
+                    <h:outputText value="#{meteoPrognoza.zipKodovi}" />
+                </f:facet>
+                <h:outputLabel for="zip" value="zip kod" />
+                <h:inputText id="zip" value="#{meteoPrognoza.odabraniZipKod}">
+                    <f:validateRegex pattern="\d{4,6}" />
+                </h:inputText>
+                <h:message for="zip" style="color: #990000" />
+                <f:facet name="footer">
+                    <h:commandButton value="Unesi" action="#{meteoPrognoza.dodajZipKod()}" />
+                </f:facet>
+            </h:panelGrid>
+            <h:link value="Pocetna" outcome="index" /> <br/>
+            <h:link value="Pregled meteo podataka" outcome="pregledMeteoPodataka" />
+        </h:form>
+    </h:body>
+</html>
+
