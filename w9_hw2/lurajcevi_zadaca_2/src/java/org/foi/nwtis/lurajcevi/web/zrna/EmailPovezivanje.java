@@ -2,8 +2,10 @@
 package org.foi.nwtis.lurajcevi.web.zrna;
 
 import java.io.Serializable;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import org.foi.nwtis.lurajcevi.web.slusaci.SlusacAplikacije;
 
 /**
@@ -36,16 +38,19 @@ public class EmailPovezivanje implements Serializable {
     public String saljiPoruku(){
         if (provjeriPodatke()){
             return "OK";
-        } else{
-            return "NOT_OK";
+        } 
+        else {
+                return null;
         }
     }
     
     public String citajPoruke(){
+        FacesContext facesContext = FacesContext.getCurrentInstance();
         if (provjeriPodatke()){
             return "OK";
         } else{
-            return "NOT_OK";
+            facesContext.addMessage(null, new FacesMessage("Username or password is incorrect"));
+            return null;
         }
     }
 

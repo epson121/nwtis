@@ -68,7 +68,7 @@
         <navigation-case>
             <from-action>#{slanjePoruke.saljiPoruku()}</from-action>
             <from-outcome>OK</from-outcome>
-            <to-view-id>/index.xhtml</to-view-id>
+            <to-view-id>/slanjePoruke.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
             <from-action>#{slanjePoruke.saljiPoruku()}</from-action>
@@ -93,5 +93,14 @@
     </navigation-rule>
     
      <!-- Navigation rule from pregledPoruke --> 
+     <navigation-rule>
+        <from-view-id>/pregledPoruke.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{pregledPoruke.povratakPregledSvihPoruka()}</from-action>
+            <from-outcome>OK</from-outcome>
+            <to-view-id>/pregledSvihPoruka.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
     
 </faces-config>

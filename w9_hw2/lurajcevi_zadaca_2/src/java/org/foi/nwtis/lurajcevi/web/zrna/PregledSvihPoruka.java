@@ -33,9 +33,6 @@ import org.foi.nwtis.lurajcevi.web.kontrole.PrivitakPoruke;
 @ManagedBean(name = "pregledSvihPoruka")
 @SessionScoped
 public class PregledSvihPoruka implements Serializable{
-    //TODO kreirati varijable za povezivanje na sandučić korisnika, 
-    //popis poruka, popis mapa, odabrana mapa, odabrana poruka
-    
     private String emailPosluzitelj;
     private String korisnickoIme;
     private String lozinka;
@@ -59,7 +56,6 @@ public class PregledSvihPoruka implements Serializable{
     }
     
     public String pregledPoruke(){
-        //TODO vraca ok not ok ili error
         odabranaPoruka = null;
         for(Poruka p : popisPoruka) {
             if (p.getId() != null){
@@ -68,7 +64,6 @@ public class PregledSvihPoruka implements Serializable{
                     return "OK";
                 }
             } else{
-                // id is null
                 return "ERROR";
             }
         }
@@ -100,55 +95,43 @@ public class PregledSvihPoruka implements Serializable{
 
             store.connect(emailPosluzitelj, korisnickoIme, lozinka);
 
-            // Get a handle on the default folder
             folder = store.getDefaultFolder();
             if (odabranaMapa != null)
                 folder = folder.getFolder(odabranaMapa);
             else
                 folder = folder.getFolder("inbox");
 
-            //Reading the Email Index in Read / Write Mode
             folder.open(Folder.READ_ONLY);
 
-            // Retrieve the messages
             messages = folder.getMessages();
-            // Loop over all of the messages
             for (int messageNumber = 0; messageNumber < messages.length; messageNumber++) {
-                // Retrieve the next message to be read
                 message = messages[messageNumber];
-
-                // Retrieve the message content
                 messagecontentObject = message.getContent();
 
-                // Determine email type
                 if (messagecontentObject instanceof Multipart) {
                     sender = ((InternetAddress) message.getFrom()[0]).getPersonal();
-
-                    // If the "personal" information has no entry, check the address for the sender information
-
+                    
                     if (sender == null) {
                         sender = ((InternetAddress) message.getFrom()[0]).getAddress();
                     }
-
-                    // Get the subject information
                     subject = message.getSubject();
 
-                    // Retrieve the Multipart object from the message
                     multipart = (Multipart) message.getContent();
 
                     List<PrivitakPoruke> privitciPoruke = new ArrayList<PrivitakPoruke>();
-
-                    // Loop over the parts of the email
+                    String tekstPoruke = "";
                     for (int i = 0; i < multipart.getCount(); i++) {
                         // Retrieve the next part
                         part = multipart.getBodyPart(i);
 
                         // Get the content type
                         contentType = part.getContentType();
-
+                        
                         // Display the content type
                         String fileName = "";
-                        if (contentType.startsWith("text/plain")) {
+                        if (contentType.startsWith("text/plain") || contentType.startsWith("TEXT/PLAIN") ||
+                            contentType.startsWith("text/html") || contentType.startsWith("TEXT/HTML")) {
+                            tekstPoruke = part.getContent().toString();
                         } else {
                             // Retrieve the file name
                             fileName = part.getFileName();
@@ -158,45 +141,36 @@ public class PregledSvihPoruka implements Serializable{
 
                     }
                     String[] zaglavlje = message.getHeader("Message-ID");
-                    String messId = "";
+                    porukaID = "";
                     if (zaglavlje != null && zaglavlje.length > 0) {
-                        messId = zaglavlje[0];
+                        porukaID = zaglavlje[0];
                     }
 
-                    Poruka poruka = new Poruka(messId, message.getSentDate(), sender, subject, message.getContentType(),
-                            message.getSize(), privitciPoruke.size(), message.getFlags(), privitciPoruke, true, true);
+                    Poruka poruka = new Poruka(porukaID, message.getSentDate(), sender, subject, message.getContentType(),
+                            message.getSize(), privitciPoruke.size(), message.getFlags(), privitciPoruke, true, true, tekstPoruke);
 
                     popisPoruka.add(poruka);
                     
                 } else {
                     sender = ((InternetAddress) message.getFrom()[0]).getPersonal();
 
-                    // If the "personal" information has no entry, check the address for the sender information
-
                     if (sender == null) {
                         sender = ((InternetAddress) message.getFrom()[0]).getAddress();
                     }
 
-                    // Get the subject information
                     subject = message.getSubject();
-
+                    porukaID = "";
                     String[] zaglavlje = message.getHeader("Message-ID");
-                    String messId = "";
                     if (zaglavlje != null && zaglavlje.length > 0) {
-                        messId = zaglavlje[0];
+                        porukaID = zaglavlje[0];
                     }
                      Poruka poruka = new Poruka(porukaID, message.getSentDate(), sender, subject, message.getContentType(),
-                            message.getSize(), 0, message.getFlags(), null, true, true);
-
+                            message.getSize(), 0, message.getFlags(), null, true, true, message.getContent().toString());
                      popisPoruka.add(poruka);
                 }
                 
             }
-
-            // Close the folder
             folder.close(true);
-
-            // Close the message store
             store.close();
         } catch (AuthenticationFailedException e) {
             e.printStackTrace();
@@ -214,7 +188,6 @@ public class PregledSvihPoruka implements Serializable{
             e.printStackTrace();
         }
     }
-    
 
     public String getEmailPosluzitelj() {
         return emailPosluzitelj;

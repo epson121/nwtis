@@ -1,6 +1,7 @@
 
 package org.foi.nwtis.lurajcevi.web.zrna;
 
+import java.util.Date;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,22 +44,22 @@ public class SlanjePoruke {
     }
     
     public String saljiPoruku(){
-        //TODO ako je uspjesno, ispisuje se poruka, ako nije isto tako
-        //TODO  Dodati varijablu za poruku u MB i mjesto u obrascu
-        
-        
         try {
+            Date d = new Date();
+            String id = d + "." + d.getTime();
+            
             Properties properties = System.getProperties();
             properties.put("mail.smtp.host", this.emailPosluzitelj);
             Session session = Session.getInstance(properties, null);
             
             MimeMessage message = new MimeMessage(session);
-            Address fromAddress = new InternetAddress(posiljateljPoruke);
+            Address fromAddress = new InternetAddress(getPosiljateljPoruke());
             message.setFrom(fromAddress);
-            Address[] toAddresses = InternetAddress.parse(primateljPoruke);
+            Address[] toAddresses = InternetAddress.parse(getPrimateljPoruke());
             message.setRecipients(Message.RecipientType.TO,toAddresses);
-            message.setSubject(predmetPoruke);
-            message.setText(poruka);
+            message.setHeader("Message-ID", id);
+            message.setSubject(getPredmetPoruke());
+            message.setText(getPoruka());
             Transport.send(message);
 
         } catch (MessagingException ex) {

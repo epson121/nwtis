@@ -8,7 +8,6 @@ import java.util.Locale;
 import java.util.Map;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 /**
@@ -63,4 +62,5 @@ public class Lokalizacija implements Serializable{
     public void setOdabraniLocale(Locale odabraniLocale) {
         this.odabraniLocale = odabraniLocale;
     }
+    
 }

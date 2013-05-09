@@ -15,6 +15,7 @@ public class Poruka {
     private String salje;
     private String predmet;
     private String vrsta;
+    private String tekstPoruke;
     private int velicina;    
     private int brojPrivitaka;
     private Flags zastavice;
@@ -22,7 +23,7 @@ public class Poruka {
     private boolean brisati;
     private boolean procitano;
 
-    public Poruka(String id, Date poslano, String salje, String predmet, String vrsta, int velicina, int brojPrivitaka, Flags zastavice, List<PrivitakPoruke> privitciPoruke, boolean brisati, boolean procitano) {
+    public Poruka(String id, Date poslano, String salje, String predmet, String vrsta, int velicina, int brojPrivitaka, Flags zastavice, List<PrivitakPoruke> privitciPoruke, boolean brisati, boolean procitano, String tekstPoruke) {
         this.id = id;
         this.vrijeme = poslano;
         this.salje = salje;
@@ -34,6 +35,7 @@ public class Poruka {
         this.privitciPoruke = privitciPoruke;
         this.brisati = brisati;
         this.procitano = procitano;
+        this.tekstPoruke = tekstPoruke;
     }
 
     public String getId() {
@@ -90,6 +92,14 @@ public class Poruka {
 
     public void setVrijeme(Date vrijeme) {
         this.vrijeme = vrijeme;
+    }
+
+    public String getTekstPoruke() {
+        return tekstPoruke;
+    }
+
+    public void setTekstPoruke(String tekstPoruke) {
+        this.tekstPoruke = tekstPoruke;
     }
 
     

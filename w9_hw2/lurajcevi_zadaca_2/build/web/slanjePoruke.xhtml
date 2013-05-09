@@ -10,13 +10,13 @@
         <h1><h:outputText value="#{m.posaljiPoruku_naslov}"/></h1>
         <h:form>
             <h:outputText value="#{m.posaljiPoruku_posiljatelj}" /><br/>
-            <h:inputText id="msgSender" value="#{slanjePoruke.posiljateljPoruke}"/><br/>
+            <h:inputText id="msgSender" readonly="true" value="#{slanjePoruke.posiljateljPoruke}"/><br/>
             <h:outputText value="#{m.posaljiPoruku_primatelj}" /><br/>
-            <h:inputText id="msgReceiver" value="#{slanjePoruke.primateljPoruke}"/><br/>
+            <h:inputText id="msgReceiver" required="true" value="#{slanjePoruke.primateljPoruke}"/><br/>
             <h:outputText value="#{m.posaljiPoruku_predmet}" /><br/>
-            <h:inputText id="msgSubject" value="#{slanjePoruke.predmetPoruke}"/><br/>
+            <h:inputText id="msgSubject" required="true" value="#{slanjePoruke.predmetPoruke}"/><br/>
             <h:outputText value="#{m.posaljiPoruku_tijeloPoruke}" /><br/>
-            <h:inputTextarea rows="10" cols="60" id="msgBody" value="#{slanjePoruke.poruka}"/><br/>
+            <h:inputTextarea rows="10" required="true" cols="60" id="msgBody" value="#{slanjePoruke.poruka}"/><br/>
             <h:commandButton value="#{m.posaljiPoruku_posalji}" action="#{slanjePoruke.saljiPoruku()}"/>
         </h:form>
         <br/><br/>

@@ -19,20 +19,15 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.mail.Address;
-import javax.mail.AuthenticationFailedException;
 import javax.mail.Flags;
 import javax.mail.Folder;
-import javax.mail.FolderClosedException;
-import javax.mail.FolderNotFoundException;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
 import javax.mail.NoSuchProviderException;
 import javax.mail.Part;
-import javax.mail.ReadOnlyFolderException;
 import javax.mail.Session;
 import javax.mail.Store;
-import javax.mail.StoreClosedException;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -166,7 +161,6 @@ public class ObradaPoruka extends Thread {
                 else{
                     System.out.println("NEMA PORUKA");
                 }
-                //TODO brisanje poruke kod prolaza
                 for (int messageNumber = 0; messageNumber < messages.length; messageNumber++) {
                     sveukupanBrojPoruka += 1;
                     ukupanBrojPoruka += 1;
@@ -189,18 +183,17 @@ public class ObradaPoruka extends Thread {
 
                             multipart = (Multipart) message.getContent();
                             printData("Retrieve the Multipart object from the message");
-
+                            String[] podaci = null;
                             for (int i = 0; i < multipart.getCount(); i++) {
 
                                 part = multipart.getBodyPart(i);
                                 contentType = part.getContentType();
                                 printData("Content: " + contentType);
                                 String messageContent[] = null;
-                                String[] podaci = null;
+                                
                                 if (contentType.startsWith("text/plain") || contentType.startsWith("TEXT/PLAIN")){
                                     
                                     messageContent = part.getContent().toString().split("\n");
-                                    System.out.println("MESSAGE CONTENT: " + messageContent);
                                     podaci = isMatchingRegex(messageContent[0], messageContent[1], messageContent[2]);
                                     if (podaci != null){
                                         if (verifyInDatabase(podaci[0], podaci[1])){
@@ -223,7 +216,6 @@ public class ObradaPoruka extends Thread {
                                 } else if (isAuthenticated && (contentType.startsWith("image/") 
                                            || contentType.startsWith("IMAGE/"))) {
                                     String fileName = part.getFileName();
-  
                                     File parent = new File(resourcesPath + File.separator + nwtis_galerije + File.separator + podaci[2] + File.separator);
                                     if(!parent.exists()) {
                                         parent.mkdirs();
@@ -234,7 +226,7 @@ public class ObradaPoruka extends Thread {
                                     
                                     byte[] buffer = new byte[1024];
                                     int bytesRead;
-                                    while((bytesRead = test.read(buffer)) != -1){
+                                    while((bytesRead = test.read(buffer)) != -1) {
                                         output.write(buffer,0,bytesRead);
                                     }
                                     test.close();
@@ -272,7 +264,7 @@ public class ObradaPoruka extends Thread {
                             if (f.isOpen())
                                 f.close(true);
                             isAuthenticated = false;
-                            //message.setFlag(Flags.Flag.DELETED, true);
+                            message.setFlag(Flags.Flag.DELETED, true);
                             continue;
                         }
                     }
@@ -326,18 +318,6 @@ public class ObradaPoruka extends Thread {
                 if (folder.isOpen())
                     folder.close(true);
                 store.close();
-            } catch (AuthenticationFailedException e) {
-                e.printStackTrace();
-            } catch (FolderClosedException e) {
-                e.printStackTrace();
-            } catch (FolderNotFoundException e) {
-                e.printStackTrace();
-            } catch (NoSuchProviderException e) {
-                e.printStackTrace();
-            } catch (ReadOnlyFolderException e) {
-                e.printStackTrace();
-            } catch (StoreClosedException e) {
-                e.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -354,7 +334,7 @@ public class ObradaPoruka extends Thread {
                 Logger.getLogger(ObradaPoruka.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
+        
         //deleteAllMessages();
 
     }
@@ -378,15 +358,13 @@ public class ObradaPoruka extends Thread {
                 session = Session.getDefaultInstance(System.getProperties(), null);
                 store = session.getStore("imap");
                 store.connect(emailPosluzitelj, korisnickoIme, korisnickaLozinka);
-                // Get a handle on the default folder
                 folder = store.getDefaultFolder();
                 folder = folder.getFolder(f);
                 
-                //Reading the Email Index in Read / Write Mode
                 folder.open(Folder.READ_WRITE);
                 messages = folder.getMessages();
                 System.out.println("FOLDER " + f + " DELETED.");
-                //TODO brisanje poruke kod prolaza
+                System.out.println("mess count: " + messages.length);
                 for (int messageNumber = 0; messageNumber < messages.length; messageNumber++) {
                     messages[messageNumber].setFlag(Flags.Flag.DELETED, true);
                 }
@@ -424,9 +402,6 @@ public class ObradaPoruka extends Thread {
         Matcher m2 = p2.matcher(e2.trim());
         Pattern p3 = Pattern.compile(regGalery);
         Matcher m3 = p3.matcher(e3.trim());
-        System.out.println("E1 " + e1);
-        System.out.println("E2 " + e2);
-        System.out.println("E3 " + e3);
         if (m1.matches() && m2.matches() && m3.matches()){
             System.out.println("MATCHES.");
             String[] values = {m1.group(1), m2.group(1), m3.group(1)};
@@ -494,7 +469,6 @@ public class ObradaPoruka extends Thread {
             f.appendMessages(new Message[] {message});
             
         } catch (MessagingException ex) {
-            //TODO baca error
         } 
     }    
 }
