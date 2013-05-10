@@ -13,10 +13,13 @@
         <h:form>
             <h:selectOneListbox value="#{pregledSvihPoruka.odabranaMapa}">
                 <f:selectItems value="#{pregledSvihPoruka.popisMapa}" />
-            </h:selectOneListbox>
+            </h:selectOneListbox><br/>
             <h:commandButton value="#{m.pregledSvihPoruka_odaberiMapu}" action="#{pregledSvihPoruka.odaberiMapu()}" />
-        </h:form>
-        <h:form>
+        </h:form> <br/>
+        <h:outputText value="#{m.pregledSvihPoruka_trenutniFolder} - #{pregledSvihPoruka.odabranaMapa}" /><br/>
+        <h:outputText style="color: red;" value="#{m.pregledSvihPoruka_praznaMapa}" 
+                      rendered="#{pregledSvihPoruka.praznaMapa}" /> <br/>
+        <h:form rendered="#{!pregledSvihPoruka.praznaMapa}">
             <h:dataTable value="#{pregledSvihPoruka.popisPoruka}" var="p" 
                          class="tablica" headerClass="zaglavlje"
                          rowClasses="neparni,parni">
@@ -46,9 +49,13 @@
                 </h:column>
             </h:dataTable>
         </h:form>
-        
+        <h:form>
+            <h:commandButton rendered="#{pregledSvihPoruka.prev}" value="#{m.pregledSvihPoruka_prethodnaStranica}" action="#{pregledSvihPoruka.prethodnaStranica}" />
+            <h:commandButton rendered="#{pregledSvihPoruka.next}" value="#{m.pregledSvihPoruka_slijedecaStranica}" action="#{pregledSvihPoruka.slijedecaStranica}" />
+        </h:form>
+        <br/>
         <h:link outcome="emailPostavke" value="Postavke za email"/><br/>
-   
+        
     </h:body>
     
 </html>

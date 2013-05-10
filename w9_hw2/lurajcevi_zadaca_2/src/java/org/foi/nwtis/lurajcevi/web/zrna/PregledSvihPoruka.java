@@ -25,6 +25,7 @@ import javax.mail.StoreClosedException;
 import javax.mail.internet.InternetAddress;
 import org.foi.nwtis.lurajcevi.web.kontrole.Poruka;
 import org.foi.nwtis.lurajcevi.web.kontrole.PrivitakPoruke;
+import org.foi.nwtis.lurajcevi.web.slusaci.SlusacAplikacije;
 
 /**
  *
@@ -41,7 +42,10 @@ public class PregledSvihPoruka implements Serializable{
     private Poruka odabranaPoruka;
     private String porukaID;
     private List<String> popisMapa;
-    private String odabranaMapa;
+    private String odabranaMapa = "inbox";
+    private int pocetak = 0, stranicenje, brojPoruka = 0;
+    private boolean next = false, prev = false;
+    private boolean praznaMapa = true;
     
     
     public PregledSvihPoruka() {
@@ -53,6 +57,7 @@ public class PregledSvihPoruka implements Serializable{
         this.emailPosluzitelj = ep.getEmailPosluzitelj();
         this.korisnickoIme = ep.getKorisnickoIme();
         this.lozinka = ep.getLozinka();
+        stranicenje = Integer.parseInt(SlusacAplikacije.config.dajPostavku("stranicenje"));
     }
     
     public String pregledPoruke(){
@@ -71,11 +76,12 @@ public class PregledSvihPoruka implements Serializable{
     }
     
     public String odaberiMapu(){
+        pocetak = 0;
         getPopisPoruka();
         return "";
     }
     
-    private void preuzmiPoruke() {
+    private void preuzmiPoruke(int pocetak, int korak) {
         Session session = null;
         Store store = null;
         Folder folder = null;
@@ -87,24 +93,58 @@ public class PregledSvihPoruka implements Serializable{
         Multipart multipart = null;
         Part part = null;
         String contentType = null;
-
+        popisPoruka.clear();
         try {
             session = Session.getDefaultInstance(System.getProperties(), null);
-
             store = session.getStore("imap");
-
             store.connect(emailPosluzitelj, korisnickoIme, lozinka);
-
             folder = store.getDefaultFolder();
-            if (odabranaMapa != null)
-                folder = folder.getFolder(odabranaMapa);
-            else
-                folder = folder.getFolder("inbox");
 
+            folder = folder.getFolder(odabranaMapa);
             folder.open(Folder.READ_ONLY);
-
             messages = folder.getMessages();
-            for (int messageNumber = 0; messageNumber < messages.length; messageNumber++) {
+            int n = messages.length;
+            if (n == 0){
+                setPraznaMapa(true);
+            } else{
+                setPraznaMapa(false);
+            }
+            if (pocetak <= 0){
+                pocetak = 0;
+                this.pocetak = 0;
+                setNext(true);
+                setPrev(false);
+                if (pocetak + korak >= n){
+                    korak = n - pocetak;
+                    setNext(false);
+                }
+            } else if (pocetak > n){
+                this.pocetak = this.pocetak - korak;
+                pocetak = pocetak - korak;
+                setNext(false);
+                setPrev(true);
+                if (pocetak + korak > n){
+                    korak = n - pocetak;
+                    setNext(false);
+                }
+            } else if (pocetak == n){
+                this.pocetak = this.pocetak - korak;
+                pocetak = pocetak - korak;
+                setNext(false);
+                setPrev(true);
+            } else if (pocetak + korak > n){
+                    korak = n - pocetak;
+                    setNext(false);
+                    setPrev(true);
+            } else if (pocetak + korak == n){
+                setNext(false);
+                setPrev(true);
+            }
+            else{
+                setPrev(true);
+                setNext(true);
+            }
+            for (int messageNumber = n - 1 - pocetak; messageNumber > n - 1 - korak - pocetak;  messageNumber--) {
                 message = messages[messageNumber];
                 messagecontentObject = message.getContent();
 
@@ -115,49 +155,38 @@ public class PregledSvihPoruka implements Serializable{
                         sender = ((InternetAddress) message.getFrom()[0]).getAddress();
                     }
                     subject = message.getSubject();
-
                     multipart = (Multipart) message.getContent();
 
                     List<PrivitakPoruke> privitciPoruke = new ArrayList<PrivitakPoruke>();
                     String tekstPoruke = "";
                     for (int i = 0; i < multipart.getCount(); i++) {
-                        // Retrieve the next part
                         part = multipart.getBodyPart(i);
-
-                        // Get the content type
                         contentType = part.getContentType();
-                        
-                        // Display the content type
+
                         String fileName = "";
                         if (contentType.startsWith("text/plain") || contentType.startsWith("TEXT/PLAIN") ||
                             contentType.startsWith("text/html") || contentType.startsWith("TEXT/HTML")) {
                             tekstPoruke = part.getContent().toString();
                         } else {
-                            // Retrieve the file name
                             fileName = part.getFileName();
                         }
                         PrivitakPoruke privitak = new PrivitakPoruke(i, contentType, part.getSize(), fileName);
                         privitciPoruke.add(privitak);
-
                     }
                     String[] zaglavlje = message.getHeader("Message-ID");
                     porukaID = "";
                     if (zaglavlje != null && zaglavlje.length > 0) {
                         porukaID = zaglavlje[0];
                     }
-
                     Poruka poruka = new Poruka(porukaID, message.getSentDate(), sender, subject, message.getContentType(),
-                            message.getSize(), privitciPoruke.size(), message.getFlags(), privitciPoruke, true, true, tekstPoruke);
-
+                                               message.getSize(), privitciPoruke.size(), message.getFlags(), privitciPoruke, true, true, tekstPoruke);
                     popisPoruka.add(poruka);
                     
                 } else {
                     sender = ((InternetAddress) message.getFrom()[0]).getPersonal();
-
                     if (sender == null) {
                         sender = ((InternetAddress) message.getFrom()[0]).getAddress();
                     }
-
                     subject = message.getSubject();
                     porukaID = "";
                     String[] zaglavlje = message.getHeader("Message-ID");
@@ -165,10 +194,9 @@ public class PregledSvihPoruka implements Serializable{
                         porukaID = zaglavlje[0];
                     }
                      Poruka poruka = new Poruka(porukaID, message.getSentDate(), sender, subject, message.getContentType(),
-                            message.getSize(), 0, message.getFlags(), null, true, true, message.getContent().toString());
+                                                message.getSize(), 0, message.getFlags(), null, true, true, message.getContent().toString());
                      popisPoruka.add(poruka);
                 }
-                
             }
             folder.close(true);
             store.close();
@@ -242,18 +270,32 @@ public class PregledSvihPoruka implements Serializable{
 
             store.connect(emailPosluzitelj, korisnickoIme, lozinka);
             Folder[] f = store.getDefaultFolder().list();
-                for(Folder fd : f)
-                    popisMapa.add(fd.getName());
+            for(Folder fd : f)
+                popisMapa.add(fd.getName());
         } catch (NoSuchProviderException ex) {
             Logger.getLogger(PregledSvihPoruka.class.getName()).log(Level.SEVERE, null, ex);
         } catch (MessagingException ex) {
             Logger.getLogger(PregledSvihPoruka.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
+    public String prethodnaStranica(){
+        pocetak = pocetak - stranicenje;
+        preuzmiPoruke(pocetak, stranicenje);
+        setBrojPoruka(popisPoruka.size());
+        return "";
+    }
+    
+    public String slijedecaStranica(){
+        pocetak = pocetak + stranicenje;
+        preuzmiPoruke(pocetak, stranicenje);
+        setBrojPoruka(popisPoruka.size());
+        return "";
+    }
+    
     public List<Poruka> getPopisPoruka() {
-        popisPoruka.clear();
-        preuzmiPoruke();
+        preuzmiPoruke(pocetak, stranicenje);
+        setBrojPoruka(popisPoruka.size());
         return popisPoruka;
     }
 
@@ -276,5 +318,45 @@ public class PregledSvihPoruka implements Serializable{
     public void setPorukaID(String porukaID) {
         this.porukaID = porukaID;
     }
-    
+
+    public int getPocetak() {
+        return pocetak;
+    }
+
+    public void setPocetak(int pocetak) {
+        this.pocetak = pocetak;
+    }
+
+    public int getBrojPoruka() {
+        return brojPoruka;
+    }
+
+    public void setBrojPoruka(int brojPoruka) {
+        this.brojPoruka = brojPoruka;
+    }
+
+    public boolean isNext() {
+        return next;
+    }
+
+    public void setNext(boolean next) {
+        this.next = next;
+    }
+
+    public boolean isPrev() {
+        return prev;
+    }
+
+    public void setPrev(boolean prev) {
+        this.prev = prev;
+    }
+
+    public boolean isPraznaMapa() {
+        return praznaMapa;
+    }
+
+    public void setPraznaMapa(boolean praznaMapa) {
+        this.praznaMapa = praznaMapa;
+    }
+
 }

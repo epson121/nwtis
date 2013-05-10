@@ -15,13 +15,22 @@ import org.foi.nwtis.lurajcevi.web.kontrole.Poruka;
 public class PregledPoruke {
     
     private Poruka poruka;
-
+    private boolean multipart;
+    
     public PregledPoruke() {
     }
 
     public Poruka getPoruka() {
-        PregledSvihPoruka psp = (PregledSvihPoruka) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("pregledSvihPoruka");
+        PregledSvihPoruka psp = (PregledSvihPoruka) FacesContext.getCurrentInstance()
+                                                    .getExternalContext()
+                                                    .getSessionMap()
+                                                    .get("pregledSvihPoruka");
         poruka = psp.getOdabranaPoruka();
+        if (poruka.getBrojPrivitaka() > 0){
+            setMultipart(true);
+        } else{
+            setMultipart(false);
+        }
         return poruka;
     }
 
@@ -32,4 +41,13 @@ public class PregledPoruke {
     public String povratakPregledSvihPoruka(){
         return "OK";
     }
+
+    public boolean isMultipart() {
+        return multipart;
+    }
+
+    public void setMultipart(boolean multipart) {
+        this.multipart = multipart;
+    }
+    
 }

@@ -26,12 +26,13 @@ public class SlanjePoruke {
     
     private String emailPosluzitelj;
     private String korisnickoIme;
-    
     private String posiljateljPoruke;
     private String primateljPoruke;
     private String predmetPoruke;
     private String tipPoruke;
     private String poruka;
+    private boolean uspjesnoPoslano;
+    private boolean neuspjesnoPoslano;
     
     public SlanjePoruke() {
         EmailPovezivanje ep = (EmailPovezivanje)  FacesContext
@@ -44,6 +45,14 @@ public class SlanjePoruke {
     }
     
     public String saljiPoruku(){
+            
+        if (this.emailPosluzitelj.equals("") || getPosiljateljPoruke().equals("")
+                || getPrimateljPoruke().equals("") || getPredmetPoruke().equals("")){
+            setNeuspjesnoPoslano(true);
+            setUspjesnoPoslano(false);
+            return "NOT_OK";
+        }
+        
         try {
             Date d = new Date();
             String id = d + "." + d.getTime();
@@ -58,14 +67,19 @@ public class SlanjePoruke {
             Address[] toAddresses = InternetAddress.parse(getPrimateljPoruke());
             message.setRecipients(Message.RecipientType.TO,toAddresses);
             message.setHeader("Message-ID", id);
+            message.setSentDate(new Date());
             message.setSubject(getPredmetPoruke());
             message.setText(getPoruka());
             Transport.send(message);
 
         } catch (MessagingException ex) {
             Logger.getLogger(SlanjePoruke.class.getName()).log(Level.SEVERE, null, ex);
+            setNeuspjesnoPoslano(true);
+            setUspjesnoPoslano(false);
             return "NOT_OK";
         } 
+        setNeuspjesnoPoslano(false);
+        setUspjesnoPoslano(true);
         return "OK";
     }    
 
@@ -108,5 +122,21 @@ public class SlanjePoruke {
     public void setPoruka(String poruka) {
         this.poruka = poruka;
     } 
+
+    public boolean isUspjesnoPoslano() {
+        return uspjesnoPoslano;
+    }
+
+    public void setUspjesnoPoslano(boolean uspjesnoPoslano) {
+        this.uspjesnoPoslano = uspjesnoPoslano;
+    }
+
+    public boolean isNeuspjesnoPoslano() {
+        return neuspjesnoPoslano;
+    }
+
+    public void setNeuspjesnoPoslano(boolean neuspjesnoPoslano) {
+        this.neuspjesnoPoslano = neuspjesnoPoslano;
+    }
     
 }

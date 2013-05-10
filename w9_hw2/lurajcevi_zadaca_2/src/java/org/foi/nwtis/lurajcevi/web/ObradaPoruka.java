@@ -35,7 +35,9 @@ import org.foi.nwtis.lurajcevi.konfiguracije.Konfiguracija;
 import org.foi.nwtis.lurajcevi.konfiguracije.bp.BP_Konfiguracija;
 
 /**
- *
+ * Klasa koja obavlja posao spajanja na email server (James) u određenom
+ * vremenskom intervalu te sortira pronađene email poruke po navedenim kriterijima
+ * Također i u svakoj iteraciji provjere, šalje email poruku sa statistickim podacima
  * @author Luka Rajcevic
  */
 public class ObradaPoruka extends Thread {

@@ -1,22 +1,22 @@
 .tablica {
     border: 1px solid firebrick;
-    background-color: salmon;
+    background-color: cornflowerblue;
     width: 95%;
 }
 .zaglavlje {
-    background-color: moccasin;
+    background-color: appworkspace;
     font-weight: bold;
 }
 .parni {
-    background-color: oldlace;    
+    background-color: activeborder;    
     text-indent: 5px;
 }
 .neparni {
-    background-color: whitesmoke;
+    background-color: #b2c8e5;
     text-indent: 5px;
 }
 .gumb {
-    background-color: indianred;
+    background-color: darkgray;
     color: ivory;
     border: 1px solid firebrick;
 }

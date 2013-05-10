@@ -2,10 +2,8 @@
 package org.foi.nwtis.lurajcevi.web.zrna;
 
 import java.io.Serializable;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 import org.foi.nwtis.lurajcevi.web.slusaci.SlusacAplikacije;
 
 /**
@@ -19,13 +17,12 @@ public class EmailPovezivanje implements Serializable {
     private String emailPosluzitelj = SlusacAplikacije.config.dajPostavku("emailPosluzitelj");
     private String korisnickoIme = SlusacAplikacije.config.dajPostavku("username");
     private String lozinka = SlusacAplikacije.config.dajPostavku("password");
-    
+    private boolean nevaljaniPodaci = false;
     public EmailPovezivanje() {
         
     }
     
     public boolean provjeriPodatke(){
-        System.out.println("EP: " + getEmailPosluzitelj());
         if (   getEmailPosluzitelj().equals(SlusacAplikacije.config.dajPostavku("emailPosluzitelj")) 
             && getKorisnickoIme().equals(SlusacAplikacije.config.dajPostavku("username"))
             && getLozinka().equals(SlusacAplikacije.config.dajPostavku("password"))){
@@ -37,19 +34,21 @@ public class EmailPovezivanje implements Serializable {
     
     public String saljiPoruku(){
         if (provjeriPodatke()){
+            setNevaljaniPodaci(false);
             return "OK";
         } 
         else {
-                return null;
+            setNevaljaniPodaci(true);
+            return null;
         }
     }
     
     public String citajPoruke(){
-        FacesContext facesContext = FacesContext.getCurrentInstance();
         if (provjeriPodatke()){
+            setNevaljaniPodaci(false);
             return "OK";
         } else{
-            facesContext.addMessage(null, new FacesMessage("Username or password is incorrect"));
+            setNevaljaniPodaci(true);
             return null;
         }
     }
@@ -78,5 +77,15 @@ public class EmailPovezivanje implements Serializable {
     public void setLozinka(String lozinka) {
         this.lozinka = lozinka;
     }
+
+    public boolean getNevaljaniPodaci() {
+        return nevaljaniPodaci;
+    }
+
+    public void setNevaljaniPodaci(boolean nevaljaniPodaci) {
+        this.nevaljaniPodaci = nevaljaniPodaci;
+    }
+
+  
     
 }

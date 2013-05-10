@@ -5,9 +5,11 @@
       xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
         <title>#{m.pregledPoruke_naslov}</title>
+        <h:outputStylesheet library="css" name="osnovna.css" />
     </h:head>
     <h:body>
-            <h:panelGrid columns="2" border="1">
+            <h:panelGrid columns="2" border="1" class="tablica" headerClass="zaglavlje"
+                         rowClasses="neparni,parni">
                 <h:column>
                     <h:outputText value="#{m.pregledPoruke_id}"/>
                 </h:column>
@@ -32,10 +34,11 @@
                 <h:column>
                     <h:outputText value="#{pregledPoruke.poruka.tekstPoruke}"/>
                 </h:column>
-                <h:column>
+                <h:column rendered="#{pregledPoruke.multipart}">
                     <h:outputText value="#{m.pregledPoruke_privitci}"/>
                 </h:column>            
-                <h:dataTable value="#{pregledPoruke.poruka.privitciPoruke}" var="p" border="1">
+                <h:dataTable value="#{pregledPoruke.poruka.privitciPoruke}" var="p" border="1" 
+                             rendered="#{pregledPoruke.multipart}">
                     <h:column>
                         <f:facet name="header">#{m.pregledPoruke_privitciVrsta}</f:facet>
                         <h:outputText value="#{p.vrsta}"/>
