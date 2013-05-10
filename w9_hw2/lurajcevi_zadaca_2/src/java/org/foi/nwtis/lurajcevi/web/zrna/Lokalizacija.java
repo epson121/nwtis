@@ -11,34 +11,64 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 /**
- *
+ * Klasa koja postavlja odabranu lokalizaciju za cijelu aplikaciju
+ * Koristi se odabrani radio gumb
  * @author Luka Rajcevic
  */
 @ManagedBean(name = "lokalizacija")
 @SessionScoped
 public class Lokalizacija implements Serializable{
-
+    /*******************************
+     * VARIJABLE
+     * ****************************
+     */
     private Map<String, Object> jezici;
     private String odabraniJezik;
     private Locale odabraniLocale;
-
+    private Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
+    
+    /*******************************
+     * KONSTRUKTOR
+     * ****************************
+     */
+    
+     /**
+      * Konstruktor lokalizacije
+      */
     public Lokalizacija() {
         jezici = new HashMap<String, Object>();
         jezici.put("Hrvatski", new Locale("hr"));
         jezici.put("English", Locale.ENGLISH);
         jezici.put("Deutsch", Locale.GERMAN);
     }
-
+    
+     /********************************
+     * POMOĆNE METODE
+     * ******************************
+     */
+    
+    /**
+     * Metoda koja se poziva nakon odabira jezika iz ponude radio gumbova
+     * postavlja lokalizaciju na razini cijele aplikacije (na razini sesije)
+     * @return "OK"
+     * @throws IOException 
+     */
     public Object odaberiJezik() throws IOException {
         for (Map.Entry<String, Object> entry : jezici.entrySet()) {
             if (entry.getValue().toString().equals(odabraniJezik)) {
+                
                 FacesContext.getCurrentInstance()
                         .getViewRoot().setLocale((Locale) entry.getValue());
             }
         }
         return "OK";
     }
-
+    
+     /********************************
+     * GETTERI I SETTERI
+     * ******************************
+     */
+    
     public Map<String, Object> getJezici() {
         return jezici;
     }
@@ -62,5 +92,11 @@ public class Lokalizacija implements Serializable{
     public void setOdabraniLocale(Locale odabraniLocale) {
         this.odabraniLocale = odabraniLocale;
     }
+
+    public Locale getLocale() {
+        return locale;
+    }
+    
+    
     
 }

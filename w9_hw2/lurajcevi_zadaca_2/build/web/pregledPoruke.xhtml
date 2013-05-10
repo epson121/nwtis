@@ -3,60 +3,60 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
-    <h:head>
-        <title>#{m.pregledPoruke_naslov}</title>
-        <h:outputStylesheet library="css" name="osnovna.css" />
-    </h:head>
-    <h:body>
-            <h:panelGrid columns="2" border="1" class="tablica" headerClass="zaglavlje"
-                         rowClasses="neparni,parni">
-                <h:column>
-                    <h:outputText value="#{m.pregledPoruke_id}"/>
-                </h:column>
-                <h:column>
-                    <h:outputText value="#{pregledPoruke.poruka.id}"/>
-                </h:column>
-                <h:column>
-                    <h:outputText value="#{m.pregledPoruke_Salje}"/>
-                </h:column>
-                <h:column>
-                    <h:outputText value="#{pregledPoruke.poruka.salje}"/>
-                </h:column>
-                <h:column>
-                    <h:outputText value="#{m.pregledPoruke_Predmet}"/>
-                </h:column>
-                <h:column>
-                    <h:outputText value="#{pregledPoruke.poruka.predmet}"/>
-                </h:column>
-                 <h:column>
-                     <h:outputText value="#{m.pregledPoruke_tekstPoruke}"/>
-                </h:column>
-                <h:column>
-                    <h:outputText value="#{pregledPoruke.poruka.tekstPoruke}"/>
-                </h:column>
-                <h:column rendered="#{pregledPoruke.multipart}">
-                    <h:outputText value="#{m.pregledPoruke_privitci}"/>
-                </h:column>            
-                <h:dataTable value="#{pregledPoruke.poruka.privitciPoruke}" var="p" border="1" 
-                             rendered="#{pregledPoruke.multipart}">
+        <h:head>
+            <title>#{m.pregledPoruke_naslov}</title>
+            <h:outputStylesheet library="css" name="osnovna.css" />
+        </h:head>
+        <h:body>
+                <h:panelGrid columns="2" border="1" class="tablica" headerClass="zaglavlje"
+                             rowClasses="neparni,parni">
                     <h:column>
-                        <f:facet name="header">#{m.pregledPoruke_privitciVrsta}</f:facet>
-                        <h:outputText value="#{p.vrsta}"/>
+                        <h:outputText value="#{m.pregledPoruke_id}"/>
                     </h:column>
                     <h:column>
-                        <f:facet name="header">#{m.pregledPoruke_privitciVelicina}</f:facet>
-                        <h:outputText value="#{p.velicina}"/>
+                        <h:outputText value="#{pregledPoruke.poruka.id}"/>
                     </h:column>
                     <h:column>
-                        <f:facet name="header">#{m.pregledPoruke_privitciDatoteka}</f:facet>
-                        <h:outputText value="#{p.datoteka}"/>
+                        <h:outputText value="#{m.pregledPoruke_Salje}"/>
                     </h:column>
-                </h:dataTable>
-            </h:panelGrid>
-        <h:form>
-        <h:commandButton value="#{m.pregledPoruke_pregledSvihPoruke}" 
-                         action="#{pregledPoruke.povratakPregledSvihPoruka()}"/>
-        </h:form>
-    </h:body>
+                    <h:column>
+                        <h:outputText value="#{pregledPoruke.poruka.salje}"/>
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="#{m.pregledPoruke_Predmet}"/>
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="#{pregledPoruke.poruka.predmet}"/>
+                    </h:column>
+                     <h:column>
+                         <h:outputText value="#{m.pregledPoruke_tekstPoruke}"/>
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="#{pregledPoruke.poruka.tekstPoruke}"/>
+                    </h:column>
+                    <h:column rendered="#{pregledPoruke.multipart}">
+                        <h:outputText value="#{m.pregledPoruke_privitci}"/>
+                    </h:column>            
+                    <h:dataTable value="#{pregledPoruke.poruka.privitciPoruke}" var="p" border="1" 
+                                 rendered="#{pregledPoruke.multipart}">
+                        <h:column>
+                            <f:facet name="header">#{m.pregledPoruke_privitciVrsta}</f:facet>
+                            <h:outputText value="#{p.vrsta}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">#{m.pregledPoruke_privitciVelicina}</f:facet>
+                            <h:outputText value="#{p.velicina}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">#{m.pregledPoruke_privitciDatoteka}</f:facet>
+                            <h:outputText value="#{p.datoteka}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGrid>
+            <h:form>
+            <h:commandButton value="#{m.pregledPoruke_pregledSvihPoruke}" 
+                             action="#{pregledPoruke.povratakPregledSvihPoruka()}"/>
+            </h:form>
+        </h:body>
 </html>
 

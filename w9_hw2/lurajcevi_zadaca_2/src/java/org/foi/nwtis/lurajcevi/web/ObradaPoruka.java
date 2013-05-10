@@ -41,6 +41,11 @@ import org.foi.nwtis.lurajcevi.konfiguracije.bp.BP_Konfiguracija;
  * @author Luka Rajcevic
  */
 public class ObradaPoruka extends Thread {
+    
+    /*******************************
+     * VARIJABLE
+     * ****************************
+     */
 
     private BP_Konfiguracija bpKonf;
     private Konfiguracija config;
@@ -85,7 +90,10 @@ public class ObradaPoruka extends Thread {
     private static int brojPreuzetihDatoteka;
     
     /**
-     * Constructor za ObradaPoruka
+     * 
+     * @param config referenca na konfiguraciju
+     * @param bpKonf referenca na bp konfigraciju
+     * @param resourcesPath putanja do WEB-INF foldera za spremanje slika u galerije
      */
     public ObradaPoruka(Konfiguracija config, BP_Konfiguracija bpKonf,
                         String resourcesPath) {
@@ -122,7 +130,12 @@ public class ObradaPoruka extends Thread {
     public synchronized void start() {
         super.start();
     }
-
+    
+    /**
+     * Pokrece dretvu koja kontaktira email server i obavlja sortiranje poruka
+     * prema uputama navedenim u zadatku. Na kraju svakog ciklusa se salje mail sa 
+     * statistikom stanja poruka u mapama
+     */
     @Override
     public void run() {
         
@@ -314,8 +327,12 @@ public class ObradaPoruka extends Thread {
                                      "\nBroj ispravnih poruka: " + brojIspravnihPoruka +
                                      "\nBroj neispravnih poruka: " + brojNeispravnihPoruka + 
                                      "\nBroj ostalih poruka: " + brojOstalihPoruka + 
-                                     "\nBroj preuzetih datoteka: ";
+                                     "\nBroj preuzetih datoteka: " + brojPreuzetihDatoteka;
                 ukupanBrojPoruka = 0;
+                brojIspravnihPoruka = 0;
+                brojNeispravnihPoruka = 0;
+                brojOstalihPoruka = 0;
+                brojPreuzetihDatoteka = 0;
                 //saljiPoruku("server", nwtis_porukaAdresa, nwtis_porukaPredmet, tekstPoruke, session, store);
                 if (folder.isOpen())
                     folder.close(true);
@@ -341,6 +358,10 @@ public class ObradaPoruka extends Thread {
 
     }
     
+    /**
+     * Pomocna metoda, sluzi za brisanje poruka iz svih mapa
+     * Ne koristi se u zadaci, ali je bila korisna prilikom testiranja i debugiranja
+     */
     public void deleteAllMessages(){
         
         Session session;
@@ -384,19 +405,28 @@ public class ObradaPoruka extends Thread {
     public void interrupt() {
         super.interrupt();
     }
-
-    public BP_Konfiguracija getBpKonf() {
-        return bpKonf;
-    }
-
-    public void setBpKonf(BP_Konfiguracija bpKonf) {
-        this.bpKonf = bpKonf;
-    }
-
+    
+    /********************************
+     * POMOĆNE METODE
+     * ******************************
+     */
+    
+    /**
+     * Metoda koja ispisuje string dobiven u parametru na standardni izlaz
+     * @param data string koji se ispisuje
+     */
     private void printData(String data) {
         System.out.println(data);
     }
     
+    /**
+     * Metoda koja provjerava text/plain sadržaj email poruke uz pomoć regexa.
+     * Ukoliko sadržaj odgovara vraćaju se korisničko ime, lozinka i putanja do galerije
+     * @param e1 string koji sadrži USER liniju
+     * @param e2 string koji sadrži PASSWORD liniju
+     * @param e3 string koji sadrži GALERY liniju
+     * @return null ili listu s imenom korisnika, lozinkom i nazivom galerije
+     */
     private String[] isMatchingRegex(String e1, String e2, String e3 ){
         Pattern p1 = Pattern.compile(regUser);
         Matcher m1 = p1.matcher(e1.trim());
@@ -412,6 +442,12 @@ public class ObradaPoruka extends Thread {
         return null;
     }
     
+    /**
+     * Provjerava korisnicko ime i lozinku dobivene u parametrima unutar baze
+     * @param username korisnicko ime
+     * @param password lozinka
+     * @return true ili false
+     */
     private boolean verifyInDatabase(String username, String password){
         String upit = "SELECT kor_ime, lozinka FROM polaznici";
         String url = bpKonf.getServer_database() + bpKonf.getUser_database();
@@ -448,7 +484,15 @@ public class ObradaPoruka extends Thread {
         }
         return false;
     }
-    
+    /**
+     * prima sve potrebne argumente za slanje email poruke
+     * @param from - posiljatelj
+     * @param to - primatelj
+     * @param subject - naslov
+     * @param msg - tekst poruke
+     * @param session - sesija koja salje poruku
+     * @param store  - store koji salje poruku
+     */
      public void saljiPoruku(String from, String to, String subject, String msg, Session session, Store store){
         try {
 
@@ -473,4 +517,17 @@ public class ObradaPoruka extends Thread {
         } catch (MessagingException ex) {
         } 
     }    
+    
+    /********************************
+     * GETTERI I SETTERI
+     * ******************************
+     */
+    public BP_Konfiguracija getBpKonf() {
+        return bpKonf;
+    }
+
+    public void setBpKonf(BP_Konfiguracija bpKonf) {
+        this.bpKonf = bpKonf;
+    }
+ 
 }

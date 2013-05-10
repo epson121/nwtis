@@ -1,0 +1,20 @@
+#NWTIS konfiguracija
+#Thu May 01 12:18:30 CET 2013
+
+emailPosluzitelj=localhost
+emailPort=143
+username=lurajcevi@nwtis.nastava.foi.hr
+password=123456
+trazeniPredmet=poruka
+interval=60
+
+NWTiS_galerije=galerije
+NWTiS_OstalePoruke=NWTiS_OstalePoruke
+NWTiS_IspravnePoruke=NWTiS_IspravnePoruke
+NWTiS_NeispravnePoruke=NWTiS_NeispravnePoruke
+
+NWTiS_PorukaAdresa=lurajcevi@nwtis.nastava.foi.hr
+NWTiS_PorukaPredmet=Statistika poruka
+NWTiS_PorukaPoslanaMapa=Poslano
+
+stranicenje = 3

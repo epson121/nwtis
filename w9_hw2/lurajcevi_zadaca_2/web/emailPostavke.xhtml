@@ -3,26 +3,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
-    <h:head>
-        <title>${m.emailPostavke_naslov}</title>
-    </h:head>
-    <h:body>
-        <h1>${m.emailPostavke_naslov}</h1>
-        <h:form id="emailPostavke">
-            <h:outputText value="#{m.emailPostavke_emailPosluzitelj}" /><br/>
-            <h:inputText value="#{emailPostavke.emailPosluzitelj}" /> <br/>
-            <h:outputText value="#{m.emailPostavke_korisnik}" /><br/>
-            <h:inputText  value="#{emailPostavke.korisnickoIme}" /> <br/>
-            <h:outputText value="#{m.emailPostavke_lozinka}" /><br/>
-            <h:inputText  value="#{emailPostavke.lozinka}" /><br/>
-            <h:commandButton value="#{m.emailPostavke_prikazPoruka}" action="#{emailPostavke.citajPoruke()}"/>
-            <h:commandButton value="#{m.emailPostavke_slanjePoruke}" action="#{emailPostavke.saljiPoruku()}"/>
-            <br/><br/>
-            <h:outputText  style="color: red; font-weight: bold" value="#{m.emailPostavke_pogresniPodaci}" rendered="#{emailPostavke.nevaljaniPodaci}" />
-        </h:form>
-    </h:body><br/>
-    <h:outputLink  value="#{'index.xhtml'}">
-        <f:verbatim>#{m.emailPostavke_odabirJezika}</f:verbatim>
-    </h:outputLink>
+        <h:head>
+            <title>${m.emailPostavke_naslov}</title>
+        </h:head>
+        <h:body>
+            <h1>${m.emailPostavke_naslov}</h1>
+            <h:form id="emailPostavke">
+                <h:outputText value="#{m.emailPostavke_emailPosluzitelj}" /><br/>
+                <h:inputText id ="epos" value="#{emailPostavke.emailPosluzitelj}" required="true" validator="#{emailPostavke.provjeriPrazno}"/> 
+                <h:message for="epos" style="color:red; font-weight: bold;" /><br/>
+                <h:outputText value="#{m.emailPostavke_korisnik}" /><br/>
+                <h:inputText  id ="eime" value="#{emailPostavke.korisnickoIme}" validator="#{emailPostavke.provjeriMail}"/> 
+                <h:message for="eime" style="color:red; font-weight: bold;" /><br/>
+                <h:outputText value="#{m.emailPostavke_lozinka}" /><br/>
+                <h:inputText id="elozinka"   value="#{emailPostavke.lozinka}" validator="#{emailPostavke.provjeriPrazno}"/>
+                <h:message for="elozinka" style="color:red; font-weight: bold;" /><br/>
+                <h:commandButton value="#{m.emailPostavke_prikazPoruka}" action="#{emailPostavke.citajPoruke()}"/>
+                <h:commandButton value="#{m.emailPostavke_slanjePoruke}" action="#{emailPostavke.saljiPoruku()}"/>
+                <br/><br/>
+                <h:outputText  style="color: red; font-weight: bold" value="#{m.emailPostavke_pogresniPodaci}" rendered="#{emailPostavke.nevaljaniPodaci}" />
+            </h:form>
+        </h:body><br/>
+        <h:outputLink  value="#{'index.xhtml'}">
+            <f:verbatim>#{m.emailPostavke_odabirJezika}</f:verbatim>
+        </h:outputLink>
 </html>
 

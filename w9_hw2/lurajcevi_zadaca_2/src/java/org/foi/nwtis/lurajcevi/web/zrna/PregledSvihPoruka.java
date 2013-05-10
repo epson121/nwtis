@@ -28,16 +28,22 @@ import org.foi.nwtis.lurajcevi.web.kontrole.PrivitakPoruke;
 import org.foi.nwtis.lurajcevi.web.slusaci.SlusacAplikacije;
 
 /**
- *
+ * Klasa (managed bean) koji služi za prikaz svih poruka ovisno o odabranoj 
+ * mapi iz popisa
  * @author Luka Rajcevic
  */
 @ManagedBean(name = "pregledSvihPoruka")
 @SessionScoped
 public class PregledSvihPoruka implements Serializable{
+    
+    
+    /*******************************
+     * VARIJABLE
+     * ****************************
+     */
     private String emailPosluzitelj;
     private String korisnickoIme;
     private String lozinka;
-    
     private List<Poruka> popisPoruka = new ArrayList<Poruka>();
     private Poruka odabranaPoruka;
     private String porukaID;
@@ -48,6 +54,16 @@ public class PregledSvihPoruka implements Serializable{
     private boolean praznaMapa = true;
     
     
+    /*******************************
+     * KONSTRUKTOR
+     * ****************************
+     */
+    
+    
+    /**
+     * KOnstruktor za pregled svih poruka
+     * Dohvaća potrebne podatke iz drugih beanova
+     */
     public PregledSvihPoruka() {
         EmailPovezivanje ep = (EmailPovezivanje)  FacesContext
                                                  .getCurrentInstance()
@@ -60,6 +76,16 @@ public class PregledSvihPoruka implements Serializable{
         stranicenje = Integer.parseInt(SlusacAplikacije.config.dajPostavku("stranicenje"));
     }
     
+     /********************************
+     * POMOĆNE METODE
+     * ******************************
+     */
+    /**
+     * Sluzi za navigaciju na stranicu za pregled pojedine poruke
+     * @return OK - ukoliko je poruka pronađena, ERROR ukoliko poruka ne postoji,
+     * inače NOT_OK
+     * 
+     */
     public String pregledPoruke(){
         odabranaPoruka = null;
         for(Poruka p : popisPoruka) {
@@ -74,13 +100,22 @@ public class PregledSvihPoruka implements Serializable{
         }
         return "NOT_OK";
     }
-    
+    /**
+     * sluzi za odabir mape i prikupljanje poruka iz pojedine mape
+     * @return 
+     */
     public String odaberiMapu(){
         pocetak = 0;
         getPopisPoruka();
         return "";
     }
     
+    /**
+     * sluzi za preuzimanje poruka iz odabrane mape. Preuzimaju se najsviježije poruke
+     * i to broj određen konfiguracijom (radi straničenja). 
+     * @param pocetak - broj početne poruke 
+     * @param korak - broj poruka koji se treba prikupiti
+     */
     private void preuzmiPoruke(int pocetak, int korak) {
         Session session = null;
         Store store = null;
@@ -216,7 +251,58 @@ public class PregledSvihPoruka implements Serializable{
             e.printStackTrace();
         }
     }
+    
+    /**
+     * Metoda koja prolazi kroz popis svih mapa u mail serveru i dodaje 
+     * ih u listu svih mapa
+     */
+    public void dohvatiMape(){
+        popisMapa = new ArrayList<String>();
+        try {
+            Session session = null;
+            Store store = null;
+            
+            session = Session.getDefaultInstance(System.getProperties(), null);
+            store = session.getStore("imap");
 
+            store.connect(emailPosluzitelj, korisnickoIme, lozinka);
+            Folder[] f = store.getDefaultFolder().list();
+            for(Folder fd : f)
+                popisMapa.add(fd.getName());
+        } catch (NoSuchProviderException ex) {
+            Logger.getLogger(PregledSvihPoruka.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MessagingException ex) {
+            Logger.getLogger(PregledSvihPoruka.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    /**
+     * Metoda za dohvaćanje prethodne stranice u popisu poruka
+     * @return ""
+     */
+    public String prethodnaStranica(){
+        pocetak = pocetak - stranicenje;
+        preuzmiPoruke(pocetak, stranicenje);
+        setBrojPoruka(popisPoruka.size());
+        return "";
+    }
+    
+    /**
+     * Metoda za dohvaćanje slijedeće stranice u popisu poruka
+     * @return ""
+     */
+    public String slijedecaStranica(){
+        pocetak = pocetak + stranicenje;
+        preuzmiPoruke(pocetak, stranicenje);
+        setBrojPoruka(popisPoruka.size());
+        return "";
+    }
+    
+    /********************************
+     * GETTERI I SETTERI
+     * ******************************
+     */
+    
     public String getEmailPosluzitelj() {
         return emailPosluzitelj;
     }
@@ -259,39 +345,6 @@ public class PregledSvihPoruka implements Serializable{
         this.popisMapa = popisMapa;
     }
     
-    public void dohvatiMape(){
-        popisMapa = new ArrayList<String>();
-        try {
-            Session session = null;
-            Store store = null;
-            
-            session = Session.getDefaultInstance(System.getProperties(), null);
-            store = session.getStore("imap");
-
-            store.connect(emailPosluzitelj, korisnickoIme, lozinka);
-            Folder[] f = store.getDefaultFolder().list();
-            for(Folder fd : f)
-                popisMapa.add(fd.getName());
-        } catch (NoSuchProviderException ex) {
-            Logger.getLogger(PregledSvihPoruka.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (MessagingException ex) {
-            Logger.getLogger(PregledSvihPoruka.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    public String prethodnaStranica(){
-        pocetak = pocetak - stranicenje;
-        preuzmiPoruke(pocetak, stranicenje);
-        setBrojPoruka(popisPoruka.size());
-        return "";
-    }
-    
-    public String slijedecaStranica(){
-        pocetak = pocetak + stranicenje;
-        preuzmiPoruke(pocetak, stranicenje);
-        setBrojPoruka(popisPoruka.size());
-        return "";
-    }
     
     public List<Poruka> getPopisPoruka() {
         preuzmiPoruke(pocetak, stranicenje);
