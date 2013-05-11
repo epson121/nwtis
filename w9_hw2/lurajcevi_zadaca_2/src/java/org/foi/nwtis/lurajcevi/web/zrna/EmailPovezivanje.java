@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.faces.application.FacesMessage;
@@ -85,8 +86,16 @@ public class EmailPovezivanje implements Serializable {
         }
     }
     
-     public void provjeriMail (FacesContext context, UIComponent component, Object value) {
-        
+    /**
+     * Sluzi za provjeru valjanosti email adrese. Ukoliko je adresa u nevaljanom formatu
+     * ispisuje se poruka o grešci. Kao argumente prima reference na objekt iz forme
+     * i vrijednost unesenog polja
+     * @param context
+     * @param component
+     * @param value 
+     */
+    public void provjeriMail (FacesContext context, UIComponent component, Object value) {
+        Locale l = FacesContext.getCurrentInstance().getViewRoot().getLocale();
         String email = (String) value;
          
         p = Pattern.compile(mailRegex);
@@ -94,22 +103,47 @@ public class EmailPovezivanje implements Serializable {
         if (!m.matches()){
             FacesMessage message = new FacesMessage();
             message.setSeverity(FacesMessage.SEVERITY_ERROR);
-            message.setSummary("Email nije ispravan.");
-            message.setDetail("Email nije ispravan.");
+            if (l.equals(Locale.ENGLISH)){
+                message.setSummary("Email field not properly formatted.");
+                message.setDetail("Email field not properly formatted.");
+            } else if (l.equals(Locale.GERMAN)){
+                message.setSummary("Feld E-Mail nicht richtig formatiert.");
+                message.setDetail("Feld E-Mail nicht richtig formatiert.");
+            }else {
+                message.setSummary("Email nije ispravan.");
+                message.setDetail("Email nije ispravan.");
+            }
             context.addMessage(null, message);
             throw new ValidatorException(message);
         }
     }
     
+     /**
+     * Sluzi za provjeru valjanosti unosa u polje. Ukoliko je unos prazan, 
+     * ispisuje se poruka o grešci. Kao argumente prima reference na objekt iz forme
+     * i vrijednost unesenog polja
+     * @param context
+     * @param component
+     * @param value 
+     */
     public void provjeriPrazno (FacesContext context, UIComponent component, Object value) {
-        
+        Locale l = FacesContext.getCurrentInstance().getViewRoot().getLocale();
         String polje = (String) value;
-
+        System.out.println("POLJE: " + polje);
         if (polje.equals("")){
             FacesMessage message = new FacesMessage();
             message.setSeverity(FacesMessage.SEVERITY_ERROR);
-            message.setSummary("Polje ne smije biti prazno.");
-            message.setDetail("Polje ne smije biti prazno.");
+            if (l.equals(Locale.ENGLISH)){
+                message.setSummary("Field can not be empty.");
+                message.setDetail("Field can not be empty.");
+            } else if (l.equals(Locale.GERMAN)){
+                message.setSummary("Feld darf nicht leer sein.");
+                message.setDetail("Feld darf nicht leer sein.");
+            }else {
+                message.setSummary("Polje ne smije biti prazno.");
+                message.setDetail("Polje ne smije biti prazno.");
+            }
+            
             context.addMessage(null, message);
             throw new ValidatorException(message);
         }
@@ -126,13 +160,13 @@ public class EmailPovezivanje implements Serializable {
         String url = SlusacAplikacije.bpKonf.getServer_database() + SlusacAplikacije.bpKonf.getUser_database();
         System.out.println("URL DB: " + url);
         String korisnik = SlusacAplikacije.bpKonf.getUser_username();
-        String lozinka = SlusacAplikacije.bpKonf.getUser_password();
+        String loz = SlusacAplikacije.bpKonf.getUser_password();
         Connection veza = null;
         Statement instr = null;
         ResultSet rs = null;
         String uname = username.split("@")[0];
         try{
-            veza = DriverManager.getConnection(url, korisnik, lozinka);
+            veza = DriverManager.getConnection(url, korisnik, loz);
             instr = veza.createStatement();
             rs = instr.executeQuery(upit);
         

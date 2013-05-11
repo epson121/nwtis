@@ -2,6 +2,7 @@
 package org.foi.nwtis.lurajcevi.web.zrna;
 
 import java.util.Date;
+import java.util.Locale;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -104,8 +105,16 @@ public class SlanjePoruke {
         return "OK";
     }    
     
+    /**
+     * Sluzi za provjeru valjanosti email adrese. Ukoliko je adresa u nevaljanom formatu
+     * ispisuje se poruka o grešci. Kao argumente prima reference na objekt iz forme
+     * i vrijednost unesenog polja
+     * @param context
+     * @param component
+     * @param value 
+     */
     public void provjeriMail (FacesContext context, UIComponent component, Object value) {
-        
+        Locale l = FacesContext.getCurrentInstance().getViewRoot().getLocale();
         String email = (String) value;
          
         p = Pattern.compile(mailRegex);
@@ -113,22 +122,46 @@ public class SlanjePoruke {
         if (!m.matches()){
             FacesMessage message = new FacesMessage();
             message.setSeverity(FacesMessage.SEVERITY_ERROR);
-            message.setSummary("Email nije ispravan.");
-            message.setDetail("Email nije ispravan.");
-            context.addMessage("slanjeForm:msgReceiver", message);
+            if (l.equals(Locale.ENGLISH)){
+                message.setSummary("Email field not properly formatted.");
+                message.setDetail("Email field not properly formatted.");
+            } else if (l.equals(Locale.GERMAN)){
+                message.setSummary("Feld E-Mail nicht richtig formatiert.");
+                message.setDetail("Feld E-Mail nicht richtig formatiert.");
+            }else {
+                message.setSummary("Email nije ispravan.");
+                message.setDetail("Email nije ispravan.");
+            }
+            context.addMessage(null, message);
             throw new ValidatorException(message);
         }
     }
     
+    /**
+     * Sluzi za provjeru valjanosti unosa u polje. Ukoliko je unos prazan, 
+     * ispisuje se poruka o grešci. Kao argumente prima reference na objekt iz forme
+     * i vrijednost unesenog polja
+     * @param context
+     * @param component
+     * @param value 
+     */
     public void provjeriPrazno (FacesContext context, UIComponent component, Object value) {
-        
+        Locale l = FacesContext.getCurrentInstance().getViewRoot().getLocale();
         String polje = (String) value;
 
         if (polje.equals("")){
             FacesMessage message = new FacesMessage();
             message.setSeverity(FacesMessage.SEVERITY_ERROR);
-            message.setSummary("Polje ne smije biti prazno.");
-            message.setDetail("Polje ne smije biti prazno.");
+             if (l.equals(Locale.ENGLISH)){
+                message.setSummary("Field can not be empty.");
+                message.setDetail("Field can not be empty.");
+            } else if (l.equals(Locale.GERMAN)){
+                message.setSummary("Feld darf nicht leer sein.");
+                message.setDetail("Feld darf nicht leer sein.");
+            }else {
+                message.setSummary("Polje ne smije biti prazno.");
+                message.setDetail("Polje ne smije biti prazno.");
+            }
             context.addMessage(null, message);
             throw new ValidatorException(message);
         }

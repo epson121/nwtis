@@ -6,11 +6,12 @@
         <h:head>
             <title>${m.emailPostavke_naslov}</title>
         </h:head>
+    <f:view locale="#{lokalizacija.odabraniLocale}">
         <h:body>
             <h1>${m.emailPostavke_naslov}</h1>
             <h:form id="emailPostavke">
                 <h:outputText value="#{m.emailPostavke_emailPosluzitelj}" /><br/>
-                <h:inputText id ="epos" value="#{emailPostavke.emailPosluzitelj}" required="true" validator="#{emailPostavke.provjeriPrazno}"/> 
+                <h:inputText id ="epos" value="#{emailPostavke.emailPosluzitelj}" validator="#{emailPostavke.provjeriPrazno}"/> 
                 <h:message for="epos" style="color:red; font-weight: bold;" /><br/>
                 <h:outputText value="#{m.emailPostavke_korisnik}" /><br/>
                 <h:inputText  id ="eime" value="#{emailPostavke.korisnickoIme}" validator="#{emailPostavke.provjeriMail}"/> 
@@ -27,5 +28,6 @@
         <h:outputLink  value="#{'index.xhtml'}">
             <f:verbatim>#{m.emailPostavke_odabirJezika}</f:verbatim>
         </h:outputLink>
+    </f:view>
 </html>
 

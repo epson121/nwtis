@@ -7,7 +7,7 @@
             <title>#{m.pregledSvihPoruka_naslov}</title>
             <h:outputStylesheet library="css" name="osnovna.css" />
         </h:head>
-
+     <f:view locale="#{lokalizacija.odabraniLocale}">
         <h:body>
             <h:form>
                 <h:selectOneListbox value="#{pregledSvihPoruka.odabranaMapa}">
@@ -53,8 +53,8 @@
                 <h:commandButton rendered="#{pregledSvihPoruka.next}" value="#{m.pregledSvihPoruka_slijedecaStranica}" action="#{pregledSvihPoruka.slijedecaStranica}" />
             </h:form>
             <br/>
-            <h:link outcome="emailPostavke" value="Postavke za email"/><br/>
-
+            <h:link outcome="emailPostavke" value="#{m.pregledSvihPoruka_postavkeZaEmail}"/><br/>
         </h:body>
+     </f:view>
 </html>
 

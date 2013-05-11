@@ -48,7 +48,7 @@ public class PregledSvihPoruka implements Serializable{
     private Poruka odabranaPoruka;
     private String porukaID;
     private List<String> popisMapa;
-    private String odabranaMapa = "inbox";
+    private String odabranaMapa = "INBOX";
     private int pocetak = 0, stranicenje, brojPoruka = 0;
     private boolean next = false, prev = false;
     private boolean praznaMapa = true;
@@ -74,6 +74,7 @@ public class PregledSvihPoruka implements Serializable{
         this.korisnickoIme = ep.getKorisnickoIme();
         this.lozinka = ep.getLozinka();
         stranicenje = Integer.parseInt(SlusacAplikacije.config.dajPostavku("stranicenje"));
+        preuzmiPoruke(pocetak, stranicenje);
     }
     
      /********************************
@@ -201,7 +202,7 @@ public class PregledSvihPoruka implements Serializable{
                         String fileName = "";
                         if (contentType.startsWith("text/plain") || contentType.startsWith("TEXT/PLAIN") ||
                             contentType.startsWith("text/html") || contentType.startsWith("TEXT/HTML")) {
-                            tekstPoruke = part.getContent().toString();
+                            tekstPoruke = part.getContent().toString().replace("\n", "<br/>");
                         } else {
                             fileName = part.getFileName();
                         }
@@ -229,7 +230,7 @@ public class PregledSvihPoruka implements Serializable{
                         porukaID = zaglavlje[0];
                     }
                      Poruka poruka = new Poruka(porukaID, message.getSentDate(), sender, subject, message.getContentType(),
-                                                message.getSize(), 0, message.getFlags(), null, true, true, message.getContent().toString());
+                                                message.getSize(), 0, message.getFlags(), null, true, true, message.getContent().toString().replace("\n", "<br/>"));
                      popisPoruka.add(poruka);
                 }
             }

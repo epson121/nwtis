@@ -6,9 +6,12 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
 /**
  * Klasa koja postavlja odabranu lokalizaciju za cijelu aplikaciju
@@ -25,7 +28,7 @@ public class Lokalizacija implements Serializable{
     private Map<String, Object> jezici;
     private String odabraniJezik;
     private Locale odabraniLocale;
-    private Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
+   
     
     /*******************************
      * KONSTRUKTOR
@@ -56,7 +59,7 @@ public class Lokalizacija implements Serializable{
     public Object odaberiJezik() throws IOException {
         for (Map.Entry<String, Object> entry : jezici.entrySet()) {
             if (entry.getValue().toString().equals(odabraniJezik)) {
-                
+                setOdabraniLocale((Locale) entry.getValue());
                 FacesContext.getCurrentInstance()
                         .getViewRoot().setLocale((Locale) entry.getValue());
             }
@@ -92,11 +95,5 @@ public class Lokalizacija implements Serializable{
     public void setOdabraniLocale(Locale odabraniLocale) {
         this.odabraniLocale = odabraniLocale;
     }
-
-    public Locale getLocale() {
-        return locale;
-    }
-    
-    
     
 }

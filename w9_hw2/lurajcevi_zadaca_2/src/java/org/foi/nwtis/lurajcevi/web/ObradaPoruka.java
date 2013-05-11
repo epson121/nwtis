@@ -50,7 +50,7 @@ public class ObradaPoruka extends Thread {
     private BP_Konfiguracija bpKonf;
     private Konfiguracija config;
     private String emailPosluzitelj;
-    private String emailPort;
+    private int emailPort;
     private String korisnickoIme;
     private String korisnickaLozinka;
     private String trazeniPredmet;
@@ -98,7 +98,7 @@ public class ObradaPoruka extends Thread {
     public ObradaPoruka(Konfiguracija config, BP_Konfiguracija bpKonf,
                         String resourcesPath) {
         emailPosluzitelj = config.dajPostavku("emailPosluzitelj");
-        emailPort = config.dajPostavku("emailPort");
+        emailPort = Integer.parseInt(config.dajPostavku("emailPort"));
         korisnickoIme = config.dajPostavku("username");
         korisnickaLozinka = config.dajPostavku("password");
         trazeniPredmet = config.dajPostavku("trazeniPredmet");
@@ -155,21 +155,15 @@ public class ObradaPoruka extends Thread {
             try {
                 start = System.currentTimeMillis();
                 session = Session.getDefaultInstance(System.getProperties(), null);
-
                 store = session.getStore("imap");
-
-                store.connect(emailPosluzitelj, korisnickoIme, korisnickaLozinka);
+                store.connect(emailPosluzitelj, emailPort, korisnickoIme, korisnickaLozinka);
                 printData("Connection established with IMAP server.");
                 
-                // Get a handle on the default folder
                 folder = store.getDefaultFolder();
                 folder = folder.getFolder("inbox");
-                
-                //Reading the Email Index in Read / Write Mode
                 folder.open(Folder.READ_WRITE);
-                // Retrieve the messages
                 messages = folder.getMessages();
-                
+
                 if (messages.length > 0){
                     System.out.println("IMA PORUKA.");
                 }
@@ -209,14 +203,13 @@ public class ObradaPoruka extends Thread {
                                 if (contentType.startsWith("text/plain") || contentType.startsWith("TEXT/PLAIN")){
                                     
                                     messageContent = part.getContent().toString().split("\n");
-                                    podaci = isMatchingRegex(messageContent[0], messageContent[1], messageContent[2]);
+                                    if (messageContent[0] != null && messageContent[1] != null && messageContent[3] != null)
+                                        podaci = isMatchingRegex(messageContent[0], messageContent[1], messageContent[2]);
                                     if (podaci != null){
                                         if (verifyInDatabase(podaci[0], podaci[1])){
                                             isAuthenticated = true;
-                                            System.out.println("MATCHES OK");
                                         }
                                     } else{
-                                        System.out.println("MATCHES NOT OK");
                                         brojNeispravnihPoruka += 1;
                                         Folder f = store.getFolder(nwtis_neispravnePoruke);
                                         if (!f.exists()){ 
@@ -246,7 +239,6 @@ public class ObradaPoruka extends Thread {
                                     }
                                     test.close();
                                     output.close(); 
-                                    System.out.println("Got image!!!");
                                     brojPreuzetihDatoteka += 1;
                                     isValid = true;
                                 } else if (isAuthenticated && (contentType.startsWith("application/octet-stream")
@@ -263,13 +255,11 @@ public class ObradaPoruka extends Thread {
                                     }
                                     test.close();
                                     output.close(); 
-                                    System.out.println("Got octet filetype.");
                                     brojPreuzetihDatoteka += 1;
                                     isValid = true;
                                 }
                             }
                         } else {
-                            printData("Saving to folder : neispravne");
                             brojNeispravnihPoruka += 1;
                             Folder f = store.getFolder(nwtis_neispravnePoruke);
                             if (!f.exists()){ 
@@ -284,7 +274,6 @@ public class ObradaPoruka extends Thread {
                         }
                     }
                     else{
-                        printData("Saving to folder : ostalePoruke");
                         brojOstalihPoruka += 1;
                         Folder f = store.getFolder(nwtis_ostalePoruke);
                         if (!f.exists()){ 
@@ -298,7 +287,6 @@ public class ObradaPoruka extends Thread {
                     }
                     isAuthenticated = false;
                     if (isValid){
-                        printData("Saving to folder : ispravne");
                         brojIspravnihPoruka += 1;
                         Folder f = store.getFolder(nwtis_ispravnePoruke);
                         if (!f.exists()){ 
@@ -312,10 +300,12 @@ public class ObradaPoruka extends Thread {
                     message.setFlag(Flags.Flag.DELETED, true);
                 }
                 Folder[] f = store.getDefaultFolder().list();
+                /*
                 for(Folder fd : f){
                     System.out.println("FOLDER >> " + fd.getName());
                     System.out.println("BROJ PORUKA U FOLDERU: " + fd.getMessageCount());
                 }
+                */ 
                 String vrijemePocetak = df.format(new Date(start));
                 String vrijemeKraj = df.format(new Date(System.currentTimeMillis()));
                 duration = System.currentTimeMillis() - start;
@@ -333,7 +323,7 @@ public class ObradaPoruka extends Thread {
                 brojNeispravnihPoruka = 0;
                 brojOstalihPoruka = 0;
                 brojPreuzetihDatoteka = 0;
-                //saljiPoruku("server", nwtis_porukaAdresa, nwtis_porukaPredmet, tekstPoruke, session, store);
+                //saljiPoruku(korisnickoIme, nwtis_porukaAdresa, nwtis_porukaPredmet, tekstPoruke, session, store);
                 if (folder.isOpen())
                     folder.close(true);
                 store.close();
@@ -435,7 +425,6 @@ public class ObradaPoruka extends Thread {
         Pattern p3 = Pattern.compile(regGalery);
         Matcher m3 = p3.matcher(e3.trim());
         if (m1.matches() && m2.matches() && m3.matches()){
-            System.out.println("MATCHES.");
             String[] values = {m1.group(1), m2.group(1), m3.group(1)};
             return values;
         }
@@ -451,7 +440,6 @@ public class ObradaPoruka extends Thread {
     private boolean verifyInDatabase(String username, String password){
         String upit = "SELECT kor_ime, lozinka FROM polaznici";
         String url = bpKonf.getServer_database() + bpKonf.getUser_database();
-        System.out.println("URL DB: " + url);
         String korisnik = bpKonf.getUser_username();
         String lozinka = bpKonf.getUser_password();
         Connection veza = null;

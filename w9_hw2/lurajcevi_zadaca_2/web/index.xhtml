@@ -9,7 +9,7 @@
     <h:body>
         <h:form>
             <h:outputText value ="#{m.index_izborJezika}"/>
-            <h:selectOneRadio value="#{lokalizacija.odabraniJezik}">
+            <h:selectOneRadio value="#{lokalizacija.odabraniJezik}" required="true" requiredMessage="#{m.index_odaberiteJezik}" >
                 <f:selectItems value="#{lokalizacija.jezici}"/>
             </h:selectOneRadio>
             <h:commandButton value="#{m.index_potvrdaJezika}" action="#{lokalizacija.odaberiJezik()}"/>

@@ -36,6 +36,7 @@ public class SlusacAplikacije implements ServletContextListener {
      */
     @Override
     public void contextInitialized(ServletContextEvent sce) {
+        String p = sce.getServletContext().getRealPath("/");
         String path = sce.getServletContext().getRealPath("WEB-INF");
         String datoteka = sce.getServletContext().getInitParameter("konfiguracija");
         bpKonf = new BP_Konfiguracija(path + File.separator + datoteka);
@@ -53,7 +54,7 @@ public class SlusacAplikacije implements ServletContextListener {
         System.out.println("Konfiguracija baze učitana.");
         System.out.println("Konfiguracija učitana.");
        
-        op = new ObradaPoruka(config, bpKonf, path);
+        op = new ObradaPoruka(config, bpKonf, p);
         op.start();
     }
     
