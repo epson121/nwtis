@@ -164,12 +164,6 @@ public class ObradaPoruka extends Thread {
                 folder.open(Folder.READ_WRITE);
                 messages = folder.getMessages();
 
-                if (messages.length > 0){
-                    System.out.println("IMA PORUKA.");
-                }
-                else{
-                    System.out.println("NEMA PORUKA");
-                }
                 for (int messageNumber = 0; messageNumber < messages.length; messageNumber++) {
                     sveukupanBrojPoruka += 1;
                     ukupanBrojPoruka += 1;
@@ -186,18 +180,14 @@ public class ObradaPoruka extends Thread {
                                 printData("sender in NULL. Printing Address:" + sender);
                             }
                             
-                            printData("Sender -." + sender);
                             subject = message.getSubject();
-                            printData("subject=" + subject);
 
                             multipart = (Multipart) message.getContent();
-                            printData("Retrieve the Multipart object from the message");
                             String[] podaci = null;
                             for (int i = 0; i < multipart.getCount(); i++) {
 
                                 part = multipart.getBodyPart(i);
                                 contentType = part.getContentType();
-                                printData("Content: " + contentType);
                                 String messageContent[] = null;
                                 
                                 if (contentType.startsWith("text/plain") || contentType.startsWith("TEXT/PLAIN")){
@@ -208,6 +198,7 @@ public class ObradaPoruka extends Thread {
                                     if (podaci != null){
                                         if (verifyInDatabase(podaci[0], podaci[1])){
                                             isAuthenticated = true;
+                                            isValid = true;
                                         }
                                     } else{
                                         brojNeispravnihPoruka += 1;
@@ -299,13 +290,7 @@ public class ObradaPoruka extends Thread {
                     }
                     message.setFlag(Flags.Flag.DELETED, true);
                 }
-                Folder[] f = store.getDefaultFolder().list();
-                /*
-                for(Folder fd : f){
-                    System.out.println("FOLDER >> " + fd.getName());
-                    System.out.println("BROJ PORUKA U FOLDERU: " + fd.getMessageCount());
-                }
-                */ 
+           
                 String vrijemePocetak = df.format(new Date(start));
                 String vrijemeKraj = df.format(new Date(System.currentTimeMillis()));
                 duration = System.currentTimeMillis() - start;
@@ -323,7 +308,7 @@ public class ObradaPoruka extends Thread {
                 brojNeispravnihPoruka = 0;
                 brojOstalihPoruka = 0;
                 brojPreuzetihDatoteka = 0;
-                //saljiPoruku(korisnickoIme, nwtis_porukaAdresa, nwtis_porukaPredmet, tekstPoruke, session, store);
+                saljiPoruku(korisnickoIme, nwtis_porukaAdresa, nwtis_porukaPredmet, tekstPoruke, session, store);
                 if (folder.isOpen())
                     folder.close(true);
                 store.close();

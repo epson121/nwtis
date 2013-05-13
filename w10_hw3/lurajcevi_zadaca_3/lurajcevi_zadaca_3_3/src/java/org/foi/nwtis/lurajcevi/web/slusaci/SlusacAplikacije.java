@@ -20,7 +20,7 @@ public class SlusacAplikacije implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-          String path = sce.getServletContext().getRealPath("WEB-INF");
+        String path = sce.getServletContext().getRealPath("WEB-INF");
         String datoteka = sce.getServletContext().getInitParameter("konfiguracija");
         BP_Konfiguracija bpKonf = new BP_Konfiguracija(path + File.separator + datoteka);
         

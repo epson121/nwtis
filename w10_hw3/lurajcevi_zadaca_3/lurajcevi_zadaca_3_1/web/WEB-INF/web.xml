@@ -35,4 +35,8 @@
             30
         </session-timeout>
     </session-config>
+    <context-param>
+    	<param-name>wb_code</param-name>
+    	<param-value>A5537364377</param-value>
+    </context-param>
 </web-app>

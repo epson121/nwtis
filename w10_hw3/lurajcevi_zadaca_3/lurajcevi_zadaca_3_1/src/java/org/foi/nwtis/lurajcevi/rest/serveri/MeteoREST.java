@@ -15,7 +15,7 @@ import org.foi.nwtis.lurajcevi.ws.klijenti.WeatherBugKlijent;
 /**
  * REST Web Service
  *
- * @author nwtis_2
+ * @author Luka Rajcevic
  */
 public class MeteoREST {
 
@@ -46,7 +46,7 @@ public class MeteoREST {
     public String getHtml() {
         WeatherBugKlijent klijent = new WeatherBugKlijent();
         LiveWeatherData podaci = klijent.dajMeteoPodatke(zip);
-        String ret = "<table>";
+        String ret = "<br/><table class='osnovna'>";
         ret += "<tr><td>Grad</td><td>" + podaci.getCity();
         ret += "<tr><td>Vlaga</td><td>" + podaci.getHumidity();
         ret += "<tr><td>Temperatura</td><td>" + podaci.getTemperature();

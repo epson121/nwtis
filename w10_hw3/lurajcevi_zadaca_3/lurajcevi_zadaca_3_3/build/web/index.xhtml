@@ -1,25 +1,12 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:h="http://java.sun.com/jsf/html">
     <h:head>
-        <title>Zadaca 3_3</title>
+        <title>Index page</title>
     </h:head>
     <h:body>
-        <h:form>
-            <h:outputText value="ZIP KODOVI." /><br/>
-            <h:selectOneListbox value="#{odabirZipKodova.zipKodDodaj}" size="7">
-                <f:selectItems value="#{odabirZipKodova.zipKodovi}" />
-            </h:selectOneListbox><br/>
-            <h:commandButton value="odaberi" action="#{odabirZipKodova.dodajZipKod()}" /><br/>
-            
-            <h:selectOneListbox value="#{odabirZipKodova.zipKodBrisi}" >
-                <f:selectItems value="#{odabirZipKodova.odabraniZipKodovi}" /><br/>
-            </h:selectOneListbox>
-            <h:commandButton value="obrisi" action="#{odabirZipKodova.brisiZipKod()}" /><br/>
-        </h:form>
-        
+        Index page<br/>
+        <h:outputLink value="#{'odabirZipKodova.xhtml'}" >Odabir zip kodova </h:outputLink>
     </h:body>
 </html>
-

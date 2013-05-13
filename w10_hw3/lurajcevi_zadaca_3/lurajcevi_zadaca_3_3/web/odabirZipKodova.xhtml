@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Odabir zip kodova</title>
+        <h:outputStylesheet library="css" name="osnovna.css" />
+    </h:head>
+    <h:body>
+
+        <h:form >
+            <h:panelGrid columns="2">
+                    <h:column>
+                        <h:selectOneListbox class ="sel" value="#{odabirZipKodova.zipKodDodaj}" size="7" >
+                            <f:selectItems value="#{odabirZipKodova.zipKodovi}" />
+                        </h:selectOneListbox><br/>
+                        <h:commandButton value="odaberi" class ="gumb1" action="#{odabirZipKodova.dodajZipKod()}" /><br/>
+                    </h:column>
+                    <h:column>
+                        <h:selectOneListbox id="odabraniZip" class ="sel"  value="#{odabirZipKodova.zipKodBrisi}" size="7" >
+                            <f:selectItems value="#{odabirZipKodova.odabraniZipKodovi}" />
+                        </h:selectOneListbox><br/>
+                        <h:commandButton value="obrisi" class ="gumb1" action="#{odabirZipKodova.brisiZipKod()}" /><br/>
+                    </h:column>
+            </h:panelGrid>
+            <br/>
+            <h:commandButton value="Dohvati podatke" class ="gumb2" action="#{odabirZipKodova.dajMeteoWSPodatke()}" />
+            <br/><br/>
+            <h:outputText escape="false" value="REST: #{odabirZipKodova.meteoRESTPodaci}" rendered="#{odabirZipKodova.postojiREST}"/>
+            <br/><br/>
+            <h:messages style="color: red;" />
+        </h:form>
+                    <h:dataTable value="#{odabirZipKodova.meteoWSPodaci}" var="p" 
+                                 rendered="#{!odabirZipKodova.prazno}"
+                                 class="tablica" headerClass="zaglavlje"
+                                rowClasses="neparni,parni">
+                        <h:column>
+                            <f:facet name="header">Grad</f:facet>
+                            <h:outputText value="#{p.city}"/>
+                        </h:column> 
+                        <h:column>
+                            <f:facet name="header">Širina</f:facet>
+                            <h:outputText value="#{p.latitude}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Visina</f:facet>
+                            <h:outputText value="#{p.longitude}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Temperatura</f:facet>
+                            <h:outputText value="#{p.temperature}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Vlaga</f:facet>
+                            <h:outputText value="#{p.humidity}"/>                        
+                        </h:column>
+                </h:dataTable>
+        <br/>
+        <h:outputLink value="#{'index.xhtml'}" >Povratak na index </h:outputLink>
+    </h:body>
+</html>
+

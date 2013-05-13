@@ -1,0 +1,4 @@
+#NWTIS lurajcevi
+#Tue Mar 19 17:16:04 CET 2013
+lozinka=654321
+korisnik=pero

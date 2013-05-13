@@ -58,4 +58,6 @@ public class MeteoREST_Container {
     public MeteoREST getMeteoREST(@PathParam("zip") String zip) {
         return MeteoREST.getInstance(zip);
     }
+    
+    
 }

@@ -1,17 +1,31 @@
 
 package org.foi.nwtis.lurajcevi.ws.klijenti;
 
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.*;
+import javax.servlet.http.*;
 import net.wxbug.api.LiveWeatherData;
 import net.wxbug.api.UnitType;
 
 /**
  *
- * @author nwtis_2
+ * @author Luka Rajcevic
  */
-public class WeatherBugKlijent {
+public class WeatherBugKlijent extends HttpServlet{
     private String zip;
     private LiveWeatherData meteoPodatak;
-    
+    private static String ws_code;
+
+    public WeatherBugKlijent() {
+    }
+ 
     //TODO preuzeti weatherbug kod iz konteksta
     public LiveWeatherData dajMeteoPodatke(String zip){
         return getLiveWeatherByUSZipCode(zip, UnitType.METRIC, "A5537364377");
@@ -25,9 +39,8 @@ public class WeatherBugKlijent {
     
     public static void main(String[] args) {
         WeatherBugKlijent klijent = new WeatherBugKlijent();
-        LiveWeatherData podaci = klijent.dajMeteoPodatke("90001");
+        LiveWeatherData podaci = klijent.dajMeteoPodatke(args[0]);
         System.out.println(podaci.getCity() + ", " + podaci.getTemperature());
-                
     }
 
     public String getZip() {
@@ -42,5 +55,7 @@ public class WeatherBugKlijent {
         meteoPodatak = dajMeteoPodatke(zip);
         return meteoPodatak;
     }
+
+   
     
 }
