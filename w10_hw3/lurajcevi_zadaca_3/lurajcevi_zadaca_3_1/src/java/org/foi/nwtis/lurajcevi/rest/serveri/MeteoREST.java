@@ -46,10 +46,9 @@ public class MeteoREST {
     public String getHtml() {
         WeatherBugKlijent klijent = new WeatherBugKlijent();
         LiveWeatherData podaci = klijent.dajMeteoPodatke(zip);
-        String ret = "<br/><table class='osnovna'>";
-        ret += "<tr><td>Grad</td><td>" + podaci.getCity();
-        ret += "<tr><td>Vlaga</td><td>" + podaci.getHumidity();
-        ret += "<tr><td>Temperatura</td><td>" + podaci.getTemperature();
+        String ret = "<br/><table class='tablica'>";
+        ret += "<tr><th class='zaglavlje'>Grad</th><th class='zaglavlje'>Dužina</th><th class='zaglavlje'>Širina</th><th class='zaglavlje'>Temperatura</th><th class='zaglavlje'>Vlaga</th><tr>";
+        ret += "<tr class ='neparni'><td>" + podaci.getCity() + "</td><td>" + podaci.getLatitude()+ "</td><td>" + podaci.getLongitude()+ "</td><td>" + podaci.getHumidity() + "</td><td>" + podaci.getTemperature()+ "</td></tr>";
         ret += "</table>";
         return ret;
     }

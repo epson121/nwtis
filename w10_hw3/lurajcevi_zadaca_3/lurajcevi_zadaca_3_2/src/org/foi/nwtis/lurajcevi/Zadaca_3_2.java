@@ -11,7 +11,12 @@ import org.foi.nwtis.lurajcevi.rest.klijenti.MeteoRESTKlijent;
  * @author Luka Rajcevic
  */
 public class Zadaca_3_2 {
- 
+    
+    /**
+     * main metoda ove klase, ovisno o danim parametrima poziva ili web servis, 
+     * ili REST servis.
+     * @param args 
+     */
     public static void main(String[] args) {
         if (args.length < 2){
             System.out.println("Trebam minimalno dva argumenta.");

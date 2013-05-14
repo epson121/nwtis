@@ -31,13 +31,13 @@
     background-color: activeborder;
     color: black;
     border: 1px solid firebrick;
-    width: 10em;
+    width: 12em;
 }
 .gumb2:disabled {
     background-color: aliceblue;
     color: black;
     border: 1px solid firebrick;
-    width: 10em;
+    width: 12em;
 }
 .sel{
     width: 5em;

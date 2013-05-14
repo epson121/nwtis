@@ -35,8 +35,9 @@
             30
         </session-timeout>
     </session-config>
-    <context-param>
-    	<param-name>wb_code</param-name>
-    	<param-value>A5537364377</param-value>
-    </context-param>
+    <env-entry>
+        <env-entry-name>wb_code</env-entry-name>
+        <env-entry-value>A5537364377</env-entry-value> 
+        <env-entry-type>java.lang.String</env-entry-type> 
+    </env-entry>
 </web-app>

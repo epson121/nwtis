@@ -25,26 +25,29 @@
                     </h:column>
             </h:panelGrid>
             <br/>
-            <h:commandButton value="Dohvati podatke" class ="gumb2" action="#{odabirZipKodova.dajMeteoWSPodatke()}" />
+            <h:commandButton value="Dohvati WS podatke" class ="gumb2" action="#{odabirZipKodova.dajMeteoWSPodatke()}" /><br/>
+            <h:commandButton value="Dohvati REST podatak" class ="gumb2" action="#{odabirZipKodova.dajMeteoRESTPodatke()}" />
             <br/><br/>
             <h:outputText escape="false" value="REST: #{odabirZipKodova.meteoRESTPodaci}" rendered="#{odabirZipKodova.postojiREST}"/>
             <br/><br/>
             <h:messages style="color: red;" />
+            <br/>
         </h:form>
                     <h:dataTable value="#{odabirZipKodova.meteoWSPodaci}" var="p" 
                                  rendered="#{!odabirZipKodova.prazno}"
                                  class="tablica" headerClass="zaglavlje"
                                 rowClasses="neparni,parni">
+                        WS:<br/>
                         <h:column>
                             <f:facet name="header">Grad</f:facet>
                             <h:outputText value="#{p.city}"/>
                         </h:column> 
                         <h:column>
-                            <f:facet name="header">Širina</f:facet>
+                            <f:facet name="header">Dužina</f:facet>
                             <h:outputText value="#{p.latitude}"/>
                         </h:column>
                         <h:column>
-                            <f:facet name="header">Visina</f:facet>
+                            <f:facet name="header">Širina</f:facet>
                             <h:outputText value="#{p.longitude}"/>
                         </h:column>
                         <h:column>

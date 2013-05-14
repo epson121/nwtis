@@ -14,7 +14,7 @@ import javax.ws.rs.core.Response;
 /**
  * REST Web Service
  *
- * @author nwtis_2
+ * @author Luka Rajčević
  */
 @Path("/meteoREST")
 public class MeteoREST_Container {

@@ -14,7 +14,7 @@ import org.foi.nwtis.lurajcevi.ws.klijenti.WeatherBugKlijent;
 
 /**
  *
- * @author nwtis_2
+ * @author Luka Rajčević
  */
 @WebService(serviceName = "MeteoWS")
 public class MeteoWS {

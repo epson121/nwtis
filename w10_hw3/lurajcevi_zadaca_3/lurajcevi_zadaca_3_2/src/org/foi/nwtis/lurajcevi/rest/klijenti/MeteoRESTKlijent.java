@@ -18,7 +18,8 @@ import com.sun.jersey.api.client.WebResource;
  *        client.close();
  * </pre>
  *
- * @author nwtis_2
+ * @author Luka Rajčević
+ * generirana klasa
  */
 public class MeteoRESTKlijent {
     private WebResource webResource;

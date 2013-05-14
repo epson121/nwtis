@@ -13,7 +13,8 @@ import org.foi.nwtis.lurajcevi.konfiguracije.bp.BP_Konfiguracija;
 /**
  * Web application lifecycle listener.
  *
- * @author nwtis_2
+ * @author Luka Rajčević
+ * Slušač aplikacije koji dohvaća konfiguracijsku datoteku za bazu podataka
  */
 @WebListener()
 public class SlusacAplikacije implements ServletContextListener {

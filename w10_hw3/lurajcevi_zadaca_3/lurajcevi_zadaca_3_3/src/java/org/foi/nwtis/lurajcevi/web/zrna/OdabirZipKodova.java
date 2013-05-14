@@ -12,9 +12,7 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
-import javax.faces.validator.ValidatorException;
 import javax.servlet.ServletContext;
 import net.wxbug.api.LiveWeatherData;
 import org.foi.nwtis.lurajcevi.konfiguracije.bp.BP_Konfiguracija;
@@ -25,6 +23,7 @@ import org.foi.nwtis.lurajcevi.ws.klijenti.MeteoWSKlijent;
 /**
  *
  * @author Luka Rajcevic
+ * backing bean za odabirZipKodova.
  */
 @ManagedBean(name = "odabirZipKodova")
 @SessionScoped
@@ -34,7 +33,6 @@ public class OdabirZipKodova implements Serializable{
      * VARIJABLE
      ******************************************* 
      */
-    
     private List<String> zipKodovi = new ArrayList<>(); 
     private String zipKodDodaj;
     private List<String> odabraniZipKodovi = new ArrayList<>();
@@ -44,12 +42,10 @@ public class OdabirZipKodova implements Serializable{
     private boolean prazno = true;
     private boolean postojiREST = false;
     
-    
      /*******************************************
      * KONSTRUKTOR
      ******************************************* 
      */
-    
     public OdabirZipKodova() {
     }
     
@@ -57,9 +53,14 @@ public class OdabirZipKodova implements Serializable{
      * POMOĆNE METODE
      ******************************************* 
      */
-    
+    /**
+     * Sluzi za dohvaćanje zip kodova iz mycities tablice. Podaci se spremaju
+     * u listu Stringova. Metoda je optimizirana na način da se novi podaci
+     * dohvaćaju samo kada dolazi novi zahtjev, a ne prilikom svakog refresha 
+     * stranice.
+     * @return lista stringova, zipKodovi
+     */
     public List<String> getZipKodovi() {
-        //TODO optimiziraj
         if (!zipKodovi.isEmpty())
             return zipKodovi;
         BP_Konfiguracija bpKonf = (BP_Konfiguracija) ((ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext()).getAttribute("BP_Konfiguracija");
@@ -84,10 +85,15 @@ public class OdabirZipKodova implements Serializable{
         return zipKodovi;
     }
     
+    /**
+     * Metoda koja dodaje odabrani zip kod u listu odabranih zip kodova za koje
+     * se traze podaci o meteorološkoj situaciji.
+     * @return "" prazan string, ostaje se na istoj stranici
+     */
     public String dodajZipKod(){
         FacesContext context = FacesContext.getCurrentInstance();
         if (zipKodDodaj == null){
-            context.addMessage(null, new FacesMessage("Već ste dodali taj kod!"));
+            context.addMessage(null, new FacesMessage("Niste odabrali kod."));
             return "";
         }
         for (String novi : odabraniZipKodovi){
@@ -100,13 +106,24 @@ public class OdabirZipKodova implements Serializable{
         return "";
     }
     
+    /**
+     * Metoda koja briše odabrani zip kod iz liste odabranih zip kodova.
+     * @return "" prazan string, ostaje se na istoj stranici
+     */
     public  String brisiZipKod(){
-        if (zipKodBrisi == null)
+        FacesContext context = FacesContext.getCurrentInstance();
+        if (zipKodBrisi == null){
+            context.addMessage(null, new FacesMessage("Niste odabrali kod za brisanje."));
             return "";
+        }
         odabraniZipKodovi.remove(zipKodBrisi);
         return "";
     }
     
+    /**
+     * Dohvaća meteorološke podatke koristeći web servis iz ws.klijenti paketa
+     * @return "" ostaje se na istoj stranici
+     */
     public String dajMeteoWSPodatke(){
         FacesContext context = FacesContext.getCurrentInstance();
         meteoWSPodaci.clear();
@@ -125,41 +142,25 @@ public class OdabirZipKodova implements Serializable{
             LiveWeatherData podatak = MeteoWSKlijent.dajMeteoWSPodatkeZaZip(zip);
             meteoWSPodaci.add(podatak);
         }
-        if (zipKodBrisi != null){
+        return "";
+    }
+    
+    /**
+     * Dohvaća meteorološke podatke koristeći REST servis implementiran u 3_1 zadatku
+     * @return "" ostaje se na istoj stranici
+     */
+    public String dajMeteoRESTPodatke() {
+        FacesContext context = FacesContext.getCurrentInstance();
+         if (zipKodBrisi != null){
             postojiREST = true;
-            dajMeteoRESTPodatke();
+            MeteoRESTKlijent mr = new MeteoRESTKlijent(zipKodBrisi);
+            meteoRESTPodaci = mr.getHtml();
         } else{
             postojiREST =  false;
+            context.addMessage(null, new FacesMessage("Niste odabrali ZIP kod."));
         }
         return "";
     }
-    
-    public String dajMeteoRESTPodatke() {
-        MeteoRESTKlijent mrk = new MeteoRESTKlijent(zipKodBrisi);
-        meteoRESTPodaci = mrk.getHtml();
-        return "";
-    }
-    
-    public void provjeriZip(FacesContext context, UIComponent component, Object value) {
-        
-        if (odabraniZipKodovi.size() < 5){
-            FacesMessage message = new FacesMessage();
-            message.setSeverity(FacesMessage.SEVERITY_ERROR);
-            message.setSummary("Potrebno je minimalno 5 zip kodova.");
-            message.setDetail("Potrebno je minimalno 5 zip kodova.");
-            context.addMessage(null, message);
-            throw new ValidatorException(message);
-            
-        } else if (odabraniZipKodovi.size() > 7){
-            FacesMessage message = new FacesMessage();
-            message.setSeverity(FacesMessage.SEVERITY_ERROR);
-            message.setSummary("Dozvoljeno je maksimalno 7 zip kodova.");
-            message.setDetail("Dozvoljeno je maksimalno 7 zip kodova.");
-            context.addMessage(null, message);
-            throw new ValidatorException(message);
-        }
-    }
-    
     
     /*******************************************
      * GETTERI I SETTERI
