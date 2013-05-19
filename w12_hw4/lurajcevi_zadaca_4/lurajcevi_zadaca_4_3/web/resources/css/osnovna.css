@@ -1,0 +1,45 @@
+.tablica {
+    border: 1px solid firebrick;
+    background-color: cornflowerblue;
+    width: 95%;
+}
+.zaglavlje {
+    background-color: appworkspace;
+    font-weight: bold;
+}
+.parni {
+    background-color: activeborder;    
+    text-indent: 5px;
+}
+.neparni {
+    background-color: #b2c8e5;
+    text-indent: 5px;
+}
+.gumb1 {
+    background-color: activeborder;
+    color: black;
+    border: 1px solid firebrick;
+    width: 5em;
+}
+.gumb1:disabled {
+    background-color: aliceblue;
+    color: black;
+    border: 1px solid firebrick;
+    width: 5em;
+}
+.gumb2 {
+    background-color: activeborder;
+    color: black;
+    border: 1px solid firebrick;
+    width: 12em;
+}
+.gumb2:disabled {
+    background-color: aliceblue;
+    color: black;
+    border: 1px solid firebrick;
+    width: 12em;
+}
+.sel{
+    width: 5em;
+}
+

@@ -7,14 +7,17 @@ package org.foi.nwtis.lurajcevi.web.zrna;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import javax.ejb.EJB;
 import org.foi.nwtis.lurajcevi.ejb.eb.Cities;
 import org.foi.nwtis.lurajcevi.ejb.eb.States;
+import org.foi.nwtis.lurajcevi.ejb.eb.ZipCodes;
 import org.foi.nwtis.lurajcevi.ejb.sb.CitiesFacade;
 import org.foi.nwtis.lurajcevi.ejb.sb.StatesFacade;
+import org.foi.nwtis.lurajcevi.ejb.sb.ZipCodesFacade;
 
 /**
  *
@@ -23,6 +26,14 @@ import org.foi.nwtis.lurajcevi.ejb.sb.StatesFacade;
 @Named(value = "odabirZipKodovaZaGradove")
 @SessionScoped
 public class OdabirZipKodovaZaGradove implements Serializable {
+    @EJB
+    private ZipCodesFacade zipCodesFacade;
+    
+    /*******************************************
+     * VARIJABLE
+     ******************************************* 
+     */
+    
     @EJB
     private CitiesFacade citiesFacade;
     @EJB
@@ -39,17 +50,31 @@ public class OdabirZipKodovaZaGradove implements Serializable {
     private Map<String, Object> odabraniGradovi;
     private List<String> odabraniGradoviOdabrano;
     private String filterGradova;
+    private List <Cities> gradovi;
     
+    private Map<String, Object> popisZipKodova;
+    private List<String> popisZipKodovaOdabrano;
+    private Map<String, Object> odabraniZipKodovi;
+    private List<String> odabraniZipKodoviOdabrano;
+    private String filterZipKodova;
     
+    /*******************************************
+     * KONSTRUKTOR
+     ******************************************* 
+     */
     public OdabirZipKodovaZaGradove() {
     }
     
+    /*******************************************
+     * POMOĆNE METODE
+     ******************************************* 
+     */
     public String dodajDrzave(){
         if (popisDrzavaOdabrano == null){
             return "";  
         }
         if (odabraneDrzave == null){
-            odabraneDrzave = new HashMap<String, Object>();
+            odabraneDrzave = new TreeMap<String, Object>();
         }
         for (String d : popisDrzavaOdabrano){
             odabraneDrzave.put(d, d);
@@ -67,16 +92,6 @@ public class OdabirZipKodovaZaGradove implements Serializable {
     }
     
     public String preuzmiGradove(){
-        if (odabraneDrzave == null || odabraneDrzave.isEmpty()){
-            return "";
-        }
-        if (popisGradova == null){
-            popisGradova = new HashMap<String, Object>();
-        }
-        List <Cities> gradovi = citiesFacade.filtrirajGradove(odabraneDrzave.keySet());
-        for (Cities c : gradovi){
-            popisGradova.put(c.getName(), c.getName());
-        }
         return "";
     }
 
@@ -85,7 +100,7 @@ public class OdabirZipKodovaZaGradove implements Serializable {
             return "";
         }
         if (odabraniGradovi == null){
-            odabraniGradovi = new HashMap<String, Object>();
+            odabraniGradovi = new TreeMap<String, Object>();
         }
         for (String g : popisGradovaOdabrano){
             odabraniGradovi.put(g, g);
@@ -94,6 +109,11 @@ public class OdabirZipKodovaZaGradove implements Serializable {
     }
     
     public String obrisiGradove(){
+        if (odabraniGradoviOdabrano != null){
+            for (String g : odabraniGradoviOdabrano){
+                odabraniGradovi.remove(g);
+            }
+        }
         return "";
     }
     
@@ -101,13 +121,29 @@ public class OdabirZipKodovaZaGradove implements Serializable {
         return "";
     }
     
+     public String dodajZipKodove(){
+         return "";
+     }
+     
+     public String obrisiZipKodove(){
+         return "";
+     }
+     
+     public String preuzmiMeteoPodatke(){
+         return "";
+     }
+    
+    /*******************************************
+     * GETTERI I SETTERI
+     ******************************************* 
+     */
     public Map<String, Object> getPopisDrzava() {
-        popisDrzava = new HashMap<String, Object>();
+        popisDrzava = new TreeMap<String, Object>();
         List<States> drzave;
         if (filterDrzava == null || filterDrzava.trim().isEmpty()){
             drzave = statesFacade.findAll();
         } else {
-            drzave = statesFacade.filtrirajDrzave(filterDrzava);
+            drzave = statesFacade.filtrirajDrzave(filterDrzava.toUpperCase());
         }
         for (States d : drzave){
             popisDrzava.put(d.getName(), d.getName());
@@ -152,17 +188,17 @@ public class OdabirZipKodovaZaGradove implements Serializable {
     }
 
     public Map<String, Object> getPopisGradova() {
-        popisGradova = new HashMap<String, Object>();
+        popisGradova = new TreeMap<String, Object>();
         if (odabraneDrzave == null || odabraneDrzave.isEmpty()){
             return popisGradova;
         }
-
-        List <Cities> gradovi;
+        
         if (filterGradova == null || filterGradova.isEmpty()){
             gradovi = citiesFacade.filtrirajGradove(odabraneDrzave.keySet());
         } else{
-            gradovi = citiesFacade.filtrirajGradove(odabraneDrzave.keySet(), filterGradova);
+            gradovi = citiesFacade.filtrirajGradove(odabraneDrzave.keySet(), filterGradova.toUpperCase());
         }
+        
         for (Cities c : gradovi){
             String grad = c.getCitiesPK().getState() + " - " + c.getCitiesPK().getCounty() + " -  " + c.getCitiesPK().getCity();
             popisGradova.put(grad, grad);
@@ -205,5 +241,66 @@ public class OdabirZipKodovaZaGradove implements Serializable {
     public void setFilterGradova(String filterGradova) {
         this.filterGradova = filterGradova;
     }
+
+    public Map<String, Object> getPopisZipKodova() {
+        popisZipKodova = new TreeMap<String, Object>();
+        List<ZipCodes> zipovi;
+        if (odabraniGradovi == null || odabraniGradovi.isEmpty()){
+            return popisZipKodova;
+        }
+        if (filterZipKodova == null || filterZipKodova.isEmpty()){
+            zipovi = zipCodesFacade.filtrirajZipove(odabraniGradovi.keySet());
+        } else{
+            zipovi = zipCodesFacade.filtrirajZipove(odabraniGradovi.keySet(), filterZipKodova.toUpperCase());
+        }
+        for (ZipCodes zc : zipovi){
+            Integer zip = zc.getZip();
+            popisZipKodova.put(zip.toString(), zip.toString());
+        }
+        return popisZipKodova;
+    }
+
+    
+    
+    public void setPopisZipKodova(Map<String, Object> popisZipKodova) {
+        this.popisZipKodova = popisZipKodova;
+    }
+
+    public List<String> getPopisZipKodovaOdabrano() {
+        return popisZipKodovaOdabrano;
+    }
+
+    public void setPopisZipKodovaOdabrano(List<String> popisZipKodovaOdabrano) {
+        this.popisZipKodovaOdabrano = popisZipKodovaOdabrano;
+    }
+
+    public Map<String, Object> getOdabraniZipKodovi() {
+        return odabraniZipKodovi;
+    }
+
+    public void setOdabraniZipKodovi(Map<String, Object> odabraniZipKodovi) {
+        this.odabraniZipKodovi = odabraniZipKodovi;
+    }
+
+    public List<String> getOdabraniZipKodoviOdabrano() {
+        return odabraniZipKodoviOdabrano;
+    }
+
+    public void setOdabraniZipKodoviOdabrano(List<String> odabraniZipKodoviOdabrano) {
+        this.odabraniZipKodoviOdabrano = odabraniZipKodoviOdabrano;
+    }
+
+    public String getFilterZipKodova() {
+        return filterZipKodova;
+    }
+
+    public void setFilterZipKodova(String filterZipKodova) {
+        this.filterZipKodova = filterZipKodova;
+    }
+
+    
+    
+    
+    
     
 }

@@ -23,9 +23,6 @@ public class WeatherBugKlijent {
     private WeatherBugWebServices service;
     
     private String weatherBugCode = "A5537364377";
-    
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
 
     private LiveWeatherData getLiveWeatherByUSZipCode(java.lang.String zipCode, net.wxbug.api.UnitType unittype, java.lang.String aCode) {
         net.wxbug.api.WeatherBugWebServicesSoap port = service.getWeatherBugWebServicesSoap();
