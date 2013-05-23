@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package org.foi.nwtis.lurajcevi.ejb.eb;
 
 import java.io.Serializable;
@@ -21,7 +18,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author nwtis_2
+ * @author Luka Rajcevic
  */
 @Entity
 @Table(name = "ZIP_CODES")
@@ -58,7 +55,7 @@ public class ZipCodes implements Serializable {
         @JoinColumn(name = "CITY", referencedColumnName = "CITY")})
     @ManyToOne(optional = false)
     private Cities cities;
-
+    
     public ZipCodes() {
     }
 

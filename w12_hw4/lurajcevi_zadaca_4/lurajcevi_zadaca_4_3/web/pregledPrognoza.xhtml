@@ -4,11 +4,10 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
-
+    
     <body>
 
         <ui:composition template="./predlozak.xhtml">
-
             <ui:define name="naslov">
                 Prognoza
             </ui:define>
@@ -18,66 +17,138 @@
             </ui:define>
 
             <ui:define name="content">
-                <h:form>
-                    <h:panelGrid columns="4" >
-                        <h:outputText value="Drzave" />
-                        <h:outputText value="" />
+                <h:form id="form">
+                    
+                    <h:panelGrid columns="3" class="pg_glavni" >
                         
-                        <h:outputText value="Gradovi" />
-                        <h:outputText value="" />
+                        <h:panelGrid id="drzava" columns="1"  columnClasses="cnas">
+                            
+                            <h:outputText value="Države" style="text-align: center;"/>
+                            
+                            <h:inputText  id ="filterDrzave" value="#{odabirZipKodovaZaGradove.filterDrzava}" class="filter">
+                                <f:ajax event="keyup" render="popisDrzava" execute="popisDrzava" immediate="true" />
+                            </h:inputText>
+                            
+                            <h:panelGrid id="drzavaPopis" columns="2" >
+                                
+                                 <h:selectManyListbox id="popisDrzava" value="#{odabirZipKodovaZaGradove.popisDrzavaOdabrano}" size="7">
+                                    <f:selectItems value="#{odabirZipKodovaZaGradove.popisDrzava}" />
+                                </h:selectManyListbox>
+                                <h:selectManyListbox id="odabraneDrzave" value="#{odabirZipKodovaZaGradove.odabraneDrzaveOdabrano}" size="7" >
+                                    <f:selectItems value="#{odabirZipKodovaZaGradove.odabraneDrzave}" />
+                                </h:selectManyListbox>
+                                
+                                <h:commandButton value="Dodaj države" action="#{odabirZipKodovaZaGradove.dodajDrzave()}">
+                                    <f:ajax render="odabraneDrzave" execute="popisDrzava" immediate="true" />
+                                </h:commandButton> 
+                                <h:commandButton value="Briši države" action="#{odabirZipKodovaZaGradove.obrisiDrzave()}" >
+                                    <f:ajax render="odabraneDrzave" execute="odabraneDrzave" immediate="true" />
+                                </h:commandButton>
+                                
+                                <h:outputText value="" />
+                                <h:commandButton value="Preuzmi gradove" action="#{odabirZipKodovaZaGradove.preuzmiGradove()}" >
+                                    <f:ajax render="popisGradova" execute="odabraneDrzave" immediate="true" />
+                                </h:commandButton>
+                                
+                            </h:panelGrid>
+                        </h:panelGrid>
                         
-                        <h:inputText value="#{odabirZipKodovaZaGradove.filterDrzava}" >
-                            <f:ajax event="keyup" render="popisDrzava" execute="popisDrzava" immediate="true" />
-                        </h:inputText>
-                        <h:outputText value="" />
-                        
-                        <h:inputText value="#{odabirZipKodovaZaGradove.filterGradova}" >
-                            <f:ajax event="keyup" render="popisGradova" execute="popisGradova" immediate="true" />
-                        </h:inputText>
-                        <h:outputText value="" />
-                        
-                        <h:selectManyListbox id="popisDrzava" value="#{odabirZipKodovaZaGradove.popisDrzavaOdabrano}" size="7">
-                            <f:selectItems value="#{odabirZipKodovaZaGradove.popisDrzava}" />
-                        </h:selectManyListbox>
-                        
-                        <h:selectManyListbox id="odabraneDrzave" value="#{odabirZipKodovaZaGradove.odabraneDrzaveOdabrano}" size="7" >
-                            <f:selectItems value="#{odabirZipKodovaZaGradove.odabraneDrzave}" />
-                        </h:selectManyListbox>
-                        
-                        <h:selectManyListbox id="popisGradova" value="#{odabirZipKodovaZaGradove.popisGradovaOdabrano}" size="7">
-                            <f:selectItems value="#{odabirZipKodovaZaGradove.popisGradova}" />
-                        </h:selectManyListbox>
-                        
-                        <h:selectManyListbox id="odabraniGradovi" value="#{odabirZipKodovaZaGradove.odabraniGradoviOdabrano}" size="7" >
-                            <f:selectItems value="#{odabirZipKodovaZaGradove.odabraniGradovi}" />
-                        </h:selectManyListbox>
-                        
-                        <h:commandButton value="Dodaj države" action="#{odabirZipKodovaZaGradove.dodajDrzave()}">
-                            <f:ajax render="odabraneDrzave" execute="popisDrzava" immediate="true" />
-                        </h:commandButton> 
-                        <h:commandButton value="Briši države" action="#{odabirZipKodovaZaGradove.obrisiDrzave()}" >
-                            <f:ajax render="odabraneDrzave" execute="odabraneDrzave" immediate="true" />
-                        </h:commandButton>
-                        
-                        
-                        <h:commandButton value="Dodaj gradove" action="#{odabirZipKodovaZaGradove.dodajGradove()}">
-                            <f:ajax render="odabraniGradovi" execute="popisGradova" immediate="true" />
-                        </h:commandButton> 
-                        <h:commandButton value="Briši gradove" action="#{odabirZipKodovaZaGradove.obrisiGradove()}" >
-                            <f:ajax render="odabraniGradovi" execute="odabraniGradovi" immediate="true" />
-                        </h:commandButton>
-                        
-                        <h:outputText value="" />
-                        <h:commandButton value="Preuzmi gradove" action="#{odabirZipKodovaZaGradove.preuzmiGradove()}" >
-                            <f:ajax render="popisGradova" execute="odabraneDrzave" immediate="true" />
-                        </h:commandButton>
-                        
-                        <h:outputText value="" />
-                        <h:commandButton value="Preuzmi zipove" action="#{odabirZipKodovaZaGradove.preuzmiZipKodove()}" />
-                    </h:panelGrid>
-                </h:form>
-            </ui:define>
+                        <h:panelGrid id="grad" columns="1" columnClasses="cnas" >
+                            <h:outputText value="Gradovi" />
+                            
+                            <h:inputText value="#{odabirZipKodovaZaGradove.filterGradova}" class="filter">
+                                <f:ajax event="keyup" render="popisGradova" execute="popisGradova" immediate="true" />
+                            </h:inputText>
+                            
+                            <h:panelGrid id="gradPopis" columns="2" >
+                                <h:selectManyListbox id="popisGradova" style="width: fit-content;" value="#{odabirZipKodovaZaGradove.popisGradovaOdabrano}" size="7">
+                                    <f:selectItems value="#{odabirZipKodovaZaGradove.popisGradova}" />
+                                </h:selectManyListbox>
 
+                                <h:selectManyListbox id="odabraniGradovi" value="#{odabirZipKodovaZaGradove.odabraniGradoviOdabrano}" size="7" >
+                                    <f:selectItems value="#{odabirZipKodovaZaGradove.odabraniGradovi}" />
+                                </h:selectManyListbox>
+                            
+                                <h:commandButton value="Dodaj gradove" action="#{odabirZipKodovaZaGradove.dodajGradove()}">
+                                    <f:ajax render="odabraniGradovi" execute="popisGradova" immediate="true" />
+                                </h:commandButton> 
+
+                                <h:commandButton value="Briši gradove" action="#{odabirZipKodovaZaGradove.obrisiGradove()}" >
+                                    <f:ajax render="odabraniGradovi" execute="odabraniGradovi" immediate="true" />
+                                </h:commandButton>
+
+                                <h:outputText value="" />
+                                <h:commandButton value="Preuzmi zipove" action="#{odabirZipKodovaZaGradove.preuzmiZipKodove()}" >
+                                    <f:ajax render="popisZipKodova" execute="odabraniGradovi" immediate="true" />
+                                </h:commandButton>
+                                
+                            </h:panelGrid>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid id="zipKod" columns="1" columnClasses="cnas">
+                            <h:outputText value="Zip kodovi" />
+                            
+                            <h:inputText value="#{odabirZipKodovaZaGradove.filterZipKodova}" class="filter">
+                                <f:ajax event="keyup" render="popisZipKodova" execute="popisZipKodova" immediate="true" />
+                            </h:inputText>
+                            
+                            <h:panelGrid id="zipKodPopis" columns="2" >
+                                
+                                <h:selectManyListbox id="popisZipKodova" value="#{odabirZipKodovaZaGradove.popisZipKodovaOdabrano}" size="7">
+                                    <f:selectItems value="#{odabirZipKodovaZaGradove.popisZipKodova}" />
+                                </h:selectManyListbox>
+                                
+                                <h:selectManyListbox id="odabraniZipKodovi" value="#{odabirZipKodovaZaGradove.odabraniZipKodoviOdabrano}" size="7">
+                                    <f:selectItems value="#{odabirZipKodovaZaGradove.odabraniZipKodovi}" />
+                                </h:selectManyListbox>
+                                
+                                <h:commandButton value="Dodaj zip kodove" action="#{odabirZipKodovaZaGradove.dodajZipKodove()}">
+                                    <f:ajax render="odabraniZipKodovi" execute="popisZipKodova" immediate="true" />
+                                </h:commandButton> 
+                                <h:commandButton value="Briši zip kodove" action="#{odabirZipKodovaZaGradove.obrisiZipKodove()}" >
+                                    <f:ajax render="odabraniZipKodovi" execute="odabraniZipKodovi" immediate="true" />
+                                </h:commandButton>
+                                
+                                <h:outputText value="" />
+                                <h:commandButton value="Preuzmi meteo podatke" action="#{odabirZipKodovaZaGradove.preuzmiMeteoPodatke()}" >
+                                    <f:ajax render="popisMeteoPodataka" execute="odabraniZipKodovi" immediate="true" />
+                                </h:commandButton>
+
+                            </h:panelGrid>
+                        </h:panelGrid>
+                    </h:panelGrid>
+                    <br/><br/>  
+                    <h:dataTable id="popisMeteoPodataka" value="#{odabirZipKodovaZaGradove.meteoWSPodaci}" var="p" 
+                             class="tablica" headerClass="zaglavlje"
+                            rowClasses="neparni,parni">
+                    <br/>
+                    <h:column>
+                        <f:facet name="header">ZIP kod</f:facet>
+                        <h:outputText value="#{p.zipKod}" />
+                    </h:column> 
+                    <h:column>
+                        <f:facet name="header">Grad</f:facet>
+                        <h:outputText value="#{p.grad}"/>
+                    </h:column> 
+                    <h:column>
+                        <f:facet name="header">Temperatura</f:facet>
+                        <h:outputText value="#{p.temperatura}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Vlaga</f:facet>
+                        <h:outputText value="#{p.vlaga}"/>                        
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Dužina</f:facet>
+                        <h:outputText value="#{p.duzina}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Širina</f:facet>
+                        <h:outputText value="#{p.sirina}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </ui:define>
         </ui:composition>
 
     </body>

@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package org.foi.nwtis.lurajcevi.ejb.sb;
 
 import java.util.List;
@@ -13,11 +10,10 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import org.foi.nwtis.lurajcevi.ejb.eb.Cities;
-import org.foi.nwtis.lurajcevi.ejb.eb.States;
 
 /**
  *
- * @author nwtis_2
+ * @author Luka Rajčević
  */
 @Stateless
 public class CitiesFacade extends AbstractFacade<Cities> {
@@ -33,6 +29,11 @@ public class CitiesFacade extends AbstractFacade<Cities> {
         super(Cities.class);
     }
     
+    /**
+     * filtrira gradove prema državama
+     * @param drzava popis drzava za filtriranje
+     * @return rezultate upita
+     */
     public List<Cities> filtrirajGradove(Set<String> drzava){
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery cq = cb.createQuery();
@@ -42,6 +43,12 @@ public class CitiesFacade extends AbstractFacade<Cities> {
         return em.createQuery(cq).getResultList();
     }
     
+    /**
+     * filtrira gradove prema državama koristeći LIKE operator
+     * @param drzava - popis drzava za filtriranje
+     * @param filterGradova - dodatan filter za LIKE operator
+     * @return rezultate upita
+     */
     public List<Cities> filtrirajGradove(Set<String> drzava, String filterGradova){
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery cq = cb.createQuery();

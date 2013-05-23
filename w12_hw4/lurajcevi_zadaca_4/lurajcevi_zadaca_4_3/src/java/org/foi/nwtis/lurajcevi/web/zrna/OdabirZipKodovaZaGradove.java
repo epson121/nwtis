@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package org.foi.nwtis.lurajcevi.web.zrna;
 
 import javax.inject.Named;
@@ -12,33 +9,35 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import javax.ejb.EJB;
+import net.wxbug.api.LiveWeatherData;
 import org.foi.nwtis.lurajcevi.ejb.eb.Cities;
 import org.foi.nwtis.lurajcevi.ejb.eb.States;
 import org.foi.nwtis.lurajcevi.ejb.eb.ZipCodes;
 import org.foi.nwtis.lurajcevi.ejb.sb.CitiesFacade;
 import org.foi.nwtis.lurajcevi.ejb.sb.StatesFacade;
+import org.foi.nwtis.lurajcevi.ejb.sb.WeatherBugKlijent;
 import org.foi.nwtis.lurajcevi.ejb.sb.ZipCodesFacade;
 
 /**
  *
- * @author nwtis_2
+ * @author Luka Rajcevic
  */
 @Named(value = "odabirZipKodovaZaGradove")
 @SessionScoped
 public class OdabirZipKodovaZaGradove implements Serializable {
+    /**
+     * *****************************************
+     * VARIJABLE 
+     ******************************************
+     */
+    @EJB
+    private WeatherBugKlijent weatherBugKlijent;
     @EJB
     private ZipCodesFacade zipCodesFacade;
-    
-    /*******************************************
-     * VARIJABLE
-     ******************************************* 
-     */
-    
     @EJB
     private CitiesFacade citiesFacade;
     @EJB
     private StatesFacade statesFacade;
-
     private Map<String, Object> popisDrzava;
     private List<String> popisDrzavaOdabrano;
     private Map<String, Object> odabraneDrzave;
@@ -50,7 +49,7 @@ public class OdabirZipKodovaZaGradove implements Serializable {
     private Map<String, Object> odabraniGradovi;
     private List<String> odabraniGradoviOdabrano;
     private String filterGradova;
-    private List <Cities> gradovi;
+    private List<Cities> gradovi;
     
     private Map<String, Object> popisZipKodova;
     private List<String> popisZipKodovaOdabrano;
@@ -58,94 +57,166 @@ public class OdabirZipKodovaZaGradove implements Serializable {
     private List<String> odabraniZipKodoviOdabrano;
     private String filterZipKodova;
     
-    /*******************************************
-     * KONSTRUKTOR
-     ******************************************* 
+    List<MeteoPodaci> meteoWSPodaci = new ArrayList<MeteoPodaci>();
+
+    
+    private boolean postojeMeteoPodaci = false;
+    /**
+     * *****************************************
+     * KONSTRUKTOR 
+     ******************************************
      */
     public OdabirZipKodovaZaGradove() {
     }
-    
-    /*******************************************
-     * POMOĆNE METODE
-     ******************************************* 
+
+    /**
+     * *****************************************
+     * POMOĆNE METODE 
+     ******************************************
      */
-    public String dodajDrzave(){
-        if (popisDrzavaOdabrano == null){
-            return "";  
+    /**
+     * Dohvaća odabrane drzave iz popisa drzava i stavlja ih u drugu listu 
+     * (listu odabranih drzava)
+     * @return vraća se na istu stranicu
+     */
+    public String dodajDrzave() {
+        if (popisDrzavaOdabrano == null) {
+            return "";
         }
-        if (odabraneDrzave == null){
+        if (odabraneDrzave == null) {
             odabraneDrzave = new TreeMap<String, Object>();
         }
-        for (String d : popisDrzavaOdabrano){
+        for (String d : popisDrzavaOdabrano) {
             odabraneDrzave.put(d, d);
         }
-        return ""
-;    }
+        return "";
+    }
     
-    public String obrisiDrzave(){
-        if (odabraneDrzaveOdabrano != null){
-            for (String d : odabraneDrzaveOdabrano){
+    /**
+     * brise drzavu iz popisa odabranih drzava
+     * @return vraća se na istu stranicu
+     */
+    public String obrisiDrzave() {
+        if (odabraneDrzaveOdabrano != null) {
+            for (String d : odabraneDrzaveOdabrano) {
                 odabraneDrzave.remove(d);
             }
         }
         return "";
     }
     
-    public String preuzmiGradove(){
+    /**
+     * dohvaća popis gradova (nema implementacije jer je sohvaćanje napravljeno
+     * u getteru za popisGradova)
+     * @return vraća se na istu stranicu
+     */
+    public String preuzmiGradove() {
         return "";
     }
-
-    public String dodajGradove(){
-        if (popisGradovaOdabrano == null || popisGradovaOdabrano.isEmpty()){
+    
+    /**
+     * Dodaje odabrane gradove u novu listu (odabraniGradovi)
+     * @return vraća se na istu stranicu
+     */
+    public String dodajGradove() {
+        if (popisGradovaOdabrano == null || popisGradovaOdabrano.isEmpty()) {
             return "";
         }
-        if (odabraniGradovi == null){
+        if (odabraniGradovi == null) {
             odabraniGradovi = new TreeMap<String, Object>();
         }
-        for (String g : popisGradovaOdabrano){
+        for (String g : popisGradovaOdabrano) {
             odabraniGradovi.put(g, g);
         }
         return "";
     }
     
-    public String obrisiGradove(){
-        if (odabraniGradoviOdabrano != null){
-            for (String g : odabraniGradoviOdabrano){
+    /**
+     * brise selektirane gradove iz popisa odabranih gradova
+     * @return vraća se na istu stranicu
+     */
+    public String obrisiGradove() {
+        if (odabraniGradoviOdabrano != null) {
+            for (String g : odabraniGradoviOdabrano) {
                 odabraniGradovi.remove(g);
             }
         }
         return "";
     }
     
-    public String preuzmiZipKodove(){
+    /**
+     * dohvaća popis zip kodova u ovisnosti o odabranim gradovima i drzavama
+     * implementacija je napravljena u getteru
+     * @return vraća se na istu stranicu
+     */
+    public String preuzmiZipKodove() {
         return "";
     }
     
-     public String dodajZipKodove(){
-         return "";
-     }
-     
-     public String obrisiZipKodove(){
-         return "";
-     }
-     
-     public String preuzmiMeteoPodatke(){
-         return "";
-     }
+    /**
+     * Dodaje odabrane zip kodove u novu listu odabranih zip kodova
+     * @return vraća se na istu stranicu
+     */
+    public String dodajZipKodove() {
+        if (popisZipKodovaOdabrano == null || popisZipKodovaOdabrano.isEmpty()) {
+            return "";
+        }
+        if (odabraniZipKodovi == null) {
+            odabraniZipKodovi = new TreeMap<String, Object>();
+        }
+        for (String z : popisZipKodovaOdabrano) {
+            odabraniZipKodovi.put(z, z);
+        }
+        return "";
+    }
     
-    /*******************************************
-     * GETTERI I SETTERI
-     ******************************************* 
+    /**
+     * brise odabrane zip kodove iz popisa odabranih zip kodova
+     * @return vraća se na istu stranicu
+     */
+    public String obrisiZipKodove() {
+        if (odabraniZipKodoviOdabrano != null) {
+            for (String g : odabraniZipKodoviOdabrano) {
+                odabraniZipKodovi.remove(g);
+            }
+        }
+        return "";
+    }
+    
+    /**
+     * Dohvaća meteorološke podatke za odabrane zip kodove koristeći metode klase
+     * WeatherBugKlijent iz zadaca_4_1
+     * @return vraća se na istu stranicu
+     */
+    public String preuzmiMeteoPodatke() {
+        getMeteoWSPodaci().clear();
+        for (String s : odabraniZipKodovi.keySet()){
+            String[] data = s.split("-");
+            String zip = data[3].trim();
+            String grad = data[0] + "-" + data[1] + "-" + data[2];
+            System.out.println("GRAD: " + grad);
+            System.out.println("zip: " + zip);
+            LiveWeatherData lw = weatherBugKlijent.dajMeteoPodatke(zip);
+            MeteoPodaci p = new MeteoPodaci(zip, grad, lw.getTemperature(), lw.getHumidity(), lw.getLongitude(), lw.getLatitude());
+            meteoWSPodaci.add(p);
+        }
+        return "";
+    }
+
+    /**
+     * *****************************************
+     * GETTERI I SETTERI 
+     ******************************************
      */
     public Map<String, Object> getPopisDrzava() {
         popisDrzava = new TreeMap<String, Object>();
         List<States> drzave;
-        if (filterDrzava == null || filterDrzava.trim().isEmpty()){
+        if (filterDrzava == null || filterDrzava.trim().isEmpty()) {
             drzave = statesFacade.findAll();
         } else {
             drzave = statesFacade.filtrirajDrzave(filterDrzava.toUpperCase());
         }
-        for (States d : drzave){
+        for (States d : drzave) {
             popisDrzava.put(d.getName(), d.getName());
         }
         return popisDrzava;
@@ -189,17 +260,17 @@ public class OdabirZipKodovaZaGradove implements Serializable {
 
     public Map<String, Object> getPopisGradova() {
         popisGradova = new TreeMap<String, Object>();
-        if (odabraneDrzave == null || odabraneDrzave.isEmpty()){
+        if (odabraneDrzave == null || odabraneDrzave.isEmpty()) {
             return popisGradova;
         }
-        
-        if (filterGradova == null || filterGradova.isEmpty()){
+
+        if (filterGradova == null || filterGradova.isEmpty()) {
             gradovi = citiesFacade.filtrirajGradove(odabraneDrzave.keySet());
-        } else{
+        } else {
             gradovi = citiesFacade.filtrirajGradove(odabraneDrzave.keySet(), filterGradova.toUpperCase());
         }
-        
-        for (Cities c : gradovi){
+
+        for (Cities c : gradovi) {
             String grad = c.getCitiesPK().getState() + " - " + c.getCitiesPK().getCounty() + " -  " + c.getCitiesPK().getCity();
             popisGradova.put(grad, grad);
         }
@@ -245,23 +316,22 @@ public class OdabirZipKodovaZaGradove implements Serializable {
     public Map<String, Object> getPopisZipKodova() {
         popisZipKodova = new TreeMap<String, Object>();
         List<ZipCodes> zipovi;
-        if (odabraniGradovi == null || odabraniGradovi.isEmpty()){
+        if (odabraniGradovi == null || odabraniGradovi.isEmpty()) {
             return popisZipKodova;
         }
-        if (filterZipKodova == null || filterZipKodova.isEmpty()){
+        if (filterZipKodova == null || filterZipKodova.isEmpty()) {
             zipovi = zipCodesFacade.filtrirajZipove(odabraniGradovi.keySet());
-        } else{
-            zipovi = zipCodesFacade.filtrirajZipove(odabraniGradovi.keySet(), filterZipKodova.toUpperCase());
+        } else {
+            zipovi = zipCodesFacade.filtrirajZipove(odabraniGradovi.keySet(), filterZipKodova);
         }
-        for (ZipCodes zc : zipovi){
-            Integer zip = zc.getZip();
-            popisZipKodova.put(zip.toString(), zip.toString());
+        for (ZipCodes zc : zipovi) {
+            String res = zc.getCities().getCitiesPK().getState() + " - " + zc.getCities().getCitiesPK().getCounty() + " -  " + 
+                         zc.getCities().getCitiesPK().getCity() + " - " + zc.getZip();
+            popisZipKodova.put(res.toString(), res.toString());
         }
         return popisZipKodova;
     }
 
-    
-    
     public void setPopisZipKodova(Map<String, Object> popisZipKodova) {
         this.popisZipKodova = popisZipKodova;
     }
@@ -298,9 +368,19 @@ public class OdabirZipKodovaZaGradove implements Serializable {
         this.filterZipKodova = filterZipKodova;
     }
 
+    public boolean isPostojeMeteoPodaci() {
+        return postojeMeteoPodaci;
+    }
+
+    public void setPostojeMeteoPodaci(boolean postojeMeteoPodaci) {
+        this.postojeMeteoPodaci = postojeMeteoPodaci;
+    }
     
-    
-    
-    
-    
+    public List<MeteoPodaci> getMeteoWSPodaci() {
+        return meteoWSPodaci;
+    }
+
+    public void setMeteoWSPodaci(List<MeteoPodaci> meteoWSPodaci) {
+        this.meteoWSPodaci = meteoWSPodaci;
+    }
 }

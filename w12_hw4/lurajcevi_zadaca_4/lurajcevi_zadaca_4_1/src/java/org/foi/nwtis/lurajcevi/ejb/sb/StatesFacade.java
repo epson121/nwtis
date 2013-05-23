@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package org.foi.nwtis.lurajcevi.ejb.sb;
 
 import java.util.List;
@@ -31,6 +28,11 @@ public class StatesFacade extends AbstractFacade<States> {
         super(States.class);
     }
     
+    /**
+     * Filtrira drzave prema unesenom nazivu (LIKE operator)
+     * @param naziv - proslijeđena vrijednost
+     * @return rezultate upita
+     */
     public List<States> filtrirajDrzave(String naziv){
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery cq = cb.createQuery();

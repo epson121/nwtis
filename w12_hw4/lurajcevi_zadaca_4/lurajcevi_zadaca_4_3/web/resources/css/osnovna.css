@@ -15,31 +15,46 @@
     background-color: #b2c8e5;
     text-indent: 5px;
 }
-.gumb1 {
-    background-color: activeborder;
-    color: black;
-    border: 1px solid firebrick;
-    width: 5em;
+
+input[type="button"], input[type="submit"] { 
+    color: #000000; 
+    font:  74% 'trebuchet ms',helvetica,sans-serif; 
+    background-color: #b2c8e5; 
+    border: 2px solid #036fab;
+} 
+
+
+input[type="button"]:active, input[type="submit"]:active { 
+    color: #000000; 
+    font:  74% 'trebuchet ms',helvetica,sans-serif; 
+    background-color: #AFAFAF; 
+    border: 2px solid #036fab;
 }
-.gumb1:disabled {
-    background-color: aliceblue;
-    color: black;
-    border: 1px solid firebrick;
-    width: 5em;
-}
-.gumb2 {
-    background-color: activeborder;
-    color: black;
-    border: 1px solid firebrick;
-    width: 12em;
-}
-.gumb2:disabled {
-    background-color: aliceblue;
-    color: black;
-    border: 1px solid firebrick;
-    width: 12em;
-}
+
 .sel{
     width: 5em;
+}
+
+.cnas{
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    border-bottom: 2px solid #036fab;
+    border-right:  2px solid #036fab;
+    border-top: 2px solid #b2c8e5;
+    border-left: 2px solid #b2c8e5;
+    padding: 0px;
+}
+
+.filter{
+    width: 100px;
+    margin-left: 5px;
+    border: 1px solid black;
+}
+
+.pg_glavni{
+    display: block;
+    overflow:   auto;
+    overflow-style: panner;
 }
 
