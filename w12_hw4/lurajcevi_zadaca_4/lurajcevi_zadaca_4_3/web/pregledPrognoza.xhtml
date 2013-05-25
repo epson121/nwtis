@@ -13,7 +13,7 @@
             </ui:define>
 
             <ui:define name="top">
-                Nwtis zadaca 4
+                Pregled prognoza
             </ui:define>
 
             <ui:define name="content">
@@ -110,9 +110,7 @@
                                 </h:commandButton>
                                 
                                 <h:outputText value="" />
-                                <h:commandButton value="Preuzmi meteo podatke" action="#{odabirZipKodovaZaGradove.preuzmiMeteoPodatke()}" >
-                                    <f:ajax render="popisMeteoPodataka" execute="odabraniZipKodovi" immediate="true" />
-                                </h:commandButton>
+                                <h:commandButton value="Preuzmi meteo podatke" action="#{odabirZipKodovaZaGradove.preuzmiMeteoPodatke()}" />
 
                             </h:panelGrid>
                         </h:panelGrid>
@@ -120,7 +118,7 @@
                     <br/><br/>  
                     <h:dataTable id="popisMeteoPodataka" value="#{odabirZipKodovaZaGradove.meteoWSPodaci}" var="p" 
                              class="tablica" headerClass="zaglavlje"
-                            rowClasses="neparni,parni">
+                             rowClasses="neparni,parni" rendered="#{odabirZipKodovaZaGradove.postojeMeteoPodaci}">
                     <br/>
                     <h:column>
                         <f:facet name="header">ZIP kod</f:facet>

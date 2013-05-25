@@ -4,7 +4,6 @@ package org.foi.nwtis.lurajcevi.ejb.sb;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import javassist.expr.Cast;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -65,27 +64,49 @@ public class ZipCodesFacade extends AbstractFacade<ZipCodes> {
         cq.select(zipovi);
         List<String> gradovi = new ArrayList<String>();
         List<String> drzave = new ArrayList<String>();
+        /*
+        String triMin = filter;
+        String cetiriMin = filter;
+        String petMin = filter;
+        String triMax = filter;
+        String cetiriMax = filter;
+        String petMax = filter;
+        while (filter.length() != 5){
+            petMin += "0";
+            if (filter.length() < 4)
+                cetiriMin += "0";
+            if (filter.length() < 3)
+                triMin += "0";
+        }
+        while (filter.length() != 5){
+            petMax += "9";
+            if (filter.length() < 4)
+                cetiriMax += "9";
+            if (filter.length() < 3)
+                triMax += "9";
+        }
         for (String s : data){
             gradovi.add(s.split("-")[2].trim());
             drzave.add(s.split("-")[0].trim());
         }
+         System.out.println("TRI MIN " + triMin );
+         System.out.println("TRI MAX " + triMax );
+         System.out.println("CETIRI MIN " + cetiriMin );
+         System.out.println("CETIRI MAX " + cetiriMax );
+         System.out.println("PET MIN " + petMin );
+         System.out.println("PET MAX " + petMax );
+         */ 
         cq.where(cb.and(
                         zipovi.<String>get("cities").<String>get("citiesPK").<String>get("city").in(gradovi), 
-                        zipovi.<String>get("cities").<String>get("citiesPK").<String>get("state").in(drzave), 
-                        cb.like(zipovi.<String>get("zip"), filter + "%")
+                        zipovi.<String>get("cities").<String>get("citiesPK").<String>get("state").in(drzave)
+                        /*
+                        cb.between(zipovi.<Integer>get("zip"), Integer.parseInt(triMin), Integer.parseInt(triMax)),
+                        cb.between(zipovi.<Integer>get("zip"), Integer.parseInt(cetiriMin), Integer.parseInt(cetiriMax)),
+                        cb.between(zipovi.<Integer>get("zip"), Integer.parseInt(petMin), Integer.parseInt(petMax))
+                        **/
                        )
                 );
         return em.createQuery(cq).getResultList();
-    }
-     
-     public List<ZipCodes> filtrirajZipoveTest(Set<String> data, String filter){
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery cq = cb.createQuery();
-        Root<ZipCodes> zipovi = cq.from(ZipCodes.class);
-        cq.select(zipovi.<String>get("zip"));
-        return em.createQuery(cq).getResultList();
-    }
-     
-      
+    } 
     
 }

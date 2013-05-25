@@ -189,17 +189,23 @@ public class OdabirZipKodovaZaGradove implements Serializable {
      * @return vraća se na istu stranicu
      */
     public String preuzmiMeteoPodatke() {
-        getMeteoWSPodaci().clear();
+        meteoWSPodaci.clear();
+        if (odabraniZipKodovi == null || odabraniZipKodovi.size() == 0){
+            postojeMeteoPodaci = false;
+            return "";
+        }
         for (String s : odabraniZipKodovi.keySet()){
             String[] data = s.split("-");
             String zip = data[3].trim();
             String grad = data[0] + "-" + data[1] + "-" + data[2];
-            System.out.println("GRAD: " + grad);
-            System.out.println("zip: " + zip);
             LiveWeatherData lw = weatherBugKlijent.dajMeteoPodatke(zip);
             MeteoPodaci p = new MeteoPodaci(zip, grad, lw.getTemperature(), lw.getHumidity(), lw.getLongitude(), lw.getLatitude());
             meteoWSPodaci.add(p);
         }
+        if (meteoWSPodaci.size() > 0)
+            postojeMeteoPodaci = true;
+        else 
+            postojeMeteoPodaci = false;
         return "";
     }
 

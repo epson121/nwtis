@@ -36,7 +36,7 @@ input[type="button"]:active, input[type="submit"]:active {
 }
 
 .cnas{
-    text-align: center;
+    text-align: left;
     font-size: 16px;
     font-weight: bold;
     border-bottom: 2px solid #036fab;
@@ -56,5 +56,12 @@ input[type="button"]:active, input[type="submit"]:active {
     display: block;
     overflow:   auto;
     overflow-style: panner;
+}
+
+.naslovna_slika{
+    opacity: 0.8;
+    width: 40%;
+    height: 40%;
+    margin-left: 25%;
 }
 
