@@ -5,13 +5,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.xml.ws.WebServiceRef;
 import net.wxbug.api.LiveWeatherData;
 import net.wxbug.api.UnitType;
 import net.wxbug.api.WeatherBugWebServices;
+import org.foi.nwtis.lurajcevi.konfiguracije.KonfiguracijaApstraktna;
+import org.foi.nwtis.lurajcevi.konfiguracije.NemaKonfiguracije;
 
 /**
  *
@@ -26,21 +25,15 @@ public class WeatherBugKlijent {
     private WeatherBugWebServices service;
     
     private String weatherBugCode = "A5537364377";
+
+    public WeatherBugKlijent() {
+    }
     /**
      * Dohvaća meteo podatke za dani zip kod
      * @param zip - zip kod za koji se dohvaćaju meteoroloski podaci
      * @return 
      */
     public LiveWeatherData dajMeteoPodatke(String zip){
-        //TODO preuzeti iz web xml
-        /*
-        String wb_code = null;
-        try {
-           Context env = (Context) new InitialContext().lookup("java:comp/env");
-           wb_code = (String) env.lookup("wb_code");
-        } catch (NamingException ex) {
-            Logger.getLogger(WeatherBugKlijent.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
         return getLiveWeatherByUSZipCode(zip, UnitType.METRIC, weatherBugCode);
     }
     
