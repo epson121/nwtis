@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context antiJARLocking="true" path="/lurajcevi_aplikacija_1">
+
+ <Resource name="jdbc/nwtis_lurajcevi_bp_1" auth="Container" type="javax.sql.DataSource"
+               maxActive="100" maxIdle="30" maxWait="10000"
+               username="root" password="pass" driverClassName="com.mysql.jdbc.Driver"
+               url="jdbc:mysql://127.0.0.1:3306/nwtis_lurajcevi_bp_1?zeroDateTimeBehavior=convertToNull"/>
+ 
+ <Resource name="mail/Session" auth="Container"
+            type="javax.mail.Session"
+            mail.smtp.host="localhost"/>
+</Context>

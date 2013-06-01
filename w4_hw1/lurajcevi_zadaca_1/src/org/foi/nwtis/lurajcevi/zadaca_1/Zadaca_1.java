@@ -70,8 +70,8 @@ public class Zadaca_1 {
                             adminCommand = m.group(7);
                         }
 
-                        
-                        TimeAdministrator av = new TimeAdministrator ( port, configFileName, 
+
+                        TimeAdministrator av = new TimeAdministrator ( port, configFileName,
                                               serverIP, user, password, adminCommand, time );
                         av.startAdministratorVremena();
                     }
