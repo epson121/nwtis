@@ -9,9 +9,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 import net.wxbug.api.LiveWeatherData;
 import org.foi.nwtis.lurajcevi.konfiguracije.bp.BP_Konfiguracija;
 import org.foi.nwtis.lurajcevi.slusaci.SlusacAplikacije;
+import org.foi.nwtis.lurajcevi.ws.MeteoPodaci;
 
 /**
  * @document DBConnector
@@ -73,7 +76,7 @@ public class DBConnector {
                     instr.execute("INSERT INTO " + dbName +" VALUES (DEFAULT, '"
                        + entry.getKey() + "','"+ entry.getValue().getZipCode() + "','" + entry.getValue().getTemperature() + "','"
                        + entry.getValue().getHumidity() + "','" + entry.getValue().getLatitude() + "','" + entry.getValue().getLongitude()
-                       + "','" + entry.getValue().getCity() + "','" +entry.getValue().getWindSpeed() + "','" +entry.getValue().getPressure() + "')");
+                       + "','" + entry.getValue().getCity() + "','" +entry.getValue().getWindSpeed() + "','" +entry.getValue().getPressure() + "', now())");
                 /*} else{
                     instr.execute("UPDATE " + dbName + " SET zip_vraceni = '" + entry.getValue().getZipCode() + "',"
                        + "temperatura = '" + entry.getValue().getTemperature() + "'," + "vlaga = '" + entry.getValue().getHumidity() + "',"
@@ -223,6 +226,168 @@ public class DBConnector {
             e.printStackTrace();
         }
         return odgovor;
+    }
+    
+    public static MeteoPodaci dohvatiPodatkeOZipKoduMeteo(String baza, String zip) throws ClassNotFoundException{
+         String url = bpKonf.getServer_database() + bpKonf.getUser_database();
+        String korisnik = bpKonf.getUser_username();
+        String lozinka = bpKonf.getUser_password();
+        Connection veza = null;
+        Statement instr = null;
+        ResultSet rs = null;
+        MeteoPodaci p = null;
+        try{
+            Class.forName(bpKonf.getDriver_database(url));
+            veza = DriverManager.getConnection(url, korisnik, lozinka);
+            instr = veza.createStatement();
+            rs = instr.executeQuery("SELECT * FROM " + baza + " WHERE zip_trazeni = '" + zip + "' ORDER BY id DESC LIMIT 1");
+            rs.next();
+            p = new MeteoPodaci(rs.getString("zip_trazeni"),
+                                                rs.getString("zip_vraceni"),
+                                                rs.getString("temperatura"),
+                                                rs.getString("vlaga"),
+                                                rs.getString("geo_duzina"),
+                                                rs.getString("geo_sirina"),
+                                                rs.getString("grad"),
+                                                rs.getString("vjetar"),
+                                                rs.getString("tlak"),
+                                                rs.getString("datum"));
+        } catch(SQLException e){
+            if (veza != null){
+                veza = null;
+            }
+            if (instr != null){
+                instr = null;
+            }
+            if (rs != null){
+                rs = null;
+            }
+            e.printStackTrace();
+        }
+        return p;
+    }
+    
+    public static List<String> dohvatiTopZipove(String baza, int n) throws ClassNotFoundException, SQLException{
+        String url = bpKonf.getServer_database() + bpKonf.getUser_database();
+        String korisnik = bpKonf.getUser_username();
+        String lozinka = bpKonf.getUser_password();
+        Connection veza = null;
+        Statement instr = null;
+        ResultSet rs = null;
+        List<String> mp = new ArrayList<String>();
+        try{
+            Class.forName(bpKonf.getDriver_database(url));
+            veza = DriverManager.getConnection(url, korisnik, lozinka);
+            instr = veza.createStatement();
+            
+                rs = instr.executeQuery("SELECT zip_trazeni, COUNT(*) AS c FROM " + baza + " GROUP BY zip_trazeni LIMIT " + n );
+                while (rs.next()){
+                    mp.add(rs.getString("zip_trazeni") + ":" + rs.getString("c"));
+                }
+            
+        } catch(SQLException e){
+            if (veza != null){
+                veza = null;
+            }
+            if (instr != null){
+                instr = null;
+            }
+            if (rs != null){
+                rs = null;
+            }
+            e.printStackTrace();
+        }
+        return mp;
+    }
+
+    public static List<MeteoPodaci> dohvatiNajnovijePodatke(String baza, String zip, int n) throws ClassNotFoundException, SQLException{
+        String url = bpKonf.getServer_database() + bpKonf.getUser_database();
+        String korisnik = bpKonf.getUser_username();
+        String lozinka = bpKonf.getUser_password();
+        Connection veza = null;
+        Statement instr = null;
+        ResultSet rs = null;
+        List<MeteoPodaci> podaci = new ArrayList<MeteoPodaci>();
+        try{
+            Class.forName(bpKonf.getDriver_database(url));
+            veza = DriverManager.getConnection(url, korisnik, lozinka);
+            instr = veza.createStatement();
+            /*
+            rs = instr.executeQuery("SELECT * FROM " + baza + 
+                                    " WHERE id IN " +
+                                      "(SELECT max(id) FROM " + baza + 
+                                          "WHERE zip_trazeni='" + zip + 
+                                            "' LIMIT " + n + "");
+                                            * */
+            rs = instr.executeQuery("SELECT * FROM " + baza +
+                                     "WHERE zip_trazeni = '" + zip + "' ORDER BY id DESC LIMIT " + n);
+            while(rs.next()){
+                MeteoPodaci p = new MeteoPodaci(rs.getString("zip_trazeni"),
+                                                rs.getString("zip_vraceni"),
+                                                rs.getString("temperatura"),
+                                                rs.getString("vlaga"),
+                                                rs.getString("geo_duzina"),
+                                                rs.getString("geo_sirina"),
+                                                rs.getString("grad"),
+                                                rs.getString("vjetar"),
+                                                rs.getString("tlak"),
+                                                rs.getString("datum"));
+                podaci.add(p);
+            }
+        } catch(SQLException e){
+            if (veza != null){
+                veza = null;
+            }
+            if (instr != null){
+                instr = null;
+            }
+            if (rs != null){
+                rs = null;
+            }
+            e.printStackTrace();
+        }
+        return podaci;
+    }
+
+    public static List<MeteoPodaci> dohvatiPodatkeInterval(String baza, String zip, String d1, String d2) throws ClassNotFoundException, SQLException{
+        String url = bpKonf.getServer_database() + bpKonf.getUser_database();
+        String korisnik = bpKonf.getUser_username();
+        String lozinka = bpKonf.getUser_password();
+        Connection veza = null;
+        Statement instr = null;
+        ResultSet rs = null;
+        List<MeteoPodaci> podaci = new ArrayList<MeteoPodaci>();
+        try{
+            Class.forName(bpKonf.getDriver_database(url));
+            veza = DriverManager.getConnection(url, korisnik, lozinka);
+            instr = veza.createStatement();
+            rs = instr.executeQuery("SELECT * FROM " + baza + " WHERE datum BETWEEN '" + d1 + "' AND '" + d2 + "'");
+            while(rs.next()){
+                MeteoPodaci p = new MeteoPodaci(rs.getString("zip_trazeni"),
+                                                rs.getString("zip_vraceni"),
+                                                rs.getString("temperatura"),
+                                                rs.getString("vlaga"),
+                                                rs.getString("geo_duzina"),
+                                                rs.getString("geo_sirina"),
+                                                rs.getString("grad"),
+                                                rs.getString("vjetar"),
+                                                rs.getString("tlak"),
+                                                rs.getString("datum"));
+                podaci.add(p);
+            }
+        } catch(SQLException e){
+            if (veza != null){
+                veza = null;
+            }
+            if (instr != null){
+                instr = null;
+            }
+            if (rs != null){
+                rs = null;
+            }
+            e.printStackTrace();
+        }
+        return podaci;
     }
     
 }

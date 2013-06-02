@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
-  <services>
-    <service name="wb_servis">
-      <implementation-class>org.foi.nwtis.lurajcevi.ws.wb_servis</implementation-class>
-    </service>
-  </services>
+  <services/>
   <clients>
-    <client name="weatherservice">
-      <wsdl-url>http://api.wxbug.net/weatherservice.asmx?WSDL</wsdl-url>
-      <local-wsdl-file>api.wxbug.net/weatherservice.asmx.wsdl</local-wsdl-file>
-      <package-name>net.wxbug.api</package-name>
+    <client name="wb_servis">
+      <wsdl-url>http://localhost:8084/lurajcevi_aplikacija_1/wb_servis?wsdl</wsdl-url>
+      <local-wsdl-file>localhost_8084/lurajcevi_aplikacija_1/wb_servis.wsdl</local-wsdl-file>
+      <package-name>org.foi.nwtis.lurajcevi.ws</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
         <wsimport-option>
@@ -22,7 +18,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://api.wxbug.net/weatherservice.asmx?WSDL</wsimport-option-value>
+          <wsimport-option-value>http://localhost:8084/lurajcevi_aplikacija_1/wb_servis?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>
@@ -35,5 +31,4 @@
       </wsimport-options>
     </client>
   </clients>
-  <jsr109>false</jsr109>
 </jax-ws>

@@ -10,3 +10,4 @@
             type="javax.mail.Session"
             mail.smtp.host="localhost"/>
 </Context>
+        

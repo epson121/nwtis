@@ -48,6 +48,7 @@ public class ObradaPodatakaWeatherbug extends Thread{
                 }
 
                 for (String z : zipKodovi){
+                    System.out.println("z" + z);
                     meteoPodaci.put(z, wbKlijent.dajMeteoPodatke(z));
                 }
 

@@ -1,19 +1,12 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package org.foi.nwtis.lurajcevi.slusaci;
 
 import java.io.File;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.net.SocketTimeoutException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import org.foi.nwtis.lurajcevi.ObradaPodatakaServer;
-import org.foi.nwtis.lurajcevi.ObradaPodatakaServerDretva;
 import org.foi.nwtis.lurajcevi.konfiguracije.Konfiguracija;
 import org.foi.nwtis.lurajcevi.konfiguracije.KonfiguracijaApstraktna;
 import org.foi.nwtis.lurajcevi.konfiguracije.NemaKonfiguracije;

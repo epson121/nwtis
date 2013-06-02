@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+ <definitions 
+ xmlns="http://schemas.xmlsoap.org/wsdl/" 
+ xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+ xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="wb_servis" targetNamespace="http://ws.lurajcevi.nwtis.foi.org/" xmlns:tns="http://ws.lurajcevi.nwtis.foi.org/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:fi="http://java.sun.com/xml/ns/wsit/2006/09/policy/fastinfoset/service" xmlns:tcp="http://java.sun.com/xml/ns/wsit/2006/09/policy/soaptcp/service" 
+ >
+    <message name="Hello"/>
+    <message name="HelloResponse"/>
+    <message name="dohvatiAktivneZipove"/>
+    <message name="dohvatiAktivneZipoveResponse"/>
+    <message name="dohvatiPodatkeOZipKodu"/>
+    <message name="dohvatiPodatkeOZipKoduResponse"/>
+    <message name="dohvatiPosljednjihNPodatakaZaZipKod"/>
+    <message name="dohvatiPosljednjihNPodatakaZaZipKodResponse"/>
+    <message name="dohvatiZipoveSNajvisePodataka"/>
+    <message name="dohvatiZipoveSNajvisePodatakaResponse"/>
+    <message name="dohvatiPodatkeInterval"/>
+    <message name="dohvatiPodatkeIntervalResponse"/>
+    <portType name="wb_servis">
+        <operation name="Hello">
+            <input message="tns:Hello"/>
+            <output message="tns:HelloResponse"/>
+        </operation>
+        <operation name="dohvatiAktivneZipove">
+            <input message="tns:dohvatiAktivneZipove"/>
+            <output message="tns:dohvatiAktivneZipoveResponse"/>
+        </operation>
+        <operation name="dohvatiPodatkeOZipKodu">
+            <input message="tns:dohvatiPodatkeOZipKodu"/>
+            <output message="tns:dohvatiPodatkeOZipKoduResponse"/>
+        </operation>
+        <operation name="dohvatiPosljednjihNPodatakaZaZipKod">
+            <input message="tns:dohvatiPosljednjihNPodatakaZaZipKod"/>
+            <output message="tns:dohvatiPosljednjihNPodatakaZaZipKodResponse"/>
+        </operation>
+        <operation name="dohvatiZipoveSNajvisePodataka">
+            <input message="tns:dohvatiZipoveSNajvisePodataka"/>
+            <output message="tns:dohvatiZipoveSNajvisePodatakaResponse"/>
+        </operation>
+        <operation name="dohvatiPodatkeInterval">
+            <input message="tns:dohvatiPodatkeInterval"/>
+            <output message="tns:dohvatiPodatkeIntervalResponse"/>
+        </operation>
+    </portType>
+    <binding name="wb_servisPortBinding" type="tns:wb_servis">
+        <wsp:PolicyReference URI="#wb_servisPortBindingPolicy"/>
+        <operation name="Hello">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="dohvatiAktivneZipove">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="dohvatiPodatkeOZipKodu">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="dohvatiPosljednjihNPodatakaZaZipKod">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="dohvatiZipoveSNajvisePodataka">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="dohvatiPodatkeInterval">
+            <input/>
+            <output/>
+        </operation>
+    </binding>
+    <service name="wb_servis">
+        <port name="wb_servisPort" binding="tns:wb_servisPortBinding"/>
+    </service>
+    <wsp:Policy wsu:Id="wb_servisPortBindingPolicy">
+        <wsp:ExactlyOne>
+            <wsp:All/>
+        </wsp:ExactlyOne>
+    </wsp:Policy>
+</definitions>
