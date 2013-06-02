@@ -72,6 +72,7 @@ public class ObradaPodatakaWeatherbug extends Thread{
             }
 
         }
+        System.out.println("Weatherbug Thread: Stopping.");
     }
 
     @Override

@@ -28,7 +28,7 @@
     </target>
     <target name="wsimport-client-weatherservice" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/weatherservice"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/weatherservice" destdir="${build.generated.dir}/jax-wsCache/weatherservice" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/weatherservice/wsdl/api.wxbug.net/weatherservice.asmx.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" wsdlLocation="http://api.wxbug.net/weatherservice.asmx?WSDL" xnocompile="true" xendorsed="true">
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/weatherservice" destdir="${build.generated.dir}/jax-wsCache/weatherservice" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/weatherservice/wsdl/api.wxbug.net/weatherservice.asmx.wsdl" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="http://api.wxbug.net/weatherservice.asmx?WSDL" xnocompile="true" xendorsed="true">
             <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/weatherservice/wsdl/api.wxbug.net/weatherservice.asmx.wsdl"/>
             <produces dir="${build.generated.dir}/jax-wsCache/weatherservice"/>
         </wsimport>

@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import org.foi.nwtis.lurajcevi.ObradaPodatakaServer;
+import org.foi.nwtis.lurajcevi.ObradaPodatakaServerDretva;
 import org.foi.nwtis.lurajcevi.konfiguracije.Konfiguracija;
 import org.foi.nwtis.lurajcevi.konfiguracije.KonfiguracijaApstraktna;
 import org.foi.nwtis.lurajcevi.konfiguracije.NemaKonfiguracije;
@@ -30,8 +31,8 @@ public class SlusacAplikacije implements ServletContextListener {
     public static BP_Konfiguracija bpKonf = null;
     public static boolean stopped = false;
     public static boolean paused = false;
-    ObradaPodatakaWeatherbug opw;
-    
+    private ObradaPodatakaWeatherbug opw = null;
+    private ObradaPodatakaServer ops = null;
     
     @Override
     public void contextInitialized(ServletContextEvent sce) {
@@ -53,34 +54,19 @@ public class SlusacAplikacije implements ServletContextListener {
         System.out.println("Konfiguracija baze učitana.");
         System.out.println("Konfiguracija učitana.");
         
-         try {
-            ServerSocket server = new ServerSocket(Integer.parseInt(config.dajPostavku("port")));
-            server.setSoTimeout(1000);
-            ObradaPodatakaServer ops;
-            opw = new ObradaPodatakaWeatherbug(config);
-            opw.start();
-            while (!stopped && opw.isAlive()){
-                try{
-                    Socket client = server.accept();
-                    System.out.println("--------------------------------------------");
-                    System.out.println("Request has been received. Now responding...");
-                    ops = new ObradaPodatakaServer(client, config);
-                    ops.start();
-                } catch(SocketTimeoutException ste){
-                    
-                }
-            }
-        } catch (Exception e) {
-            //do nothing
-        }
+        opw = new ObradaPodatakaWeatherbug(config);
+        opw.start();
         
+        ops = new ObradaPodatakaServer(config);
+        ops.start();
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        if (opw != null && !opw.isInterrupted()){
+        if (opw.isAlive())
             opw.interrupt();
-        }
+        if (ops.isAlive())
+            ops.interrupt();
     }
 
     public static boolean isStopped() {

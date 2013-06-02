@@ -36,7 +36,6 @@ public class DBConnector {
             instr = veza.createStatement();
             rs = instr.executeQuery(upit);
             while (rs.next()){
-                System.out.println("zip: " + rs.getString("zip_code"));
                zipovi.add(rs.getString("zip_code"));
             }
         } catch(SQLException e){
@@ -55,6 +54,7 @@ public class DBConnector {
     }
     
     public static void unesiPodatke(Map<String, LiveWeatherData>  weatherData) throws ClassNotFoundException{
+        String dbName = "lurajcevi_podaci_zip";
         String url = bpKonf.getServer_database() + bpKonf.getUser_database();
         String korisnik = bpKonf.getUser_username();
         String lozinka = bpKonf.getUser_password();
@@ -66,20 +66,21 @@ public class DBConnector {
             veza = DriverManager.getConnection(url, korisnik, lozinka);
             instr = veza.createStatement();
             for (Map.Entry<String, LiveWeatherData> entry : weatherData.entrySet()) {
-                rs = instr.executeQuery("SELECT COUNT(*) FROM lurajcevi_zip_podaci WHERE zip_trazeni = '" + entry.getKey() + "'");
+               /* rs = instr.executeQuery("SELECT COUNT(*) FROM " + dbName + " WHERE zip_trazeni = '" + entry.getKey() + "'");
                 rs.next();
-                if (rs.getInt(1) == 0){
-                    instr.execute("INSERT INTO lurajcevi_zip_podaci VALUES ('"
+                if (rs.getInt(1) == 0){*/
+                System.out.println("Inserting" + entry.getValue().getCity());
+                    instr.execute("INSERT INTO " + dbName +" VALUES (DEFAULT, '"
                        + entry.getKey() + "','"+ entry.getValue().getZipCode() + "','" + entry.getValue().getTemperature() + "','"
                        + entry.getValue().getHumidity() + "','" + entry.getValue().getLatitude() + "','" + entry.getValue().getLongitude()
                        + "','" + entry.getValue().getCity() + "','" +entry.getValue().getWindSpeed() + "','" +entry.getValue().getPressure() + "')");
-                } else{
-                    instr.execute("UPDATE lurajcevi_zip_podaci SET zip_vraceni = '" + entry.getValue().getZipCode() + "',"
+                /*} else{
+                    instr.execute("UPDATE " + dbName + " SET zip_vraceni = '" + entry.getValue().getZipCode() + "',"
                        + "temperatura = '" + entry.getValue().getTemperature() + "'," + "vlaga = '" + entry.getValue().getHumidity() + "',"
                        + "geo_duzina = '" + entry.getValue().getLatitude() + "'," + "geo_sirina = '" + entry.getValue().getLongitude() + "',"
                        + "grad = '" + entry.getValue().getCity() + "'," + "vjetar = '" + entry.getValue().getWindSpeed() + "',"
                        + "tlak = '" + entry.getValue().getPressure() + "' WHERE zip_trazeni = '" + entry.getKey() + "'");
-                }
+                }*/
             }
         } catch(SQLException e){
             if (veza != null){

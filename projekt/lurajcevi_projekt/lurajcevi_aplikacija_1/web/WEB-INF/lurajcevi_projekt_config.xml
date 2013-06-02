@@ -4,7 +4,6 @@
 <comment>NWTIS lurajcevi</comment>
 <entry key="interval">25</entry>
 <entry key="port">20000</entry>
-adresa primatelja i predmet poruke
 <entry key="primatelj">primatelj@primatelj.com</entry>
 <entry key="predmet">MWTiS</entry>
 </properties>
