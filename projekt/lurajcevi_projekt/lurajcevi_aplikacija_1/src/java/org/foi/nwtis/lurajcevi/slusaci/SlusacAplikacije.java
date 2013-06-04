@@ -42,7 +42,7 @@ public class SlusacAplikacije implements ServletContextListener {
         }
         
         sce.getServletContext().setAttribute("BP_Konfiguracija", bpKonf);
-        sce.getServletContext().setAttribute("konfiguracija", config);
+        sce.getServletContext().setAttribute("Konfiguracija", config);
         
         System.out.println("Konfiguracija baze učitana.");
         System.out.println("Konfiguracija učitana.");

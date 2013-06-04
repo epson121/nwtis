@@ -41,12 +41,13 @@ public class ObradaPodatakaServerDretva extends Thread{
     
     //regex
     private String userRegex = "^USER ([a-zA-Z0-9_]+)\\; GET ZIP (\\d\\d\\d\\d\\d)\\; *$"; 
-    private String adminRegex = "^USER ([a-zA-Z0-9_]+)\\; PASSWD ([a-zA-Z0-9_]+)\\; (PAUSE\\;|START\\;|STOP\\;|TEST ZIP (\\d\\d\\d\\d\\d)\\;|GET ZIP (\\d\\d\\d\\d\\d)\\;|ADD ZIP (\\d\\d\\d\\d\\d)\\; *$)";
+    private String adminRegex = "^USER ([a-zA-Z0-9_]+)\\; PASSWD ([a-zA-Z0-9_]+)\\; (PAUSE\\;|START\\;|STOP\\;|TEST ZIP (\\d\\d\\d\\d\\d)\\;|GET ZIP (\\d\\d\\d\\d\\d)\\;|ADD ZIP (\\d\\d\\d\\d\\d))\\; *$";
     
     // nazivi baza podataka
     private String activeZipCodes = "lurajcevi_activezipcodes";
     private String zip_podaci = "lurajcevi_podaci_zip";
     private String admin_podaci = "lurajcevi_admin_podaci";
+    private String dnevnik_servera = "lurajcevi_dnevnik_servera";
     
     // mail podaci
     String trajanjePrethodnogStanja;
@@ -89,9 +90,13 @@ public class ObradaPodatakaServerDretva extends Thread{
                 brojIzvrsenihKomandi++;
                 String username = m.group(1);
                 String password = m.group(2);
+                System.out.println("GRUPA 3:" + m.group(3));
+                System.out.println("GRUPA 4:" + m.group(4));
+                System.out.println("GRUPA 5:" + m.group(5));
+                System.out.println("GRUPA 6:" + m.group(6));
                 if (DBConnector.provjeriKorisnika(admin_podaci, username, password)){
-                    //TODO start time
                     String instr = m.group(3);
+                    System.out.println("INSTR: " + instr);
                     if (instr.equals("PAUSE;")){
                         if (!SlusacAplikacije.isPaused()){
                             SlusacAplikacije.setPaused(true);
@@ -113,15 +118,17 @@ public class ObradaPodatakaServerDretva extends Thread{
                         } else {
                             response = "OK 42";
                         }
-                    }  else if (instr.contains("ADD ZIP")){
-                        String zip = m.group(4);
+                    }  else if (instr.contains("ADD")){
+                        String zip = m.group(6);
+                        System.out.println("ZIP6: " + zip);
                         if (DBConnector.unesiUBazu(activeZipCodes, zip, username)){
                             response = "OK 10";
                         } else {
                             response = "OK 42";
                         }
-                    } else if (instr.contains("TEST ZIP")){
+                    } else if (instr.contains("TEST")){
                         String zip = m.group(4);
+                        System.out.println("ZIP4: " + zip);
                         if (DBConnector.provjeriZip(activeZipCodes, zip)){
                             response = "OK 10";
                         } else {
@@ -142,6 +149,7 @@ public class ObradaPodatakaServerDretva extends Thread{
                 brojNeispravnihKomandi++;
             }
             duration = System.currentTimeMillis() - start;
+            DBConnector.unesiUDnevnikSocketServera("lurajcevi_dnevnik_servera", strCommand);
             //saljiPoruku(config.dajPostavku("primatelj"), config.dajPostavku("predmet"), duration);
             os.write(response.getBytes());
             os.flush();

@@ -1,9 +1,12 @@
 package org.foi.nwtis.lurajcevi.ws;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -21,7 +24,6 @@ public class wb_servis {
      */
     @WebMethod(operationName = "Hello")
     public String Hello() {
-        //TODO write your implementation code here:
         return "Hello";
     }
 
@@ -90,7 +92,15 @@ public class wb_servis {
      */
     @WebMethod(operationName = "dohvatiPodatkeInterval")
     public java.util.List<org.foi.nwtis.lurajcevi.ws.MeteoPodaci> dohvatiPodatkeInterval(@WebParam(name = "zip") String zip, @WebParam(name = "date1") String date1, @WebParam(name = "date2") String date2) {
-        //TODO check if dates are in correct format
+        
+        SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+        String dateRegex = "^[0-9]{4}\\-[0-9]{2}\\-[0-9]{2}\\s[0-9]{2}\\:[0-9]{2}";
+        Pattern p = Pattern.compile(dateRegex);
+        Matcher m1 = p.matcher(date1);
+        Matcher m2 = p.matcher(date2);
+        if ( !m1.matches() && !m2.matches()){
+            return null;
+        }
         List<MeteoPodaci> lmp = null;
         try {
             lmp = DBConnector.dohvatiPodatkeInterval("lurajcevi_podaci_zip", zip, date1, date2);

@@ -6,14 +6,18 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 import net.wxbug.api.LiveWeatherData;
+import org.foi.nwtis.lurajcevi.ServerKomanda;
 import org.foi.nwtis.lurajcevi.konfiguracije.bp.BP_Konfiguracija;
 import org.foi.nwtis.lurajcevi.slusaci.SlusacAplikacije;
+import org.foi.nwtis.lurajcevi.web.HttpZahtjev;
 import org.foi.nwtis.lurajcevi.ws.MeteoPodaci;
 
 /**
@@ -54,6 +58,117 @@ public class DBConnector {
             e.printStackTrace();
         }
         return zipovi;
+    }
+    
+    public static List<HttpZahtjev> dohvatiPopisZahtjevaPremaServeru(String baza) throws ClassNotFoundException{
+        String upit = "SELECT * FROM lurajcevi_dnevnik_zahtjeva";
+        String url = bpKonf.getServer_database() + bpKonf.getUser_database();
+        String korisnik = bpKonf.getUser_username();
+        String lozinka = bpKonf.getUser_password();
+        Connection veza = null;
+        Statement instr = null;
+        ResultSet rs = null;
+        List<HttpZahtjev> zahtjevi = new ArrayList<HttpZahtjev>();
+        try{
+            Class.forName(bpKonf.getDriver_database(url));
+            veza = DriverManager.getConnection(url, korisnik, lozinka);
+            instr = veza.createStatement();
+            rs = instr.executeQuery(upit);
+            while (rs.next()){
+               HttpZahtjev z = new HttpZahtjev(rs.getInt("id"), 
+                                               rs.getString("zahtjev"), 
+                                               rs.getString("trajanje_obrade"));
+               zahtjevi.add(z);
+            }
+        } catch(SQLException e){
+            if (veza != null){
+                veza = null;
+            }
+            if (instr != null){
+                instr = null;
+            }
+            if (rs != null){
+                rs = null;
+            }
+            e.printStackTrace();
+        }
+        return zahtjevi;
+    }
+    
+    public static List<ServerKomanda> dohvatiPopisSocketServerKomandi(String baza) throws ClassNotFoundException{
+        String upit = "SELECT * FROM lurajcevi_dnevnik_servera";
+        String url = bpKonf.getServer_database() + bpKonf.getUser_database();
+        String korisnik = bpKonf.getUser_username();
+        String lozinka = bpKonf.getUser_password();
+        Connection veza = null;
+        Statement instr = null;
+        ResultSet rs = null;
+        List<ServerKomanda> komande = new ArrayList<ServerKomanda>();
+        try{
+            Class.forName(bpKonf.getDriver_database(url));
+            veza = DriverManager.getConnection(url, korisnik, lozinka);
+            instr = veza.createStatement();
+            rs = instr.executeQuery(upit);
+            while (rs.next()){
+                ServerKomanda z = new ServerKomanda(rs.getInt("id"), 
+                                               rs.getString("naredba"));
+               komande.add(z);
+            }
+        } catch(SQLException e){
+            if (veza != null){
+                veza = null;
+            }
+            if (instr != null){
+                instr = null;
+            }
+            if (rs != null){
+                rs = null;
+            }
+            e.printStackTrace();
+        }
+        return komande;
+    }
+    
+    public static List<MeteoPodaci> dohvatiMeteoPodatke() throws ClassNotFoundException{
+        String upit = "SELECT * FROM lurajcevi_podaci_zip";
+        String url = bpKonf.getServer_database() + bpKonf.getUser_database();
+        String korisnik = bpKonf.getUser_username();
+        String lozinka = bpKonf.getUser_password();
+        Connection veza = null;
+        Statement instr = null;
+        ResultSet rs = null;
+        List<MeteoPodaci> podaci = new ArrayList<MeteoPodaci>();
+        try{
+            Class.forName(bpKonf.getDriver_database(url));
+            veza = DriverManager.getConnection(url, korisnik, lozinka);
+            instr = veza.createStatement();
+            rs = instr.executeQuery(upit);
+            while(rs.next()){
+                MeteoPodaci p = new MeteoPodaci(rs.getString("zip_trazeni"),
+                                                rs.getString("zip_vraceni"),
+                                                rs.getString("temperatura"),
+                                                rs.getString("vlaga"),
+                                                rs.getString("geo_duzina"),
+                                                rs.getString("geo_sirina"),
+                                                rs.getString("grad"),
+                                                rs.getString("vjetar"),
+                                                rs.getString("tlak"),
+                                                rs.getString("datum"));
+                podaci.add(p);
+            }
+        } catch(SQLException e){
+            if (veza != null){
+                veza = null;
+            }
+            if (instr != null){
+                instr = null;
+            }
+            if (rs != null){
+                rs = null;
+            }
+            e.printStackTrace();
+        }
+        return podaci;
     }
     
     public static void unesiPodatke(Map<String, LiveWeatherData>  weatherData) throws ClassNotFoundException{
@@ -98,6 +213,32 @@ public class DBConnector {
             e.printStackTrace();
         }
     }
+    
+    public static void unesiPodatke(String baza, String zahtjev, String trajanje) throws ClassNotFoundException{
+        String url = bpKonf.getServer_database() + bpKonf.getUser_database();
+        String korisnik = bpKonf.getUser_username();
+        String lozinka = bpKonf.getUser_password();
+        Connection veza = null;
+        Statement instr = null;
+        ResultSet rs = null;
+        try{
+            Class.forName(bpKonf.getDriver_database(url));
+            veza = DriverManager.getConnection(url, korisnik, lozinka);
+            instr = veza.createStatement();
+            instr.execute("INSERT INTO " + baza + " VALUES (DEFAULT, '" + zahtjev + "','"+ trajanje + "')");
+        } catch(SQLException e){
+            if (veza != null){
+                veza = null;
+            }
+            if (instr != null){
+                instr = null;
+            }
+            if (rs != null){
+                rs = null;
+            }
+            e.printStackTrace();
+        }
+    }
    
     public static boolean provjeriZip(String baza, String zip) throws ClassNotFoundException{
          String url = bpKonf.getServer_database() + bpKonf.getUser_database();
@@ -111,9 +252,9 @@ public class DBConnector {
             Class.forName(bpKonf.getDriver_database(url));
             veza = DriverManager.getConnection(url, korisnik, lozinka);
             instr = veza.createStatement();
-            rs = instr.executeQuery("SELECT COUNT(*) FROM " + baza + " WHERE zip_code = '" + zip + "'");
+            rs = instr.executeQuery("SELECT COUNT(*) as c FROM " + baza + " WHERE zip_code = '" + zip + "'");
                 rs.next();
-                if (rs.getInt(1) == 1){
+                if (rs.getInt("c") == 1){
                     postoji = true;
                 }
         } catch(SQLException e){
@@ -210,9 +351,13 @@ public class DBConnector {
             //TEMP nn.nn VLAGA nn.nn TLAK nnnn.nn GEOSIR {-
             //}nnn.nnnnnn GEODUZ {-}nnn.nnnnnn
             //TODO oblikovati prema formatu
-            odgovor = "TEMP " + rs.getString("temperatura") + " VLAGA " + rs.getString("vlaga") + 
-                             " TLAK " + rs.getString("tlak") + " GEOSIR " + rs.getString("geo_sirina") + 
-                             " GEODUZ " + rs.getString("geo_duzina");
+            String temp = new DecimalFormat("##.##").format(rs.getDouble("temperatura"));
+            String vlaga = new DecimalFormat("##.##").format(rs.getDouble("vlaga"));
+            String tlak = new DecimalFormat("####.##").format(rs.getDouble("tlak"));
+            String geo_sir = new DecimalFormat("###.######").format(rs.getDouble("geo_sirina"));
+            String geo_duz = new DecimalFormat("###.######").format(rs.getDouble("geo_duzina"));
+            odgovor = "TEMP " + temp + " VLAGA " + vlaga + " TLAK " + tlak + 
+                   " GEOSIR " + geo_sir + " GEODUZ " + geo_duz;
         } catch(SQLException e){
             if (veza != null){
                 veza = null;
@@ -390,4 +535,31 @@ public class DBConnector {
         return podaci;
     }
     
+    public static boolean unesiUDnevnikSocketServera(String baza, String naredba) throws ClassNotFoundException{
+        String url = bpKonf.getServer_database() + bpKonf.getUser_database();
+        String korisnik = bpKonf.getUser_username();
+        String lozinka = bpKonf.getUser_password();
+        Connection veza = null;
+        Statement instr = null;
+        ResultSet rs = null;
+        boolean postoji = false;
+        try{
+            Class.forName(bpKonf.getDriver_database(url));
+            veza = DriverManager.getConnection(url, korisnik, lozinka);
+            instr = veza.createStatement();
+            instr.execute("INSERT INTO " + baza + " VALUES (DEFAULT, '" + naredba + "')");
+        } catch(SQLException e){
+            if (veza != null){
+                veza = null;
+            }
+            if (instr != null){
+                instr = null;
+            }
+            if (rs != null){
+                rs = null;
+            }
+            e.printStackTrace();
+        }
+        return postoji;
+    }
 }
