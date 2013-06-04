@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.foi.nwtis.lurajcevi.ServerKomanda;
 import org.foi.nwtis.lurajcevi.db.DBConnector;
 import org.foi.nwtis.lurajcevi.ws.MeteoPodaci;
 
@@ -102,7 +103,19 @@ public class Kontroler extends HttpServlet {
             odrediste = "/jsp/pregledMeteoPodataka.jsp";
         } 
         
-        else if (zahtjev.equals("/PregledDnevnika")){
+        else if (zahtjev.equals("/PregledDnevnikaSocketServera")){
+            HttpSession sesija = request.getSession();
+            List<ServerKomanda> pregled_zahtjeva = null;
+            try {
+                pregled_zahtjeva = DBConnector.dohvatiPopisSocketServerKomandi("lurajcevi_dnevnik_servera");
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            sesija.setAttribute("dnevnik_socket_servera", pregled_zahtjeva);
+            odrediste = "/jsp/pregledDnevnikaSocketServera.jsp";
+        } 
+        
+        else if (zahtjev.equals("/PregledZahtjevaServera")){
             HttpSession sesija = request.getSession();
             List<HttpZahtjev> pregled_zahtjeva = null;
             try {
@@ -111,11 +124,6 @@ public class Kontroler extends HttpServlet {
                 Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
             }
             sesija.setAttribute("pregled_zahtjeva", pregled_zahtjeva);
-            odrediste = "/jsp/pregledDnevnika.jsp";
-        } 
-        
-        else if (zahtjev.equals("/PregledZahtjevaServera")){
-            
             odrediste = "/jsp/pregledZahtjevaServera.jsp";
         } 
         

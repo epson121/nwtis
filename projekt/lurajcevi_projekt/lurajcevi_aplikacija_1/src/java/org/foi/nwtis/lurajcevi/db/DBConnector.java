@@ -111,7 +111,7 @@ public class DBConnector {
             rs = instr.executeQuery(upit);
             while (rs.next()){
                 ServerKomanda z = new ServerKomanda(rs.getInt("id"), 
-                                               rs.getString("naredba"));
+                                                    rs.getString("komanda"));
                komande.add(z);
             }
         } catch(SQLException e){
@@ -331,7 +331,7 @@ public class DBConnector {
             }
             e.printStackTrace();
         }
-        return postoji;
+        return !postoji;
     }
     
     public static String dohvatiPodatkeOZipKodu(String baza, String zip) throws ClassNotFoundException, SQLException{

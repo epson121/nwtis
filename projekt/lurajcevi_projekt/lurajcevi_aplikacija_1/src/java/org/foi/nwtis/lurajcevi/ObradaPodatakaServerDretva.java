@@ -41,7 +41,7 @@ public class ObradaPodatakaServerDretva extends Thread{
     
     //regex
     private String userRegex = "^USER ([a-zA-Z0-9_]+)\\; GET ZIP (\\d\\d\\d\\d\\d)\\; *$"; 
-    private String adminRegex = "^USER ([a-zA-Z0-9_]+)\\; PASSWD ([a-zA-Z0-9_]+)\\; (PAUSE\\;|START\\;|STOP\\;|TEST ZIP (\\d\\d\\d\\d\\d)\\;|GET ZIP (\\d\\d\\d\\d\\d)\\;|ADD ZIP (\\d\\d\\d\\d\\d))\\; *$";
+    private String adminRegex = "^USER ([a-zA-Z0-9_]+)\\; PASSWD ([a-zA-Z0-9_]+)\\; (PAUSE\\;|START\\;|STOP\\;|TEST ZIP (\\d\\d\\d\\d\\d)\\;|GET ZIP (\\d\\d\\d\\d\\d)\\;|ADD ZIP (\\d\\d\\d\\d\\d);)\\ *$";
     
     // nazivi baza podataka
     private String activeZipCodes = "lurajcevi_activezipcodes";

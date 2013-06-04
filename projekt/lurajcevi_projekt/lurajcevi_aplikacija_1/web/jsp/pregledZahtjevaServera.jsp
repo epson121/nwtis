@@ -21,8 +21,10 @@
         <display:table name="${pregled_zahtjeva}" pagesize="10" >
             <display:column property="id" sortable="true"/>
             <display:column property="zahtjev" />
-            <display:column property="trajanje_obrade" />
+            <display:column property="trajanje" />
         </display:table>     
-        
+    
+        <br><br>
+        <a href="${pageContext.servletContext.contextPath}/index.jsp">Početna</a><br>
     </body>
 </html>

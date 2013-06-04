@@ -51,6 +51,7 @@
             <display:column property="geo_sirina" />
             <display:column property="datum" sortable="true"/>
         </display:table>     
-            
+        <br><br>
+        <a href="${pageContext.servletContext.contextPath}/index.jsp">Početna</a><br>
     </body>
 </html>

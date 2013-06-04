@@ -17,7 +17,7 @@
         <h1>Izbornik</h1>
         <a href="${pageContext.servletContext.contextPath}/PrijavaKorisnika">Prijava</a><br>
         <a href="${pageContext.servletContext.contextPath}/PregledMeteoPodataka">Pregled meteo podataka</a><br>
-        <a href="${pageContext.servletContext.contextPath}/PregledDnevnika">Pregled dnevnika socket servera</a><br>
+        <a href="${pageContext.servletContext.contextPath}/PregledDnevnikaSocketServera">Pregled dnevnika socket servera</a><br>
         <a href="${pageContext.servletContext.contextPath}/PregledZahtjevaServera">Pregled zahtjeva servera</a><br>
         <a href="${pageContext.servletContext.contextPath}/OdjavaKorisnika">Odjava</a><br>
     </body>

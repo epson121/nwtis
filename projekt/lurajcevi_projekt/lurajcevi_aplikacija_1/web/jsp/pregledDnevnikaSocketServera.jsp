@@ -17,24 +17,13 @@
     </head>
     <body>
         <h1>Pregled dnevnika socket servera!</h1>
-         <sql:setDataSource
-            var="dnevnik_podaci"
-            driver="${applicationScope.BP_Konfiguracija.driver_database}"
-            url="${BP_Konfiguracija.server_database}${BP_Konfiguracija.admin_database}"
-            user="${BP_Konfiguracija.admin_username}"
-            password="${BP_Konfiguracija.admin_password}"
-            />
         
-         
-         
-        <sql:transaction dataSource="${dnevnik_podaci}">
-            <sql:query var="ispis">
-                SELECT id, naredba FROM lurajcevi_dnevnik_servera
-            </sql:query>
-            <display:table name="${ispis.rows}" pagesize="10" >
+            <display:table name="${dnevnik_socket_servera}" pagesize="10" >
                 <display:column property="id" />
-                <display:column property="naredba" />
+                <display:column property="komanda" />
             </display:table>     
-        </sql:transaction>
+        
+        <br><br>
+        <a href="${pageContext.servletContext.contextPath}/index.jsp">Početna</a><br>
     </body>
 </html>

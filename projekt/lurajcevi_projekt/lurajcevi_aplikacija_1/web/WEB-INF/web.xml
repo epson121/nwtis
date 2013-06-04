@@ -37,15 +37,15 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Kontroler</servlet-name>
-        <url-pattern>/OdjavaKorisnika</url-pattern>
-        <url-pattern>/Kontroler</url-pattern>
         <url-pattern>/MeteoPodaciStranicenje</url-pattern>
+        <url-pattern>/Kontroler</url-pattern>
+        <url-pattern>/OdjavaKorisnika</url-pattern>
         <url-pattern>/MeteoPodaciInterval</url-pattern>
-        <url-pattern>/PregledDnevnika</url-pattern>
-        <url-pattern>/PrijavaKorisnika</url-pattern>
         <url-pattern>/ProvjeraKorisnika</url-pattern>
-        <url-pattern>/PregledZahtjevaServera</url-pattern>
+        <url-pattern>/PrijavaKorisnika</url-pattern>
+        <url-pattern>/PregledDnevnikaSocketServera</url-pattern>
         <url-pattern>/PregledMeteoPodataka</url-pattern>
+        <url-pattern>/PregledZahtjevaServera</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
