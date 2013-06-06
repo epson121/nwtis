@@ -48,10 +48,10 @@ public class SlusacAplikacije implements ServletContextListener {
         System.out.println("Konfiguracija učitana.");
         
         opw = new ObradaPodatakaWeatherbug(config);
-        opw.start();
+        //opw.start();
         
         ops = new ObradaPodatakaServer(config);
-        ops.start();
+        //ops.start();
     }
 
     @Override

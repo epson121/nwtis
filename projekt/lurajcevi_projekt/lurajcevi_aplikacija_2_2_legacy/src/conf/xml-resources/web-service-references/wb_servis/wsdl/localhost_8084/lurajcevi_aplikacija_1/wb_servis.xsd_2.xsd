@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.2-hudson-740-. --><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" version="1.0" targetNamespace="http://api.wxbug.net/">
+
+<xs:complexType name="meteoPodaci">
+<xs:sequence>
+<xs:element name="datum" type="xs:string" minOccurs="0" />
+<xs:element name="geo_duzina" type="xs:string" minOccurs="0" />
+<xs:element name="geo_sirina" type="xs:string" minOccurs="0" />
+<xs:element name="grad" type="xs:string" minOccurs="0" />
+<xs:element name="temperatura" type="xs:string" minOccurs="0" />
+<xs:element name="tlak" type="xs:string" minOccurs="0" />
+<xs:element name="vjetar" type="xs:string" minOccurs="0" />
+<xs:element name="vlaga" type="xs:string" minOccurs="0" />
+<xs:element name="zip_trazeni" type="xs:string" minOccurs="0" />
+<xs:element name="zip_vraceni" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>#{m.registracija_naslov}</title>
+    </h:head>
+    <h:body>
+        #{m.registracija_naslov}
+        <h:form id="registracija">
+            <h:outputText value="#{m.registracija_korisnik}" /><br/>
+            <h:inputText  id ="eime" value="#{registracija.korisnickoIme}" validator="#{registracija.provjeriPrazno}"/> 
+            <h:message for="eime" style="color:red; font-weight: bold;" /><br/>
+            <h:outputText value="#{m.registracija_lozinka}" /><br/>
+            <h:inputText id="elozinka"   value="#{registracija.lozinka}" validator="#{registracija.provjeriPrazno}"/>
+            <h:message for="elozinka" style="color:red; font-weight: bold;" /><br/>
+            <h:commandButton value="#{m.registracija_prijava}" action="#{registracija.registracija()}"/>
+            <br/><br/>
+        </h:form>
+        
+        <h:outputText value="#{m.registracija_neuspjesno}" rendered="#{!registracija.uspjesno}" style="color: red;"/>
+    </h:body>
+</html>
+

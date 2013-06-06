@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost:8084/lurajcevi_aplikacija_1/wb_servis?wsdl" uri="src/conf/xml-resources/web-service-references/wb_servis/wsdl/localhost_8084/lurajcevi_aplikacija_1/wb_servis.wsdl"/>
+    <system systemId="http://localhost:8084/lurajcevi_aplikacija_1/wb_servis?xsd=1" uri="src/conf/xml-resources/web-service-references/wb_servis/wsdl/localhost_8084/lurajcevi_aplikacija_1/wb_servis.xsd_1.xsd"/>
+    <system systemId="http://localhost:8084/lurajcevi_aplikacija_1/wb_servis?xsd=2" uri="src/conf/xml-resources/web-service-references/wb_servis/wsdl/localhost_8084/lurajcevi_aplikacija_1/wb_servis.xsd_2.xsd"/>
+</catalog>

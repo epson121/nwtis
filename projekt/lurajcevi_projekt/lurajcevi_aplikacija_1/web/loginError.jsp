@@ -13,5 +13,10 @@
     </head>
     <body>
         <h1>Err!!!</h1>
+        Uneseni su krivi korisnički podaci.<br>
+        Pokusajte  <a href ="${pageContext.servletContext.contextPath}/PrijavaKorisnika">ponovo</a>, 
+        ili idite na <a href ="${pageContext.servletContext.contextPath}/Kontroler">početnu stranicu.</a>
+        
+        
     </body>
 </html>

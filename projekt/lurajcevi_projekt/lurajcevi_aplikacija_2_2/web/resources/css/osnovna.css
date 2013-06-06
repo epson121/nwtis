@@ -1,0 +1,67 @@
+.tablica {
+    border: 1px solid firebrick;
+    background-color: cornflowerblue;
+    width: 95%;
+}
+.zaglavlje {
+    background-color: appworkspace;
+    font-weight: bold;
+}
+.parni {
+    background-color: activeborder;    
+    text-indent: 5px;
+}
+.neparni {
+    background-color: #b2c8e5;
+    text-indent: 5px;
+}
+
+input[type="button"], input[type="submit"] { 
+    color: #000000; 
+    font:  74% 'trebuchet ms',helvetica,sans-serif; 
+    background-color: #b2c8e5; 
+    border: 2px solid #036fab;
+} 
+
+
+input[type="button"]:active, input[type="submit"]:active { 
+    color: #000000; 
+    font:  74% 'trebuchet ms',helvetica,sans-serif; 
+    background-color: #AFAFAF; 
+    border: 2px solid #036fab;
+}
+
+.sel{
+    width: 5em;
+}
+
+.cnas{
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
+    border-bottom: 2px solid #036fab;
+    border-right:  2px solid #036fab;
+    border-top: 2px solid #b2c8e5;
+    border-left: 2px solid #b2c8e5;
+    padding: 0px;
+}
+
+.filter{
+    width: 100px;
+    margin-left: 5px;
+    border: 1px solid black;
+}
+
+.pg_glavni{
+    display: block;
+    overflow:   auto;
+    overflow-style: panner;
+}
+
+.naslovna_slika{
+    opacity: 0.8;
+    width: 40%;
+    height: 40%;
+    margin-left: 25%;
+}
+

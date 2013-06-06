@@ -74,17 +74,8 @@ public class Kontroler extends HttpServlet {
                     sesija = request.getSession();
                     sesija.setAttribute("korisnik", korIme);
                 }
-                else {
-                    throw new NeuspjesnaPrijava("Korisnicko ime ili lozinka pogresni.");
-                }
             }
-            if (sesija.getAttribute("request") != null){
-                odrediste = (String) sesija.getAttribute("request");
-                sesija.removeAttribute("request");
-            }
-            else{
-                odrediste = "/IspisKorisnika";
-            }
+                odrediste = "/Kontroler";
         } 
         
         else if (zahtjev.equals("/PregledMeteoPodataka")){
@@ -107,13 +98,26 @@ public class Kontroler extends HttpServlet {
             HttpSession sesija = request.getSession();
             List<ServerKomanda> pregled_zahtjeva = null;
             try {
-                pregled_zahtjeva = DBConnector.dohvatiPopisSocketServerKomandi("lurajcevi_dnevnik_servera");
+                pregled_zahtjeva = DBConnector.dohvatiPopisSocketServerKomandi("lurajcevi_dnevnik_servera", 0, "");
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
             }
             sesija.setAttribute("dnevnik_socket_servera", pregled_zahtjeva);
             odrediste = "/jsp/pregledDnevnikaSocketServera.jsp";
         } 
+        
+        else if (zahtjev.equals("/PregledDnevnikaSocketServeraFilter")){
+            HttpSession sesija = request.getSession();
+            String status = request.getParameter("status");
+            List<ServerKomanda> pregled_zahtjeva = null;
+            try {
+                pregled_zahtjeva = DBConnector.dohvatiPopisSocketServerKomandi("lurajcevi_dnevnik_servera", 1, status);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            sesija.setAttribute("dnevnik_socket_servera", pregled_zahtjeva);
+            odrediste = "/jsp/pregledDnevnikaSocketServera.jsp";
+        }
         
         else if (zahtjev.equals("/PregledZahtjevaServera")){
             HttpSession sesija = request.getSession();
@@ -132,7 +136,25 @@ public class Kontroler extends HttpServlet {
             HttpSession sesija = request.getSession();
             sesija.setAttribute("broj_stranica", brojStranica);
             odrediste = "/jsp/pregledMeteoPodataka.jsp";
-        } 
+        }  
+        
+        else if (zahtjev.equals("/MeteoPodaciZipFilter")){
+            //TODO u jsp. formatirati datume
+            HttpSession sesija = request.getSession();
+            String zip = request.getParameter("zip");
+             if (zip != null && !zip.trim().equals("")){
+                List<MeteoPodaci> podaci = null;
+                try {
+                    podaci = DBConnector.dohvatiNajnovijePodatke("lurajcevi_podaci_zip", zip, 0, 1);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                sesija.setAttribute("meteo_podaci", podaci);
+             }
+             odrediste = "/jsp/pregledMeteoPodataka.jsp";
+        }
         
         else if (zahtjev.equals("/MeteoPodaciInterval")){
             HttpSession sesija = request.getSession();

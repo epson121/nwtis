@@ -95,8 +95,9 @@ public class DBConnector {
         return zahtjevi;
     }
     
-    public static List<ServerKomanda> dohvatiPopisSocketServerKomandi(String baza) throws ClassNotFoundException{
-        String upit = "SELECT * FROM lurajcevi_dnevnik_servera";
+    public static List<ServerKomanda> dohvatiPopisSocketServerKomandi(String baza, int id, String filter) throws ClassNotFoundException{
+        String upit1 = "SELECT * FROM lurajcevi_dnevnik_servera";
+        String upit2 = "SELECT * FROM lurajcevi_dnevnik_servera WHERE status LIKE '" + filter + "%'";
         String url = bpKonf.getServer_database() + bpKonf.getUser_database();
         String korisnik = bpKonf.getUser_username();
         String lozinka = bpKonf.getUser_password();
@@ -108,10 +109,17 @@ public class DBConnector {
             Class.forName(bpKonf.getDriver_database(url));
             veza = DriverManager.getConnection(url, korisnik, lozinka);
             instr = veza.createStatement();
-            rs = instr.executeQuery(upit);
+            if (id == 0)
+                rs = instr.executeQuery(upit1);
+            else if (id == 1)
+                rs = instr.executeQuery(upit2);
+                
             while (rs.next()){
                 ServerKomanda z = new ServerKomanda(rs.getInt("id"), 
-                                                    rs.getString("komanda"));
+                                                    rs.getString("komanda"),
+                                                    rs.getString("status"),
+                                                    rs.getString("korisnik"),
+                                                    rs.getString("vrijeme"));
                komande.add(z);
             }
         } catch(SQLException e){
@@ -214,7 +222,7 @@ public class DBConnector {
         }
     }
     
-    public static void unesiPodatke(String baza, String zahtjev, String trajanje) throws ClassNotFoundException{
+    public static void unesiPodatke(String baza, String zahtjev, String trajanje, String kor) throws ClassNotFoundException{
         String url = bpKonf.getServer_database() + bpKonf.getUser_database();
         String korisnik = bpKonf.getUser_username();
         String lozinka = bpKonf.getUser_password();
@@ -225,7 +233,7 @@ public class DBConnector {
             Class.forName(bpKonf.getDriver_database(url));
             veza = DriverManager.getConnection(url, korisnik, lozinka);
             instr = veza.createStatement();
-            instr.execute("INSERT INTO " + baza + " VALUES (DEFAULT, '" + zahtjev + "','"+ trajanje + "')");
+            instr.execute("INSERT INTO " + baza + " VALUES (DEFAULT, '" + zahtjev + "','"+ trajanje + "', '" + kor + "', now())");
         } catch(SQLException e){
             if (veza != null){
                 veza = null;
@@ -425,7 +433,7 @@ public class DBConnector {
             veza = DriverManager.getConnection(url, korisnik, lozinka);
             instr = veza.createStatement();
             
-                rs = instr.executeQuery("SELECT zip_trazeni, COUNT(*) AS c FROM " + baza + " GROUP BY zip_trazeni LIMIT " + n );
+                rs = instr.executeQuery("SELECT zip_trazeni, COUNT(*) AS c FROM " + baza + " GROUP BY c DESC LIMIT " + n );
                 while (rs.next()){
                     mp.add(rs.getString("zip_trazeni") + ":" + rs.getString("c"));
                 }
@@ -445,7 +453,7 @@ public class DBConnector {
         return mp;
     }
 
-    public static List<MeteoPodaci> dohvatiNajnovijePodatke(String baza, String zip, int n) throws ClassNotFoundException, SQLException{
+    public static List<MeteoPodaci> dohvatiNajnovijePodatke(String baza, String zip, int n, int id) throws ClassNotFoundException, SQLException{
         String url = bpKonf.getServer_database() + bpKonf.getUser_database();
         String korisnik = bpKonf.getUser_username();
         String lozinka = bpKonf.getUser_password();
@@ -464,8 +472,13 @@ public class DBConnector {
                                           "WHERE zip_trazeni='" + zip + 
                                             "' LIMIT " + n + "");
                                             * */
-            rs = instr.executeQuery("SELECT * FROM " + baza +
-                                     "WHERE zip_trazeni = '" + zip + "' ORDER BY id DESC LIMIT " + n);
+            if (id == 0){
+                rs = instr.executeQuery("SELECT * FROM " + baza +
+                                     " WHERE zip_trazeni = '" + zip + "' ORDER BY id DESC LIMIT " + n);
+            } else if (id == 1) {
+                 rs = instr.executeQuery("SELECT * FROM " + baza +
+                                     " WHERE zip_trazeni = '" + zip + "'");
+            }
             while(rs.next()){
                 MeteoPodaci p = new MeteoPodaci(rs.getString("zip_trazeni"),
                                                 rs.getString("zip_vraceni"),
@@ -535,7 +548,7 @@ public class DBConnector {
         return podaci;
     }
     
-    public static boolean unesiUDnevnikSocketServera(String baza, String naredba) throws ClassNotFoundException{
+    public static boolean unesiUDnevnikSocketServera(String baza, String naredba, String status, String kor) throws ClassNotFoundException{
         String url = bpKonf.getServer_database() + bpKonf.getUser_database();
         String korisnik = bpKonf.getUser_username();
         String lozinka = bpKonf.getUser_password();
@@ -547,7 +560,7 @@ public class DBConnector {
             Class.forName(bpKonf.getDriver_database(url));
             veza = DriverManager.getConnection(url, korisnik, lozinka);
             instr = veza.createStatement();
-            instr.execute("INSERT INTO " + baza + " VALUES (DEFAULT, '" + naredba + "')");
+            instr.execute("INSERT INTO " + baza + " VALUES (DEFAULT, '" + naredba + "', '" + status + "', '" + kor + "', now())");
         } catch(SQLException e){
             if (veza != null){
                 veza = null;

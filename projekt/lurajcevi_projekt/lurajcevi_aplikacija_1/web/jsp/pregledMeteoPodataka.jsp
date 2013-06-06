@@ -29,6 +29,12 @@
             </select>
             <input type="submit" value="Submit" />
         </form>
+        Filtriraj zipove:
+        <form method="POST" action="${pageContext.servletContext.contextPath}/MeteoPodaciZipFilter">
+            Zip kod:
+            <input name="zip"/>
+            <input type="submit" value="Dohvati"/>
+        </form>
         Filtriraj zip po datumu (Format datuma: dd.MM.yyyy hh.mm.ss)
         <form method="POST" action="${pageContext.servletContext.contextPath}/MeteoPodaciInterval">
             Zip kod:

@@ -70,6 +70,7 @@ public class ObradaPodatakaServerDretva extends Thread{
         InputStream is = null;
         OutputStream os = null;
         StringBuilder command;
+        String username = "";
         String response = "ERROR. Wrong command or username/password!";
         int character;
         long start, duration = 0;
@@ -88,7 +89,7 @@ public class ObradaPodatakaServerDretva extends Thread{
             brojPrimljenihKomandi++;
             if (isMatchingRegex(strCommand, adminRegex)){
                 brojIzvrsenihKomandi++;
-                String username = m.group(1);
+                username = m.group(1);
                 String password = m.group(2);
                 System.out.println("GRUPA 3:" + m.group(3));
                 System.out.println("GRUPA 4:" + m.group(4));
@@ -115,6 +116,7 @@ public class ObradaPodatakaServerDretva extends Thread{
                         if (!SlusacAplikacije.isStopped()){
                             SlusacAplikacije.setStopped(true);
                             response = "OK 10";
+                            interrupt();
                         } else {
                             response = "OK 42";
                         }
@@ -138,7 +140,7 @@ public class ObradaPodatakaServerDretva extends Thread{
                 }
             } else if (isMatchingRegex(strCommand, userRegex)){
                 brojIzvrsenihKomandi++;
-                String username = m.group(1);
+                username = m.group(1);
                 String zip = m.group(2);
                 if (DBConnector.provjeriZip(activeZipCodes, zip)){
                     response = "OK 10 " +  DBConnector.dohvatiPodatkeOZipKodu(zip_podaci, zip);
@@ -149,7 +151,7 @@ public class ObradaPodatakaServerDretva extends Thread{
                 brojNeispravnihKomandi++;
             }
             duration = System.currentTimeMillis() - start;
-            DBConnector.unesiUDnevnikSocketServera("lurajcevi_dnevnik_servera", strCommand);
+            DBConnector.unesiUDnevnikSocketServera("lurajcevi_dnevnik_servera", strCommand, response.substring(0, 5), username);
             //saljiPoruku(config.dajPostavku("primatelj"), config.dajPostavku("predmet"), duration);
             os.write(response.getBytes());
             os.flush();

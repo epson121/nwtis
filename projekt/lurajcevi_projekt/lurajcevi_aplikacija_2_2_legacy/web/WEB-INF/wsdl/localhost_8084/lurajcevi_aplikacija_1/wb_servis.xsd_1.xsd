@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.2-hudson-740-. --><xs:schema xmlns:tns="http://ws.lurajcevi.nwtis.foi.org/" xmlns:ns1="http://api.wxbug.net/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws.lurajcevi.nwtis.foi.org/">
+
+<xs:import namespace="http://api.wxbug.net/" schemaLocation="http://localhost:8084/lurajcevi_aplikacija_1/wb_servis?xsd=2" />
+
+<xs:element name="Hello" type="tns:Hello" />
+
+<xs:element name="HelloResponse" type="tns:HelloResponse" />
+
+<xs:element name="dohvatiAktivneZipove" type="tns:dohvatiAktivneZipove" />
+
+<xs:element name="dohvatiAktivneZipoveResponse" type="tns:dohvatiAktivneZipoveResponse" />
+
+<xs:element name="dohvatiPodatkeInterval" type="tns:dohvatiPodatkeInterval" />
+
+<xs:element name="dohvatiPodatkeIntervalResponse" type="tns:dohvatiPodatkeIntervalResponse" />
+
+<xs:element name="dohvatiPodatkeOZipKodu" type="tns:dohvatiPodatkeOZipKodu" />
+
+<xs:element name="dohvatiPodatkeOZipKoduResponse" type="tns:dohvatiPodatkeOZipKoduResponse" />
+
+<xs:element name="dohvatiPosljednjihNPodatakaZaZipKod" type="tns:dohvatiPosljednjihNPodatakaZaZipKod" />
+
+<xs:element name="dohvatiPosljednjihNPodatakaZaZipKodResponse" type="tns:dohvatiPosljednjihNPodatakaZaZipKodResponse" />
+
+<xs:element name="dohvatiZipoveSNajvisePodataka" type="tns:dohvatiZipoveSNajvisePodataka" />
+
+<xs:element name="dohvatiZipoveSNajvisePodatakaResponse" type="tns:dohvatiZipoveSNajvisePodatakaResponse" />
+
+<xs:complexType name="dohvatiPodatkeInterval">
+<xs:sequence>
+<xs:element name="zip" type="xs:string" minOccurs="0" />
+<xs:element name="date1" type="xs:string" minOccurs="0" />
+<xs:element name="date2" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dohvatiPodatkeIntervalResponse">
+<xs:sequence>
+<xs:element name="return" type="ns1:meteoPodaci" minOccurs="0" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dohvatiPodatkeOZipKodu">
+<xs:sequence>
+<xs:element name="zip" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dohvatiPodatkeOZipKoduResponse">
+<xs:sequence>
+<xs:element name="return" type="ns1:meteoPodaci" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dohvatiPosljednjihNPodatakaZaZipKod">
+<xs:sequence>
+<xs:element name="n" type="xs:int" />
+<xs:element name="zip" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dohvatiPosljednjihNPodatakaZaZipKodResponse">
+<xs:sequence>
+<xs:element name="return" type="ns1:meteoPodaci" minOccurs="0" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="Hello">
+<xs:sequence />
+</xs:complexType>
+
+<xs:complexType name="HelloResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dohvatiAktivneZipove">
+<xs:sequence />
+</xs:complexType>
+
+<xs:complexType name="dohvatiAktivneZipoveResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dohvatiZipoveSNajvisePodataka">
+<xs:sequence>
+<xs:element name="n" type="xs:int" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dohvatiZipoveSNajvisePodatakaResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

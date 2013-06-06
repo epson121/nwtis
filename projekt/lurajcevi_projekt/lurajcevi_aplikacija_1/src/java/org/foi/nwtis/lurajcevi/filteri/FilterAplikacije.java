@@ -51,9 +51,12 @@ public class FilterAplikacije implements Filter {
             log("FilterAplikacije:DoAfterProcessing");
         }
         String zahtjev = ((HttpServletRequest) request).getServletPath();
+        String korisnik = "anonymous";
+        if (request.getParameter("korisnik") != null)
+            korisnik = (String) request.getAttribute("korisnik");
         duration = System.currentTimeMillis() - start;
         try {
-            DBConnector.unesiPodatke("lurajcevi_dnevnik_zahtjeva", zahtjev, duration + "");
+            DBConnector.unesiPodatke("lurajcevi_dnevnik_zahtjeva", zahtjev, duration + "", korisnik);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(FilterAplikacije.class.getName()).log(Level.SEVERE, null, ex);
         }

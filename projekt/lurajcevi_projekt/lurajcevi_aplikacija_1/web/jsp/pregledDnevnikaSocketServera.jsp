@@ -17,10 +17,18 @@
     </head>
     <body>
         <h1>Pregled dnevnika socket servera!</h1>
-        
+         Filtriraj zipove:
+        <form method="POST" action="${pageContext.servletContext.contextPath}/PregledDnevnikaSocketServeraFilter">
+            Filtriraj prema statusu:
+            <input name="status"/>
+            <input type="submit" value="Dohvati"/>
+        </form>
             <display:table name="${dnevnik_socket_servera}" pagesize="10" >
-                <display:column property="id" />
+                <display:column property="id"  sortable="true"/>
                 <display:column property="komanda" />
+                <display:column property="status" />
+                <display:column property="korisnik" />
+                <display:column property="datum" sortable="true" />
             </display:table>     
         
         <br><br>

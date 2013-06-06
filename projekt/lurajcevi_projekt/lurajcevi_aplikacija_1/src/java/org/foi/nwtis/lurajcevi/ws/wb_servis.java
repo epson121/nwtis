@@ -62,7 +62,7 @@ public class wb_servis {
     public java.util.List<org.foi.nwtis.lurajcevi.ws.MeteoPodaci> dohvatiPosljednjihNPodatakaZaZipKod(@WebParam(name = "n") int n, @WebParam(name = "zip") String zip) {
         List<MeteoPodaci> lmp = null;
         try {
-            lmp = DBConnector.dohvatiNajnovijePodatke("lurajcevi_podaci_zip", zip, n);
+            lmp = DBConnector.dohvatiNajnovijePodatke("lurajcevi_podaci_zip", zip, n, 0);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(wb_servis.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {

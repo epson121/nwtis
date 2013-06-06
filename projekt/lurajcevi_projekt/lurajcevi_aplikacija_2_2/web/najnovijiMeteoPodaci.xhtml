@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>#{m.najnoviji_mp_naslov}</title>
+        <h:outputStylesheet library="css" name="osnovna.css" />
+    </h:head>
+    <h:body>
+        #{m.najnoviji_mp_naslov}
+        
+        <h:form>
+            <h:panelGrid columns="2" class="pg_glavni" >
+                <h:selectManyListbox id="popisGradova" value="#{zipKodoviPodaci.gradovi}" size="7">
+                    <f:selectItems value="#{zipKodoviPodaci.popisGradova}" />
+                </h:selectManyListbox>
+                
+                <h:selectManyListbox id="odabraniGradovi" value="#{zipKodoviPodaci.gradoviBrisanje}" size="7">
+                    <f:selectItems value="#{zipKodoviPodaci.popisGradovaOdabrano}" />
+                </h:selectManyListbox>
+                
+                <h:commandButton value="#{m.najnoviji_mp_dodajGrad}" action="#{zipKodoviPodaci.dodajGrad()}">
+                    <f:ajax render="odabraniGradovi" execute="popisGradova" immediate="true" />
+                </h:commandButton> 
+                
+                <h:commandButton value="#{m.najnoviji_mp_brisiGrad}" action="#{zipKodoviPodaci.obrisiGrad()}" >
+                    <f:ajax render="odabraniGradovi" execute="odabraniGradovi" immediate="true" />
+                </h:commandButton>
+                
+                <h:outputLabel value="" />
+                
+                <h:commandButton value="#{m.ok}" action="#{zipKodoviPodaci.dohvatiMeteoPodatke()}" >
+                    <f:ajax render="meteoPodaci" execute="meteoPodaci" immediate="true" />
+                </h:commandButton>
+            </h:panelGrid>
+            <h:panelGrid columns="1" class="pg_podaci" >
+                <h:dataTable id ="meteoPodaci" value="#{zipKodoviPodaci.najnovijiPodaciOdabrano}" var="p" 
+                                    class="tablica" headerClass="zaglavlje"
+                                    rowClasses="neparni,parni">
+                    <br/>
+                    <h:column>
+                        <f:facet name="header">#{m.grad}</f:facet>
+                        <h:outputText value="#{p.grad}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{m.zip_trazeni}</f:facet>
+                        <h:outputText value="#{p.zipTrazeni}"/>
+                    </h:column> 
+                    <h:column>
+                        <f:facet name="header">#{m.zip_vraceni}</f:facet>
+                        <h:outputText value="#{p.zipVraceni}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{m.geo_duzina}</f:facet>
+                        <h:outputText value="#{p.geoDuzina}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{m.geo_sirina}</f:facet>
+                        <h:outputText value="#{p.geoSirina}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{m.temperatura}</f:facet>
+                        <h:outputText value="#{p.temperatura}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{m.tlak}</f:facet>
+                        <h:outputText value="#{p.tlak}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{m.vjetar}</f:facet>
+                        <h:outputText value="#{p.vjetar}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{m.vlaga}</f:facet>
+                        <h:outputText value="#{p.vlaga}"/>
+                    </h:column>
+                </h:dataTable>
+
+                <h:outputLabel value="" />
+            </h:panelGrid>
+                <h:panelGrid columns="2" >
+                    <h:commandButton value="#{m.prethodna}" action="#{zipKodoviPodaci.prethodnaStranica}" >
+                        <f:ajax render="meteoPodaci" execute="#{zipKodoviPodaci.prethodnaStranica()}" immediate="true" />
+                        </h:commandButton>
+                    <h:commandButton  value="#{m.slijedeca}" action="#{zipKodoviPodaci.slijedecaStranica}" >
+                        <f:ajax render="meteoPodaci" execute="#{zipKodoviPodaci.slijedecaStranica()}" immediate="true" />
+                    </h:commandButton>
+                </h:panelGrid>
+            </h:form>
+        
+        <h:link value="#{m.portal_naslov}" outcome="portal" />
+    </h:body>
+</html>
+

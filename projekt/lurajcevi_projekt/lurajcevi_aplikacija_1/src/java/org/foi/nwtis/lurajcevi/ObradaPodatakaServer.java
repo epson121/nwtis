@@ -44,9 +44,8 @@ public class ObradaPodatakaServer extends Thread{
                     ops = new ObradaPodatakaServerDretva(client, config);
                     ops.start();
                 } catch(SocketTimeoutException ste){
-
+                    
                 }
-
             }
         } catch (IOException ex) {
             Logger.getLogger(ObradaPodatakaServer.class.getName()).log(Level.SEVERE, null, ex);

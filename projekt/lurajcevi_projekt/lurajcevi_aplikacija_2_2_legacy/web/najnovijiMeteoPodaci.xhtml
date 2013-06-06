@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:o="http://openfaces.org/">
+    <h:head>
+        <title>#{m.najnoviji_mp_naslov}</title>
+        <h:outputStylesheet library="css" name="osnovna.css" />
+    </h:head>
+    <h:body>
+        #{m.najnoviji_mp_naslov}
+       <h:form>
+            <o:dataTable var="p"
+                         value="#{zipKodoviPodaci.najnovijiPodaci}"
+                         pageSize="2" >
+                <f:facet name="below">
+                    <o:dataTablePaginator id="paginator"/>
+                    </f:facet>
+                <o:column>
+                    <f:facet name="header">
+                        Zip traženi
+                    </f:facet>
+                    <h:outputText value="#{p.zipTrazeni}"/>
+                </o:column>
+                <o:column>
+                    <f:facet name="header">
+                        Zip vraćeni
+                    </f:facet>
+                    <h:outputText value="#{p.zipVraceni}"/>
+                </o:column>
+                <o:column>
+                    <f:facet name="header">
+                        Temperatura
+                    </f:facet>
+                    <h:outputText value="#{p.temperatura}"/>
+                </o:column>
+          </o:dataTable>
+       </h:form>
+    </h:body>
+</html>
+
